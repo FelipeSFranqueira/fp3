@@ -1,9 +1,7 @@
-package view.container;
+package com.fp3.haras.view.container;
 
-import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import javax.swing.BorderFactory;
 import javax.swing.border.EmptyBorder;
 
 public class MainContainer extends javax.swing.JPanel {

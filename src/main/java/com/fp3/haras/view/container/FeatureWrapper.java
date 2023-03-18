@@ -1,9 +1,10 @@
-package view.container;
+package com.fp3.haras.view.container;
 
 import java.awt.CardLayout;
 import javax.swing.JPanel;
-import utils.Screens;
-import view.welcome.Welcome;
+
+import com.fp3.haras.utils.Screens;
+import com.fp3.haras.view.welcome.Welcome;
 
 public class FeatureWrapper extends javax.swing.JPanel {
     private CardLayout cardLayout;

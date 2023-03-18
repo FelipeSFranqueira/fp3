@@ -1,18 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
-package view.welcome;
+package com.fp3.haras.view.welcome;
 
-/**
- *
- * @author 212118
- */
 public class Welcome extends javax.swing.JPanel {
 
-    /**
-     * Creates new form Welcome
-     */
     public Welcome() {
         initComponents();
     }

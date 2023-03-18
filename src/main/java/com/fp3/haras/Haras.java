@@ -1,6 +1,6 @@
 package com.fp3.haras;
 
-import view.container.Root;
+import com.fp3.haras.view.container.Root;
 
 public class Haras {
     public static void main(String[] args) {

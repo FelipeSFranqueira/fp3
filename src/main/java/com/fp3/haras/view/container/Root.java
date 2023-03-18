@@ -1,4 +1,4 @@
-package view.container;
+package com.fp3.haras.view.container;
 
 import javax.swing.JPanel;
 

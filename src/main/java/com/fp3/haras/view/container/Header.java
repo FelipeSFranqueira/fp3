@@ -1,18 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
-package view.container;
+package com.fp3.haras.view.container;
 
-/**
- *
- * @author 212118
- */
 public class Header extends javax.swing.JPanel {
 
-    /**
-     * Creates new form Header
-     */
     public Header() {
         initComponents();
     }
