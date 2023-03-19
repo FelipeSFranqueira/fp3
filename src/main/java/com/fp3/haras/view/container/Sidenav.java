@@ -50,8 +50,12 @@ public class Sidenav extends javax.swing.JPanel implements GenericObservable{
             navigator.addMouseListener(new MouseListener() {                
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    updateObservables(Screens.valueOf(navigator.getName()));
-                    updateSelectedMenu(navigator);
+                    if (navigator != pnlLogoutNavigator) {
+                        updateObservables(Screens.valueOf(navigator.getName()));
+                        updateSelectedMenu(navigator);
+                    } else {
+                        System.exit(0);
+                    }
                 }
 
                 @Override
