@@ -1,8 +1,8 @@
 package com.fp3.haras.view.welcome;
 
-public class Welcome extends javax.swing.JPanel {
+public class CustomersScreen extends javax.swing.JPanel {
 
-    public Welcome() {
+    public CustomersScreen() {
         initComponents();
     }
 
@@ -15,7 +15,7 @@ public class Welcome extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setBackground(new java.awt.Color(60, 125, 65));
+        setBackground(new java.awt.Color(60, 125, 125));
         setPreferredSize(new java.awt.Dimension(900, 400));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

@@ -1,11 +1,16 @@
 package com.fp3.haras.view.container;
 
+import com.fp3.haras.utils.GenericObservable;
+import com.fp3.haras.utils.GenericObserver;
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JPanel;
 
-public class Sidenav extends javax.swing.JPanel {
+public class Sidenav extends javax.swing.JPanel implements GenericObservable{
+    private List<GenericObserver> observers = new ArrayList<>();
 
     /**
      * Creates new form Sidenav
@@ -26,6 +31,7 @@ public class Sidenav extends javax.swing.JPanel {
             navigator.addMouseListener(new MouseListener() {                
                 @Override
                 public void mouseClicked(MouseEvent e) {
+                    updateObservables(e);
                 }
 
                 @Override
@@ -171,6 +177,23 @@ public class Sidenav extends javax.swing.JPanel {
         add(pnlLogoutNavigator);
     }// </editor-fold>//GEN-END:initComponents
 
+    @Override
+    public void addObserver(GenericObserver observer) {
+        this.observers.add(observer);
+    }
+    
+    @Override
+    public void removeObserver(GenericObserver observer) {
+        this.observers.remove(observer);
+    }
+    
+    @Override
+    public void updateObservables(Object o) {
+        for (GenericObserver observer: observers) {
+            observer.update(o);
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel navIconCustomers;
     private javax.swing.JLabel navIconHome;
@@ -193,4 +216,5 @@ public class Sidenav extends javax.swing.JPanel {
     private javax.swing.JPanel pnlProductsNavigator;
     private javax.swing.JPanel pnlStableNavigator;
     // End of variables declaration//GEN-END:variables
+
 }

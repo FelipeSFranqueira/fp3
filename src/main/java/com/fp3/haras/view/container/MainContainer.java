@@ -1,5 +1,6 @@
 package com.fp3.haras.view.container;
 
+import com.fp3.haras.utils.GenericObserver;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.border.EmptyBorder;
@@ -19,8 +20,12 @@ public class MainContainer extends javax.swing.JPanel {
         gbc.anchor = GridBagConstraints.NORTH;
         gbc.weighty = 1;
         
-        this.setBorder(new EmptyBorder(24, 0, 0, 0));
+        this.setBorder(new EmptyBorder(36, 36, 0, 36));
         
         this.add(wrapper, gbc);
+    }
+    
+    public FeatureWrapper getFeatureWrapper() {
+        return this.wrapper;
     }
 }
