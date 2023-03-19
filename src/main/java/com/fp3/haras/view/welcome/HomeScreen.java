@@ -1,19 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
-package view.welcome;
+package com.fp3.haras.view.welcome;
 
-/**
- *
- * @author 212118
- */
-public class Welcome extends javax.swing.JPanel {
+public class HomeScreen extends javax.swing.JPanel {
 
-    /**
-     * Creates new form Welcome
-     */
-    public Welcome() {
+    public HomeScreen() {
         initComponents();
     }
 
@@ -26,7 +15,8 @@ public class Welcome extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setBackground(new java.awt.Color(60, 125, 65));
+        setBackground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(900, 400));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

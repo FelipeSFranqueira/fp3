@@ -1,20 +1,83 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
-package view.container;
+package com.fp3.haras.view.container;
 
-/**
- *
- * @author 212118
- */
-public class Sidenav extends javax.swing.JPanel {
+import com.fp3.haras.utils.Colors;
+import com.fp3.haras.utils.GenericObservable;
+import com.fp3.haras.utils.GenericObserver;
+import com.fp3.haras.utils.Screens;
+import java.awt.Cursor;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JPanel;
+
+public class Sidenav extends javax.swing.JPanel implements GenericObservable{
+    private List<GenericObserver> observers = new ArrayList<>();
+    private JPanel selectedPanel;
 
     /**
      * Creates new form Sidenav
      */
     public Sidenav() {
         initComponents();
+        
+        this.selectedPanel = navSelectedHome;
+        this.setBackground(new java.awt.Color(
+                Colors.SECONDARYBG.getColor()[0],
+                Colors.SECONDARYBG.getColor()[1],
+                Colors.SECONDARYBG.getColor()[2]
+        ));
+        
+        updateSelectedMenu(pnlHomeNavigator);
+                              
+        JPanel[] navPanels = {
+            pnlHomeNavigator, 
+            pnlStableNavigator, 
+            pnlCustomersNavigator, 
+            pnlAnimalsNavigator,
+            pnlProductsNavigator, 
+            pnlLogoutNavigator,
+        };
+        pnlHomeNavigator.setName(Screens.HOME.toString());
+        pnlStableNavigator.setName(Screens.STABLE.toString());
+        pnlCustomersNavigator.setName(Screens.CUSTOMERS.toString());
+        pnlProductsNavigator.setName(Screens.PRODUCTS.toString());
+        pnlAnimalsNavigator.setName(Screens.ANIMALS.toString());
+        pnlLogoutNavigator.setName(Screens.LOGOUT.toString());
+        for(JPanel navigator: navPanels) {
+            navigator.setCursor(new Cursor(Cursor.HAND_CURSOR) {
+            });
+            navigator.addMouseListener(new MouseListener() {                
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    updateObservables(Screens.valueOf(navigator.getName()));
+                    updateSelectedMenu(navigator);
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {        
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    navigator.setBackground(new java.awt.Color(
+                        Colors.SECONDARYBGHOVER.getColor()[0],
+                        Colors.SECONDARYBGHOVER.getColor()[1],
+                        Colors.SECONDARYBGHOVER.getColor()[2]
+                    ));
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    navigator.setBackground(new java.awt.Color(234, 234, 234));
+                }
+                
+            });
+        }
     }
 
     /**
@@ -26,21 +89,240 @@ public class Sidenav extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setBackground(new java.awt.Color(15, 19, 52));
+        pnlLogo = new javax.swing.JPanel();
+        lblLogo = new javax.swing.JLabel();
+        pnlHomeNavigator = new javax.swing.JPanel();
+        navSelectedHome = new javax.swing.JPanel();
+        navIconHome = new javax.swing.JLabel();
+        navTextHome = new javax.swing.JLabel();
+        pnlStableNavigator = new javax.swing.JPanel();
+        navSelectedStable = new javax.swing.JPanel();
+        navIconStable = new javax.swing.JLabel();
+        navTextStable = new javax.swing.JLabel();
+        pnlCustomersNavigator = new javax.swing.JPanel();
+        navSelectedCustomers = new javax.swing.JPanel();
+        navIconCustomers = new javax.swing.JLabel();
+        navTextCustomers = new javax.swing.JLabel();
+        pnlAnimalsNavigator = new javax.swing.JPanel();
+        navSelectedAnimals = new javax.swing.JPanel();
+        navIconAnimals = new javax.swing.JLabel();
+        navTextAnimals = new javax.swing.JLabel();
+        pnlProductsNavigator = new javax.swing.JPanel();
+        navSelectedProducts = new javax.swing.JPanel();
+        navIconProducts = new javax.swing.JLabel();
+        navTextProducts = new javax.swing.JLabel();
+        pnlLogoutNavigator = new javax.swing.JPanel();
+        navSelectedLogout = new javax.swing.JPanel();
+        navIconLogout = new javax.swing.JLabel();
+        navTextLogout = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 150, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 450, Short.MAX_VALUE)
-        );
+        setBackground(new java.awt.Color(234, 234, 234));
+        setMaximumSize(new java.awt.Dimension(250, 250));
+        setMinimumSize(new java.awt.Dimension(250, 42));
+        setPreferredSize(new java.awt.Dimension(250, 0));
+
+        pnlLogo.setBackground(new java.awt.Color(234, 234, 234));
+        pnlLogo.setPreferredSize(new java.awt.Dimension(150, 150));
+        pnlLogo.setLayout(new java.awt.GridBagLayout());
+
+        lblLogo.setText("Espaço para Logo");
+        pnlLogo.add(lblLogo, new java.awt.GridBagConstraints());
+
+        add(pnlLogo);
+
+        pnlHomeNavigator.setBackground(new java.awt.Color(234, 234, 234));
+        pnlHomeNavigator.setPreferredSize(new java.awt.Dimension(250, 32));
+        pnlHomeNavigator.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 16, 5));
+
+        navSelectedHome.setBackground(new java.awt.Color(0, 120, 212));
+        navSelectedHome.setPreferredSize(new java.awt.Dimension(3, 16));
+        pnlHomeNavigator.add(navSelectedHome);
+
+        navIconHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home.png"))); // NOI18N
+        pnlHomeNavigator.add(navIconHome);
+
+        navTextHome.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        navTextHome.setText("Início");
+        pnlHomeNavigator.add(navTextHome);
+
+        add(pnlHomeNavigator);
+
+        pnlStableNavigator.setBackground(new java.awt.Color(234, 234, 234));
+        pnlStableNavigator.setPreferredSize(new java.awt.Dimension(250, 32));
+        pnlStableNavigator.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 16, 5));
+
+        navSelectedStable.setBackground(new java.awt.Color(0, 120, 212));
+        navSelectedStable.setPreferredSize(new java.awt.Dimension(3, 16));
+        pnlStableNavigator.add(navSelectedStable);
+
+        navIconStable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/horse_stable.png"))); // NOI18N
+        pnlStableNavigator.add(navIconStable);
+
+        navTextStable.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        navTextStable.setText("Estábulo");
+        pnlStableNavigator.add(navTextStable);
+
+        add(pnlStableNavigator);
+
+        pnlCustomersNavigator.setBackground(new java.awt.Color(234, 234, 234));
+        pnlCustomersNavigator.setPreferredSize(new java.awt.Dimension(250, 32));
+        pnlCustomersNavigator.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 16, 5));
+
+        navSelectedCustomers.setBackground(new java.awt.Color(0, 120, 212));
+        navSelectedCustomers.setPreferredSize(new java.awt.Dimension(3, 16));
+        pnlCustomersNavigator.add(navSelectedCustomers);
+
+        navIconCustomers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/customers.png"))); // NOI18N
+        pnlCustomersNavigator.add(navIconCustomers);
+
+        navTextCustomers.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        navTextCustomers.setText("Clientes");
+        pnlCustomersNavigator.add(navTextCustomers);
+
+        add(pnlCustomersNavigator);
+
+        pnlAnimalsNavigator.setBackground(new java.awt.Color(234, 234, 234));
+        pnlAnimalsNavigator.setPreferredSize(new java.awt.Dimension(250, 32));
+        pnlAnimalsNavigator.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 16, 5));
+
+        navSelectedAnimals.setBackground(new java.awt.Color(0, 120, 212));
+        navSelectedAnimals.setPreferredSize(new java.awt.Dimension(3, 16));
+        pnlAnimalsNavigator.add(navSelectedAnimals);
+
+        navIconAnimals.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/animals.png"))); // NOI18N
+        pnlAnimalsNavigator.add(navIconAnimals);
+
+        navTextAnimals.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        navTextAnimals.setText("Animais");
+        pnlAnimalsNavigator.add(navTextAnimals);
+
+        add(pnlAnimalsNavigator);
+
+        pnlProductsNavigator.setBackground(new java.awt.Color(234, 234, 234));
+        pnlProductsNavigator.setPreferredSize(new java.awt.Dimension(250, 32));
+        pnlProductsNavigator.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 16, 5));
+
+        navSelectedProducts.setBackground(new java.awt.Color(0, 120, 212));
+        navSelectedProducts.setPreferredSize(new java.awt.Dimension(3, 16));
+        pnlProductsNavigator.add(navSelectedProducts);
+
+        navIconProducts.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/warehouse.png"))); // NOI18N
+        pnlProductsNavigator.add(navIconProducts);
+
+        navTextProducts.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        navTextProducts.setText("Produtos e serviços");
+        pnlProductsNavigator.add(navTextProducts);
+
+        add(pnlProductsNavigator);
+
+        pnlLogoutNavigator.setBackground(new java.awt.Color(234, 234, 234));
+        pnlLogoutNavigator.setPreferredSize(new java.awt.Dimension(250, 32));
+        pnlLogoutNavigator.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 16, 5));
+
+        navSelectedLogout.setBackground(new java.awt.Color(0, 120, 212));
+        navSelectedLogout.setPreferredSize(new java.awt.Dimension(3, 16));
+        pnlLogoutNavigator.add(navSelectedLogout);
+
+        navIconLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logout.png"))); // NOI18N
+        pnlLogoutNavigator.add(navIconLogout);
+
+        navTextLogout.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        navTextLogout.setText("Sair");
+        pnlLogoutNavigator.add(navTextLogout);
+
+        add(pnlLogoutNavigator);
     }// </editor-fold>//GEN-END:initComponents
 
-
+    @Override
+    public void addObserver(GenericObserver observer) {
+        this.observers.add(observer);
+    }
+    
+    @Override
+    public void removeObserver(GenericObserver observer) {
+        this.observers.remove(observer);
+    }
+    
+    @Override
+    public void updateObservables(Object o) {
+        for (GenericObserver observer: observers) {
+            observer.update(o);
+        }
+    }
+    
+    public void updateSelectedMenu(JPanel parentSelector) {
+        JPanel[] navSelectors = {
+            navSelectedHome,
+            navSelectedCustomers,
+            navSelectedAnimals,
+            navSelectedProducts,
+            navSelectedLogout,
+            navSelectedStable,
+        };
+        
+        JPanel nextSelected = navSelectedHome;
+        
+        /* Add new selectors to this chain */
+        if (parentSelector == this.pnlHomeNavigator) {
+            nextSelected = navSelectedHome;
+        } else if (parentSelector == this.pnlCustomersNavigator) {
+            nextSelected = navSelectedCustomers;
+        } else if (parentSelector == this.pnlAnimalsNavigator) {
+            nextSelected = navSelectedAnimals;
+        } else if (parentSelector == this.pnlProductsNavigator) {
+            nextSelected = navSelectedProducts;
+        } else if (parentSelector == this.pnlStableNavigator) {
+            nextSelected = navSelectedStable;
+        } else if (parentSelector == this.pnlLogoutNavigator) {
+            nextSelected = navSelectedLogout;
+        }
+        
+        this.selectedPanel = nextSelected;
+        
+        for (JPanel selector: navSelectors) {
+            if (selector != this.selectedPanel) {   
+                selector.setBackground(new java.awt.Color(
+                        Colors.SECONDARYBG.getColor()[0],
+                        Colors.SECONDARYBG.getColor()[1],
+                        Colors.SECONDARYBG.getColor()[2]
+                ));
+            } else {
+                selector.setBackground(new java.awt.Color(
+                        Colors.ACCENTBLUE.getColor()[0],
+                        Colors.ACCENTBLUE.getColor()[1],
+                        Colors.ACCENTBLUE.getColor()[2]
+                ));
+            }
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel lblLogo;
+    private javax.swing.JLabel navIconAnimals;
+    private javax.swing.JLabel navIconCustomers;
+    private javax.swing.JLabel navIconHome;
+    private javax.swing.JLabel navIconLogout;
+    private javax.swing.JLabel navIconProducts;
+    private javax.swing.JLabel navIconStable;
+    private javax.swing.JPanel navSelectedAnimals;
+    private javax.swing.JPanel navSelectedCustomers;
+    private javax.swing.JPanel navSelectedHome;
+    private javax.swing.JPanel navSelectedLogout;
+    private javax.swing.JPanel navSelectedProducts;
+    private javax.swing.JPanel navSelectedStable;
+    private javax.swing.JLabel navTextAnimals;
+    private javax.swing.JLabel navTextCustomers;
+    private javax.swing.JLabel navTextHome;
+    private javax.swing.JLabel navTextLogout;
+    private javax.swing.JLabel navTextProducts;
+    private javax.swing.JLabel navTextStable;
+    private javax.swing.JPanel pnlAnimalsNavigator;
+    private javax.swing.JPanel pnlCustomersNavigator;
+    private javax.swing.JPanel pnlHomeNavigator;
+    private javax.swing.JPanel pnlLogo;
+    private javax.swing.JPanel pnlLogoutNavigator;
+    private javax.swing.JPanel pnlProductsNavigator;
+    private javax.swing.JPanel pnlStableNavigator;
     // End of variables declaration//GEN-END:variables
+
 }

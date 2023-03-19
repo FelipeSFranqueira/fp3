@@ -1,26 +1,39 @@
-package view.container;
+package com.fp3.haras.view.container;
 
-import javax.swing.JPanel;
+import javax.swing.*;
+
+import com.formdev.flatlaf.FlatLightLaf;
+
+import java.awt.*;
 
 public class Root extends javax.swing.JFrame {
-    private JPanel header;
-    private JPanel sidenav;
-    private JPanel mainContainer;
+    
+    static {
+        try {
+            UIManager.setLookAndFeel( new FlatLightLaf() );
+        } catch( UnsupportedLookAndFeelException e ) {
+            System.err.println( "Failed to initialize Flat LaF" );
+            e.printStackTrace();
+        }
+    }
+    
+    private Sidenav sidenav;
+    private MainContainer mainContainer;
     
     public Root() {
         initComponents();
     }
     
     private void initComponents() {
-        header = new Header();
         sidenav = new Sidenav();
         mainContainer = new MainContainer();
+
+        sidenav.addObserver(mainContainer.getFeatureWrapper());
         
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         
-        getContentPane().add(header, java.awt.BorderLayout.PAGE_START);
-        getContentPane().add(sidenav, java.awt.BorderLayout.LINE_START);
-        getContentPane().add(mainContainer, java.awt.BorderLayout.CENTER);
+        getContentPane().add(sidenav, BorderLayout.LINE_START);
+        getContentPane().add(mainContainer, BorderLayout.CENTER);
         
         pack();
     }
