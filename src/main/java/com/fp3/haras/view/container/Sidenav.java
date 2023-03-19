@@ -89,7 +89,7 @@ public class Sidenav extends javax.swing.JPanel implements GenericObservable{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        pnlLogo = new javax.swing.JPanel();
         lblLogo = new javax.swing.JLabel();
         pnlHomeNavigator = new javax.swing.JPanel();
         navSelectedHome = new javax.swing.JPanel();
@@ -121,14 +121,14 @@ public class Sidenav extends javax.swing.JPanel implements GenericObservable{
         setMinimumSize(new java.awt.Dimension(250, 42));
         setPreferredSize(new java.awt.Dimension(250, 0));
 
-        jPanel1.setBackground(new java.awt.Color(234, 234, 234));
-        jPanel1.setPreferredSize(new java.awt.Dimension(150, 150));
-        jPanel1.setLayout(new java.awt.GridBagLayout());
+        pnlLogo.setBackground(new java.awt.Color(234, 234, 234));
+        pnlLogo.setPreferredSize(new java.awt.Dimension(150, 150));
+        pnlLogo.setLayout(new java.awt.GridBagLayout());
 
         lblLogo.setText("Espaço para Logo");
-        jPanel1.add(lblLogo, new java.awt.GridBagConstraints());
+        pnlLogo.add(lblLogo, new java.awt.GridBagConstraints());
 
-        add(jPanel1);
+        add(pnlLogo);
 
         pnlHomeNavigator.setBackground(new java.awt.Color(234, 234, 234));
         pnlHomeNavigator.setPreferredSize(new java.awt.Dimension(250, 32));
@@ -297,7 +297,6 @@ public class Sidenav extends javax.swing.JPanel implements GenericObservable{
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel navIconAnimals;
     private javax.swing.JLabel navIconCustomers;
@@ -320,6 +319,7 @@ public class Sidenav extends javax.swing.JPanel implements GenericObservable{
     private javax.swing.JPanel pnlAnimalsNavigator;
     private javax.swing.JPanel pnlCustomersNavigator;
     private javax.swing.JPanel pnlHomeNavigator;
+    private javax.swing.JPanel pnlLogo;
     private javax.swing.JPanel pnlLogoutNavigator;
     private javax.swing.JPanel pnlProductsNavigator;
     private javax.swing.JPanel pnlStableNavigator;
