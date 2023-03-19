@@ -44,12 +44,12 @@ public class HomeScreen extends javax.swing.JPanel {
         pnlAnimalsToArrive = new javax.swing.JPanel();
         lblAnimalsToArriveTitle = new javax.swing.JLabel();
         lblAnimalsToArriveAmount = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnAnimalsToArrive = new javax.swing.JButton();
         pnlAnimalsBalanceSeparator = new javax.swing.JPanel();
         pnlAnimalsToGo = new javax.swing.JPanel();
         lblAnimalsToGoTitle = new javax.swing.JLabel();
         lblAnimalsToGoAmount = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnAnimalsToGo = new javax.swing.JButton();
         pnlFooter = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -91,13 +91,13 @@ public class HomeScreen extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         pnlAnimalsToArrive.add(lblAnimalsToArriveAmount, gridBagConstraints);
 
-        jButton1.setText("Ver detalhes");
-        jButton1.setFocusPainted(false);
+        btnAnimalsToArrive.setText("Ver detalhes");
+        btnAnimalsToArrive.setFocusPainted(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        pnlAnimalsToArrive.add(jButton1, gridBagConstraints);
+        pnlAnimalsToArrive.add(btnAnimalsToArrive, gridBagConstraints);
 
         pnlAnimalsBalance.add(pnlAnimalsToArrive);
 
@@ -136,13 +136,13 @@ public class HomeScreen extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         pnlAnimalsToGo.add(lblAnimalsToGoAmount, gridBagConstraints);
 
-        jButton2.setText("Ver detalhes");
-        jButton2.setFocusPainted(false);
+        btnAnimalsToGo.setText("Ver detalhes");
+        btnAnimalsToGo.setFocusPainted(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        pnlAnimalsToGo.add(jButton2, gridBagConstraints);
+        pnlAnimalsToGo.add(btnAnimalsToGo, gridBagConstraints);
 
         pnlAnimalsBalance.add(pnlAnimalsToGo);
 
@@ -156,8 +156,8 @@ public class HomeScreen extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnAnimalsToArrive;
+    private javax.swing.JButton btnAnimalsToGo;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblAnimalsToArriveAmount;
     private javax.swing.JLabel lblAnimalsToArriveTitle;

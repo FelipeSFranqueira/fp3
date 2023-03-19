@@ -110,7 +110,7 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton1">
+                <Component class="javax.swing.JButton" name="btnAnimalsToArrive">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Ver detalhes"/>
                     <Property name="focusPainted" type="boolean" value="false"/>
@@ -179,7 +179,7 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton2">
+                <Component class="javax.swing.JButton" name="btnAnimalsToGo">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Ver detalhes"/>
                     <Property name="focusPainted" type="boolean" value="false"/>
