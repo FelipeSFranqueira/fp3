@@ -1,15 +1,16 @@
 package com.fp3.haras.view.container;
 
-import com.fp3.haras.utils.Colors;
-import com.fp3.haras.utils.GenericObservable;
-import com.fp3.haras.utils.GenericObserver;
-import com.fp3.haras.utils.Screens;
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JPanel;
+
+import com.fp3.haras.utils.Colors;
+import com.fp3.haras.utils.Screens;
+import com.fp3.haras.utils.GenericObserver;
+import com.fp3.haras.utils.GenericObservable;
 
 public class Sidenav extends javax.swing.JPanel implements GenericObservable{
     private List<GenericObserver> observers = new ArrayList<>();
