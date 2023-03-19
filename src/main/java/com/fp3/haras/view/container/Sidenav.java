@@ -1,7 +1,9 @@
 package com.fp3.haras.view.container;
 
+import com.fp3.haras.utils.Colors;
 import com.fp3.haras.utils.GenericObservable;
 import com.fp3.haras.utils.GenericObserver;
+import com.fp3.haras.utils.Screens;
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -11,6 +13,7 @@ import javax.swing.JPanel;
 
 public class Sidenav extends javax.swing.JPanel implements GenericObservable{
     private List<GenericObserver> observers = new ArrayList<>();
+    private JPanel selectedPanel;
 
     /**
      * Creates new form Sidenav
@@ -18,20 +21,37 @@ public class Sidenav extends javax.swing.JPanel implements GenericObservable{
     public Sidenav() {
         initComponents();
         
+        this.selectedPanel = navSelectedHome;
+        this.setBackground(new java.awt.Color(
+                Colors.SECONDARYBG.getColor()[0],
+                Colors.SECONDARYBG.getColor()[1],
+                Colors.SECONDARYBG.getColor()[2]
+        ));
+        
+        updateSelectedMenu(pnlHomeNavigator);
+                              
         JPanel[] navPanels = {
             pnlHomeNavigator, 
             pnlStableNavigator, 
             pnlCustomersNavigator, 
+            pnlAnimalsNavigator,
             pnlProductsNavigator, 
-            pnlLogoutNavigator
+            pnlLogoutNavigator,
         };
+        pnlHomeNavigator.setName(Screens.HOME.toString());
+        pnlStableNavigator.setName(Screens.STABLE.toString());
+        pnlCustomersNavigator.setName(Screens.CUSTOMERS.toString());
+        pnlProductsNavigator.setName(Screens.PRODUCTS.toString());
+        pnlAnimalsNavigator.setName(Screens.ANIMALS.toString());
+        pnlLogoutNavigator.setName(Screens.LOGOUT.toString());
         for(JPanel navigator: navPanels) {
             navigator.setCursor(new Cursor(Cursor.HAND_CURSOR) {
             });
             navigator.addMouseListener(new MouseListener() {                
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    updateObservables(e);
+                    updateObservables(Screens.valueOf(navigator.getName()));
+                    updateSelectedMenu(navigator);
                 }
 
                 @Override
@@ -44,7 +64,11 @@ public class Sidenav extends javax.swing.JPanel implements GenericObservable{
 
                 @Override
                 public void mouseEntered(MouseEvent e) {
-                    navigator.setBackground(new java.awt.Color(200, 200, 200));
+                    navigator.setBackground(new java.awt.Color(
+                        Colors.SECONDARYBGHOVER.getColor()[0],
+                        Colors.SECONDARYBGHOVER.getColor()[1],
+                        Colors.SECONDARYBGHOVER.getColor()[2]
+                    ));
                 }
 
                 @Override
@@ -65,6 +89,8 @@ public class Sidenav extends javax.swing.JPanel implements GenericObservable{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        lblLogo = new javax.swing.JLabel();
         pnlHomeNavigator = new javax.swing.JPanel();
         navSelectedHome = new javax.swing.JPanel();
         navIconHome = new javax.swing.JLabel();
@@ -77,6 +103,10 @@ public class Sidenav extends javax.swing.JPanel implements GenericObservable{
         navSelectedCustomers = new javax.swing.JPanel();
         navIconCustomers = new javax.swing.JLabel();
         navTextCustomers = new javax.swing.JLabel();
+        pnlAnimalsNavigator = new javax.swing.JPanel();
+        navSelectedAnimals = new javax.swing.JPanel();
+        navIconAnimals = new javax.swing.JLabel();
+        navTextAnimals = new javax.swing.JLabel();
         pnlProductsNavigator = new javax.swing.JPanel();
         navSelectedProducts = new javax.swing.JPanel();
         navIconProducts = new javax.swing.JLabel();
@@ -90,6 +120,15 @@ public class Sidenav extends javax.swing.JPanel implements GenericObservable{
         setMaximumSize(new java.awt.Dimension(250, 250));
         setMinimumSize(new java.awt.Dimension(250, 42));
         setPreferredSize(new java.awt.Dimension(250, 0));
+
+        jPanel1.setBackground(new java.awt.Color(234, 234, 234));
+        jPanel1.setPreferredSize(new java.awt.Dimension(150, 150));
+        jPanel1.setLayout(new java.awt.GridBagLayout());
+
+        lblLogo.setText("Espaço para Logo");
+        jPanel1.add(lblLogo, new java.awt.GridBagConstraints());
+
+        add(jPanel1);
 
         pnlHomeNavigator.setBackground(new java.awt.Color(234, 234, 234));
         pnlHomeNavigator.setPreferredSize(new java.awt.Dimension(250, 32));
@@ -141,6 +180,23 @@ public class Sidenav extends javax.swing.JPanel implements GenericObservable{
         pnlCustomersNavigator.add(navTextCustomers);
 
         add(pnlCustomersNavigator);
+
+        pnlAnimalsNavigator.setBackground(new java.awt.Color(234, 234, 234));
+        pnlAnimalsNavigator.setPreferredSize(new java.awt.Dimension(250, 32));
+        pnlAnimalsNavigator.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 16, 5));
+
+        navSelectedAnimals.setBackground(new java.awt.Color(0, 120, 212));
+        navSelectedAnimals.setPreferredSize(new java.awt.Dimension(3, 16));
+        pnlAnimalsNavigator.add(navSelectedAnimals);
+
+        navIconAnimals.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/animals.png"))); // NOI18N
+        pnlAnimalsNavigator.add(navIconAnimals);
+
+        navTextAnimals.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        navTextAnimals.setText("Animais");
+        pnlAnimalsNavigator.add(navTextAnimals);
+
+        add(pnlAnimalsNavigator);
 
         pnlProductsNavigator.setBackground(new java.awt.Color(234, 234, 234));
         pnlProductsNavigator.setPreferredSize(new java.awt.Dimension(250, 32));
@@ -194,22 +250,74 @@ public class Sidenav extends javax.swing.JPanel implements GenericObservable{
         }
     }
     
+    public void updateSelectedMenu(JPanel parentSelector) {
+        JPanel[] navSelectors = {
+            navSelectedHome,
+            navSelectedCustomers,
+            navSelectedAnimals,
+            navSelectedProducts,
+            navSelectedLogout,
+            navSelectedStable,
+        };
+        
+        JPanel nextSelected = navSelectedHome;
+        
+        /* Add new selectors to this chain */
+        if (parentSelector == this.pnlHomeNavigator) {
+            nextSelected = navSelectedHome;
+        } else if (parentSelector == this.pnlCustomersNavigator) {
+            nextSelected = navSelectedCustomers;
+        } else if (parentSelector == this.pnlAnimalsNavigator) {
+            nextSelected = navSelectedAnimals;
+        } else if (parentSelector == this.pnlProductsNavigator) {
+            nextSelected = navSelectedProducts;
+        } else if (parentSelector == this.pnlStableNavigator) {
+            nextSelected = navSelectedStable;
+        } else if (parentSelector == this.pnlLogoutNavigator) {
+            nextSelected = navSelectedLogout;
+        }
+        
+        this.selectedPanel = nextSelected;
+        
+        for (JPanel selector: navSelectors) {
+            if (selector != this.selectedPanel) {   
+                selector.setBackground(new java.awt.Color(
+                        Colors.SECONDARYBG.getColor()[0],
+                        Colors.SECONDARYBG.getColor()[1],
+                        Colors.SECONDARYBG.getColor()[2]
+                ));
+            } else {
+                selector.setBackground(new java.awt.Color(
+                        Colors.ACCENTBLUE.getColor()[0],
+                        Colors.ACCENTBLUE.getColor()[1],
+                        Colors.ACCENTBLUE.getColor()[2]
+                ));
+            }
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblLogo;
+    private javax.swing.JLabel navIconAnimals;
     private javax.swing.JLabel navIconCustomers;
     private javax.swing.JLabel navIconHome;
     private javax.swing.JLabel navIconLogout;
     private javax.swing.JLabel navIconProducts;
     private javax.swing.JLabel navIconStable;
+    private javax.swing.JPanel navSelectedAnimals;
     private javax.swing.JPanel navSelectedCustomers;
     private javax.swing.JPanel navSelectedHome;
     private javax.swing.JPanel navSelectedLogout;
     private javax.swing.JPanel navSelectedProducts;
     private javax.swing.JPanel navSelectedStable;
+    private javax.swing.JLabel navTextAnimals;
     private javax.swing.JLabel navTextCustomers;
     private javax.swing.JLabel navTextHome;
     private javax.swing.JLabel navTextLogout;
     private javax.swing.JLabel navTextProducts;
     private javax.swing.JLabel navTextStable;
+    private javax.swing.JPanel pnlAnimalsNavigator;
     private javax.swing.JPanel pnlCustomersNavigator;
     private javax.swing.JPanel pnlHomeNavigator;
     private javax.swing.JPanel pnlLogoutNavigator;

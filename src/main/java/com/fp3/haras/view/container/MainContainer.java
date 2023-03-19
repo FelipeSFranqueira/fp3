@@ -1,6 +1,6 @@
 package com.fp3.haras.view.container;
 
-import com.fp3.haras.utils.GenericObserver;
+import com.fp3.haras.utils.Colors;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.border.EmptyBorder;
@@ -10,6 +10,11 @@ public class MainContainer extends javax.swing.JPanel {
     
     public MainContainer() {
         initComponents();
+        this.setBackground(new java.awt.Color(
+                Colors.WHITEBG.getColor()[0],
+                Colors.WHITEBG.getColor()[1],
+                Colors.WHITEBG.getColor()[2]
+        ));
     }
     
     private void initComponents() {
