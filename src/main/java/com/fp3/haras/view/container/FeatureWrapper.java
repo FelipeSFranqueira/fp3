@@ -1,14 +1,23 @@
 package com.fp3.haras.view.container;
 
+import com.fp3.haras.utils.GenericObserver;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
 import com.fp3.haras.utils.Screens;
-import com.fp3.haras.view.welcome.Welcome;
+import com.fp3.haras.view.welcome.AnimalsScreen;
+import com.fp3.haras.view.welcome.CustomersScreen;
+import com.fp3.haras.view.welcome.HomeScreen;
+import com.fp3.haras.view.welcome.ProductsScreen;
+import com.fp3.haras.view.welcome.StableScreen;
 
-public class FeatureWrapper extends javax.swing.JPanel {
+public class FeatureWrapper extends javax.swing.JPanel implements GenericObserver<Screens> {
     private CardLayout cardLayout;
-    private JPanel welcomePanel;
+    private HomeScreen homePanel;
+    private StableScreen stablePanel;
+    private CustomersScreen customersPanel;
+    private AnimalsScreen animalsPanel;
+    private ProductsScreen productsPanel;
     
     public FeatureWrapper() {
         initComponents();
@@ -19,15 +28,46 @@ public class FeatureWrapper extends javax.swing.JPanel {
         this.setLayout(this.cardLayout);
         
         /* Declare here the screens */
-        this.welcomePanel = new Welcome();
+        this.homePanel = new HomeScreen();
+        this.stablePanel = new StableScreen();
+        this.customersPanel = new CustomersScreen();
+        this.animalsPanel = new AnimalsScreen();
+        this.productsPanel = new ProductsScreen();
                 
         /* Add here the external classes to the layout */
-        this.add(welcomePanel, Screens.WELCOME.toString());
+        this.add(homePanel, Screens.HOME.toString());
+        this.add(stablePanel, Screens.STABLE.toString());
+        this.add(customersPanel, Screens.CUSTOMERS.toString());
+        this.add(animalsPanel, Screens.ANIMALS.toString());
+        this.add(productsPanel, Screens.PRODUCTS.toString());
         
-        this.toggleScreen(Screens.WELCOME);
+        this.toggleScreen(Screens.HOME);
     }
     
     public void toggleScreen(Screens screen) {
         this.cardLayout.show(this, screen.toString());
+    }
+
+    @Override
+    public void update(Screens featureName) {
+        switch(featureName) {
+            case HOME:
+                toggleScreen(Screens.HOME);
+                break;
+            case STABLE:
+                toggleScreen(Screens.STABLE);
+                break;
+            case CUSTOMERS:
+                toggleScreen(Screens.CUSTOMERS);
+                break;
+            case ANIMALS:
+                toggleScreen(Screens.ANIMALS);
+                break;
+            case PRODUCTS:
+                toggleScreen(Screens.PRODUCTS);
+                break;
+            default:
+                break;
+        }
     }
 }
