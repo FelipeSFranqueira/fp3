@@ -1,8 +1,19 @@
-package com.fp3.haras.view.welcome;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ */
+package com.fp3.haras.view.screens;
 
-public class CustomersScreen extends javax.swing.JPanel {
+/**
+ *
+ * @author 212118
+ */
+public class AnimalsScreen extends javax.swing.JPanel {
 
-    public CustomersScreen() {
+    /**
+     * Creates new form AnimalsScreen
+     */
+    public AnimalsScreen() {
         initComponents();
     }
 
@@ -15,18 +26,18 @@ public class CustomersScreen extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setBackground(new java.awt.Color(60, 125, 125));
+        setBackground(new java.awt.Color(123, 123, 255));
         setPreferredSize(new java.awt.Dimension(900, 400));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
