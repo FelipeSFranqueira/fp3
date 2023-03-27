@@ -52,7 +52,7 @@ public class Sidenav extends javax.swing.JPanel implements GenericObservable{
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     if (navigator != pnlLogoutNavigator) {
-                        updateObservables(Screens.valueOf(navigator.getName()));
+                        notifyObservers(Screens.valueOf(navigator.getName()));
                         updateSelectedMenu(navigator);
                     } else {
                         System.exit(0);
@@ -249,7 +249,7 @@ public class Sidenav extends javax.swing.JPanel implements GenericObservable{
     }
     
     @Override
-    public void updateObservables(Object o) {
+    public void notifyObservers(Object o) {
         for (GenericObserver observer: observers) {
             observer.update(o);
         }
