@@ -22,8 +22,9 @@ public class MainContainer extends javax.swing.JPanel {
         this.wrapper = new FeatureWrapper();
         
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.anchor = GridBagConstraints.NORTH;
+        gbc.anchor = GridBagConstraints.NORTHWEST;
         gbc.weighty = 1;
+        gbc.weightx = 1;
         
         this.setBorder(new EmptyBorder(36, 36, 0, 36));
         

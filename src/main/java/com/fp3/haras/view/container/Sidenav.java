@@ -1,15 +1,16 @@
 package com.fp3.haras.view.container;
 
-import com.fp3.haras.utils.Colors;
-import com.fp3.haras.utils.GenericObservable;
-import com.fp3.haras.utils.GenericObserver;
-import com.fp3.haras.utils.Screens;
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JPanel;
+
+import com.fp3.haras.utils.Colors;
+import com.fp3.haras.utils.Screens;
+import com.fp3.haras.utils.GenericObserver;
+import com.fp3.haras.utils.GenericObservable;
 
 public class Sidenav extends javax.swing.JPanel implements GenericObservable{
     private List<GenericObserver> observers = new ArrayList<>();
@@ -50,8 +51,12 @@ public class Sidenav extends javax.swing.JPanel implements GenericObservable{
             navigator.addMouseListener(new MouseListener() {                
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    updateObservables(Screens.valueOf(navigator.getName()));
-                    updateSelectedMenu(navigator);
+                    if (navigator != pnlLogoutNavigator) {
+                        notifyObservers(Screens.valueOf(navigator.getName()));
+                        updateSelectedMenu(navigator);
+                    } else {
+                        System.exit(0);
+                    }
                 }
 
                 @Override
@@ -244,7 +249,7 @@ public class Sidenav extends javax.swing.JPanel implements GenericObservable{
     }
     
     @Override
-    public void updateObservables(Object o) {
+    public void notifyObservers(Object o) {
         for (GenericObserver observer: observers) {
             observer.update(o);
         }
