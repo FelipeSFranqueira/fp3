@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 public class Sidenav extends javax.swing.JPanel implements GenericObservable{
@@ -21,12 +22,14 @@ public class Sidenav extends javax.swing.JPanel implements GenericObservable{
     public Sidenav() {
         initComponents();
         
+        ImageIcon ic = new ImageIcon(getClass().getResource("/images/logo.png"));
+        
+        lblLogo.setText(null);
+        lblLogo.setSize(pnlLogo.getPreferredSize());
+        lblLogo.setIcon(new ImageIcon(ic.getImage().getScaledInstance(lblLogo.getWidth(), lblLogo.getHeight(), 1)));
+        
         this.selectedPanel = navSelectedHome;
-        this.setBackground(new java.awt.Color(
-                Colors.SECONDARYBG.getColor()[0],
-                Colors.SECONDARYBG.getColor()[1],
-                Colors.SECONDARYBG.getColor()[2]
-        ));
+        this.setBackground(Colors.SECONDARYBG);
         
         updateSelectedMenu(pnlHomeNavigator);
                               
@@ -64,11 +67,7 @@ public class Sidenav extends javax.swing.JPanel implements GenericObservable{
 
                 @Override
                 public void mouseEntered(MouseEvent e) {
-                    navigator.setBackground(new java.awt.Color(
-                        Colors.SECONDARYBGHOVER.getColor()[0],
-                        Colors.SECONDARYBGHOVER.getColor()[1],
-                        Colors.SECONDARYBGHOVER.getColor()[2]
-                    ));
+                    navigator.setBackground(Colors.SECONDARYBGHOVER);
                 }
 
                 @Override
@@ -159,7 +158,7 @@ public class Sidenav extends javax.swing.JPanel implements GenericObservable{
         pnlStableNavigator.add(navIconStable);
 
         navTextStable.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        navTextStable.setText("Estábulo");
+        navTextStable.setText("Cocheiras");
         pnlStableNavigator.add(navTextStable);
 
         add(pnlStableNavigator);
@@ -281,17 +280,9 @@ public class Sidenav extends javax.swing.JPanel implements GenericObservable{
         
         for (JPanel selector: navSelectors) {
             if (selector != this.selectedPanel) {   
-                selector.setBackground(new java.awt.Color(
-                        Colors.SECONDARYBG.getColor()[0],
-                        Colors.SECONDARYBG.getColor()[1],
-                        Colors.SECONDARYBG.getColor()[2]
-                ));
+                selector.setBackground(Colors.SECONDARYBG);
             } else {
-                selector.setBackground(new java.awt.Color(
-                        Colors.ACCENTBLUE.getColor()[0],
-                        Colors.ACCENTBLUE.getColor()[1],
-                        Colors.ACCENTBLUE.getColor()[2]
-                ));
+                selector.setBackground(Colors.ACCENTBLUE);
             }
         }
     }
