@@ -30,7 +30,8 @@ public class Root extends javax.swing.JFrame {
     private void initComponents() {
         sidenav = new Sidenav();
         mainContainer = new MainContainer();
-
+        this.setIconImage(new ImageIcon(getClass().getResource("/images/taskbar.png")).getImage());
+        
         sidenav.addObserver(mainContainer.getFeatureWrapper());
         
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

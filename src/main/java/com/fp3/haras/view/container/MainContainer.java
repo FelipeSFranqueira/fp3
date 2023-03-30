@@ -10,11 +10,7 @@ public class MainContainer extends javax.swing.JPanel {
     
     public MainContainer() {
         initComponents();
-        this.setBackground(new java.awt.Color(
-                Colors.WHITEBG.getColor()[0],
-                Colors.WHITEBG.getColor()[1],
-                Colors.WHITEBG.getColor()[2]
-        ));
+        this.setBackground(Colors.WHITEBG);
     }
     
     private void initComponents() {
