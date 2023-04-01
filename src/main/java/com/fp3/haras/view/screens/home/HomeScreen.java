@@ -9,19 +9,11 @@ public class HomeScreen extends javax.swing.JPanel {
         
         lblHeader.putClientProperty("FlatLaf.styleClass", "h00");
         
-        pnlAnimalsToArrive.setBackground(new java.awt.Color(
-                Colors.PRIMARYBG.getColor()[0],
-                Colors.PRIMARYBG.getColor()[1],
-                Colors.PRIMARYBG.getColor()[2]
-        ));
+        pnlAnimalsToArrive.setBackground(Colors.PRIMARYBG);
         lblAnimalsToArriveTitle.putClientProperty("FlatLaf.styleClass", "h2");
         lblAnimalsToArriveAmount.putClientProperty("FlatLaf.styleClass", "h3");
         
-        pnlAnimalsToGo.setBackground(new java.awt.Color(
-                Colors.PRIMARYBG.getColor()[0],
-                Colors.PRIMARYBG.getColor()[1],
-                Colors.PRIMARYBG.getColor()[2]
-        ));
+        pnlAnimalsToGo.setBackground(Colors.PRIMARYBG);
         lblAnimalsToGoTitle.putClientProperty("FlatLaf.styleClass", "h2");
         lblAnimalsToGoAmount.putClientProperty("FlatLaf.styleClass", "h3");
     }
