@@ -1,5 +1,7 @@
 package com.fp3.haras.model;
 
+import java.util.List;
+
 public class Cliente {
 
     private int id;
@@ -8,17 +10,9 @@ public class Cliente {
     private String email;
     private String documento;
     private String endereco;
+    private List<Cavalo> cavalos;
 
     public Cliente() {
-    }
-
-    public Cliente(int id, String nome, String telefone, String email, String documento, String endereco) {
-        this.id = id;
-        this.nome = nome;
-        this.telefone = telefone;
-        this.email = email;
-        this.documento = documento;
-        this.endereco = endereco;
     }
 
     public int getId() {
@@ -67,5 +61,13 @@ public class Cliente {
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
+    }
+
+    public List<Cavalo> getCavalos() {
+        return cavalos;
+    }
+
+    public void setCavalos(List<Cavalo> cavalos) {
+        this.cavalos = cavalos;
     }
 }
