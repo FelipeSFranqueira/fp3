@@ -177,6 +177,7 @@ insert into Tipo_de_estadia (tipo, preco) values (
 
 create table Estadias (
 	id int primary key auto_increment,
+    cavalo_registro int not null references Cavalos(registro),
     entrada datetime not null,
     saida datetime,
     tipo_de_estadia_id int not null references Tipo_de_estadia(id),
@@ -199,26 +200,6 @@ insert into Estadias (entrada, saida, tipo_de_estadia_id, cocheira) values (
 	'2023-04-10 13:00:00',
     '2023-05-01 11:00:00',
     1,
-    3
-);
-
-create table EstadiaXCavalos (
-	estadias_id int not null references Estadias(id),
-    cavalos_registro int not null references Cavalos(registro),
-    
-    primary key(estadias_id, cavalos_registro)
-);
-
-insert into EstadiaXCavalos values (
-	1,
-    1
-),
-(
-	2,
-    2
-),
-(
-	3,
     3
 );
 
