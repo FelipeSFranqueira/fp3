@@ -1,4 +1,4 @@
-package com.fp3.haras.view.welcome.stable;
+package com.fp3.haras.view.stable;
 
 import com.fp3.haras.utils.Colors;
 import javax.swing.JFrame;
@@ -386,7 +386,7 @@ public class StableEdit extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        if(JOptionPane.showConfirmDialog(null, "Realmente deseja apagar os dados permanentemente?", "ATENÇÃO", JOptionPane.WARNING_MESSAGE) == 0){
+        if (JOptionPane.showConfirmDialog(null, "Realmente deseja apagar os dados permanentemente?", "ATENÇÃO", JOptionPane.WARNING_MESSAGE) == 0) {
             dispose();
             JOptionPane.showMessageDialog(null, "Os dados foram removidos!", null, JOptionPane.INFORMATION_MESSAGE, null);
         }
@@ -398,12 +398,12 @@ public class StableEdit extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void txtOwnerMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtOwnerMouseReleased
-        if(txtOwner.getText().equals("Buscar..."))
+        if (txtOwner.getText().equals("Buscar..."))
         txtOwner.setText(null);
     }//GEN-LAST:event_txtOwnerMouseReleased
 
     private void txtOwnerFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtOwnerFocusLost
-        if(txtOwner.getText().equals(""))
+        if (txtOwner.getText().equals(""))
         txtOwner.setText("Buscar...");
     }//GEN-LAST:event_txtOwnerFocusLost
 

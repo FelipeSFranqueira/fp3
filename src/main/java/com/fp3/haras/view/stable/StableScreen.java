@@ -1,4 +1,4 @@
-package com.fp3.haras.view.welcome.stable;
+package com.fp3.haras.view.stable;
 
 import com.fp3.haras.utils.Colors;
 import javax.swing.JOptionPane;
@@ -12,39 +12,39 @@ public class StableScreen extends javax.swing.JPanel {
         jLabel1.putClientProperty("FlatLaf.styleClass", "h00");
     }
     
-    private String getSelectedProgressCode(){
-        if(tableProgress.getSelectedRow() != -1){
+    private String getSelectedProgressCode() {
+        if (tableProgress.getSelectedRow() != -1) {
             return String.valueOf(tableProgress.getModel().getValueAt(tableProgress.getSelectedRow(), 0));
-        }else{
+        } else {
             return null;
         }
     }
     
-    private String getSelectedEndCode(){
-        if(tableProgress.getSelectedRow() != -1){
+    private String getSelectedEndCode() {
+        if (tableProgress.getSelectedRow() != -1) {
             return String.valueOf(tableFinished.getModel().getValueAt(tableFinished.getSelectedRow(), 0));
-        }else{
+        } else {
             return null;
         }
     }
     
-    private String getSelectedOldCode(){
-        if(tableProgress.getSelectedRow() != -1){
-            return String.valueOf(tableOld.getModel().getValueAt(tableOld.getSelectedRow(), 0));
-        }else{
+    private String getSelectedFutureCode() {
+        if (tableProgress.getSelectedRow() != -1) {
+            return String.valueOf(tableFuture.getModel().getValueAt(tableFuture.getSelectedRow(), 0));
+        } else {
             return null;
         }
     }
     
-    private Object getSelectedOldValue(){
-        return tableOld.getModel().getValueAt(tableOld.getSelectedRow(), tableOld.getSelectedColumn());
+    private Object getSelectedFutureValue() {
+        return tableFuture.getModel().getValueAt(tableFuture.getSelectedRow(), tableFuture.getSelectedColumn());
     }
     
-    private Object getSelectedEndValue(){
+    private Object getSelectedEndValue() {
         return tableFinished.getModel().getValueAt(tableFinished.getSelectedRow(), tableFinished.getSelectedColumn());
     }
     
-    private Object getSelectedProgressValue(){
+    private Object getSelectedProgressValue() {
         return tableProgress.getModel().getValueAt(tableProgress.getSelectedRow(), tableProgress.getSelectedColumn());
     }
 
@@ -57,10 +57,10 @@ public class StableScreen extends javax.swing.JPanel {
         tpaneInfo = new javax.swing.JTabbedPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableProgress = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tableFuture = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
         tableFinished = new javax.swing.JTable();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tableOld = new javax.swing.JTable();
         txtSearch = new javax.swing.JTextField();
         btnCreate = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
@@ -83,7 +83,7 @@ public class StableScreen extends javax.swing.JPanel {
 
             },
             new String [] {
-                "CÓDIGO", "PROPRIETÁRIO", "ANIMAL", "TEMPO PREVISTO", "COCHEIRA", "VALOR ATUAL"
+                "CÓDIGO", "PROPRIETÁRIO", "ANIMAL", "TEMPO PREVISTO", "COCHEIRA", "SUBTOTAL"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -99,6 +99,31 @@ public class StableScreen extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tableProgress);
 
         tpaneInfo.addTab("ATIVAS", jScrollPane1);
+
+        tableFuture.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "CÓDIGO", "PROPRIETÁRIO", "ANIMAL", "TEMPO TOTAL", "COCHEIRA", "SUBTOTAL"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tableFuture.getTableHeader().setResizingAllowed(false);
+        tableFuture.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(tableFuture);
+
+        tpaneInfo.addTab("FUTURAS", jScrollPane2);
 
         tableFinished.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -124,31 +149,6 @@ public class StableScreen extends javax.swing.JPanel {
         jScrollPane3.setViewportView(tableFinished);
 
         tpaneInfo.addTab("FINALIZADAS", jScrollPane3);
-
-        tableOld.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "CÓDIGO", "PROPRIETÁRIO", "ANIMAL", "TEMPO TOTAL", "COCHEIRA", "VALOR TOTAL"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tableOld.getTableHeader().setResizingAllowed(false);
-        tableOld.getTableHeader().setReorderingAllowed(false);
-        jScrollPane2.setViewportView(tableOld);
-
-        tpaneInfo.addTab("PASSADAS", jScrollPane2);
 
         txtSearch.setText("Pesquisar...");
         txtSearch.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -222,12 +222,12 @@ public class StableScreen extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtSearchMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSearchMouseReleased
-        if(txtSearch.getText().equals("Pesquisar..."))
+        if (txtSearch.getText().equals("Pesquisar..."))
             txtSearch.setText(null);
     }//GEN-LAST:event_txtSearchMouseReleased
 
     private void txtSearchFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSearchFocusLost
-        if(txtSearch.getText().equals(""))
+        if (txtSearch.getText().equals(""))
             txtSearch.setText("Pesquisar...");
     }//GEN-LAST:event_txtSearchFocusLost
 
@@ -236,22 +236,22 @@ public class StableScreen extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        if(tpaneInfo.getTitleAt(tpaneInfo.getSelectedIndex()).equals("ATIVAS") 
-                    && getSelectedProgressCode() != null && getSelectedProgressValue() != null){
+        if (tpaneInfo.getTitleAt(tpaneInfo.getSelectedIndex()).equals("ATIVAS") 
+                    && getSelectedProgressCode() != null && getSelectedProgressValue() != null) {
                 
                 new StableEdit().setVisible(true);
                 
-            }else if(tpaneInfo.getTitleAt(tpaneInfo.getSelectedIndex()).equals("FINALIZADAS")
-                    && getSelectedEndCode() != null && getSelectedEndValue() != null){
+            }else if (tpaneInfo.getTitleAt(tpaneInfo.getSelectedIndex()).equals("FINALIZADAS")
+                    && getSelectedEndCode() != null && getSelectedEndValue() != null) {
                 
                 new StableEdit().setVisible(true);
                 
-            }else if(tpaneInfo.getTitleAt(tpaneInfo.getSelectedIndex()).equals("PASADAS")
-                    && getSelectedOldCode() != null && getSelectedOldValue() != null){
+            }else if (tpaneInfo.getTitleAt(tpaneInfo.getSelectedIndex()).equals("FUTURAS")
+                    && getSelectedFutureCode() != null && getSelectedFutureValue() != null) {
                 
                 new StableEdit().setVisible(true);
                 
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Nada foi selecionado.", null, JOptionPane.ERROR_MESSAGE, null);
             }
     }//GEN-LAST:event_btnEditActionPerformed
@@ -267,7 +267,7 @@ public class StableScreen extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblSearch;
     private javax.swing.JTable tableFinished;
-    private javax.swing.JTable tableOld;
+    private javax.swing.JTable tableFuture;
     private javax.swing.JTable tableProgress;
     private javax.swing.JTabbedPane tpaneInfo;
     private javax.swing.JTextField txtSearch;

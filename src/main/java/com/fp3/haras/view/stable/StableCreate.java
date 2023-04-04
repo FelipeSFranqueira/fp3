@@ -1,4 +1,4 @@
-package com.fp3.haras.view.welcome.stable;
+package com.fp3.haras.view.stable;
 
 import com.fp3.haras.utils.Colors;
 import javax.swing.JFrame;
@@ -394,32 +394,32 @@ public class StableCreate extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void txtOwnerFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtOwnerFocusLost
-        if(txtOwner.getText().equals(""))
+        if (txtOwner.getText().equals(""))
             txtOwner.setText("Buscar...");
     }//GEN-LAST:event_txtOwnerFocusLost
 
     private void txtOwnerMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtOwnerMouseReleased
-        if(txtOwner.getText().equals("Buscar..."))
+        if (txtOwner.getText().equals("Buscar..."))
             txtOwner.setText(null);
     }//GEN-LAST:event_txtOwnerMouseReleased
 
     private void txtAnimalFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAnimalFocusLost
-        if(txtAnimal.getText().equals(""))
+        if (txtAnimal.getText().equals(""))
             txtAnimal.setText("Buscar...");
     }//GEN-LAST:event_txtAnimalFocusLost
 
     private void txtAnimalMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAnimalMouseReleased
-        if(txtAnimal.getText().equals("Buscar..."))
+        if (txtAnimal.getText().equals("Buscar..."))
             txtAnimal.setText(null);
     }//GEN-LAST:event_txtAnimalMouseReleased
 
     private void txtOwner1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtOwner1FocusLost
-        if(txtOwner1.getText().equals(""))
+        if (txtOwner1.getText().equals(""))
         txtOwner1.setText("Buscar...");
     }//GEN-LAST:event_txtOwner1FocusLost
 
     private void txtOwner1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtOwner1MouseReleased
-        if(txtOwner1.getText().equals("Buscar..."))
+        if (txtOwner1.getText().equals("Buscar..."))
         txtOwner1.setText(null);
     }//GEN-LAST:event_txtOwner1MouseReleased
 
