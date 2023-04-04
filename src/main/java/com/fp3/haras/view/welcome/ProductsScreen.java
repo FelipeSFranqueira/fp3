@@ -1,20 +1,24 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package com.fp3.haras.view.welcome;
 
-/**
- *
- * @author 212118
- */
-public class ProductsScreen extends javax.swing.JPanel {
+import com.formdev.flatlaf.FlatLaf;
+import com.fp3.haras.utils.Colors;
+import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 
-    /**
-     * Creates new form ProductsScreen
-     */
+public class ProductsScreen extends javax.swing.JPanel {
+    private JPanel selectedPanel;
+    
     public ProductsScreen() {
         initComponents();
+        
+        this.setBackground(new java.awt.Color(
+                Colors.WHITEBG.getColor()[0],
+                Colors.WHITEBG.getColor()[1],
+                Colors.WHITEBG.getColor()[2]
+        ));
+        
+        lblTitle.putClientProperty("FlatLaf.styleClass", "h00");    
+        
     }
 
     /**
@@ -26,22 +30,85 @@ public class ProductsScreen extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        tpSelection = new javax.swing.JTabbedPane();
+        pnlProducts = new javax.swing.JPanel();
+        pnlServices = new javax.swing.JPanel();
+        pnlHostingTypes = new javax.swing.JPanel();
+        lblTitle = new javax.swing.JLabel();
+
         setBackground(new java.awt.Color(200, 225, 100));
         setPreferredSize(new java.awt.Dimension(900, 400));
+
+        javax.swing.GroupLayout pnlProductsLayout = new javax.swing.GroupLayout(pnlProducts);
+        pnlProducts.setLayout(pnlProductsLayout);
+        pnlProductsLayout.setHorizontalGroup(
+            pnlProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 888, Short.MAX_VALUE)
+        );
+        pnlProductsLayout.setVerticalGroup(
+            pnlProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 247, Short.MAX_VALUE)
+        );
+
+        tpSelection.addTab("Produtos", pnlProducts);
+
+        javax.swing.GroupLayout pnlServicesLayout = new javax.swing.GroupLayout(pnlServices);
+        pnlServices.setLayout(pnlServicesLayout);
+        pnlServicesLayout.setHorizontalGroup(
+            pnlServicesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 888, Short.MAX_VALUE)
+        );
+        pnlServicesLayout.setVerticalGroup(
+            pnlServicesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 247, Short.MAX_VALUE)
+        );
+
+        tpSelection.addTab("Serviços", pnlServices);
+
+        javax.swing.GroupLayout pnlHostingTypesLayout = new javax.swing.GroupLayout(pnlHostingTypes);
+        pnlHostingTypes.setLayout(pnlHostingTypesLayout);
+        pnlHostingTypesLayout.setHorizontalGroup(
+            pnlHostingTypesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 888, Short.MAX_VALUE)
+        );
+        pnlHostingTypesLayout.setVerticalGroup(
+            pnlHostingTypesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 247, Short.MAX_VALUE)
+        );
+
+        tpSelection.addTab("Hospedagens", pnlHostingTypes);
+
+        lblTitle.setText("PRODUTOS E SERVIÇOS");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tpSelection)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblTitle)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTitle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
+                .addComponent(tpSelection, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel lblTitle;
+    private javax.swing.JPanel pnlHostingTypes;
+    private javax.swing.JPanel pnlProducts;
+    private javax.swing.JPanel pnlServices;
+    private javax.swing.JTabbedPane tpSelection;
     // End of variables declaration//GEN-END:variables
 }
