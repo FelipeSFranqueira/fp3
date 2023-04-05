@@ -1,4 +1,4 @@
-package com.fp3.haras.view.screens;
+package com.fp3.haras.view.screens.products;
 
 import com.formdev.flatlaf.FlatLaf;
 import com.fp3.haras.utils.Colors;
