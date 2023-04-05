@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package com.fp3.haras.view.welcome;
+package com.fp3.haras.view.screens;
 
 /**
  *
  * @author 212118
  */
-public class ProductsScreen extends javax.swing.JPanel {
+public class AnimalsScreen extends javax.swing.JPanel {
 
     /**
-     * Creates new form ProductsScreen
+     * Creates new form AnimalsScreen
      */
-    public ProductsScreen() {
+    public AnimalsScreen() {
         initComponents();
     }
 
@@ -26,7 +26,7 @@ public class ProductsScreen extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setBackground(new java.awt.Color(200, 225, 100));
+        setBackground(new java.awt.Color(123, 123, 255));
         setPreferredSize(new java.awt.Dimension(900, 400));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

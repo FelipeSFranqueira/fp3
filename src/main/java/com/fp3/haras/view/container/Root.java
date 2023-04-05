@@ -1,10 +1,9 @@
 package com.fp3.haras.view.container;
 
+import java.awt.*;
 import javax.swing.*;
 
 import com.formdev.flatlaf.FlatLightLaf;
-
-import java.awt.*;
 
 public class Root extends javax.swing.JFrame {
     
@@ -22,6 +21,10 @@ public class Root extends javax.swing.JFrame {
     
     public Root() {
         initComponents();
+        
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setSize(screenSize.width - 100, screenSize.height - 100);
+        this.setLocationRelativeTo(null);
     }
     
     private void initComponents() {
