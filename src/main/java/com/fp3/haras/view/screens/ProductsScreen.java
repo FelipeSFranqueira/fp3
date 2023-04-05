@@ -31,6 +31,10 @@ public class ProductsScreen extends javax.swing.JPanel {
         pnlServices = new javax.swing.JPanel();
         pnlHostingTypes = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
+        tfSearch = new javax.swing.JTextField();
+        btnSearch = new javax.swing.JButton();
+        btnEdit = new javax.swing.JButton();
+        btnCreate = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(200, 225, 100));
         setPreferredSize(new java.awt.Dimension(900, 400));
@@ -76,6 +80,19 @@ public class ProductsScreen extends javax.swing.JPanel {
 
         lblTitle.setText("PRODUTOS E SERVIÇOS");
 
+        tfSearch.setText("Pesquisar...");
+        tfSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfSearchActionPerformed(evt);
+            }
+        });
+
+        btnSearch.setText("Pesquisar");
+
+        btnEdit.setText("Editar");
+
+        btnCreate.setText("Criar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -86,7 +103,15 @@ public class ProductsScreen extends javax.swing.JPanel {
                     .addComponent(tpSelection)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblTitle)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(tfSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSearch)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCreate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnEdit)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -94,17 +119,31 @@ public class ProductsScreen extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblTitle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSearch)
+                    .addComponent(btnEdit)
+                    .addComponent(btnCreate))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(tpSelection, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tfSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfSearchActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCreate;
+    private javax.swing.JButton btnEdit;
+    private javax.swing.JButton btnSearch;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JPanel pnlHostingTypes;
     private javax.swing.JPanel pnlProducts;
     private javax.swing.JPanel pnlServices;
+    private javax.swing.JTextField tfSearch;
     private javax.swing.JTabbedPane tpSelection;
     // End of variables declaration//GEN-END:variables
 }
