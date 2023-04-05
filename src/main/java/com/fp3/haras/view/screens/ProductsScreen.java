@@ -11,7 +11,7 @@ public class ProductsScreen extends javax.swing.JPanel {
     public ProductsScreen() {
         initComponents();
         
-        this.setBackground(Colors.WHITEBG);
+        this.setBackground(Colors.PRIMARYBG);
         
         lblTitle.putClientProperty("FlatLaf.styleClass", "h00");    
         
