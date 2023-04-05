@@ -1,4 +1,4 @@
-package com.fp3.haras.view.stable;
+package com.fp3.haras.view.screens.stable;
 
 import com.fp3.haras.utils.Colors;
 import javax.swing.JOptionPane;
@@ -102,10 +102,7 @@ public class StableScreen extends javax.swing.JPanel {
 
         tableFuture.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "CÓDIGO", "PROPRIETÁRIO", "ANIMAL", "TEMPO TOTAL", "COCHEIRA", "SUBTOTAL"
@@ -127,10 +124,7 @@ public class StableScreen extends javax.swing.JPanel {
 
         tableFinished.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "CÓDIGO", "PROPRIETÁRIO", "ANIMAL", "TEMPO DECORRIDO", "COCHEIRA", "VALOR FINAL"
