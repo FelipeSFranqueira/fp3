@@ -1,19 +1,15 @@
 package com.fp3.haras.utils;
 
-public enum Colors {
-    WHITEBG(new int[] {255, 255, 255}),
-    PRIMARYBG(new int[] {244, 244, 244}),
-    SECONDARYBG(new int[] {234, 234, 234}),
-    SECONDARYBGHOVER(new int[] {200, 200, 200}),
-    ACCENTBLUE(new int[] {0, 120, 212});
+import java.awt.Color;
+
+public class Colors {
     
-    private int[] rgb;
+    //Use: Colors.{color}
     
-    Colors(int[] rgb) {
-        this.rgb = rgb;
-    }
-    
-    public int[] getColor() {
-        return rgb;
-    }
+    public static final Color
+          WHITEBG = new Color(255, 255, 255), 
+          PRIMARYBG = new Color(244, 244, 244), 
+          SECONDARYBG = new Color(234, 234, 234), 
+          SECONDARYBGHOVER = new Color(200, 200, 200),
+          ACCENTBLUE = new Color(0, 120, 212);
 }

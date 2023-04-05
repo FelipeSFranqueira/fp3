@@ -1,4 +1,4 @@
-package com.fp3.haras.view.welcome;
+package com.fp3.haras.view.screens;
 
 import com.formdev.flatlaf.FlatLaf;
 import com.fp3.haras.utils.Colors;
@@ -11,11 +11,7 @@ public class ProductsScreen extends javax.swing.JPanel {
     public ProductsScreen() {
         initComponents();
         
-        this.setBackground(new java.awt.Color(
-                Colors.WHITEBG.getColor()[0],
-                Colors.WHITEBG.getColor()[1],
-                Colors.WHITEBG.getColor()[2]
-        ));
+        this.setBackground(Colors.WHITEBG);
         
         lblTitle.putClientProperty("FlatLaf.styleClass", "h00");    
         
