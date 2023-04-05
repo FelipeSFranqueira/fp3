@@ -28,8 +28,14 @@ public class ProductsScreen extends javax.swing.JPanel {
 
         tpSelection = new javax.swing.JTabbedPane();
         pnlProducts = new javax.swing.JPanel();
+        spProducts = new javax.swing.JScrollPane();
+        tableProducts = new javax.swing.JTable();
         pnlServices = new javax.swing.JPanel();
+        spServices = new javax.swing.JScrollPane();
+        tableServices = new javax.swing.JTable();
         pnlHostingTypes = new javax.swing.JPanel();
+        spHosting = new javax.swing.JScrollPane();
+        tableHosting = new javax.swing.JTable();
         lblTitle = new javax.swing.JLabel();
         tfSearch = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
@@ -39,41 +45,107 @@ public class ProductsScreen extends javax.swing.JPanel {
         setBackground(new java.awt.Color(200, 225, 100));
         setPreferredSize(new java.awt.Dimension(900, 400));
 
+        spProducts.setToolTipText("");
+
+        tableProducts.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Nome", "Estoque", "Preço de Custo", "Preço de Venda"
+            }
+        ));
+        tableProducts.setToolTipText("");
+        spProducts.setViewportView(tableProducts);
+
         javax.swing.GroupLayout pnlProductsLayout = new javax.swing.GroupLayout(pnlProducts);
         pnlProducts.setLayout(pnlProductsLayout);
         pnlProductsLayout.setHorizontalGroup(
             pnlProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 888, Short.MAX_VALUE)
+            .addGroup(pnlProductsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(spProducts, javax.swing.GroupLayout.DEFAULT_SIZE, 876, Short.MAX_VALUE)
+                .addContainerGap())
         );
         pnlProductsLayout.setVerticalGroup(
             pnlProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 247, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlProductsLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(spProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         tpSelection.addTab("Produtos", pnlProducts);
+
+        spServices.setToolTipText("");
+
+        tableServices.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "ID", "Tipo", "Preço"
+            }
+        ));
+        tableServices.setToolTipText("");
+        spServices.setViewportView(tableServices);
 
         javax.swing.GroupLayout pnlServicesLayout = new javax.swing.GroupLayout(pnlServices);
         pnlServices.setLayout(pnlServicesLayout);
         pnlServicesLayout.setHorizontalGroup(
             pnlServicesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 888, Short.MAX_VALUE)
+            .addGroup(pnlServicesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(spServices, javax.swing.GroupLayout.DEFAULT_SIZE, 876, Short.MAX_VALUE)
+                .addContainerGap())
         );
         pnlServicesLayout.setVerticalGroup(
             pnlServicesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 247, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlServicesLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(spServices, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         tpSelection.addTab("Serviços", pnlServices);
+
+        spHosting.setToolTipText("");
+
+        tableHosting.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Entrada", "Saida", "Tipo de estadia", "Cocheira"
+            }
+        ));
+        tableHosting.setToolTipText("");
+        spHosting.setViewportView(tableHosting);
 
         javax.swing.GroupLayout pnlHostingTypesLayout = new javax.swing.GroupLayout(pnlHostingTypes);
         pnlHostingTypes.setLayout(pnlHostingTypesLayout);
         pnlHostingTypesLayout.setHorizontalGroup(
             pnlHostingTypesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 888, Short.MAX_VALUE)
+            .addGroup(pnlHostingTypesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(spHosting, javax.swing.GroupLayout.DEFAULT_SIZE, 876, Short.MAX_VALUE)
+                .addContainerGap())
         );
         pnlHostingTypesLayout.setVerticalGroup(
             pnlHostingTypesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 247, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlHostingTypesLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(spHosting, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         tpSelection.addTab("Hospedagens", pnlHostingTypes);
@@ -143,6 +215,12 @@ public class ProductsScreen extends javax.swing.JPanel {
     private javax.swing.JPanel pnlHostingTypes;
     private javax.swing.JPanel pnlProducts;
     private javax.swing.JPanel pnlServices;
+    private javax.swing.JScrollPane spHosting;
+    private javax.swing.JScrollPane spProducts;
+    private javax.swing.JScrollPane spServices;
+    private javax.swing.JTable tableHosting;
+    private javax.swing.JTable tableProducts;
+    private javax.swing.JTable tableServices;
     private javax.swing.JTextField tfSearch;
     private javax.swing.JTabbedPane tpSelection;
     // End of variables declaration//GEN-END:variables
