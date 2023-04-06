@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 
 public class ProductsScreen extends javax.swing.JPanel {
     private JPanel selectedPanel;
+    ProductsModal pm;
     
     public ProductsScreen() {
         initComponents();
@@ -164,6 +165,11 @@ public class ProductsScreen extends javax.swing.JPanel {
         btnEdit.setText("Editar");
 
         btnCreate.setText("Criar");
+        btnCreate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -205,6 +211,12 @@ public class ProductsScreen extends javax.swing.JPanel {
     private void tfSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSearchActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfSearchActionPerformed
+
+    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
+        // TODO add your handling code here:
+        this.pm = new ProductsModal();
+        pm.setVisible(true);
+    }//GEN-LAST:event_btnCreateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
