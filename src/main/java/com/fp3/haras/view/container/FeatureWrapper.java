@@ -9,7 +9,9 @@ import com.fp3.haras.view.screens.AnimalsScreen;
 import com.fp3.haras.view.screens.CustomersScreen;
 import com.fp3.haras.view.screens.home.HomeScreen;
 import com.fp3.haras.view.screens.products.ProductsScreen;
-import com.fp3.haras.view.screens.StableScreen;
+import com.fp3.haras.view.screens.stable.StableScreen;
+import com.fp3.haras.view.screens.products.ProductsScreen;
+import com.fp3.haras.view.screens.stable.StableScreen;
 
 public class FeatureWrapper extends javax.swing.JPanel implements GenericObserver<Screens> {
     private CardLayout cardLayout;
