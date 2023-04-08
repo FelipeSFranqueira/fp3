@@ -8,6 +8,8 @@ public class ProductsEdit extends javax.swing.JFrame {
 
     public ProductsEdit() {
         initComponents();
+        lblTitle.putClientProperty("FlatLaf.styleClass", "h00");
+        
     }
 
     /**
