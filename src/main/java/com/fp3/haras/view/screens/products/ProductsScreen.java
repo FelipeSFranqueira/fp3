@@ -34,12 +34,24 @@ public class ProductsScreen extends javax.swing.JPanel {
         }
     }
     
+    private String getSelectedHostingTypeID() {
+        if (tableHosting.getSelectedRow() != -1) {
+            return String.valueOf(tableHosting.getModel().getValueAt(tableHosting.getSelectedRow(), 0));
+        } else {
+            return null;
+        }
+    }
+    
     private Object getSelectedProductValue() {
         return tableProducts.getModel().getValueAt(tableProducts.getSelectedRow(), tableProducts.getSelectedColumn());
     }
     
     private Object getSelectedServiceValue() {
         return tableServices.getModel().getValueAt(tableServices.getSelectedRow(), tableServices.getSelectedColumn());
+    }
+    
+    private Object getSelectedHostingTypeValue() {
+        return tableHosting.getModel().getValueAt(tableHosting.getSelectedRow(), tableHosting.getSelectedColumn());
     }
 
     @SuppressWarnings("unchecked")
@@ -248,20 +260,20 @@ public class ProductsScreen extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        if (tpSelection.getTitleAt(tpSelection.getSelectedIndex()).equals("ATIVAS") 
-                    && getSelectedProgressCode() != null && getSelectedProgressValue() != null) {
+        if (tpSelection.getTitleAt(tpSelection.getSelectedIndex()).equals("Produtos") 
+                    && getSelectedProductID()!= null && getSelectedProductValue()!= null) {
                 
-                new StableEdit().setVisible(true);
+                new ProductsEdit().setVisible(true);
                 
-            }else if (tpSelection.getTitleAt(tpSelection.getSelectedIndex()).equals("FINALIZADAS")
-                    && getSelectedEndCode() != null && getSelectedEndValue() != null) {
+            }else if (tpSelection.getTitleAt(tpSelection.getSelectedIndex()).equals("Serviços")
+                    && getSelectedServiceID()!= null && getSelectedServiceValue()!= null) {
                 
-                new StableEdit().setVisible(true);
+                new ProductsEdit().setVisible(true);
                 
-            }else if (tpSelection.getTitleAt(tpSelection.getSelectedIndex()).equals("FUTURAS")
-                    && getSelectedFutureCode() != null && getSelectedFutureValue() != null) {
+            }else if (tpSelection.getTitleAt(tpSelection.getSelectedIndex()).equals("Hospedagens")
+                    && getSelectedHostingTypeID()!= null && getSelectedHostingTypeValue()!= null) {
                 
-                new StableEdit().setVisible(true);
+                new ProductsEdit().setVisible(true);
                 
             } else {
                 JOptionPane.showMessageDialog(null, "Nada foi selecionado.", null, JOptionPane.ERROR_MESSAGE, null);
