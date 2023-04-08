@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 
 public class ProductsScreen extends javax.swing.JPanel {
     private JPanel selectedPanel;
-    ProductsModal pm;
+    ProductsCreate pm;
     
     public ProductsScreen() {
         initComponents();
@@ -197,14 +197,14 @@ public class ProductsScreen extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblTitle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSearch)
                     .addComponent(btnEdit)
                     .addComponent(btnCreate))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tpSelection, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(tpSelection, javax.swing.GroupLayout.PREFERRED_SIZE, 300, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -214,7 +214,7 @@ public class ProductsScreen extends javax.swing.JPanel {
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
-        this.pm = new ProductsModal();
+        this.pm = new ProductsCreate();
         pm.setVisible(true);
     }//GEN-LAST:event_btnCreateActionPerformed
 
