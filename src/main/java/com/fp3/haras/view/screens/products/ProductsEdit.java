@@ -46,7 +46,7 @@ public class ProductsEdit extends javax.swing.JFrame {
         btnCancelService = new javax.swing.JButton();
         btnSaveService = new javax.swing.JButton();
         btnDeleteService = new javax.swing.JButton();
-        pnlStableEdit = new javax.swing.JPanel();
+        pnlStableTypeEdit = new javax.swing.JPanel();
         lblStableType = new javax.swing.JLabel();
         txtStableType = new javax.swing.JTextField();
         lblStablePrice = new javax.swing.JLabel();
@@ -277,16 +277,16 @@ public class ProductsEdit extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout pnlStableEditLayout = new javax.swing.GroupLayout(pnlStableEdit);
-        pnlStableEdit.setLayout(pnlStableEditLayout);
-        pnlStableEditLayout.setHorizontalGroup(
-            pnlStableEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlStableEditLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlStableTypeEditLayout = new javax.swing.GroupLayout(pnlStableTypeEdit);
+        pnlStableTypeEdit.setLayout(pnlStableTypeEditLayout);
+        pnlStableTypeEditLayout.setHorizontalGroup(
+            pnlStableTypeEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlStableTypeEditLayout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addGroup(pnlStableEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlStableEditLayout.createSequentialGroup()
-                        .addGroup(pnlStableEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlStableEditLayout.createSequentialGroup()
+                .addGroup(pnlStableTypeEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlStableTypeEditLayout.createSequentialGroup()
+                        .addGroup(pnlStableTypeEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlStableTypeEditLayout.createSequentialGroup()
                                 .addComponent(txtStablePrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lblUnit4))
@@ -294,7 +294,7 @@ public class ProductsEdit extends javax.swing.JFrame {
                             .addComponent(txtStableType, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblStableType))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(pnlStableEditLayout.createSequentialGroup()
+                    .addGroup(pnlStableTypeEditLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnDeleteStable, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -303,9 +303,9 @@ public class ProductsEdit extends javax.swing.JFrame {
                         .addComponent(btnSaveStable, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(66, 66, 66))))
         );
-        pnlStableEditLayout.setVerticalGroup(
-            pnlStableEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlStableEditLayout.createSequentialGroup()
+        pnlStableTypeEditLayout.setVerticalGroup(
+            pnlStableTypeEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlStableTypeEditLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(lblStableType)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -313,18 +313,18 @@ public class ProductsEdit extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(lblStablePrice)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlStableEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(pnlStableTypeEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtStablePrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblUnit4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
-                .addGroup(pnlStableEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlStableTypeEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelStable, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSaveStable, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDeleteStable, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(63, 63, 63))
         );
 
-        tpProduct.addTab("Hospedagens", pnlStableEdit);
+        tpProduct.addTab("Hospedagens", pnlStableTypeEdit);
 
         javax.swing.GroupLayout pnlBackLayout = new javax.swing.GroupLayout(pnlBack);
         pnlBack.setLayout(pnlBackLayout);
@@ -443,7 +443,7 @@ public class ProductsEdit extends javax.swing.JFrame {
     private javax.swing.JPanel pnlBack;
     private javax.swing.JPanel pnlProductsEdit;
     private javax.swing.JPanel pnlServicesEdit;
-    private javax.swing.JPanel pnlStableEdit;
+    private javax.swing.JPanel pnlStableTypeEdit;
     private javax.swing.JTabbedPane tpProduct;
     private javax.swing.JTextField txtProductName;
     private javax.swing.JTextField txtProductStock;

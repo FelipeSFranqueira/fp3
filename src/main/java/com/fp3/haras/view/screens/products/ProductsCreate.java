@@ -47,7 +47,7 @@ public class ProductsCreate extends javax.swing.JFrame {
         lblUnit3 = new javax.swing.JLabel();
         btnCancelService = new javax.swing.JButton();
         btnSaveService = new javax.swing.JButton();
-        pnlHostingsCreate = new javax.swing.JPanel();
+        pnlStableTypeCreate = new javax.swing.JPanel();
         lblStableType = new javax.swing.JLabel();
         txtStableType = new javax.swing.JTextField();
         lblStablePrice = new javax.swing.JLabel();
@@ -250,18 +250,18 @@ public class ProductsCreate extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout pnlHostingsCreateLayout = new javax.swing.GroupLayout(pnlHostingsCreate);
-        pnlHostingsCreate.setLayout(pnlHostingsCreateLayout);
-        pnlHostingsCreateLayout.setHorizontalGroup(
-            pnlHostingsCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlHostingsCreateLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlStableTypeCreateLayout = new javax.swing.GroupLayout(pnlStableTypeCreate);
+        pnlStableTypeCreate.setLayout(pnlStableTypeCreateLayout);
+        pnlStableTypeCreateLayout.setHorizontalGroup(
+            pnlStableTypeCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlStableTypeCreateLayout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addGroup(pnlHostingsCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlHostingsCreateLayout.createSequentialGroup()
+                .addGroup(pnlStableTypeCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlStableTypeCreateLayout.createSequentialGroup()
                         .addComponent(btnCancelStable, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnSaveStable, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlHostingsCreateLayout.createSequentialGroup()
+                    .addGroup(pnlStableTypeCreateLayout.createSequentialGroup()
                         .addComponent(txtStablePrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblUnit4))
@@ -270,9 +270,9 @@ public class ProductsCreate extends javax.swing.JFrame {
                     .addComponent(lblStableType))
                 .addContainerGap(255, Short.MAX_VALUE))
         );
-        pnlHostingsCreateLayout.setVerticalGroup(
-            pnlHostingsCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlHostingsCreateLayout.createSequentialGroup()
+        pnlStableTypeCreateLayout.setVerticalGroup(
+            pnlStableTypeCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlStableTypeCreateLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(lblStableType)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -280,17 +280,17 @@ public class ProductsCreate extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(lblStablePrice)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlHostingsCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(pnlStableTypeCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtStablePrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblUnit4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
-                .addGroup(pnlHostingsCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlStableTypeCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelStable, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSaveStable, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(63, 63, 63))
         );
 
-        tpProducts.addTab("Hospedagens", pnlHostingsCreate);
+        tpProducts.addTab("Hospedagens", pnlStableTypeCreate);
 
         javax.swing.GroupLayout pnlFormLayout = new javax.swing.GroupLayout(pnlForm);
         pnlForm.setLayout(pnlFormLayout);
@@ -389,9 +389,9 @@ public class ProductsCreate extends javax.swing.JFrame {
     private javax.swing.JLabel lblUnit4;
     private javax.swing.JPanel pnlBack;
     private javax.swing.JPanel pnlForm;
-    private javax.swing.JPanel pnlHostingsCreate;
     private javax.swing.JPanel pnlProductsCreate;
     private javax.swing.JPanel pnlServicesCreate;
+    private javax.swing.JPanel pnlStableTypeCreate;
     private javax.swing.JTabbedPane tpProducts;
     private javax.swing.JTextField txtProductName;
     private javax.swing.JTextField txtProductStock;
