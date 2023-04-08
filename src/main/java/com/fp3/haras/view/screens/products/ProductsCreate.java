@@ -40,6 +40,13 @@ public class ProductsCreate extends javax.swing.JFrame {
         btnCancel = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
         pnlServicesCreate = new javax.swing.JPanel();
+        lblServiceType = new javax.swing.JLabel();
+        txtServiceType = new javax.swing.JTextField();
+        lblServicePrice = new javax.swing.JLabel();
+        txtServicePrice = new javax.swing.JTextField();
+        lblUnit3 = new javax.swing.JLabel();
+        btnCancel1 = new javax.swing.JButton();
+        btnSave1 = new javax.swing.JButton();
         pnlHostingsCreate = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -146,15 +153,68 @@ public class ProductsCreate extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Produtos", pnlProductsCreate);
 
+        lblServiceType.setText("TIPO DE SERVIÇO:");
+
+        txtServiceType.setMaximumSize(new java.awt.Dimension(64, 22));
+
+        lblServicePrice.setText("PREÇO DO SERVIÇO:");
+
+        txtServicePrice.setMaximumSize(new java.awt.Dimension(64, 22));
+
+        lblUnit3.setText("Reais.");
+
+        btnCancel1.setText("CANCELAR");
+        btnCancel1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancel1ActionPerformed(evt);
+            }
+        });
+
+        btnSave1.setText("SALVAR");
+        btnSave1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSave1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlServicesCreateLayout = new javax.swing.GroupLayout(pnlServicesCreate);
         pnlServicesCreate.setLayout(pnlServicesCreateLayout);
         pnlServicesCreateLayout.setHorizontalGroup(
             pnlServicesCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGroup(pnlServicesCreateLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(pnlServicesCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlServicesCreateLayout.createSequentialGroup()
+                        .addComponent(btnCancel1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSave1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlServicesCreateLayout.createSequentialGroup()
+                        .addComponent(txtServicePrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblUnit3))
+                    .addComponent(lblServicePrice)
+                    .addComponent(txtServiceType, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblServiceType))
+                .addContainerGap(206, Short.MAX_VALUE))
         );
         pnlServicesCreateLayout.setVerticalGroup(
             pnlServicesCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 367, Short.MAX_VALUE)
+            .addGroup(pnlServicesCreateLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(lblServiceType)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtServiceType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblServicePrice)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlServicesCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtServicePrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblUnit3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
+                .addGroup(pnlServicesCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCancel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSave1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(67, 67, 67))
         );
 
         jTabbedPane1.addTab("Serviços", pnlServicesCreate);
@@ -226,52 +286,34 @@ public class ProductsCreate extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Código de registro: #{CODE}", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
         dispose();
     }//GEN-LAST:event_btnSaveActionPerformed
-    
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ProductsCreate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ProductsCreate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ProductsCreate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ProductsCreate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ProductsCreate().setVisible(true);
-            }
-        });
-    }
+    private void btnCancel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancel1ActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnCancel1ActionPerformed
+
+    private void btnSave1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSave1ActionPerformed
+        JOptionPane.showMessageDialog(null, "Código de registro: #{CODE}", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
+        dispose();
+    }//GEN-LAST:event_btnSave1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnCancel1;
     private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnSave1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblProductName;
     private javax.swing.JLabel lblProductStock;
     private javax.swing.JLabel lblPurchasePrice;
     private javax.swing.JLabel lblSalePrice;
+    private javax.swing.JLabel lblServicePrice;
+    private javax.swing.JLabel lblServiceType;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblUnit;
     private javax.swing.JLabel lblUnit1;
     private javax.swing.JLabel lblUnit2;
+    private javax.swing.JLabel lblUnit3;
     private javax.swing.JPanel pnlBack;
     private javax.swing.JPanel pnlForm;
     private javax.swing.JPanel pnlHostingsCreate;
@@ -281,5 +323,7 @@ public class ProductsCreate extends javax.swing.JFrame {
     private javax.swing.JTextField txtProductStock;
     private javax.swing.JTextField txtPurchasePrice;
     private javax.swing.JTextField txtSalePrice;
+    private javax.swing.JTextField txtServicePrice;
+    private javax.swing.JTextField txtServiceType;
     // End of variables declaration//GEN-END:variables
 }
