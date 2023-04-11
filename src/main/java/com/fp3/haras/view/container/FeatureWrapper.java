@@ -2,12 +2,13 @@ package com.fp3.haras.view.container;
 
 import com.fp3.haras.utils.GenericObserver;
 import java.awt.CardLayout;
+import javax.swing.JPanel;
 
 import com.fp3.haras.utils.Screens;
 import com.fp3.haras.view.screens.AnimalsScreen;
 import com.fp3.haras.view.screens.home.HomeScreen;
-import com.fp3.haras.view.screens.ProductsScreen;
 import com.fp3.haras.view.screens.client.ClientScreen;
+import com.fp3.haras.view.screens.products.ProductsScreen;
 import com.fp3.haras.view.screens.stable.StableScreen;
 
 public class FeatureWrapper extends javax.swing.JPanel implements GenericObserver<Screens> {
