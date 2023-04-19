@@ -9,7 +9,7 @@ public class StableScreen extends javax.swing.JPanel {
         initComponents();
         
         this.setBackground(Colors.PRIMARYBG);
-        jLabel1.putClientProperty("FlatLaf.styleClass", "h00");
+        lblTitle.putClientProperty("FlatLaf.styleClass", "h00");
     }
     
     private String getSelectedProgressCode() {
@@ -52,8 +52,6 @@ public class StableScreen extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         tpaneInfo = new javax.swing.JTabbedPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableProgress = new javax.swing.JTable();
@@ -65,14 +63,11 @@ public class StableScreen extends javax.swing.JPanel {
         btnCreate = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
         lblSearch = new javax.swing.JLabel();
+        lblTitle = new javax.swing.JLabel();
+        lblSubtitle = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(244, 244, 244));
         setPreferredSize(new java.awt.Dimension(900, 585));
-
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel1.setText("COCHEIRAS");
-
-        jLabel2.setText("STATUS DE SERVIÇO");
 
         tpaneInfo.setBackground(new java.awt.Color(234, 234, 234));
         tpaneInfo.setForeground(new java.awt.Color(153, 153, 153));
@@ -174,6 +169,11 @@ public class StableScreen extends javax.swing.JPanel {
         lblSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search.png"))); // NOI18N
         lblSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblTitle.setText("COCHEIRAS");
+
+        lblSubtitle.setText("STATUS DE SERVIÇO");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -181,8 +181,8 @@ public class StableScreen extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
+                    .addComponent(lblTitle)
+                    .addComponent(lblSubtitle)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(tpaneInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
@@ -199,9 +199,9 @@ public class StableScreen extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addComponent(jLabel1)
+                .addComponent(lblTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
+                .addComponent(lblSubtitle)
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(txtSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
@@ -254,12 +254,12 @@ public class StableScreen extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreate;
     private javax.swing.JButton btnEdit;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblSearch;
+    private javax.swing.JLabel lblSubtitle;
+    private javax.swing.JLabel lblTitle;
     private javax.swing.JTable tableFinished;
     private javax.swing.JTable tableFuture;
     private javax.swing.JTable tableProgress;

@@ -12,7 +12,7 @@ public class StableCreate extends javax.swing.JFrame {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         panelBack.setBackground(Colors.WHITEBG);
         panelForm.setBackground(Colors.PRIMARYBG);
-        jLabel1.putClientProperty("FlatLaf.styleClass", "h00");
+        lblTitle.putClientProperty("FlatLaf.styleClass", "h00");
     }
 
     @SuppressWarnings("unchecked")
@@ -20,40 +20,40 @@ public class StableCreate extends javax.swing.JFrame {
     private void initComponents() {
 
         panelBack = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         btnCancel = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
         panelForm = new javax.swing.JPanel();
-        boxAnimal = new javax.swing.JComboBox<>();
-        boxOwner = new javax.swing.JComboBox<>();
-        spnEnter = new javax.swing.JSpinner();
-        jLabel3 = new javax.swing.JLabel();
-        boxStable = new javax.swing.JComboBox<>();
-        jSeparator1 = new javax.swing.JSeparator();
-        boxProds = new javax.swing.JComboBox<>();
-        spnProdUsed = new javax.swing.JSpinner();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        txtTotalValue = new javax.swing.JFormattedTextField();
-        jLabel10 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableProds = new javax.swing.JTable();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        txtIndividualValue = new javax.swing.JFormattedTextField();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        spnLeave = new javax.swing.JSpinner();
-        btnApply = new javax.swing.JButton();
-        txtAmount = new javax.swing.JFormattedTextField();
-        spnStable = new javax.swing.JSpinner();
         txtOwner = new javax.swing.JTextField();
         txtAnimal = new javax.swing.JTextField();
         txtOwner1 = new javax.swing.JTextField();
-        jLabel15 = new javax.swing.JLabel();
+        txtTotalValue = new javax.swing.JFormattedTextField();
+        txtIndividualValue = new javax.swing.JFormattedTextField();
+        txtAmount = new javax.swing.JFormattedTextField();
         txtIndividualValue1 = new javax.swing.JFormattedTextField();
+        btnApply = new javax.swing.JButton();
+        spnEnter = new javax.swing.JSpinner();
+        spnProdUsed = new javax.swing.JSpinner();
+        spnLeave = new javax.swing.JSpinner();
+        spnStable = new javax.swing.JSpinner();
+        boxAnimal = new javax.swing.JComboBox<>();
+        boxOwner = new javax.swing.JComboBox<>();
+        boxStable = new javax.swing.JComboBox<>();
+        boxProds = new javax.swing.JComboBox<>();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        lblTitle = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
@@ -61,9 +61,6 @@ public class StableCreate extends javax.swing.JFrame {
 
         panelBack.setBackground(new java.awt.Color(244, 244, 244));
         panelBack.setPreferredSize(new java.awt.Dimension(900, 585));
-
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel1.setText("CRIAÇÃO");
 
         btnCancel.setText("CANCELAR");
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
@@ -78,37 +75,6 @@ public class StableCreate extends javax.swing.JFrame {
                 btnSaveActionPerformed(evt);
             }
         });
-
-        boxAnimal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---" }));
-        boxAnimal.setEnabled(false);
-
-        boxOwner.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---" }));
-        boxOwner.setEnabled(false);
-
-        spnEnter.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), null, null, java.util.Calendar.DAY_OF_YEAR));
-
-        jLabel3.setText("ENTRADA");
-
-        boxStable.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C", "D", "E", "F" }));
-
-        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
-
-        boxProds.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---" }));
-        boxProds.setEnabled(false);
-
-        spnProdUsed.setEnabled(false);
-
-        jLabel4.setText("PROPRIETÁRIO");
-
-        jLabel5.setText("ANIMAL");
-
-        jLabel6.setText("COCHEIRA");
-
-        txtTotalValue.setEditable(false);
-        txtTotalValue.setText("TOTAL");
-
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel10.setText("VALOR TOTAL EM CONSUMO");
 
         tableProds.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -129,37 +95,6 @@ public class StableCreate extends javax.swing.JFrame {
         tableProds.getTableHeader().setResizingAllowed(false);
         tableProds.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tableProds);
-
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel9.setText("EDIÇÃO DE CONSUMO");
-
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("CONSUMO INICIAL");
-
-        txtIndividualValue.setEditable(false);
-        txtIndividualValue.setText("TOTAL");
-
-        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel12.setText("VALOR POR UNIDADE");
-
-        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel13.setText("PRODUTOS CONSUMIDOS");
-
-        jLabel14.setText("SAÍDA");
-
-        spnLeave.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), null, null, java.util.Calendar.DAY_OF_YEAR));
-
-        btnApply.setText("APLICAR");
-        btnApply.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnApplyActionPerformed(evt);
-            }
-        });
-
-        txtAmount.setEditable(false);
-        txtAmount.setText("QTD");
-
-        spnStable.setModel(new javax.swing.SpinnerNumberModel(1, null, 20, 1));
 
         txtOwner.setText("Buscar...");
         txtOwner.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -197,11 +132,73 @@ public class StableCreate extends javax.swing.JFrame {
             }
         });
 
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel15.setText("VALOR EM QUANTIDADE");
+        txtTotalValue.setEditable(false);
+        txtTotalValue.setText("TOTAL");
+
+        txtIndividualValue.setEditable(false);
+        txtIndividualValue.setText("TOTAL");
+
+        txtAmount.setEditable(false);
+        txtAmount.setText("QTD");
 
         txtIndividualValue1.setEditable(false);
         txtIndividualValue1.setText("TOTAL");
+
+        btnApply.setText("APLICAR");
+        btnApply.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnApplyActionPerformed(evt);
+            }
+        });
+
+        spnEnter.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), null, null, java.util.Calendar.DAY_OF_YEAR));
+
+        spnProdUsed.setEnabled(false);
+
+        spnLeave.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), null, null, java.util.Calendar.DAY_OF_YEAR));
+
+        spnStable.setModel(new javax.swing.SpinnerNumberModel(1, null, 20, 1));
+
+        boxAnimal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---" }));
+        boxAnimal.setEnabled(false);
+
+        boxOwner.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---" }));
+        boxOwner.setEnabled(false);
+
+        boxStable.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C", "D", "E", "F" }));
+
+        boxProds.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---" }));
+        boxProds.setEnabled(false);
+
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel10.setText("VALOR TOTAL EM CONSUMO");
+
+        jLabel3.setText("ENTRADA");
+
+        jLabel4.setText("PROPRIETÁRIO");
+
+        jLabel5.setText("ANIMAL");
+
+        jLabel6.setText("COCHEIRA");
+
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel9.setText("EDIÇÃO DE CONSUMO");
+
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("CONSUMO INICIAL");
+
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel12.setText("VALOR POR UNIDADE");
+
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel13.setText("PRODUTOS CONSUMIDOS");
+
+        jLabel14.setText("SAÍDA");
+
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel15.setText("VALOR EM QUANTIDADE");
+
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         javax.swing.GroupLayout panelFormLayout = new javax.swing.GroupLayout(panelForm);
         panelForm.setLayout(panelFormLayout);
@@ -326,8 +323,11 @@ public class StableCreate extends javax.swing.JFrame {
                                 .addComponent(jLabel15)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtIndividualValue1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
+
+        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblTitle.setText("CRIAÇÃO");
 
         javax.swing.GroupLayout panelBackLayout = new javax.swing.GroupLayout(panelBack);
         panelBack.setLayout(panelBackLayout);
@@ -341,7 +341,7 @@ public class StableCreate extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel1)
+                        .addComponent(lblTitle)
                         .addComponent(panelForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(40, 40, 40))
         );
@@ -349,7 +349,7 @@ public class StableCreate extends javax.swing.JFrame {
             panelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBackLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(jLabel1)
+                .addComponent(lblTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelForm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
@@ -435,7 +435,6 @@ public class StableCreate extends javax.swing.JFrame {
     private javax.swing.JButton btnApply;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnSave;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -449,6 +448,7 @@ public class StableCreate extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lblTitle;
     private javax.swing.JPanel panelBack;
     private javax.swing.JPanel panelForm;
     private javax.swing.JSpinner spnEnter;

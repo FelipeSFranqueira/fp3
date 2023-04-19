@@ -1,12 +1,9 @@
 package com.fp3.haras.view.screens.products;
 
-import com.formdev.flatlaf.FlatLaf;
 import com.fp3.haras.utils.Colors;
-import javax.swing.JPanel;
 import javax.swing.JOptionPane;
 
 public class ProductsScreen extends javax.swing.JPanel {
-    private JPanel selectedPanel;
     ProductsCreate pm;
     
     public ProductsScreen() {
@@ -57,151 +54,94 @@ public class ProductsScreen extends javax.swing.JPanel {
     private void initComponents() {
 
         tpSelection = new javax.swing.JTabbedPane();
-        pnlProducts = new javax.swing.JPanel();
         spProducts = new javax.swing.JScrollPane();
         tableProducts = new javax.swing.JTable();
-        pnlServices = new javax.swing.JPanel();
-        spServices = new javax.swing.JScrollPane();
-        tableServices = new javax.swing.JTable();
-        pnlStableTypes = new javax.swing.JPanel();
         spStable = new javax.swing.JScrollPane();
         tableStable = new javax.swing.JTable();
-        lblTitle = new javax.swing.JLabel();
-        tfSearch = new javax.swing.JTextField();
+        spServices = new javax.swing.JScrollPane();
+        tableServices = new javax.swing.JTable();
+        txtSearch = new javax.swing.JTextField();
         btnEdit = new javax.swing.JButton();
         btnCreate = new javax.swing.JButton();
         lblSearch = new javax.swing.JLabel();
+        lblTitle = new javax.swing.JLabel();
+        lblSubtitle = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(200, 225, 100));
-        setPreferredSize(new java.awt.Dimension(900, 400));
+        setBackground(new java.awt.Color(244, 244, 244));
+        setPreferredSize(new java.awt.Dimension(900, 585));
+
+        tpSelection.setBackground(new java.awt.Color(234, 234, 234));
+        tpSelection.setForeground(new java.awt.Color(153, 153, 153));
+        tpSelection.setOpaque(true);
 
         spProducts.setToolTipText("");
 
         tableProducts.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "ID", "Nome", "Estoque", "Preço de Custo", "Preço de Venda"
+                "ID", "NOME", "ESTOQUE", "PREÇO DE CUSTO", "PREÇO DE VENDA"
             }
         ));
         tableProducts.setToolTipText("");
+        tableProducts.getTableHeader().setReorderingAllowed(false);
         spProducts.setViewportView(tableProducts);
 
-        javax.swing.GroupLayout pnlProductsLayout = new javax.swing.GroupLayout(pnlProducts);
-        pnlProducts.setLayout(pnlProductsLayout);
-        pnlProductsLayout.setHorizontalGroup(
-            pnlProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlProductsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(spProducts, javax.swing.GroupLayout.DEFAULT_SIZE, 832, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        pnlProductsLayout.setVerticalGroup(
-            pnlProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlProductsLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(spProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        tpSelection.addTab("Produtos", pnlProducts);
-
-        spServices.setToolTipText("");
-
-        tableServices.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "ID", "Tipo", "Preço"
-            }
-        ));
-        tableServices.setToolTipText("");
-        spServices.setViewportView(tableServices);
-
-        javax.swing.GroupLayout pnlServicesLayout = new javax.swing.GroupLayout(pnlServices);
-        pnlServices.setLayout(pnlServicesLayout);
-        pnlServicesLayout.setHorizontalGroup(
-            pnlServicesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlServicesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(spServices, javax.swing.GroupLayout.DEFAULT_SIZE, 832, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        pnlServicesLayout.setVerticalGroup(
-            pnlServicesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlServicesLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(spServices, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        tpSelection.addTab("Serviços", pnlServices);
+        tpSelection.addTab("PRODUTOS", spProducts);
 
         spStable.setToolTipText("");
 
         tableStable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
-                "ID", "Tipo de estadia", "Preço"
+                "ID", "ESTADIA", "PREÇO"
             }
         ));
         tableStable.setToolTipText("");
+        tableStable.getTableHeader().setReorderingAllowed(false);
         spStable.setViewportView(tableStable);
 
-        javax.swing.GroupLayout pnlStableTypesLayout = new javax.swing.GroupLayout(pnlStableTypes);
-        pnlStableTypes.setLayout(pnlStableTypesLayout);
-        pnlStableTypesLayout.setHorizontalGroup(
-            pnlStableTypesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlStableTypesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(spStable, javax.swing.GroupLayout.DEFAULT_SIZE, 832, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        pnlStableTypesLayout.setVerticalGroup(
-            pnlStableTypesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlStableTypesLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(spStable, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        tpSelection.addTab("SERVIÇOS", spStable);
 
-        tpSelection.addTab("Estadias", pnlStableTypes);
+        spServices.setToolTipText("");
 
-        lblTitle.setText("PRODUTOS E SERVIÇOS");
+        tableServices.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        tfSearch.setText("Pesquisar...");
-        tfSearch.addFocusListener(new java.awt.event.FocusAdapter() {
+            },
+            new String [] {
+                "ID", "TIPO", "PREÇO"
+            }
+        ));
+        tableServices.setToolTipText("");
+        tableServices.getTableHeader().setReorderingAllowed(false);
+        spServices.setViewportView(tableServices);
+
+        tpSelection.addTab("ESTADIAS", spServices);
+
+        txtSearch.setText("Pesquisar...");
+        txtSearch.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                tfSearchFocusLost(evt);
+                txtSearchFocusLost(evt);
             }
         });
-        tfSearch.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtSearch.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                tfSearchMouseReleased(evt);
+                txtSearchMouseReleased(evt);
             }
         });
 
-        btnEdit.setText("Editar");
+        btnEdit.setText("EDITAR");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditActionPerformed(evt);
             }
         });
 
-        btnCreate.setText("Criar");
+        btnCreate.setText("CRIAR");
         btnCreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCreateActionPerformed(evt);
@@ -212,6 +152,10 @@ public class ProductsScreen extends javax.swing.JPanel {
         lblSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search.png"))); // NOI18N
         lblSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+        lblTitle.setText("PRODUTOS E SERVIÇOS");
+
+        lblSubtitle.setText("DISPONIBILIDADE DE RECURSOS");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -219,34 +163,37 @@ public class ProductsScreen extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(50, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblSubtitle)
                     .addComponent(lblTitle)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(tfSearch)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(lblSearch)
-                            .addGap(388, 388, 388)
-                            .addComponent(btnCreate)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnEdit))
-                        .addComponent(tpSelection, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 844, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(tpSelection, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(50, 50, 50))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(31, 31, 31)
                 .addComponent(lblTitle)
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblSubtitle)
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnCreate)
-                        .addComponent(btnEdit))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(lblSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tfSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnEdit)))
                 .addGap(18, 18, 18)
-                .addComponent(tpSelection, javax.swing.GroupLayout.PREFERRED_SIZE, 300, Short.MAX_VALUE))
+                .addComponent(tpSelection, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(80, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -278,32 +225,30 @@ public class ProductsScreen extends javax.swing.JPanel {
             }
     }//GEN-LAST:event_btnEditActionPerformed
 
-    private void tfSearchMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tfSearchMouseReleased
-        if (tfSearch.getText().equals("Pesquisar..."))
-            tfSearch.setText(null);
-    }//GEN-LAST:event_tfSearchMouseReleased
+    private void txtSearchMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSearchMouseReleased
+        if (txtSearch.getText().equals("Pesquisar..."))
+            txtSearch.setText(null);
+    }//GEN-LAST:event_txtSearchMouseReleased
 
-    private void tfSearchFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfSearchFocusLost
-        if (tfSearch.getText().equals(""))
-            tfSearch.setText("Pesquisar...");
-    }//GEN-LAST:event_tfSearchFocusLost
+    private void txtSearchFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSearchFocusLost
+        if (txtSearch.getText().equals(""))
+            txtSearch.setText("Pesquisar...");
+    }//GEN-LAST:event_txtSearchFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreate;
     private javax.swing.JButton btnEdit;
     private javax.swing.JLabel lblSearch;
+    private javax.swing.JLabel lblSubtitle;
     private javax.swing.JLabel lblTitle;
-    private javax.swing.JPanel pnlProducts;
-    private javax.swing.JPanel pnlServices;
-    private javax.swing.JPanel pnlStableTypes;
     private javax.swing.JScrollPane spProducts;
     private javax.swing.JScrollPane spServices;
     private javax.swing.JScrollPane spStable;
     private javax.swing.JTable tableProducts;
     private javax.swing.JTable tableServices;
     private javax.swing.JTable tableStable;
-    private javax.swing.JTextField tfSearch;
     private javax.swing.JTabbedPane tpSelection;
+    private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,11 +1,11 @@
-package com.fp3.haras.view.screens.client;
+package com.fp3.haras.view.screens.animals;
 
 import com.fp3.haras.utils.Colors;
 import javax.swing.JOptionPane;
 
-public class ClientScreen extends javax.swing.JPanel {
+public class AnimalsScreen extends javax.swing.JPanel {
 
-    public ClientScreen() {
+    public AnimalsScreen() {
         initComponents();
         
         this.setBackground(Colors.PRIMARYBG);
@@ -45,11 +45,11 @@ public class ClientScreen extends javax.swing.JPanel {
 
             },
             new String [] {
-                "NOME", "TELEFONE", "EMAIL", "DOCUMENTO", "ENDEREÇO"
+                "SITUAÇÃO", "NOME", "PELAGEM", "ESTADIA", "CATEGORIA", "PROPRIETÁRIOS", "CONDOMÍNIO"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -91,9 +91,9 @@ public class ClientScreen extends javax.swing.JPanel {
         lblSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblTitle.setText("CLIENTES");
+        lblTitle.setText("ANIMAIS");
 
-        lblSubtitle.setText("INFORMAÇÕES PESSOAIS");
+        lblSubtitle.setText("PRINCIPAIS CARACTERÍSTICAS");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -101,18 +101,19 @@ public class ClientScreen extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblTitle)
-                    .addComponent(lblSubtitle)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblSearch)
-                        .addGap(230, 230, 230)
-                        .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lblTitle)
+                        .addComponent(lblSubtitle)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lblSearch)
+                            .addGap(230, 230, 230)
+                            .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(50, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -131,7 +132,7 @@ public class ClientScreen extends javax.swing.JPanel {
                     .addComponent(lblSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -146,14 +147,14 @@ public class ClientScreen extends javax.swing.JPanel {
     }//GEN-LAST:event_txtSearchFocusLost
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
-        new ClientCreate().setVisible(true);
+        new AnimalsCreate().setVisible(true);
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         if (tableProgress.getSelectedColumnCount()!= 0
             && getSelectedProgressCode() != null && getSelectedProgressValue() != null) {
                 
-                new ClientEdit().setVisible(true);
+                new AnimalsEdit().setVisible(true);
                 
             } else {
                 JOptionPane.showMessageDialog(null, "Nada foi selecionado.", null, JOptionPane.ERROR_MESSAGE, null);
