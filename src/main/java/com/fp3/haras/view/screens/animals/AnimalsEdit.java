@@ -66,49 +66,39 @@ public class AnimalsEdit extends javax.swing.JFrame {
 
         panelBack.setBackground(new java.awt.Color(244, 244, 244));
         panelBack.setPreferredSize(new java.awt.Dimension(900, 434));
-        panelBack.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblTitle.setText("EDIÇÃO");
-        panelBack.add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
 
         panelForm.setMinimumSize(new java.awt.Dimension(570, 290));
         panelForm.setPreferredSize(new java.awt.Dimension(570, 290));
-        panelForm.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtNome.setEditable(false);
         txtNome.setEnabled(false);
-        panelForm.add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 47, 160, -1));
 
         txtEstadia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEstadiaActionPerformed(evt);
             }
         });
-        panelForm.add(txtEstadia, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 120, 160, -1));
 
         txtCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCategoriaActionPerformed(evt);
             }
         });
-        panelForm.add(txtCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 154, -1));
 
         txtProprietario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtProprietarioActionPerformed(evt);
             }
         });
-        panelForm.add(txtProprietario, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 243, 187, -1));
 
         txtCondominio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCondominioActionPerformed(evt);
             }
         });
-        panelForm.add(txtCondominio, new org.netbeans.lib.awtextra.AbsoluteConstraints(287, 243, 247, -1));
-        panelForm.add(txtPelagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 47, 152, -1));
-        panelForm.add(txtOrigem, new org.netbeans.lib.awtextra.AbsoluteConstraints(374, 47, 160, -1));
 
         boxSexF.setText("F");
         boxSexF.addActionListener(new java.awt.event.ActionListener() {
@@ -116,7 +106,6 @@ public class AnimalsEdit extends javax.swing.JFrame {
                 boxSexFActionPerformed(evt);
             }
         });
-        panelForm.add(boxSexF, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 120, -1, -1));
 
         boxSexM.setText("M");
         boxSexM.addActionListener(new java.awt.event.ActionListener() {
@@ -124,7 +113,6 @@ public class AnimalsEdit extends javax.swing.JFrame {
                 boxSexMActionPerformed(evt);
             }
         });
-        panelForm.add(boxSexM, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, -1, -1));
 
         boxAieS.setText("S");
         boxAieS.addActionListener(new java.awt.event.ActionListener() {
@@ -132,7 +120,6 @@ public class AnimalsEdit extends javax.swing.JFrame {
                 boxAieSActionPerformed(evt);
             }
         });
-        panelForm.add(boxAieS, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, -1, -1));
 
         boxAieN.setText("N");
         boxAieN.addActionListener(new java.awt.event.ActionListener() {
@@ -140,7 +127,6 @@ public class AnimalsEdit extends javax.swing.JFrame {
                 boxAieNActionPerformed(evt);
             }
         });
-        panelForm.add(boxAieN, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, -1, -1));
 
         boxGtaS.setText("S");
         boxGtaS.addActionListener(new java.awt.event.ActionListener() {
@@ -148,7 +134,6 @@ public class AnimalsEdit extends javax.swing.JFrame {
                 boxGtaSActionPerformed(evt);
             }
         });
-        panelForm.add(boxGtaS, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 160, -1, -1));
 
         boxGtaN.setText("N");
         boxGtaN.addActionListener(new java.awt.event.ActionListener() {
@@ -156,7 +141,6 @@ public class AnimalsEdit extends javax.swing.JFrame {
                 boxGtaNActionPerformed(evt);
             }
         });
-        panelForm.add(boxGtaN, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 180, -1, -1));
 
         boxMormoS.setText("S");
         boxMormoS.addActionListener(new java.awt.event.ActionListener() {
@@ -164,7 +148,6 @@ public class AnimalsEdit extends javax.swing.JFrame {
                 boxMormoSActionPerformed(evt);
             }
         });
-        panelForm.add(boxMormoS, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 160, -1, -1));
 
         boxMormoN.setText("N");
         boxMormoN.addActionListener(new java.awt.event.ActionListener() {
@@ -172,64 +155,206 @@ public class AnimalsEdit extends javax.swing.JFrame {
                 boxMormoNActionPerformed(evt);
             }
         });
-        panelForm.add(boxMormoN, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 180, -1, -1));
 
         jLabel2.setText("CATEGORIA");
-        panelForm.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 146, -1));
 
         jLabel3.setText("NOME");
         jLabel3.setEnabled(false);
-        panelForm.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 25, 146, -1));
 
         jLabel8.setText("ESTADIA");
-        panelForm.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 100, 85, -1));
 
         jLabel9.setText("CONDOMÍNIO");
-        panelForm.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(287, 221, 86, -1));
 
         jLabel10.setText("PROPRIETÁRIO");
-        panelForm.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 221, 146, -1));
 
         jLabel5.setText("PELAGEM");
-        panelForm.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 25, 146, -1));
 
         jLabel6.setText("ORIGEM");
-        panelForm.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(374, 25, 146, -1));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setText("SEXO:");
-        panelForm.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("AIE:");
-        panelForm.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 50, -1));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel12.setText("GTA:");
-        panelForm.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, -1, -1));
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel13.setText("EXAME");
-        panelForm.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, -1, -1));
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel15.setText("EXAME");
-        panelForm.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 160, 60, -1));
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel16.setText("MORMO:");
-        panelForm.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 180, -1, -1));
-        panelForm.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, 152, 10));
-        panelForm.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 93, 153, 10));
-        panelForm.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 150, 153, 10));
-        panelForm.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 155, 10));
-        panelForm.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 150, 152, 10));
-        panelForm.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 210, 153, 10));
-        panelForm.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 155, 10));
 
-        panelBack.add(panelForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
+        javax.swing.GroupLayout panelFormLayout = new javax.swing.GroupLayout(panelForm);
+        panelForm.setLayout(panelFormLayout);
+        panelFormLayout.setHorizontalGroup(
+            panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelFormLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(panelFormLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(txtPelagem, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(txtOrigem, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(panelFormLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEstadia, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
+                .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelFormLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabel7)
+                        .addGap(24, 24, 24)
+                        .addComponent(boxSexF))
+                    .addGroup(panelFormLayout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addComponent(boxSexM))))
+            .addGroup(panelFormLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
+                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(panelFormLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(boxAieS)
+                    .addComponent(boxAieN))
+                .addGap(88, 88, 88)
+                .addComponent(jLabel12)
+                .addGap(21, 21, 21)
+                .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(boxGtaS)
+                    .addComponent(boxGtaN))
+                .addGap(78, 78, 78)
+                .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16))
+                .addGap(10, 10, 10)
+                .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(boxMormoS)
+                    .addComponent(boxMormoN)))
+            .addGroup(panelFormLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(panelFormLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(103, 103, 103)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(panelFormLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(txtProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62)
+                .addComponent(txtCondominio, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        panelFormLayout.setVerticalGroup(
+            panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelFormLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
+                .addGap(6, 6, 6)
+                .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPelagem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtOrigem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelFormLayout.createSequentialGroup()
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(7, 7, 7)
+                        .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addGroup(panelFormLayout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(boxSexF))))
+                    .addGroup(panelFormLayout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelFormLayout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(4, 4, 4)
+                                .addComponent(txtEstadia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelFormLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(4, 4, 4)
+                                .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(boxSexM))))
+                .addGap(8, 8, 8)
+                .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelFormLayout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addGap(0, 0, 0)
+                        .addComponent(jLabel11))
+                    .addGroup(panelFormLayout.createSequentialGroup()
+                        .addComponent(boxAieS)
+                        .addGap(0, 0, 0)
+                        .addComponent(boxAieN))
+                    .addGroup(panelFormLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel12))
+                    .addGroup(panelFormLayout.createSequentialGroup()
+                        .addComponent(boxGtaS)
+                        .addGap(0, 0, 0)
+                        .addComponent(boxGtaN))
+                    .addGroup(panelFormLayout.createSequentialGroup()
+                        .addComponent(jLabel15)
+                        .addGap(0, 0, 0)
+                        .addComponent(jLabel16))
+                    .addGroup(panelFormLayout.createSequentialGroup()
+                        .addComponent(boxMormoS)
+                        .addGap(0, 0, 0)
+                        .addComponent(boxMormoN)))
+                .addGap(10, 10, 10)
+                .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1)
+                .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel9))
+                .addGap(6, 6, 6)
+                .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCondominio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
 
         btnDelete.setText("EXCLUIR");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -237,7 +362,6 @@ public class AnimalsEdit extends javax.swing.JFrame {
                 btnDeleteActionPerformed(evt);
             }
         });
-        panelBack.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(112, 192, 120, 45));
 
         btnSave.setText("SALVAR");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
@@ -245,7 +369,6 @@ public class AnimalsEdit extends javax.swing.JFrame {
                 btnSaveActionPerformed(evt);
             }
         });
-        panelBack.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 370, 120, 45));
 
         btnCancel.setText("CANCELAR");
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
@@ -253,7 +376,39 @@ public class AnimalsEdit extends javax.swing.JFrame {
                 btnCancelActionPerformed(evt);
             }
         });
-        panelBack.add(btnCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 370, 120, 45));
+
+        javax.swing.GroupLayout panelBackLayout = new javax.swing.GroupLayout(panelBack);
+        panelBack.setLayout(panelBackLayout);
+        panelBackLayout.setHorizontalGroup(
+            panelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBackLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(lblTitle))
+            .addGroup(panelBackLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(panelForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(panelBackLayout.createSequentialGroup()
+                .addGap(202, 202, 202)
+                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        panelBackLayout.setVerticalGroup(
+            panelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBackLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(lblTitle)
+                .addGap(44, 44, 44)
+                .addComponent(panelForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addGroup(panelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
