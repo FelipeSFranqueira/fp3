@@ -8,7 +8,6 @@ public class ClientCreate extends javax.swing.JFrame {
 
     public ClientCreate() {
         initComponents();
-        
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         panelBack.setBackground(Colors.WHITEBG);
         panelForm.setBackground(Colors.PRIMARYBG);

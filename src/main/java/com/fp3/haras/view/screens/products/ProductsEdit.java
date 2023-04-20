@@ -56,8 +56,10 @@ public class ProductsEdit extends javax.swing.JFrame {
         lblUnit4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(590, 405));
+        setPreferredSize(new java.awt.Dimension(605, 405));
         setResizable(false);
+
+        pnlBack.setPreferredSize(new java.awt.Dimension(590, 323));
 
         lblTitle.setText("EDIÇÃO");
 
@@ -116,7 +118,7 @@ public class ProductsEdit extends javax.swing.JFrame {
         pnlProductsEditLayout.setHorizontalGroup(
             pnlProductsEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlProductsEditLayout.createSequentialGroup()
-                .addContainerGap(43, Short.MAX_VALUE)
+                .addGap(36, 36, 36)
                 .addGroup(pnlProductsEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlProductsEditLayout.createSequentialGroup()
                         .addGroup(pnlProductsEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,7 +129,7 @@ public class ProductsEdit extends javax.swing.JFrame {
                                 .addComponent(txtProductStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lblUnit)))
-                        .addGap(173, 173, 173)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 180, Short.MAX_VALUE)
                         .addGroup(pnlProductsEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlProductsEditLayout.createSequentialGroup()
                                 .addComponent(lblUnit2)
@@ -245,7 +247,7 @@ public class ProductsEdit extends javax.swing.JFrame {
                 .addComponent(lblServiceType)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtServiceType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addGap(33, 33, 33)
                 .addComponent(lblServicePrice)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlServicesEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -321,7 +323,7 @@ public class ProductsEdit extends javax.swing.JFrame {
                 .addComponent(lblStableType)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtStableType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
+                .addGap(33, 33, 33)
                 .addComponent(lblStablePrice)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlStableTypeEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -332,7 +334,7 @@ public class ProductsEdit extends javax.swing.JFrame {
                     .addComponent(btnCancelStable, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSaveStable, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDeleteStable, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addGap(28, 28, 28))
         );
 
         tpProduct.addTab("Hospedagens", pnlStableTypeEdit);
@@ -346,7 +348,7 @@ public class ProductsEdit extends javax.swing.JFrame {
                 .addGroup(pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tpProduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTitle))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addGap(30, 30, 30))
         );
         pnlBackLayout.setVerticalGroup(
             pnlBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

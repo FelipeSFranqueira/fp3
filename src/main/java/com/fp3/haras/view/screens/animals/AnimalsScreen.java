@@ -7,7 +7,6 @@ public class AnimalsScreen extends javax.swing.JPanel {
 
     public AnimalsScreen() {
         initComponents();
-        
         this.setBackground(Colors.PRIMARYBG);
         lblTitle.putClientProperty("FlatLaf.styleClass", "h00");
     }

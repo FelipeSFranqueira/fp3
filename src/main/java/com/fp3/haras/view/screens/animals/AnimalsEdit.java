@@ -8,7 +8,6 @@ public class AnimalsEdit extends javax.swing.JFrame {
 
     public AnimalsEdit() {
         initComponents();
-        
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         panelBack.setBackground(Colors.WHITEBG);
         panelForm.setBackground(Colors.PRIMARYBG);

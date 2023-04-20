@@ -8,7 +8,6 @@ public class StableEdit extends javax.swing.JFrame {
 
     public StableEdit() {
         initComponents();
-        
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         panelBack.setBackground(Colors.WHITEBG);
         panelForm.setBackground(Colors.PRIMARYBG);

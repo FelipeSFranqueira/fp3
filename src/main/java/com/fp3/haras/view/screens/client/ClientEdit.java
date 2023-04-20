@@ -8,7 +8,6 @@ public class ClientEdit extends javax.swing.JFrame {
 
     public ClientEdit() {
         initComponents();
-        
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         panelBack.setBackground(Colors.WHITEBG);
         panelForm.setBackground(Colors.PRIMARYBG);

@@ -8,7 +8,6 @@ public class AnimalsCreate extends javax.swing.JFrame {
 
     public AnimalsCreate() {
         initComponents();
-        
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         panelBack.setBackground(Colors.WHITEBG);
         panelForm.setBackground(Colors.PRIMARYBG);

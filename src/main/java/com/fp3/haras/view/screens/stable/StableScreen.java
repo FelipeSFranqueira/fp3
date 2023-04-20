@@ -7,7 +7,6 @@ public class StableScreen extends javax.swing.JPanel {
 
     public StableScreen() {
         initComponents();
-        
         this.setBackground(Colors.PRIMARYBG);
         lblTitle.putClientProperty("FlatLaf.styleClass", "h00");
     }

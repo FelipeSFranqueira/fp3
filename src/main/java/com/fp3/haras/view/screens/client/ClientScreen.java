@@ -7,7 +7,6 @@ public class ClientScreen extends javax.swing.JPanel {
 
     public ClientScreen() {
         initComponents();
-        
         this.setBackground(Colors.PRIMARYBG);
         lblTitle.putClientProperty("FlatLaf.styleClass", "h00");
     }
