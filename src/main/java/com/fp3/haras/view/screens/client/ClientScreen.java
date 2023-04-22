@@ -7,9 +7,8 @@ public class ClientScreen extends javax.swing.JPanel {
 
     public ClientScreen() {
         initComponents();
-        
         this.setBackground(Colors.PRIMARYBG);
-        jLabel1.putClientProperty("FlatLaf.styleClass", "h00");
+        lblTitle.putClientProperty("FlatLaf.styleClass", "h00");
     }
     
     private String getSelectedProgressCode() {
@@ -20,8 +19,6 @@ public class ClientScreen extends javax.swing.JPanel {
         }
     }
     
-
-    
     private Object getSelectedProgressValue() {
         return tableProgress.getModel().getValueAt(tableProgress.getSelectedRow(), tableProgress.getSelectedColumn());
     }
@@ -30,27 +27,17 @@ public class ClientScreen extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        tpaneInfo = new javax.swing.JTabbedPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableProgress = new javax.swing.JTable();
         txtSearch = new javax.swing.JTextField();
         btnCreate = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
         lblSearch = new javax.swing.JLabel();
+        lblTitle = new javax.swing.JLabel();
+        lblSubtitle = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(244, 244, 244));
         setPreferredSize(new java.awt.Dimension(900, 585));
-
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel1.setText("CLIENTES");
-
-        jLabel2.setText("STATUS DE SERVIÇO");
-
-        tpaneInfo.setBackground(new java.awt.Color(234, 234, 234));
-        tpaneInfo.setForeground(new java.awt.Color(153, 153, 153));
-        tpaneInfo.setOpaque(true);
 
         tableProgress.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -71,8 +58,6 @@ public class ClientScreen extends javax.swing.JPanel {
         tableProgress.getTableHeader().setResizingAllowed(false);
         tableProgress.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tableProgress);
-
-        tpaneInfo.addTab("", jScrollPane1);
 
         txtSearch.setText("Pesquisar...");
         txtSearch.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -102,7 +87,12 @@ public class ClientScreen extends javax.swing.JPanel {
 
         lblSearch.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search.png"))); // NOI18N
-        lblSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblTitle.setText("CLIENTES");
+
+        lblSubtitle.setText("INFORMAÇÕES PESSOAIS");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -111,27 +101,26 @@ public class ClientScreen extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(tpaneInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(lblSearch)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTitle)
+                    .addComponent(lblSubtitle)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblSearch)
+                        .addGap(230, 230, 230)
+                        .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(50, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addComponent(jLabel1)
+                .addComponent(lblTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
+                .addComponent(lblSubtitle)
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(txtSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
@@ -140,7 +129,7 @@ public class ClientScreen extends javax.swing.JPanel {
                         .addComponent(btnEdit))
                     .addComponent(lblSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(tpaneInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(80, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -160,8 +149,8 @@ public class ClientScreen extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        if (tpaneInfo.getTitleAt(tpaneInfo.getSelectedIndex()).equals("") 
-                    && getSelectedProgressCode() != null && getSelectedProgressValue() != null) {
+        if (tableProgress.getSelectedColumnCount()!= 0
+            && getSelectedProgressCode() != null && getSelectedProgressValue() != null) {
                 
                 new ClientEdit().setVisible(true);
                 
@@ -174,12 +163,11 @@ public class ClientScreen extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreate;
     private javax.swing.JButton btnEdit;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblSearch;
+    private javax.swing.JLabel lblSubtitle;
+    private javax.swing.JLabel lblTitle;
     private javax.swing.JTable tableProgress;
-    private javax.swing.JTabbedPane tpaneInfo;
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 }
