@@ -1,5 +1,7 @@
 package com.fp3.haras.model;
 
+import com.fp3.haras.enums.Pelagem;
+import com.fp3.haras.enums.Sexo;
 import java.util.List;
 
 public class Animal {
