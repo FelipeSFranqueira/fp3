@@ -160,6 +160,14 @@ insert into Servicos (tipo, preco) values (
     '280.00'
 );
 
+create table ServicosXProdutos (
+	servicos_id int not null references Servicos(id),
+    produtos_id int not null references Produtos(id),
+    quantidade int,
+    
+    primary key (servicos_id, produtos_id)
+);
+
 create table Tipo_de_estadia (
 	id int primary key auto_increment,
     tipo varchar(45),
