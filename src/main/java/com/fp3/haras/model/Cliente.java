@@ -10,7 +10,8 @@ public class Cliente {
     private String email;
     private String documento;
     private String endereco;
-    private List<Animal> cavalos;
+    private List<Animal> animais;
+    private boolean isDeleted;
 
     public Cliente() {
     }
@@ -63,11 +64,19 @@ public class Cliente {
         this.endereco = endereco;
     }
 
-    public List<Animal> getCavalos() {
-        return cavalos;
+    public List<Animal> getAnimais() {
+        return animais;
     }
 
-    public void setCavalos(List<Animal> cavalos) {
-        this.cavalos = cavalos;
+    public void setAnimais(List<Animal> animais) {
+        this.animais = animais;
+    }
+    
+    public boolean getIsDeleted() {
+        return isDeleted;
+    }
+    
+    public void setIsDeleted(boolean isDeleted) {
+        this.isDeleted = isDeleted;
     }
 }
