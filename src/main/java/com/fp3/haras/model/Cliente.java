@@ -10,7 +10,7 @@ public class Cliente {
     private String email;
     private String documento;
     private String endereco;
-    private List<Cavalo> cavalos;
+    private List<Animal> cavalos;
 
     public Cliente() {
     }
@@ -63,11 +63,11 @@ public class Cliente {
         this.endereco = endereco;
     }
 
-    public List<Cavalo> getCavalos() {
+    public List<Animal> getCavalos() {
         return cavalos;
     }
 
-    public void setCavalos(List<Cavalo> cavalos) {
+    public void setCavalos(List<Animal> cavalos) {
         this.cavalos = cavalos;
     }
 }

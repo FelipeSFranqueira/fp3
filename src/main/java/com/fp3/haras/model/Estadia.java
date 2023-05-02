@@ -6,7 +6,7 @@ import java.util.List;
 public class Estadia {
 
     private int id;
-    private Cavalo cavalos;
+    private Animal cavalos;
     private LocalDateTime entrada;
     private LocalDateTime saida;
     private TipoDeEstadia tipoDeEstadia;
@@ -25,11 +25,11 @@ public class Estadia {
         this.id = id;
     }
 
-    public Cavalo getCavalos() {
+    public Animal getCavalos() {
         return cavalos;
     }
 
-    public void setCavalos(Cavalo cavalos) {
+    public void setCavalos(Animal cavalos) {
         this.cavalos = cavalos;
     }
 

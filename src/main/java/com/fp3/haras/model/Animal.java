@@ -2,27 +2,28 @@ package com.fp3.haras.model;
 
 import java.util.List;
 
-public class Cavalo {
+public class Animal {
 
-    private int registro;
+    private int id;
     private List<Cliente> proprietarios;
     private String nome;
-    private String pelagem;
-    private String sexo;
-    private String exameAie;
-    private String exameMormo;
-    private String gta;
+    private Pelagem pelagem;
+    private Sexo sexo;
+    private boolean hasExameAie;
+    private boolean hasExameMormo;
+    private boolean hasGta;
     private List<Estadia> estadias;
+    private boolean isDeleted;
 
-    public Cavalo() {
+    public Animal() {
     }
 
-    public int getRegistro() {
-        return registro;
+    public int getId() {
+        return id;
     }
 
-    public void setRegistro(int registro) {
-        this.registro = registro;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public List<Cliente> getProprietarios() {
@@ -41,44 +42,44 @@ public class Cavalo {
         this.nome = nome;
     }
 
-    public String getPelagem() {
+    public Pelagem getPelagem() {
         return pelagem;
     }
 
-    public void setPelagem(String pelagem) {
+    public void setPelagem(Pelagem pelagem) {
         this.pelagem = pelagem;
     }
 
-    public String getSexo() {
+    public Sexo getSexo() {
         return sexo;
     }
 
-    public void setSexo(String sexo) {
+    public void setSexo(Sexo sexo) {
         this.sexo = sexo;
     }
 
-    public String getExameAie() {
-        return exameAie;
+    public boolean getHasExameAie() {
+        return hasExameAie;
     }
 
-    public void setExameAie(String exameAie) {
-        this.exameAie = exameAie;
+    public void setHasExameAie(boolean hasExameAie) {
+        this.hasExameAie = hasExameAie;
     }
 
-    public String getExameMormo() {
-        return exameMormo;
+    public boolean getHasExameMormo() {
+        return hasExameMormo;
     }
 
-    public void setExameMormo(String exameMormo) {
-        this.exameMormo = exameMormo;
+    public void setHasExameMormo(boolean hasExameMormo) {
+        this.hasExameMormo = hasExameMormo;
     }
 
-    public String getGta() {
-        return gta;
+    public boolean getHasGta() {
+        return hasGta;
     }
 
-    public void setGta(String gta) {
-        this.gta = gta;
+    public void setGta(boolean hasGta) {
+        this.hasGta = hasGta;
     }
 
     public List<Estadia> getEstadias() {
@@ -87,5 +88,13 @@ public class Cavalo {
 
     public void setEstadias(List<Estadia> estadias) {
         this.estadias = estadias;
+    }
+    
+    public boolean getIsDeleted() {
+        return isDeleted;
+    }
+    
+    public void setIsDeleted() {
+        this.isDeleted = isDeleted;
     }
 }
