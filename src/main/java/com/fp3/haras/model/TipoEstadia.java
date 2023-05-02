@@ -1,15 +1,15 @@
 package com.fp3.haras.model;
 
-public class TipoDeEstadia {
+public class TipoEstadia {
 
     private int id;
     private String tipo;
-    private float preco;
+    private double preco;
 
-    public TipoDeEstadia() {
+    public TipoEstadia() {
     }
 
-    public TipoDeEstadia(int id, String tipo, float preco) {
+    public TipoEstadia(int id, String tipo, double preco) {
         this.id = id;
         this.tipo = tipo;
         this.preco = preco;
@@ -31,11 +31,11 @@ public class TipoDeEstadia {
         this.tipo = tipo;
     }
 
-    public float getPreco() {
+    public double getPreco() {
         return preco;
     }
 
-    public void setPreco(float preco) {
+    public void setPreco(double preco) {
         this.preco = preco;
     }
 }

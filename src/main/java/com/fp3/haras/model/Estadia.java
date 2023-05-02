@@ -9,7 +9,7 @@ public class Estadia {
     private Animal cavalos;
     private LocalDateTime entrada;
     private LocalDateTime saida;
-    private TipoDeEstadia tipoDeEstadia;
+    private TipoEstadia tipoDeEstadia;
     private int cocheira;
     private List<Produto> produtos;
     private List<Servico> servico;
@@ -49,11 +49,11 @@ public class Estadia {
         this.saida = saida;
     }
 
-    public TipoDeEstadia getTipoDeEstadia() {
+    public TipoEstadia getTipoDeEstadia() {
         return tipoDeEstadia;
     }
 
-    public void setTipoDeEstadia(TipoDeEstadia tipoDeEstadia) {
+    public void setTipoDeEstadia(TipoEstadia tipoDeEstadia) {
         this.tipoDeEstadia = tipoDeEstadia;
     }
 
