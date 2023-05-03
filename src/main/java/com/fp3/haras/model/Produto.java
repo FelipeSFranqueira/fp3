@@ -4,19 +4,19 @@ public class Produto {
 
     private int id;
     private String nome;
-    private String estoque;
-    private float presoCusto;
-    private float precoVenda;
+    private int estoque;
+    private double pdc;
+    private double pdv;
 
     public Produto() {
     }
 
-    public Produto(int id, String nome, String estoque, float presoCusto, float precoVenda) {
+    public Produto(int id, String nome, int estoque, double pdc, double pdv) {
         this.id = id;
         this.nome = nome;
         this.estoque = estoque;
-        this.presoCusto = presoCusto;
-        this.precoVenda = precoVenda;
+        this.pdc = pdc;
+        this.pdv = pdv;
     }
 
     public int getId() {
@@ -35,27 +35,27 @@ public class Produto {
         this.nome = nome;
     }
 
-    public String getEstoque() {
+    public int getEstoque() {
         return estoque;
     }
 
-    public void setEstoque(String estoque) {
+    public void setEstoque(int estoque) {
         this.estoque = estoque;
     }
 
-    public float getPresoCusto() {
-        return presoCusto;
+    public double getPdc() {
+        return pdc;
     }
 
-    public void setPresoCusto(float presoCusto) {
-        this.presoCusto = presoCusto;
+    public void setPdc(double pdc) {
+        this.pdc = pdc;
     }
 
-    public float getPrecoVenda() {
-        return precoVenda;
+    public double getPdv() {
+        return pdv;
     }
 
-    public void setPrecoVenda(float precoVenda) {
-        this.precoVenda = precoVenda;
+    public void setPdv(double pdv) {
+        this.pdv = pdv;
     }
 }
