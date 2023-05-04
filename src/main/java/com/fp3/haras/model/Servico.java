@@ -2,40 +2,40 @@ package com.fp3.haras.model;
 
 public class Servico {
 
-    private int id;
-    private String tipo;
-    private float preco;
+    private long id;
+    private String nome;
+    private double preco;
 
     public Servico() {
     }
 
-    public Servico(int id, String tipo, float preco) {
+    public Servico(long id, String nome, double preco) {
         this.id = id;
-        this.tipo = tipo;
+        this.nome = nome;
         this.preco = preco;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getNome() {
+        return nome;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public float getPreco() {
+    public double getPreco() {
         return preco;
     }
 
-    public void setPreco(float preco) {
+    public void setPreco(double preco) {
         this.preco = preco;
     }
 }

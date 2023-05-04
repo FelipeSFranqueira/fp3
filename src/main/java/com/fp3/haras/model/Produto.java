@@ -12,27 +12,27 @@ public class Produto {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
+    private long id;
     private String nome;
     private int estoque;
-    private float precoCusto;
-    private float precoVenda;
+    private double pdc;
+    private double pdv;
 
     public Produto() {
     }
 
-    public Produto(String nome, int estoque, float precoCusto, float precoVenda) {
+    public Produto(String nome, int estoque, double pdc, double pdv) {
         this.nome = nome;
         this.estoque = estoque;
-        this.precoCusto = precoCusto;
-        this.precoVenda = precoVenda;
+        this.pdc = pdc;
+        this.pdv = pdv;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -51,20 +51,20 @@ public class Produto {
     public void setEstoque(int estoque) {
         this.estoque = estoque;
     }
-
-    public float getPrecoCusto() {
-        return precoCusto;
+    
+    public double getPdc() {
+        return pdc;
     }
 
-    public void setPrecoCusto(float precoCusto) {
-        this.precoCusto = precoCusto;
+    public void setPdc(double pdc) {
+        this.pdc = pdc;
     }
 
-    public float getPrecoVenda() {
-        return precoVenda;
+    public double getPdv() {
+        return pdv;
     }
 
-    public void setPrecoVenda(float precoVenda) {
-        this.precoVenda = precoVenda;
+    public void setPdv(double pdv) {
+        this.pdv = pdv;
     }
 }
