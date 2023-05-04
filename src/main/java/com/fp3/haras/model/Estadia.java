@@ -1,11 +1,11 @@
 package com.fp3.haras.model;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 import java.util.List;
 
 public class Estadia {
 
-    private int id;
+    private long id;
     private Animal animais;
     private Timestamp entrada;
     private Timestamp saida;
@@ -18,11 +18,11 @@ public class Estadia {
     public Estadia() {
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

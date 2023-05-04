@@ -1,20 +1,20 @@
 package com.fp3.haras.model;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 public class ComprovanteEstadia {
 
-    private int id;
+    private long id;
     private Timestamp dataRecebimentoAnimal;
     private Timestamp dataEntregaAnimal;
     private Animal animal;
     private Cliente cliente;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

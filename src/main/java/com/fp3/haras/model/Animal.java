@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Animal {
 
-    private int id;
+    private long id;
     private List<Cliente> proprietarios;
     private String nome;
     private Pelagem pelagem;
@@ -20,11 +20,11 @@ public class Animal {
     public Animal() {
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

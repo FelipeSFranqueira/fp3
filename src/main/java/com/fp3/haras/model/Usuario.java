@@ -2,7 +2,7 @@ package com.fp3.haras.model;
 
 public class Usuario {
 
-    private int id;
+    private long id;
     private String nome;
     private String nomeUsuario;
     private String senha;
@@ -10,18 +10,18 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(int id, String nome, String nomeUsuario, String senha) {
+    public Usuario(long id, String nome, String nomeUsuario, String senha) {
         this.id = id;
         this.nome = nome;
         this.nomeUsuario = nomeUsuario;
         this.senha = senha;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Cliente {
 
-    private int id;
+    private long id;
     private String nome;
     private String telefone;
     private String email;
@@ -16,11 +16,11 @@ public class Cliente {
     public Cliente() {
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

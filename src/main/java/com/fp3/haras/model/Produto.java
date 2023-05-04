@@ -2,7 +2,7 @@ package com.fp3.haras.model;
 
 public class Produto {
 
-    private int id;
+    private long id;
     private String nome;
     private int estoque;
     private double pdc;
@@ -11,7 +11,7 @@ public class Produto {
     public Produto() {
     }
 
-    public Produto(int id, String nome, int estoque, double pdc, double pdv) {
+    public Produto(long id, String nome, int estoque, double pdc, double pdv) {
         this.id = id;
         this.nome = nome;
         this.estoque = estoque;
@@ -19,11 +19,11 @@ public class Produto {
         this.pdv = pdv;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

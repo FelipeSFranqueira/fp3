@@ -2,24 +2,24 @@ package com.fp3.haras.model;
 
 public class TipoEstadia {
 
-    private int id;
+    private long id;
     private String tipo;
     private double preco;
 
     public TipoEstadia() {
     }
 
-    public TipoEstadia(int id, String tipo, double preco) {
+    public TipoEstadia(long id, String tipo, double preco) {
         this.id = id;
         this.tipo = tipo;
         this.preco = preco;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
