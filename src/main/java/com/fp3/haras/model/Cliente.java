@@ -4,22 +4,23 @@ import java.util.List;
 
 public class Cliente {
 
-    private int id;
+    private long id;
     private String nome;
     private String telefone;
     private String email;
     private String documento;
     private String endereco;
-    private List<Cavalo> cavalos;
+    private List<Animal> animais;
+    private boolean isDeleted;
 
     public Cliente() {
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -63,11 +64,19 @@ public class Cliente {
         this.endereco = endereco;
     }
 
-    public List<Cavalo> getCavalos() {
-        return cavalos;
+    public List<Animal> getAnimais() {
+        return animais;
     }
 
-    public void setCavalos(List<Cavalo> cavalos) {
-        this.cavalos = cavalos;
+    public void setAnimais(List<Animal> animais) {
+        this.animais = animais;
+    }
+    
+    public boolean getIsDeleted() {
+        return isDeleted;
+    }
+    
+    public void setIsDeleted(boolean isDeleted) {
+        this.isDeleted = isDeleted;
     }
 }
