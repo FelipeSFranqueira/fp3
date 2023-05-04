@@ -15,16 +15,16 @@ public class Produto {
     private Long id;
     private String nome;
     private int estoque;
-    private float precoCusto ;
+    private float precoCusto;
     private float precoVenda;
 
     public Produto() {
     }
 
-    public Produto(String nome, int estoque, float presoCusto, float precoVenda) {
+    public Produto(String nome, int estoque, float precoCusto, float precoVenda) {
         this.nome = nome;
         this.estoque = estoque;
-        this.precoCusto = presoCusto;
+        this.precoCusto = precoCusto;
         this.precoVenda = precoVenda;
     }
 
@@ -52,12 +52,12 @@ public class Produto {
         this.estoque = estoque;
     }
 
-    public float getPresoCusto() {
+    public float getPrecoCusto() {
         return precoCusto;
     }
 
-    public void setPresoCusto(float presoCusto) {
-        this.precoCusto = presoCusto;
+    public void setPrecoCusto(float precoCusto) {
+        this.precoCusto = precoCusto;
     }
 
     public float getPrecoVenda() {
