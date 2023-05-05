@@ -57,7 +57,7 @@ public class LoginScreen extends javax.swing.JFrame {
 
         txtUser.setBackground(new java.awt.Color(255, 255, 255));
         txtUser.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtUser.setForeground(new java.awt.Color(153, 153, 153));
+        txtUser.setForeground(java.awt.Color.lightGray);
         txtUser.setText("Administrador");
         txtUser.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -69,7 +69,7 @@ public class LoginScreen extends javax.swing.JFrame {
         });
 
         txtPass.setBackground(new java.awt.Color(255, 255, 255));
-        txtPass.setForeground(new java.awt.Color(153, 153, 153));
+        txtPass.setForeground(java.awt.Color.lightGray);
         txtPass.setText("Senha");
         txtPass.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -211,21 +211,31 @@ public class LoginScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEnterMouseEntered
 
     private void txtUserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUserFocusGained
-        txtUser.setText(null);
+        if(txtUser.getText().equals("Administrador") || txtUser.getText().equals("")) {
+            txtUser.setText(null);
+            txtUser.setForeground(Color.DARK_GRAY);
+        }
     }//GEN-LAST:event_txtUserFocusGained
 
     private void txtPassFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPassFocusGained
-        txtPass.setText(null);
+        if(getPassword().equals("Senha") || getPassword().equals("")) {
+            txtPass.setText(null);
+            txtPass.setForeground(Color.DARK_GRAY);
+        }
     }//GEN-LAST:event_txtPassFocusGained
 
     private void txtPassFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPassFocusLost
-        if (getPassword().equals(""))
+        if (getPassword().equals("")) {
             txtPass.setText("Senha");
+            txtPass.setForeground(Color.LIGHT_GRAY);
+        }
     }//GEN-LAST:event_txtPassFocusLost
 
     private void txtUserFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUserFocusLost
-        if (txtUser.getText().equals(""))
+        if (txtUser.getText().equals("")) {
             txtUser.setText("Administrador");
+            txtUser.setForeground(Color.LIGHT_GRAY);
+        }
     }//GEN-LAST:event_txtUserFocusLost
 
     private void btnEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterActionPerformed
