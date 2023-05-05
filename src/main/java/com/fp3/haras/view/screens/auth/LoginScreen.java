@@ -219,9 +219,8 @@ public class LoginScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPassFocusGained
 
     private void txtPassFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPassFocusLost
-        if (getPassword().equals("")){
+        if (getPassword().equals(""))
             txtPass.setText("Senha");
-        }
     }//GEN-LAST:event_txtPassFocusLost
 
     private void txtUserFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUserFocusLost
