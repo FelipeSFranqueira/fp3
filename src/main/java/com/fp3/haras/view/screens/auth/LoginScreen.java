@@ -211,14 +211,14 @@ public class LoginScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEnterMouseEntered
 
     private void txtUserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUserFocusGained
-        if(txtUser.getText().equals("Administrador") || txtUser.getText().equals("")) {
+        if (txtUser.getText().equals("Administrador")) {
             txtUser.setText(null);
             txtUser.setForeground(Color.DARK_GRAY);
         }
     }//GEN-LAST:event_txtUserFocusGained
 
     private void txtPassFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPassFocusGained
-        if(getPassword().equals("Senha") || getPassword().equals("")) {
+        if (getPassword().equals("Senha")) {
             txtPass.setText(null);
             txtPass.setForeground(Color.DARK_GRAY);
         }
@@ -239,8 +239,7 @@ public class LoginScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUserFocusLost
 
     private void btnEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterActionPerformed
-        if (!txtUser.getText().equals("") && !txtUser.getText().equals("Administrador")
-        && !getPassword().equals("") && !getPassword().equals("Senha")) {
+        if (!txtUser.getText().equals("Administrador") && !getPassword().equals("Senha")) {
             dispose();
             new Root().setVisible(true);
         } else {
