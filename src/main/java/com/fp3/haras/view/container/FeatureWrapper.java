@@ -2,20 +2,19 @@ package com.fp3.haras.view.container;
 
 import com.fp3.haras.utils.GenericObserver;
 import java.awt.CardLayout;
-import javax.swing.JPanel;
 
 import com.fp3.haras.utils.Screens;
-import com.fp3.haras.view.welcome.AnimalsScreen;
-import com.fp3.haras.view.welcome.CustomersScreen;
-import com.fp3.haras.view.welcome.HomeScreen;
-import com.fp3.haras.view.welcome.ProductsScreen;
-import com.fp3.haras.view.welcome.StableScreen;
+import com.fp3.haras.view.screens.animals.AnimalsScreen;
+import com.fp3.haras.view.screens.home.HomeScreen;
+import com.fp3.haras.view.screens.client.ClientScreen;
+import com.fp3.haras.view.screens.products.ProductsScreen;
+import com.fp3.haras.view.screens.stable.StableScreen;
 
 public class FeatureWrapper extends javax.swing.JPanel implements GenericObserver<Screens> {
     private CardLayout cardLayout;
     private HomeScreen homePanel;
     private StableScreen stablePanel;
-    private CustomersScreen customersPanel;
+    private ClientScreen customersPanel;
     private AnimalsScreen animalsPanel;
     private ProductsScreen productsPanel;
     
@@ -30,7 +29,7 @@ public class FeatureWrapper extends javax.swing.JPanel implements GenericObserve
         /* Declare here the screens */
         this.homePanel = new HomeScreen();
         this.stablePanel = new StableScreen();
-        this.customersPanel = new CustomersScreen();
+        this.customersPanel = new ClientScreen();
         this.animalsPanel = new AnimalsScreen();
         this.productsPanel = new ProductsScreen();
                 

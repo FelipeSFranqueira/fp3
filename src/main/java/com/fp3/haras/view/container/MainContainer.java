@@ -10,11 +10,7 @@ public class MainContainer extends javax.swing.JPanel {
     
     public MainContainer() {
         initComponents();
-        this.setBackground(new java.awt.Color(
-                Colors.WHITEBG.getColor()[0],
-                Colors.WHITEBG.getColor()[1],
-                Colors.WHITEBG.getColor()[2]
-        ));
+        this.setBackground(Colors.WHITEBG);
     }
     
     private void initComponents() {
@@ -22,8 +18,9 @@ public class MainContainer extends javax.swing.JPanel {
         this.wrapper = new FeatureWrapper();
         
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.anchor = GridBagConstraints.NORTH;
+        gbc.anchor = GridBagConstraints.NORTHWEST;
         gbc.weighty = 1;
+        gbc.weightx = 1;
         
         this.setBorder(new EmptyBorder(36, 36, 0, 36));
         
