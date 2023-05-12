@@ -25,6 +25,11 @@ public class AnimalsEdit extends javax.swing.JFrame {
         txtEstadia = new javax.swing.JTextField();
         txtCategoria = new javax.swing.JTextField();
         txtOrigem = new javax.swing.JTextField();
+        txtProprietario = new javax.swing.JTextField();
+        txtProprietarios = new javax.swing.JTextField();
+        boxProprietario = new javax.swing.JComboBox<>();
+        boxProprietarios = new javax.swing.JComboBox<>();
+        boxPelagem = new javax.swing.JComboBox<>();
         boxSexF = new javax.swing.JCheckBox();
         boxSexM = new javax.swing.JCheckBox();
         boxAieS = new javax.swing.JCheckBox();
@@ -53,18 +58,12 @@ public class AnimalsEdit extends javax.swing.JFrame {
         jSeparator5 = new javax.swing.JSeparator();
         jSeparator6 = new javax.swing.JSeparator();
         jSeparator7 = new javax.swing.JSeparator();
-        txtProprietario1 = new javax.swing.JTextField();
-        boxProprietario = new javax.swing.JComboBox<>();
-        txtProprietarios = new javax.swing.JTextField();
-        boxProprietarios = new javax.swing.JComboBox<>();
-        boxPelagem = new javax.swing.JComboBox<>();
         btnDelete = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAutoRequestFocus(false);
-        setPreferredSize(new java.awt.Dimension(630, 515));
         setResizable(false);
 
         panelBack.setBackground(new java.awt.Color(244, 244, 244));
@@ -90,6 +89,38 @@ public class AnimalsEdit extends javax.swing.JFrame {
                 txtCategoriaActionPerformed(evt);
             }
         });
+
+        txtProprietario.setText("Buscar...");
+        txtProprietario.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtProprietarioFocusLost(evt);
+            }
+        });
+        txtProprietario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                txtProprietarioMouseReleased(evt);
+            }
+        });
+
+        txtProprietarios.setText("Buscar...");
+        txtProprietarios.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtProprietariosFocusLost(evt);
+            }
+        });
+        txtProprietarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                txtProprietariosMouseReleased(evt);
+            }
+        });
+
+        boxProprietario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---" }));
+        boxProprietario.setEnabled(false);
+
+        boxProprietarios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---" }));
+        boxProprietarios.setEnabled(false);
+
+        boxPelagem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nenhuma" }));
 
         boxSexF.setText("F");
         boxSexF.addActionListener(new java.awt.event.ActionListener() {
@@ -182,38 +213,6 @@ public class AnimalsEdit extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel16.setText("MORMO:");
 
-        txtProprietario1.setText("Buscar...");
-        txtProprietario1.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtProprietario1FocusLost(evt);
-            }
-        });
-        txtProprietario1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                txtProprietario1MouseReleased(evt);
-            }
-        });
-
-        boxProprietario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---" }));
-        boxProprietario.setEnabled(false);
-
-        txtProprietarios.setText("Buscar...");
-        txtProprietarios.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtProprietariosFocusLost(evt);
-            }
-        });
-        txtProprietarios.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                txtProprietariosMouseReleased(evt);
-            }
-        });
-
-        boxProprietarios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---" }));
-        boxProprietarios.setEnabled(false);
-
-        boxPelagem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nenhuma" }));
-
         javax.swing.GroupLayout panelFormLayout = new javax.swing.GroupLayout(panelForm);
         panelForm.setLayout(panelFormLayout);
         panelFormLayout.setHorizontalGroup(
@@ -223,7 +222,7 @@ public class AnimalsEdit extends javax.swing.JFrame {
                 .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtProprietario1)
+                        .addComponent(txtProprietario)
                         .addComponent(boxProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(62, 62, 62)
                 .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -383,7 +382,7 @@ public class AnimalsEdit extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelFormLayout.createSequentialGroup()
-                        .addComponent(txtProprietario1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(boxProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelFormLayout.createSequentialGroup()
@@ -522,24 +521,24 @@ public class AnimalsEdit extends javax.swing.JFrame {
         boxMormoS.setSelected(false);
     }//GEN-LAST:event_boxMormoNActionPerformed
 
-    private void txtProprietario1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtProprietario1FocusLost
-        if (txtProprietario1.getText().equals(""))
-        txtProprietario1.setText("Buscar...");
-    }//GEN-LAST:event_txtProprietario1FocusLost
+    private void txtProprietarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtProprietarioFocusLost
+        if (txtProprietario.getText().equals(""))
+            txtProprietario.setText("Buscar...");
+    }//GEN-LAST:event_txtProprietarioFocusLost
 
-    private void txtProprietario1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtProprietario1MouseReleased
-        if (txtProprietario1.getText().equals("Buscar..."))
-        txtProprietario1.setText(null);
-    }//GEN-LAST:event_txtProprietario1MouseReleased
+    private void txtProprietarioMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtProprietarioMouseReleased
+        if (txtProprietario.getText().equals("Buscar..."))
+            txtProprietario.setText(null);
+    }//GEN-LAST:event_txtProprietarioMouseReleased
 
     private void txtProprietariosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtProprietariosFocusLost
         if (txtProprietarios.getText().equals(""))
-        txtProprietarios.setText("Buscar...");
+            txtProprietarios.setText("Buscar...");
     }//GEN-LAST:event_txtProprietariosFocusLost
 
     private void txtProprietariosMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtProprietariosMouseReleased
         if (txtProprietarios.getText().equals("Buscar..."))
-        txtProprietarios.setText(null);
+            txtProprietarios.setText(null);
     }//GEN-LAST:event_txtProprietariosMouseReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -584,7 +583,7 @@ public class AnimalsEdit extends javax.swing.JFrame {
     private javax.swing.JTextField txtEstadia;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtOrigem;
-    private javax.swing.JTextField txtProprietario1;
+    private javax.swing.JTextField txtProprietario;
     private javax.swing.JTextField txtProprietarios;
     // End of variables declaration//GEN-END:variables
 }
