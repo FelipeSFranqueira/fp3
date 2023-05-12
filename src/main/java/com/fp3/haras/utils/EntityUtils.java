@@ -50,6 +50,21 @@ public class EntityUtils {
         }
     }
     
+    public static void delete(Object entity) {
+        EntityManager em = emf.createEntityManager();
+        
+        try {
+            em.getTransaction().begin();
+            em.remove(entity);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            throw e;
+        } finally {
+            em.close();
+        }
+    }
+    
     public static <T> List<T> select(String query, Class<T> resultClass) {
         EntityManager em = emf.createEntityManager();
         
