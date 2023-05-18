@@ -51,7 +51,7 @@ public class AnimalsCreate extends javax.swing.JFrame {
         jSeparator7 = new javax.swing.JSeparator();
         rbtnFemea = new javax.swing.JRadioButton();
         rbtnMacho = new javax.swing.JRadioButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        boxCategoria = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAutoRequestFocus(false);
@@ -144,7 +144,7 @@ public class AnimalsCreate extends javax.swing.JFrame {
         btnGroupSex.add(rbtnMacho);
         rbtnMacho.setText("Macho");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nenhuma" }));
+        boxCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nenhuma" }));
 
         javax.swing.GroupLayout panelFormLayout = new javax.swing.GroupLayout(panelForm);
         panelForm.setLayout(panelFormLayout);
@@ -206,8 +206,8 @@ public class AnimalsCreate extends javax.swing.JFrame {
                         .addGroup(panelFormLayout.createSequentialGroup()
                             .addGap(40, 40, 40)
                             .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addComponent(jSeparator3))
                         .addGroup(panelFormLayout.createSequentialGroup()
                             .addGap(40, 40, 40)
                             .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -222,7 +222,7 @@ public class AnimalsCreate extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(boxPelagem, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(boxCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(199, 199, 199))
         );
         panelFormLayout.setVerticalGroup(
@@ -247,7 +247,7 @@ public class AnimalsCreate extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtOrigem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(boxCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelFormLayout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(6, 6, 6)
@@ -374,6 +374,7 @@ public class AnimalsCreate extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox boxAie;
+    private javax.swing.JComboBox<String> boxCategoria;
     private javax.swing.JCheckBox boxGta;
     private javax.swing.JCheckBox boxMormo;
     private javax.swing.JComboBox<String> boxPelagem;
@@ -382,7 +383,6 @@ public class AnimalsCreate extends javax.swing.JFrame {
     private javax.swing.JButton btnCancel;
     private javax.swing.ButtonGroup btnGroupSex;
     private javax.swing.JButton btnSave;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel16;
