@@ -29,6 +29,7 @@ public class Animal {
     private String name;
     private Pelagem coat;
     private Sexo sex;
+    private String origin;
     private boolean hasExamAie;
     private boolean hasExamMormo;
     private boolean hasGta;
@@ -75,6 +76,14 @@ public class Animal {
 
     public void setSex(Sexo sex) {
         this.sex = sex;
+    }
+    
+    public String getOrigin() {
+        return origin;
+    }
+    
+    public void setOrigin(String origin) {
+        this.origin = origin;
     }
 
     public boolean getHasExameAie() {
