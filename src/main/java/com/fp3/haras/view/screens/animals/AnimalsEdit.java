@@ -12,6 +12,13 @@ public class AnimalsEdit extends javax.swing.JFrame {
         panelBack.setBackground(Colors.WHITEBG);
         panelForm.setBackground(Colors.PRIMARYBG);
         lblTitle.putClientProperty("FlatLaf.styleClass", "h00");
+        
+        jLabel10.setEnabled(false);
+        txtProprietario.setEnabled(false);
+        boxProprietario.setEnabled(false);
+        jLabel9.setEnabled(false);
+        txtProprietarios.setEnabled(false);
+        boxProprietarios.setEnabled(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -22,7 +29,6 @@ public class AnimalsEdit extends javax.swing.JFrame {
         panelBack = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
         panelForm = new javax.swing.JPanel();
-        txtNome = new javax.swing.JTextField();
         txtOrigem = new javax.swing.JTextField();
         txtProprietario = new javax.swing.JTextField();
         txtProprietarios = new javax.swing.JTextField();
@@ -33,7 +39,6 @@ public class AnimalsEdit extends javax.swing.JFrame {
         boxGta = new javax.swing.JCheckBox();
         boxMormo = new javax.swing.JCheckBox();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -50,6 +55,8 @@ public class AnimalsEdit extends javax.swing.JFrame {
         boxCategoria = new javax.swing.JComboBox<>();
         rbtnMacho = new javax.swing.JRadioButton();
         rbtnFemea = new javax.swing.JRadioButton();
+        jLabel1 = new javax.swing.JLabel();
+        txtNome = new javax.swing.JTextField();
         btnDelete = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
@@ -66,9 +73,6 @@ public class AnimalsEdit extends javax.swing.JFrame {
 
         panelForm.setMinimumSize(new java.awt.Dimension(570, 290));
         panelForm.setPreferredSize(new java.awt.Dimension(570, 290));
-
-        txtNome.setEditable(false);
-        txtNome.setEnabled(false);
 
         txtProprietario.setText("Buscar...");
         txtProprietario.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -104,9 +108,6 @@ public class AnimalsEdit extends javax.swing.JFrame {
 
         jLabel2.setText("CATEGORIA");
 
-        jLabel3.setText("NOME");
-        jLabel3.setEnabled(false);
-
         jLabel9.setText("CONDOMÍNIO");
 
         jLabel10.setText("PROPRIETÁRIO");
@@ -136,6 +137,8 @@ public class AnimalsEdit extends javax.swing.JFrame {
         buttonGroup1.add(rbtnFemea);
         rbtnFemea.setText("Fêmea");
 
+        jLabel1.setText("NOME");
+
         javax.swing.GroupLayout panelFormLayout = new javax.swing.GroupLayout(panelForm);
         panelForm.setLayout(panelFormLayout);
         panelFormLayout.setHorizontalGroup(
@@ -157,9 +160,9 @@ public class AnimalsEdit extends javax.swing.JFrame {
                     .addGroup(panelFormLayout.createSequentialGroup()
                         .addGap(38, 38, 38)
                         .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtOrigem, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
                         .addGap(18, 18, 18)
                         .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelFormLayout.createSequentialGroup()
@@ -190,7 +193,7 @@ public class AnimalsEdit extends javax.swing.JFrame {
                             .addComponent(boxProprietarios, 0, 245, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(panelFormLayout.createSequentialGroup()
-                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -214,13 +217,9 @@ public class AnimalsEdit extends javax.swing.JFrame {
         panelFormLayout.setVerticalGroup(
             panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelFormLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelFormLayout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(46, 46, 46))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelFormLayout.createSequentialGroup()
-                        .addGap(39, 39, 39)
+                        .addGap(64, 64, 64)
                         .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
                             .addGroup(panelFormLayout.createSequentialGroup()
@@ -230,19 +229,23 @@ public class AnimalsEdit extends javax.swing.JFrame {
                         .addGap(6, 6, 6)
                         .addComponent(boxCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelFormLayout.createSequentialGroup()
+                        .addGap(25, 25, 25)
                         .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(panelFormLayout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(6, 6, 6)
-                                .addComponent(boxPelagem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel7)
+                                .addGap(46, 46, 46))
                             .addGroup(panelFormLayout.createSequentialGroup()
-                                .addComponent(jLabel3)
+                                .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel1))
                                 .addGap(6, 6, 6)
-                                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel6)
-                        .addGap(6, 6, 6)
-                        .addComponent(txtOrigem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(boxPelagem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(25, 25, 25)
+                                .addComponent(jLabel6)
+                                .addGap(6, 6, 6)
+                                .addComponent(txtOrigem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -401,12 +404,12 @@ public class AnimalsEdit extends javax.swing.JFrame {
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnSave;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
