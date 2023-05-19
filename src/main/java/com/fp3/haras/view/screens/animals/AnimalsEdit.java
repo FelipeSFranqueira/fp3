@@ -14,11 +14,10 @@ public class AnimalsEdit extends javax.swing.JFrame {
         lblTitle.putClientProperty("FlatLaf.styleClass", "h00");
         
         jLabel10.setEnabled(false);
-        txtProprietario.setEnabled(false);
         boxProprietario.setEnabled(false);
         jLabel9.setEnabled(false);
-        txtProprietarios.setEnabled(false);
-        boxProprietarios.setEnabled(false);
+        boxCondominio.setEnabled(false);
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -30,10 +29,6 @@ public class AnimalsEdit extends javax.swing.JFrame {
         lblTitle = new javax.swing.JLabel();
         panelForm = new javax.swing.JPanel();
         txtOrigem = new javax.swing.JTextField();
-        txtProprietario = new javax.swing.JTextField();
-        txtProprietarios = new javax.swing.JTextField();
-        boxProprietario = new javax.swing.JComboBox<>();
-        boxProprietarios = new javax.swing.JComboBox<>();
         boxPelagem = new javax.swing.JComboBox<>();
         boxAie = new javax.swing.JCheckBox();
         boxGta = new javax.swing.JCheckBox();
@@ -57,6 +52,8 @@ public class AnimalsEdit extends javax.swing.JFrame {
         rbtnFemea = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
+        boxProprietario = new com.fp3.haras.components.ComboBoxSuggestion();
+        boxCondominio = new com.fp3.haras.components.ComboBoxSuggestion();
         btnDelete = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
@@ -73,36 +70,6 @@ public class AnimalsEdit extends javax.swing.JFrame {
 
         panelForm.setMinimumSize(new java.awt.Dimension(570, 290));
         panelForm.setPreferredSize(new java.awt.Dimension(570, 290));
-
-        txtProprietario.setText("Buscar...");
-        txtProprietario.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtProprietarioFocusLost(evt);
-            }
-        });
-        txtProprietario.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                txtProprietarioMouseReleased(evt);
-            }
-        });
-
-        txtProprietarios.setText("Buscar...");
-        txtProprietarios.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtProprietariosFocusLost(evt);
-            }
-        });
-        txtProprietarios.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                txtProprietariosMouseReleased(evt);
-            }
-        });
-
-        boxProprietario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---" }));
-        boxProprietario.setEnabled(false);
-
-        boxProprietarios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---" }));
-        boxProprietarios.setEnabled(false);
 
         boxPelagem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nenhuma" }));
 
@@ -151,13 +118,6 @@ public class AnimalsEdit extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelFormLayout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelFormLayout.createSequentialGroup()
                         .addGap(38, 38, 38)
                         .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtOrigem, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -175,30 +135,35 @@ public class AnimalsEdit extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(rbtnMacho)
-                                    .addComponent(rbtnFemea))))))
+                                    .addComponent(rbtnFemea)))))
+                    .addGroup(panelFormLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panelFormLayout.createSequentialGroup()
+                                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(15, 15, 15)
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(boxProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(panelFormLayout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelFormLayout.createSequentialGroup()
-                        .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtProprietario)
-                                .addComponent(boxProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(62, 62, 62)
-                        .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtProprietarios)
-                            .addComponent(boxProprietarios, 0, 245, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(panelFormLayout.createSequentialGroup()
                         .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(boxPelagem, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(panelFormLayout.createSequentialGroup()
+                        .addGap(249, 249, 249)
+                        .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(boxCondominio, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(panelFormLayout.createSequentialGroup()
                 .addGap(98, 98, 98)
                 .addComponent(jLabel11)
@@ -252,11 +217,12 @@ public class AnimalsEdit extends javax.swing.JFrame {
                     .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel16)
+                    .addComponent(boxMormo)
                     .addGroup(panelFormLayout.createSequentialGroup()
                         .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel11)
-                                .addComponent(boxAie))
+                            .addComponent(boxAie)
+                            .addComponent(jLabel11)
                             .addComponent(jLabel12)
                             .addComponent(boxGta))
                         .addGap(18, 18, 18)
@@ -264,23 +230,14 @@ public class AnimalsEdit extends javax.swing.JFrame {
                             .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(1, 1, 1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel9))
-                        .addGap(6, 6, 6)
-                        .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelFormLayout.createSequentialGroup()
-                                .addComponent(txtProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(boxProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelFormLayout.createSequentialGroup()
-                                .addComponent(txtProprietarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(boxProprietarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jLabel16)
-                    .addComponent(boxMormo))
-                .addContainerGap())
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel10))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(boxProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boxCondominio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         btnDelete.setText("EXCLUIR");
@@ -372,34 +329,14 @@ public class AnimalsEdit extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnSaveActionPerformed
 
-    private void txtProprietarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtProprietarioFocusLost
-        if (txtProprietario.getText().equals(""))
-            txtProprietario.setText("Buscar...");
-    }//GEN-LAST:event_txtProprietarioFocusLost
-
-    private void txtProprietarioMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtProprietarioMouseReleased
-        if (txtProprietario.getText().equals("Buscar..."))
-            txtProprietario.setText(null);
-    }//GEN-LAST:event_txtProprietarioMouseReleased
-
-    private void txtProprietariosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtProprietariosFocusLost
-        if (txtProprietarios.getText().equals(""))
-            txtProprietarios.setText("Buscar...");
-    }//GEN-LAST:event_txtProprietariosFocusLost
-
-    private void txtProprietariosMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtProprietariosMouseReleased
-        if (txtProprietarios.getText().equals("Buscar..."))
-            txtProprietarios.setText(null);
-    }//GEN-LAST:event_txtProprietariosMouseReleased
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox boxAie;
     private javax.swing.JComboBox<String> boxCategoria;
+    private com.fp3.haras.components.ComboBoxSuggestion boxCondominio;
     private javax.swing.JCheckBox boxGta;
     private javax.swing.JCheckBox boxMormo;
     private javax.swing.JComboBox<String> boxPelagem;
-    private javax.swing.JComboBox<String> boxProprietario;
-    private javax.swing.JComboBox<String> boxProprietarios;
+    private com.fp3.haras.components.ComboBoxSuggestion boxProprietario;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnSave;
@@ -426,7 +363,5 @@ public class AnimalsEdit extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbtnMacho;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtOrigem;
-    private javax.swing.JTextField txtProprietario;
-    private javax.swing.JTextField txtProprietarios;
     // End of variables declaration//GEN-END:variables
 }
