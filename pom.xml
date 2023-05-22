@@ -11,6 +11,15 @@
         <maven.compiler.target>17</maven.compiler.target>
         <exec.mainClass>com.fp3.haras.Haras</exec.mainClass>
     </properties>
+    
+    <repositories>
+        <repository>
+          <id>netbeans</id>
+          <name>Netbeans rep</name>
+          <url>http://bits.netbeans.org/maven2/</url>
+        </repository>
+    </repositories>
+    
     <dependencies>
         <dependency>
             <groupId>com.formdev</groupId>
@@ -38,5 +47,27 @@
                 <artifactId>mysql-connector-java</artifactId>
                 <version>8.0.19</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.jhlabs/filters -->
+        <dependency>
+            <groupId>com.jhlabs</groupId>
+            <artifactId>filters</artifactId>
+            <version>2.0.235</version>
+        </dependency>
+        
+        <!-- https://mvnrepository.com/artifact/org.jdesktop/swing-worker -->
+        <dependency>
+            <groupId>org.jdesktop</groupId>
+            <artifactId>swing-worker</artifactId>
+            <version>1.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.swinglabs/swingx -->
+        <dependency>
+            <groupId>org.swinglabs</groupId>
+            <artifactId>swingx</artifactId>
+            <version>1.6.1</version>
+        </dependency>
+        
     </dependencies>
 </project>

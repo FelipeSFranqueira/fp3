@@ -1,15 +1,26 @@
 package com.fp3.haras.model;
 
 import java.util.List;
+import javax.annotation.processing.Generated;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
+@Entity
 public class Cliente {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String nome;
     private String telefone;
     private String email;
     private String documento;
     private String endereco;
+    
+    @ManyToMany(mappedBy = "owners")
     private List<Animal> animais;
     private boolean isDeleted;
 
