@@ -1,7 +1,8 @@
 package com.fp3.haras.model;
 
-import com.fp3.haras.enums.Pelagem;
-import com.fp3.haras.enums.Sexo;
+import com.fp3.haras.enums.Category;
+import com.fp3.haras.enums.Coat;
+import com.fp3.haras.enums.Sex;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,8 +28,9 @@ public class Animal {
     private List<Cliente> owners;
     
     private String name;
-    private Pelagem coat;
-    private Sexo sex;
+    private Coat coat;
+    private Sex sex;
+    private Category category;
     private String origin;
     private boolean hasExamAie;
     private boolean hasExamMormo;
@@ -62,20 +64,28 @@ public class Animal {
         this.name = name;
     }
 
-    public Pelagem getCoat() {
+    public Coat getCoat() {
         return coat;
     }
 
-    public void setCoat(Pelagem coat) {
+    public void setCoat(Coat coat) {
         this.coat = coat;
     }
 
-    public Sexo getSex() {
+    public Sex getSex() {
         return sex;
     }
 
-    public void setSex(Sexo sex) {
+    public void setSex(Sex sex) {
         this.sex = sex;
+    }
+    
+    public Category getCategory() {
+        return category;
+    }
+    
+    public void setCategory() {
+        this.category = category;
     }
     
     public String getOrigin() {

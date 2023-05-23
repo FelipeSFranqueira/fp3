@@ -1,6 +1,6 @@
 package com.fp3.haras.enums;
 
-public enum Pelagem {
+public enum Coat {
 
     BRANCA("Branca"),
     PRETA("Preta"),
@@ -19,7 +19,7 @@ public enum Pelagem {
     
     private String descricao;
 
-    private Pelagem(String descricao) {
+    private Coat(String descricao) {
         this.descricao = descricao;
     }
 
