@@ -1,7 +1,17 @@
 package com.fp3.haras.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="Services")
 public class Servico {
 
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
     private String nome;
     private double preco;
@@ -9,8 +19,7 @@ public class Servico {
     public Servico() {
     }
 
-    public Servico(long id, String nome, double preco) {
-        this.id = id;
+    public Servico(String nome, double preco) {
         this.nome = nome;
         this.preco = preco;
     }

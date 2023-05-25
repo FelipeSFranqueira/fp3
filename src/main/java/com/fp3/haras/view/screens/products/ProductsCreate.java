@@ -5,6 +5,7 @@ import com.fp3.haras.model.Servico;
 import javax.swing.JOptionPane;
 import com.fp3.haras.utils.Colors;
 import com.fp3.haras.utils.EntityUtils;
+import javax.persistence.Entity;
 
 public class ProductsCreate extends javax.swing.JFrame {
 
@@ -379,6 +380,9 @@ public class ProductsCreate extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelServiceActionPerformed
 
     private void btnSaveServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveServiceActionPerformed
+        Servico s = new Servico(txtServiceType.getText(), Integer.parseInt(txtServicePrice.getText()));
+        
+        EntityUtils.insert(s);
         
         JOptionPane.showMessageDialog(null, "Código de registro: #{CODE}", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
         dispose();
