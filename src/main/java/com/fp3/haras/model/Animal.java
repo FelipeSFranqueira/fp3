@@ -1,8 +1,6 @@
 package com.fp3.haras.model;
 
-import com.fp3.haras.enums.Category;
-import com.fp3.haras.enums.Coat;
-import com.fp3.haras.enums.Sex;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,20 +20,31 @@ public class Animal {
     @ManyToMany
     @JoinTable(
         name = "OwnerXAnimal",
-        joinColumns = @JoinColumn(name = "owners_id"),
-        inverseJoinColumns = @JoinColumn(name = "animals_id")
+        joinColumns = @JoinColumn(name = "animal_id"),
+        inverseJoinColumns = @JoinColumn(name = "owner_id")
     )
-    private List<Cliente> owners;
+    private List<Cliente> owners = new ArrayList<>();
     
     private String name;
-    private Coat coat;
-    private Sex sex;
-    private Category category;
+    private String coat;
+    private String sex;
+    private String category;
     private String origin;
     private boolean hasExamAie;
     private boolean hasExamMormo;
     private boolean hasGta;
     private boolean isDeleted;
+
+    public Animal(String name, String coat, String sex, String category, String origin, boolean hasExamAie, boolean hasExamMormo, boolean hasGta) {
+        this.name = name;
+        this.coat = coat;
+        this.sex = sex;
+        this.category = category;
+        this.origin = origin;
+        this.hasExamAie = hasExamAie;
+        this.hasExamMormo = hasExamMormo;
+        this.hasGta = hasGta;
+    }
 
     public Animal() {
     }
@@ -64,27 +73,27 @@ public class Animal {
         this.name = name;
     }
 
-    public Coat getCoat() {
+    public String getCoat() {
         return coat;
     }
 
-    public void setCoat(Coat coat) {
+    public void setCoat(String coat) {
         this.coat = coat;
     }
 
-    public Sex getSex() {
+    public String getSex() {
         return sex;
     }
 
-    public void setSex(Sex sex) {
+    public void setSex(String sex) {
         this.sex = sex;
     }
     
-    public Category getCategory() {
+    public String getCategory() {
         return category;
     }
     
-    public void setCategory() {
+    public void setCategory(String category) {
         this.category = category;
     }
     
