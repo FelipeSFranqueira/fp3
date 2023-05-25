@@ -1,7 +1,17 @@
 package com.fp3.haras.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="Stables")
 public class TipoEstadia {
 
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
     private String tipo;
     private double preco;
@@ -9,8 +19,7 @@ public class TipoEstadia {
     public TipoEstadia() {
     }
 
-    public TipoEstadia(long id, String tipo, double preco) {
-        this.id = id;
+    public TipoEstadia(String tipo, double preco) {
         this.tipo = tipo;
         this.preco = preco;
     }

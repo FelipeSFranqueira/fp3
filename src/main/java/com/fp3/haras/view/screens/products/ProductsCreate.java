@@ -2,6 +2,7 @@ package com.fp3.haras.view.screens.products;
 
 import com.fp3.haras.model.Produto;
 import com.fp3.haras.model.Servico;
+import com.fp3.haras.model.TipoEstadia;
 import javax.swing.JOptionPane;
 import com.fp3.haras.utils.Colors;
 import com.fp3.haras.utils.EntityUtils;
@@ -393,6 +394,10 @@ public class ProductsCreate extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelStableActionPerformed
 
     private void btnSaveStableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveStableActionPerformed
+        TipoEstadia te = new TipoEstadia(txtStableType.getText(), Integer.parseInt(txtStablePrice.getText()));
+        
+        EntityUtils.insert(te);
+        
         JOptionPane.showMessageDialog(null, "Código de registro: #{CODE}", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
         dispose();
     }//GEN-LAST:event_btnSaveStableActionPerformed
