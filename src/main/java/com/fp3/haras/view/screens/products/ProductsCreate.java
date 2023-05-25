@@ -1,7 +1,10 @@
 package com.fp3.haras.view.screens.products;
 
+import com.fp3.haras.model.Produto;
+import com.fp3.haras.model.Servico;
 import javax.swing.JOptionPane;
 import com.fp3.haras.utils.Colors;
+import com.fp3.haras.utils.EntityUtils;
 
 public class ProductsCreate extends javax.swing.JFrame {
 
@@ -360,6 +363,13 @@ public class ProductsCreate extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelProductActionPerformed
 
     private void btnSaveProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveProductActionPerformed
+        Produto p = new Produto(txtProductName.getText(), 
+                Integer.parseInt(txtProductStock.getText()), 
+                Integer.parseInt(txtPurchasePrice.getText()), 
+                Integer.parseInt(txtSalePrice.getText()));
+        
+        EntityUtils.insert(p);
+        
         JOptionPane.showMessageDialog(null, "Código de registro: #{CODE}", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
         dispose();
     }//GEN-LAST:event_btnSaveProductActionPerformed
@@ -369,6 +379,7 @@ public class ProductsCreate extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelServiceActionPerformed
 
     private void btnSaveServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveServiceActionPerformed
+        
         JOptionPane.showMessageDialog(null, "Código de registro: #{CODE}", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
         dispose();
     }//GEN-LAST:event_btnSaveServiceActionPerformed
