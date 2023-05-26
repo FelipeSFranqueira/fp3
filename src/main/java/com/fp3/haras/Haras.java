@@ -10,7 +10,7 @@ public class Haras {
     public static void main(String[] args) {
         new LoginScreen().setVisible(true);
         
-        // Mock data for testing JPA
+        Mock data for testing JPA
         Produto prod = new Produto("Test 2", 1, 1f, 1f);
         
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("haras");

@@ -1,6 +1,11 @@
 package com.fp3.haras.view.screens.products;
 
+import com.fp3.haras.model.Produto;
+import com.fp3.haras.model.Servico;
+import com.fp3.haras.model.TipoEstadia;
 import com.fp3.haras.utils.Colors;
+import com.fp3.haras.utils.EntityUtils;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -210,17 +215,17 @@ public class ProductsScreen extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        if (tpSelection.getTitleAt(tpSelection.getSelectedIndex()).equals("Produtos") 
+        if (tpSelection.getTitleAt(tpSelection.getSelectedIndex()).equals("PRODUTOS") 
                     && getSelectedProductID()!= null && getSelectedProductValue()!= null) {
                 
                 new ProductsEdit().setVisible(true);
                 
-            }else if (tpSelection.getTitleAt(tpSelection.getSelectedIndex()).equals("Serviços")
+            }else if (tpSelection.getTitleAt(tpSelection.getSelectedIndex()).equals("SERVIÇOS")
                     && getSelectedServiceID()!= null && getSelectedServiceValue()!= null) {
                 
                 new ProductsEdit().setVisible(true);
                 
-            }else if (tpSelection.getTitleAt(tpSelection.getSelectedIndex()).equals("Estadias")
+            }else if (tpSelection.getTitleAt(tpSelection.getSelectedIndex()).equals("ESTADIAS")
                     && getSelectedHostingTypeID()!= null && getSelectedHostingTypeValue()!= null) {
                 
                 new ProductsEdit().setVisible(true);
@@ -242,14 +247,46 @@ public class ProductsScreen extends javax.swing.JPanel {
 
     private void lblSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSearchMouseClicked
         // TODO add your handling code here:
-        DefaultTableModel tableP = (DefaultTableModel) tableProducts.getModel();
-        tableP.setRowCount(0);
-        DefaultTableModel tableS = (DefaultTableModel) tableServices.getModel();
-        tableS.setRowCount(0);
-        DefaultTableModel tableE = (DefaultTableModel) tableStable.getModel();
-        tableE.setRowCount(0);
+        if (tpSelection.getTitleAt(tpSelection.getSelectedIndex()).equals("PRODUTOS")) {
+            DefaultTableModel tableP = (DefaultTableModel) tableProducts.getModel();
+            tableP.setRowCount(0);
+            String pQuerySearch = "SELECT a FROM Products WHERE a.name = '" + txtSearch.getText() + "'";
+            List<Produto> produto = EntityUtils.select(pQuerySearch, Produto.class);
+            for (Produto a : produto) {
+                tableP.addRow(new Object[]{
+                    a.getId(),
+                    a.getNome(),
+                    a.getEstoque(),
+                    a.getPdc(),
+                    a.getPdv()
+                });
+            }
+        } else if (tpSelection.getTitleAt(tpSelection.getSelectedIndex()).equals("SERVIÇOS")) {
+            DefaultTableModel tableS = (DefaultTableModel) tableServices.getModel();
+            tableS.setRowCount(0);
+            String sQuerySearch = "SELECT a FROM Services WHERE a.name = '" + txtSearch.getText() + "'";
+            List<Servico> servico = EntityUtils.select(sQuerySearch, Servico.class);
+            for (Servico a: servico) {
+                tableS.addRow(new Object[]{
+                    a.getId(),
+                    a.getNome(),
+                    a.getPreco()
+                });
+            }
+        } else if (tpSelection.getTitleAt(tpSelection.getSelectedIndex()).equals("ESTADIAS")) {
+            DefaultTableModel tableE = (DefaultTableModel) tableStable.getModel();
+            tableE.setRowCount(0);
+            String eQuerySearch = "SELECT a FROM Stables WHERE a.name = '" + txtSearch.getText() + "'";
+            List<TipoEstadia> tipoEstadia = EntityUtils.select(eQuerySearch, TipoEstadia.class);
+            for (TipoEstadia a: tipoEstadia) {
+                tableE.addRow(new Object[]{
+                    a.getId(),
+                    a.getTipo(),
+                    a.getPreco()
+                });
+            }
+        }
         
-    //    String pQuerySearch = 'SELECT a FROM Products WHERE name'
     }//GEN-LAST:event_lblSearchMouseClicked
 
 
