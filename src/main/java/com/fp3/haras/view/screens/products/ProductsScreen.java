@@ -2,6 +2,7 @@ package com.fp3.haras.view.screens.products;
 
 import com.fp3.haras.utils.Colors;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class ProductsScreen extends javax.swing.JPanel {
     ProductsCreate pm;
@@ -150,6 +151,11 @@ public class ProductsScreen extends javax.swing.JPanel {
         lblSearch.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search.png"))); // NOI18N
         lblSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblSearch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblSearchMouseClicked(evt);
+            }
+        });
 
         lblTitle.setText("PRODUTOS E SERVIÇOS");
 
@@ -214,7 +220,7 @@ public class ProductsScreen extends javax.swing.JPanel {
                 
                 new ProductsEdit().setVisible(true);
                 
-            }else if (tpSelection.getTitleAt(tpSelection.getSelectedIndex()).equals("Hospedagens")
+            }else if (tpSelection.getTitleAt(tpSelection.getSelectedIndex()).equals("Estadias")
                     && getSelectedHostingTypeID()!= null && getSelectedHostingTypeValue()!= null) {
                 
                 new ProductsEdit().setVisible(true);
@@ -233,6 +239,18 @@ public class ProductsScreen extends javax.swing.JPanel {
         if (txtSearch.getText().equals(""))
             txtSearch.setText("Pesquisar...");
     }//GEN-LAST:event_txtSearchFocusLost
+
+    private void lblSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSearchMouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel tableP = (DefaultTableModel) tableProducts.getModel();
+        tableP.setRowCount(0);
+        DefaultTableModel tableS = (DefaultTableModel) tableServices.getModel();
+        tableS.setRowCount(0);
+        DefaultTableModel tableE = (DefaultTableModel) tableStable.getModel();
+        tableE.setRowCount(0);
+        
+    //    String pQuerySearch = 'SELECT a FROM Products WHERE name'
+    }//GEN-LAST:event_lblSearchMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -19,7 +19,8 @@ public class Servico {
     public Servico() {
     }
 
-    public Servico(String nome, double preco) {
+    public Servico(Integer id, String nome, double preco) {
+        this.id = id;
         this.nome = nome;
         this.preco = preco;
     }

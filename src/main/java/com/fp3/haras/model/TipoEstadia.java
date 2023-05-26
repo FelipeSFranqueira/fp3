@@ -19,7 +19,8 @@ public class TipoEstadia {
     public TipoEstadia() {
     }
 
-    public TipoEstadia(String tipo, double preco) {
+    public TipoEstadia(Integer id, String tipo, double preco) {
+        this.id = id;
         this.tipo = tipo;
         this.preco = preco;
     }
