@@ -33,7 +33,7 @@ public class Animal {
     private boolean hasExamAie;
     private boolean hasExamMormo;
     private boolean hasGta;
-    private boolean isDeleted;
+    private boolean isDeleted = false;
 
     public Animal(String name, String coat, String sex, String category, String origin, boolean hasExamAie, boolean hasExamMormo, boolean hasGta) {
         this.name = name;
@@ -125,7 +125,7 @@ public class Animal {
         return hasGta;
     }
 
-    public void setGta(boolean hasGta) {
+    public void setHasGta(boolean hasGta) {
         this.hasGta = hasGta;
     }
     
@@ -133,7 +133,7 @@ public class Animal {
         return isDeleted;
     }
     
-    public void setIsDeleted() {
+    public void setIsDeleted(boolean isDeleted) {
         this.isDeleted = isDeleted;
     }
 }

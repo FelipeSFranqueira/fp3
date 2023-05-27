@@ -198,7 +198,7 @@ public class AnimalsScreen extends javax.swing.JPanel implements GenericObserver
     
     private void updateBoxSearch(){
         boxSearch.addItem("");
-        String queryAnimals = "SELECT a from Animal a";
+        String queryAnimals = "SELECT a from Animal a WHERE a.isDeleted = FALSE";
         fetchedAnimals = EntityUtils.select(queryAnimals, Animal.class);
         for (Animal animal : fetchedAnimals) {
             boxSearch.addItem(animal.getName());
