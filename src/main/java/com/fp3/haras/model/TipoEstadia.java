@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Stables")
+@Table(name="StablesType")
 public class TipoEstadia {
 
     @Id
@@ -19,8 +19,7 @@ public class TipoEstadia {
     public TipoEstadia() {
     }
 
-    public TipoEstadia(Integer id, String tipo, double preco) {
-        this.id = id;
+    public TipoEstadia(String tipo, double preco) {
         this.tipo = tipo;
         this.preco = preco;
     }

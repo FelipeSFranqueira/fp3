@@ -276,7 +276,7 @@ public class ProductsScreen extends javax.swing.JPanel {
         } else if (tpSelection.getTitleAt(tpSelection.getSelectedIndex()).equals("ESTADIAS")) {
             DefaultTableModel tableE = (DefaultTableModel) tableStable.getModel();
             tableE.setRowCount(0);
-            String eQuerySearch = "SELECT a FROM Stables WHERE a.name = '" + txtSearch.getText() + "'";
+            String eQuerySearch = "SELECT a FROM StablesType WHERE a.name = '" + txtSearch.getText() + "'";
             List<TipoEstadia> tipoEstadia = EntityUtils.select(eQuerySearch, TipoEstadia.class);
             for (TipoEstadia a: tipoEstadia) {
                 tableE.addRow(new Object[]{

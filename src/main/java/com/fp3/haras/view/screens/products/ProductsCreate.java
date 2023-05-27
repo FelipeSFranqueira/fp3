@@ -365,7 +365,7 @@ public class ProductsCreate extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelProductActionPerformed
 
     private void btnSaveProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveProductActionPerformed
-        Produto p = new Produto(null, txtProductName.getText(), 
+        Produto p = new Produto(txtProductName.getText(), 
                 Integer.parseInt(txtProductStock.getText()), 
                 Integer.parseInt(txtPurchasePrice.getText()), 
                 Integer.parseInt(txtSalePrice.getText()));
@@ -381,7 +381,7 @@ public class ProductsCreate extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelServiceActionPerformed
 
     private void btnSaveServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveServiceActionPerformed
-        Servico s = new Servico(null, txtServiceType.getText(), Integer.parseInt(txtServicePrice.getText()));
+        Servico s = new Servico(txtServiceType.getText(), Integer.parseInt(txtServicePrice.getText()));
         
         EntityUtils.insert(s);
         
@@ -394,7 +394,7 @@ public class ProductsCreate extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelStableActionPerformed
 
     private void btnSaveStableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveStableActionPerformed
-        TipoEstadia te = new TipoEstadia(null, txtStableType.getText(), Integer.parseInt(txtStablePrice.getText()));
+        TipoEstadia te = new TipoEstadia(txtStableType.getText(), Integer.parseInt(txtStablePrice.getText()));
         
         EntityUtils.insert(te);
         
