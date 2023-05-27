@@ -1,10 +1,19 @@
 package com.fp3.haras.view.screens.animals;
 
+import com.fp3.haras.model.Animal;
+import com.fp3.haras.model.Cliente;
 import com.fp3.haras.utils.Colors;
+import com.fp3.haras.utils.EntityUtils;
+import com.fp3.haras.utils.GenericObservable;
+import com.fp3.haras.utils.GenericObserver;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-public class AnimalsCreate extends javax.swing.JFrame {
+public class AnimalsCreate extends javax.swing.JFrame implements GenericObservable {
+    
+    private List<GenericObserver> observers = new ArrayList<>();
 
     public AnimalsCreate() {
         initComponents();
@@ -12,6 +21,12 @@ public class AnimalsCreate extends javax.swing.JFrame {
         panelBack.setBackground(Colors.WHITEBG);
         panelForm.setBackground(Colors.PRIMARYBG);
         lblTitle.putClientProperty("FlatLaf.styleClass", "h00");
+        
+        String queryClients = "SELECT c FROM Cliente c";
+        List<Cliente> owners = EntityUtils.select(queryClients, Cliente.class);
+        for (Cliente item : owners) {
+            boxProprietario.addItem(item.getNome());
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -48,8 +63,8 @@ public class AnimalsCreate extends javax.swing.JFrame {
         rbtnFemea = new javax.swing.JRadioButton();
         rbtnMacho = new javax.swing.JRadioButton();
         boxCategoria = new javax.swing.JComboBox<>();
-        comboBoxSuggestion1 = new com.fp3.haras.components.ComboBoxSuggestion();
-        comboBoxSuggestion2 = new com.fp3.haras.components.ComboBoxSuggestion();
+        boxProprietario = new com.fp3.haras.components.ComboBoxSuggestion();
+        boxCondominio = new com.fp3.haras.components.ComboBoxSuggestion();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAutoRequestFocus(false);
@@ -79,7 +94,7 @@ public class AnimalsCreate extends javax.swing.JFrame {
         panelForm.setMinimumSize(new java.awt.Dimension(570, 290));
         panelForm.setPreferredSize(new java.awt.Dimension(570, 290));
 
-        boxPelagem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nenhuma" }));
+        boxPelagem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nenhuma", "Branca", "Preta", "Alazã", "Castanha", "Baia", "Pêlo de Rato", "Tordilha", "Rosilha", "Lobuna", "Ruão", "Pampa", "Leopardo", "Mantado", "Nevado" }));
 
         jLabel2.setText("CATEGORIA");
 
@@ -112,7 +127,7 @@ public class AnimalsCreate extends javax.swing.JFrame {
         btnGroupSex.add(rbtnMacho);
         rbtnMacho.setText("Macho");
 
-        boxCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nenhuma" }));
+        boxCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nenhuma", "Appaloosa", "Campolina", "Bretão", "Lusitano", "Mangalarga", "Nordestino", "Pampa", "Quarto de Milha", "Akhal-Teke" }));
 
         javax.swing.GroupLayout panelFormLayout = new javax.swing.GroupLayout(panelForm);
         panelForm.setLayout(panelFormLayout);
@@ -181,11 +196,11 @@ public class AnimalsCreate extends javax.swing.JFrame {
                                 .addGroup(panelFormLayout.createSequentialGroup()
                                     .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(comboBoxSuggestion1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(boxProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGap(37, 37, 37)
                                     .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(comboBoxSuggestion2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                        .addComponent(boxCondominio, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
         panelFormLayout.setVerticalGroup(
@@ -248,8 +263,8 @@ public class AnimalsCreate extends javax.swing.JFrame {
                     .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(comboBoxSuggestion1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboBoxSuggestion2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(boxProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boxCondominio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
@@ -303,21 +318,78 @@ public class AnimalsCreate extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        JOptionPane.showMessageDialog(null, "Registro #{CODE} atualizado!", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
+        String name = txtNome.getText();
+        String coat = (String) boxPelagem.getSelectedItem();
+        String sex = "";
+        if (rbtnMacho.isSelected()) {
+            sex = rbtnMacho.getText();
+        } else if (rbtnFemea.isSelected()) {
+            sex = rbtnFemea.getText();
+        }
+        String category = (String) boxCategoria.getSelectedItem();
+        String origin = txtOrigem.getText();
+        boolean hasAie = false;
+        if (boxAie.isSelected()) {
+            hasAie = true;
+        }
+        boolean hasMormo = false;
+        if (boxMormo.isSelected()) {
+            hasMormo = true;
+        }
+       boolean hasGta = false;
+        if (boxGta.isSelected()) {
+            hasGta = true;
+        }
+        
+        Animal a1 = new Animal(name, coat, sex, category, origin, hasAie, hasMormo, hasGta);
+        String querySelect = "SELECT c FROM Cliente c WHERE c.nome = '" + (String) boxProprietario.getSelectedItem() + "'";
+        Cliente owner = EntityUtils.select(querySelect, Cliente.class).get(0);
+        
+        a1.getOwners().add(owner);
+        
+        EntityUtils.insert(a1);
+        
+        JOptionPane.showMessageDialog(null, "Animal criado", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
+        this.notifyObservers("Deu bom");
+        txtNome.setText("");
+        rbtnMacho.setSelected(false);
+        rbtnFemea.setSelected(false);
+        txtOrigem.setText("");
+        boxAie.setSelected(false);
+        boxMormo.setSelected(false);
+        boxGta.setSelected(false);
         dispose();
     }//GEN-LAST:event_btnSaveActionPerformed
+    
+    @Override
+    public void addObserver(GenericObserver o) {
+        this.observers.add(o);
+    }
 
+    @Override
+    public void removeObserver(GenericObserver o) {
+        this.observers.remove(o);
+    }
+
+    @Override
+    public void notifyObservers(Object o) {
+        for (GenericObserver observer: this.observers) {
+            observer.update(o);
+        }
+    }
+
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox boxAie;
     private javax.swing.JComboBox<String> boxCategoria;
+    private com.fp3.haras.components.ComboBoxSuggestion boxCondominio;
     private javax.swing.JCheckBox boxGta;
     private javax.swing.JCheckBox boxMormo;
     private javax.swing.JComboBox<String> boxPelagem;
+    private com.fp3.haras.components.ComboBoxSuggestion boxProprietario;
     private javax.swing.JButton btnCancel;
     private javax.swing.ButtonGroup btnGroupSex;
     private javax.swing.JButton btnSave;
-    private com.fp3.haras.components.ComboBoxSuggestion comboBoxSuggestion1;
-    private com.fp3.haras.components.ComboBoxSuggestion comboBoxSuggestion2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel16;

@@ -1,6 +1,8 @@
 package com.fp3.haras;
 
+import com.fp3.haras.model.Cliente;
 import com.fp3.haras.model.Produto;
+import com.fp3.haras.utils.EntityUtils;
 import com.fp3.haras.view.screens.auth.LoginScreen;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -18,5 +20,14 @@ public class Haras {
         em.getTransaction().begin();
         em.persist(prod);
         em.getTransaction().commit();
+        
+        Cliente c1 = new Cliente();
+        Cliente c2 = new Cliente();
+        
+        c1.setNome("Teste1");
+        c2.setNome("Teste2");
+        
+        EntityUtils.insert(c1);
+        EntityUtils.insert(c2);
     }
 }
