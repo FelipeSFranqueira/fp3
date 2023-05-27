@@ -350,7 +350,7 @@ public class AnimalsCreate extends javax.swing.JFrame implements GenericObservab
         EntityUtils.insert(a1);
         
         JOptionPane.showMessageDialog(null, "Animal criado", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
-        this.notifyObservers("Deu bom");
+        this.notifyObservers("");
         txtNome.setText("");
         rbtnMacho.setSelected(false);
         rbtnFemea.setSelected(false);
