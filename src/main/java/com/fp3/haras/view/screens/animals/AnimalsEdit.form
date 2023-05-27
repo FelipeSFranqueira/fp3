@@ -289,8 +289,22 @@
             <Component class="javax.swing.JComboBox" name="boxPelagem">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="1">
+                  <StringArray count="15">
                     <StringItem index="0" value="Nenhuma"/>
+                    <StringItem index="1" value="Branca"/>
+                    <StringItem index="2" value="Preta"/>
+                    <StringItem index="3" value="Alaz&#xe3;"/>
+                    <StringItem index="4" value="Castanha"/>
+                    <StringItem index="5" value="Baia"/>
+                    <StringItem index="6" value="P&#xea;lo de Rato"/>
+                    <StringItem index="7" value="Tordilha"/>
+                    <StringItem index="8" value="Rosilha"/>
+                    <StringItem index="9" value="Lobuna"/>
+                    <StringItem index="10" value="Ru&#xe3;o"/>
+                    <StringItem index="11" value="Pampa"/>
+                    <StringItem index="12" value="Leopardo"/>
+                    <StringItem index="13" value="Mantado"/>
+                    <StringItem index="14" value="Nevado"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -375,8 +389,17 @@
             <Component class="javax.swing.JComboBox" name="boxCategoria">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="1">
+                  <StringArray count="10">
                     <StringItem index="0" value="Nenhuma"/>
+                    <StringItem index="1" value="Appaloosa"/>
+                    <StringItem index="2" value="Campolina"/>
+                    <StringItem index="3" value="Bret&#xe3;o"/>
+                    <StringItem index="4" value="Lusitano"/>
+                    <StringItem index="5" value="Mangalarga"/>
+                    <StringItem index="6" value="Nordestino"/>
+                    <StringItem index="7" value="Pampa"/>
+                    <StringItem index="8" value="Quarto de Milha"/>
+                    <StringItem index="9" value="Akhal-Teke"/>
                   </StringArray>
                 </Property>
               </Properties>

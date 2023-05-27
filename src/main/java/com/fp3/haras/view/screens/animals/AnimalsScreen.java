@@ -15,14 +15,17 @@ import javax.swing.table.DefaultTableModel;
 
 public class AnimalsScreen extends javax.swing.JPanel implements GenericObserver {
     private AnimalsCreate creationModal;
+    private AnimalsEdit editionModal;
+    private Animal animalSelected;
     private List<Animal> fetchedAnimals;
     private List<Animal> tableResults;
     private int currentPage = 1;
     private final int maxResults = 16;
 
-    public AnimalsScreen(AnimalsCreate creationModal) {
+    public AnimalsScreen(AnimalsCreate creationModal, AnimalsEdit editionModal) {
         initComponents();
         this.creationModal = creationModal;
+        this.editionModal = editionModal;
         this.setBackground(Colors.PRIMARYBG);
         lblTitle.putClientProperty("FlatLaf.styleClass", "h00");
         
@@ -184,12 +187,11 @@ public class AnimalsScreen extends javax.swing.JPanel implements GenericObserver
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         if (tableProgress.getSelectedColumnCount()!= 0
             && getSelectedProgressCode() != null && getSelectedProgressValue() != null) {
-                
-                new AnimalsEdit().setVisible(true);
-                
-            } else {
-                JOptionPane.showMessageDialog(null, "Nada foi selecionado.", null, JOptionPane.ERROR_MESSAGE, null);
-            }
+            this.editionModal.populateData(animalSelected);
+            this.editionModal.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Nada foi selecionado.", null, JOptionPane.ERROR_MESSAGE, null);
+        }
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void lblSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSearchMouseClicked
@@ -226,7 +228,7 @@ public class AnimalsScreen extends javax.swing.JPanel implements GenericObserver
         int id = Integer.parseInt(table.getValueAt(tableProgress.getSelectedRow(), 0).toString());
         
         String queryAnimal = "SELECT a FROM Animal a JOIN FETCH a.owners o WHERE a.id = " + id;
-        Animal animalSelected = EntityUtils.select(queryAnimal, Animal.class).get(0);
+        this.animalSelected = EntityUtils.select(queryAnimal, Animal.class).get(0);
     }//GEN-LAST:event_tableProgressMouseClicked
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
@@ -267,9 +269,6 @@ public class AnimalsScreen extends javax.swing.JPanel implements GenericObserver
     }   
     
     private void fetchTableResults(int page, int maxResults) {
-//        String tableResultsQuery = "SELECT a from Animal a WHERE a.isDeleted = FALSE ORDER BY a.name";
-//        this.tableResults = EntityUtils.select(tableResultsQuery, Animal.class);
-//        this.paginatedTableResults = tableResults;
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("haras");
         EntityManager em = emf.createEntityManager();
         
@@ -285,6 +284,7 @@ public class AnimalsScreen extends javax.swing.JPanel implements GenericObserver
         this.updateBoxSearch();
         this.populateTable();
     }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.fp3.haras.components.ComboBoxSuggestion boxSearch;
     private javax.swing.JButton btnBack;
