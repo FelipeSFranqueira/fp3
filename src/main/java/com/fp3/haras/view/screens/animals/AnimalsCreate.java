@@ -4,12 +4,16 @@ import com.fp3.haras.model.Animal;
 import com.fp3.haras.model.Cliente;
 import com.fp3.haras.utils.Colors;
 import com.fp3.haras.utils.EntityUtils;
+import com.fp3.haras.utils.GenericObservable;
+import com.fp3.haras.utils.GenericObserver;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-public class AnimalsCreate extends javax.swing.JFrame {
+public class AnimalsCreate extends javax.swing.JFrame implements GenericObservable {
+    
+    private List<GenericObserver> observers = new ArrayList<>();
 
     public AnimalsCreate() {
         initComponents();
@@ -339,21 +343,42 @@ public class AnimalsCreate extends javax.swing.JFrame {
         
         Animal a1 = new Animal(name, coat, sex, category, origin, hasAie, hasMormo, hasGta);
         String querySelect = "SELECT c FROM Cliente c WHERE c.nome = '" + (String) boxProprietario.getSelectedItem() + "'";
-        List<Cliente> owner = EntityUtils.select(querySelect, Cliente.class);
-        try {
-            for (Cliente c : owner) {
-                a1.getOwners().add(c);
-            }
-        } catch (Exception e) {
-            throw e;
-        }
+        Cliente owner = EntityUtils.select(querySelect, Cliente.class).get(0);
+        
+        a1.getOwners().add(owner);
         
         EntityUtils.insert(a1);
         
-        JOptionPane.showMessageDialog(null, "Registro #{CODE} atualizado!", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
+        JOptionPane.showMessageDialog(null, "Animal criado", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
+        this.notifyObservers("Deu bom");
+        txtNome.setText("");
+        rbtnMacho.setSelected(false);
+        rbtnFemea.setSelected(false);
+        txtOrigem.setText("");
+        boxAie.setSelected(false);
+        boxMormo.setSelected(false);
+        boxGta.setSelected(false);
         dispose();
     }//GEN-LAST:event_btnSaveActionPerformed
+    
+    @Override
+    public void addObserver(GenericObserver o) {
+        this.observers.add(o);
+    }
 
+    @Override
+    public void removeObserver(GenericObserver o) {
+        this.observers.remove(o);
+    }
+
+    @Override
+    public void notifyObservers(Object o) {
+        for (GenericObserver observer: this.observers) {
+            observer.update(o);
+        }
+    }
+
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox boxAie;
     private javax.swing.JComboBox<String> boxCategoria;

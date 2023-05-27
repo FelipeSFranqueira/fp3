@@ -32,10 +32,10 @@
                       <Component id="lblTitle" min="-2" max="-2" attributes="0"/>
                       <Component id="lblSubtitle" min="-2" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
-                          <Component id="txtSearch" min="-2" pref="290" max="-2" attributes="0"/>
+                          <Component id="boxSearch" min="-2" pref="281" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="lblSearch" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="230" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="239" max="-2" attributes="0"/>
                           <Component id="btnCreate" min="-2" pref="120" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="btnEdit" min="-2" pref="120" max="-2" attributes="0"/>
@@ -53,9 +53,9 @@
               <Component id="lblTitle" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="lblSubtitle" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                  <Component id="txtSearch" pref="30" max="32767" attributes="0"/>
+                  <Component id="boxSearch" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnCreate" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnEdit" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -80,18 +80,24 @@
         <Component class="javax.swing.JTable" name="tableProgress">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="7" rowCount="0">
-                <Column editable="false" title="SITUA&#xc7;&#xc3;O" type="java.lang.Object"/>
+              <Table columnCount="8" rowCount="0">
+                <Column editable="false" title="ID" type="java.lang.Object"/>
                 <Column editable="false" title="NOME" type="java.lang.Object"/>
                 <Column editable="false" title="PELAGEM" type="java.lang.Object"/>
-                <Column editable="false" title="ESTADIA" type="java.lang.Object"/>
                 <Column editable="false" title="CATEGORIA" type="java.lang.Object"/>
-                <Column editable="false" title="PROPRIET&#xc1;RIOS" type="java.lang.Object"/>
-                <Column editable="false" title="CONDOM&#xcd;NIO" type="java.lang.Object"/>
+                <Column editable="false" title="EXAME AIE" type="java.lang.Object"/>
+                <Column editable="false" title="EXAME MORMO" type="java.lang.Object"/>
+                <Column editable="false" title="GTA" type="java.lang.Object"/>
+                <Column editable="false" title="PROPRIET&#xc1;RIO" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
@@ -133,18 +139,12 @@
               <TableHeader reorderingAllowed="false" resizingAllowed="false"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tableProgressMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JTextField" name="txtSearch">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Pesquisar..."/>
-      </Properties>
-      <Events>
-        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtSearchFocusLost"/>
-        <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtSearchMouseReleased"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="btnCreate">
       <Properties>
         <Property name="text" type="java.lang.String" value="CRIAR"/>
@@ -168,9 +168,12 @@
           <Image iconType="3" name="/images/search.png"/>
         </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Default Cursor"/>
+          <Color id="Hand Cursor"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblSearchMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblTitle">
       <Properties>
@@ -182,6 +185,8 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="PRINCIPAIS CARACTER&#xcd;STICAS"/>
       </Properties>
+    </Component>
+    <Component class="com.fp3.haras.components.ComboBoxSuggestion" name="boxSearch">
     </Component>
   </SubComponents>
 </Form>
