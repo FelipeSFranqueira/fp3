@@ -344,9 +344,25 @@ public class AnimalsEdit extends javax.swing.JFrame implements GenericObservable
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        //TODO: Implementar soft-delete
-        if (JOptionPane.showConfirmDialog(null, "Realmente deseja apagar os dados permanentemente?", "ATENÇÃO", JOptionPane.WARNING_MESSAGE) == 0) {
+        if (JOptionPane.showConfirmDialog(null, "Realmente deseja apagar este cadastro?", "ATENÇÃO", JOptionPane.WARNING_MESSAGE) == 0) {
+            selectedAnimal.setName(txtNome.getText());
+            selectedAnimal.setCoat((String) boxPelagem.getSelectedItem());
+            if (rbtnMacho.isSelected()) {
+                selectedAnimal.setSex(rbtnMacho.getText());
+            } else if (rbtnFemea.isSelected()) {
+                selectedAnimal.setSex(rbtnFemea.getText());
+            }
+            selectedAnimal.setCategory((String) boxCategoria.getSelectedItem());
+            selectedAnimal.setOrigin(txtOrigem.getText());
+            selectedAnimal.setHasExamAie(boxAie.isSelected());
+            selectedAnimal.setHasExamMormo(boxMormo.isSelected());
+            selectedAnimal.setHasGta(boxGta.isSelected());
+            selectedAnimal.setIsDeleted(true);
+            
+            EntityUtils.update(selectedAnimal);
+            
             dispose();
+            this.notifyObservers("");
             JOptionPane.showMessageDialog(null, "Os dados foram removidos!", null, JOptionPane.INFORMATION_MESSAGE, null);
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
