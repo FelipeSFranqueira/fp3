@@ -361,9 +361,9 @@ public class AnimalsEdit extends javax.swing.JFrame implements GenericObservable
             
             EntityUtils.update(selectedAnimal);
             
+            JOptionPane.showMessageDialog(null, "Os dados foram removidos!", null, JOptionPane.INFORMATION_MESSAGE, null);
             dispose();
             this.notifyObservers("");
-            JOptionPane.showMessageDialog(null, "Os dados foram removidos!", null, JOptionPane.INFORMATION_MESSAGE, null);
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 

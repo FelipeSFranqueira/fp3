@@ -265,7 +265,7 @@ public class AnimalsCreate extends javax.swing.JFrame implements GenericObservab
                 .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(boxProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(boxCondominio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panelBackLayout = new javax.swing.GroupLayout(panelBack);
@@ -352,9 +352,10 @@ public class AnimalsCreate extends javax.swing.JFrame implements GenericObservab
         JOptionPane.showMessageDialog(null, "Animal criado", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
         this.notifyObservers("");
         txtNome.setText("");
-        rbtnMacho.setSelected(false);
-        rbtnFemea.setSelected(false);
+        boxPelagem.setSelectedIndex(0);
+        btnGroupSex.clearSelection();
         txtOrigem.setText("");
+        boxCategoria.setSelectedIndex(0);
         boxAie.setSelected(false);
         boxMormo.setSelected(false);
         boxGta.setSelected(false);
