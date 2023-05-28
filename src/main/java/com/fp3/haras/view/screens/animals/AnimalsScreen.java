@@ -255,7 +255,11 @@ public class AnimalsScreen extends javax.swing.JPanel implements GenericObserver
         table.setRowCount(0);
         
         fetchTableResults(this.currentPage, this.maxResults);
+        String owner = "";
         for (Animal a : this.tableResults) {
+            for (Cliente o : a.getOwners()) {
+                owner = o.getNome();
+            }
             table.addRow(new Object[]{
                 a.getId(),
                 a.getName(),
@@ -264,6 +268,7 @@ public class AnimalsScreen extends javax.swing.JPanel implements GenericObserver
                 a.getHasExameAie(),
                 a.getHasExameMormo(),
                 a.getHasGta(),
+                owner
             });
         }
     }   
