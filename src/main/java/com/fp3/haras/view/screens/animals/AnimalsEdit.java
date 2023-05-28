@@ -2,6 +2,7 @@ package com.fp3.haras.view.screens.animals;
 
 import com.fp3.haras.model.Animal;
 import com.fp3.haras.utils.Colors;
+import com.fp3.haras.utils.EntityUtils;
 import com.fp3.haras.utils.GenericObservable;
 import com.fp3.haras.utils.GenericObserver;
 import java.util.ArrayList;
@@ -351,7 +352,20 @@ public class AnimalsEdit extends javax.swing.JFrame implements GenericObservable
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        //TODO: Implementar save da entidade no banco;
+        selectedAnimal.setName(txtNome.getText());
+        selectedAnimal.setCoat((String) boxPelagem.getSelectedItem());
+        if (rbtnMacho.isSelected()) {
+            selectedAnimal.setSex(rbtnMacho.getText());
+        } else if (rbtnFemea.isSelected()) {
+            selectedAnimal.setSex(rbtnFemea.getText());
+        }
+        selectedAnimal.setCategory((String) boxCategoria.getSelectedItem());
+        selectedAnimal.setOrigin(txtOrigem.getText());
+        selectedAnimal.setHasExamAie(boxAie.isSelected());
+        selectedAnimal.setHasExamMormo(boxMormo.isSelected());
+        selectedAnimal.setHasGta(boxGta.isSelected());
+        
+        EntityUtils.update(selectedAnimal);
         
         JOptionPane.showMessageDialog(null, "Registro #{CODE} atualizado!", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
         dispose();
