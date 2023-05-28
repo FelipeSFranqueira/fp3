@@ -243,7 +243,7 @@ public class AnimalsScreen extends javax.swing.JPanel implements GenericObserver
     
     private void updateBoxSearch(){
         boxSearch.addItem("");
-        String queryAnimals = "SELECT a from Animal a WHERE a.isDeleted = FALSE";
+        String queryAnimals = "SELECT a from Animal a JOIN FETCH a.owners o WHERE a.isDeleted = FALSE";
         fetchedAnimals = EntityUtils.select(queryAnimals, Animal.class);
         for (Animal animal : fetchedAnimals) {
             boxSearch.addItem(animal.getName());
@@ -279,7 +279,7 @@ public class AnimalsScreen extends javax.swing.JPanel implements GenericObserver
         
         int firstResult = page == 1 ? 0 : ((page - 1) * maxResults);
         
-        TypedQuery<Animal> animalsQuery = em.createQuery("SELECT a FROM Animal a order by a.id asc", Animal.class);
+        TypedQuery<Animal> animalsQuery = em.createQuery("SELECT a FROM Animal a JOIN FETCH a.owners o WHERE a.isDeleted = FALSE order by a.id asc", Animal.class);
         this.tableResults = animalsQuery.setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
