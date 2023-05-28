@@ -43,6 +43,7 @@ public class AnimalsEdit extends javax.swing.JFrame implements GenericObservable
         } else {
             this.rbtnFemea.setSelected(true);
         }
+        boxProprietario.addItem(animal.getOwners().get(0).getNome());
         //TODO: Setar os combobox de suggestionp proprietario/condominio
     }
 
