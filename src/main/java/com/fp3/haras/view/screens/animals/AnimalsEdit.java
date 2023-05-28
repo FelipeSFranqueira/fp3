@@ -367,7 +367,7 @@ public class AnimalsEdit extends javax.swing.JFrame implements GenericObservable
         
         EntityUtils.update(selectedAnimal);
         
-        JOptionPane.showMessageDialog(null, "Registro #{CODE} atualizado!", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
+        JOptionPane.showMessageDialog(null, "Animal atualizado!", "Cadastro Atualizado", JOptionPane.INFORMATION_MESSAGE, null);
         dispose();
         this.notifyObservers("");
     }//GEN-LAST:event_btnSaveActionPerformed
