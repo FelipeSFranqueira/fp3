@@ -110,6 +110,11 @@ public class ProductsScreen extends javax.swing.JPanel {
         ));
         tableProducts.setToolTipText("");
         tableProducts.getTableHeader().setReorderingAllowed(false);
+        tableProducts.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableProductsMouseClicked(evt);
+            }
+        });
         spProducts.setViewportView(tableProducts);
 
         tpSelection.addTab("PRODUTOS", spProducts);
@@ -126,6 +131,11 @@ public class ProductsScreen extends javax.swing.JPanel {
         ));
         tableStable.setToolTipText("");
         tableStable.getTableHeader().setReorderingAllowed(false);
+        tableStable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableStableMouseClicked(evt);
+            }
+        });
         spStable.setViewportView(tableStable);
 
         tpSelection.addTab("SERVIÇOS", spStable);
@@ -142,6 +152,11 @@ public class ProductsScreen extends javax.swing.JPanel {
         ));
         tableServices.setToolTipText("");
         tableServices.getTableHeader().setReorderingAllowed(false);
+        tableServices.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableServicesMouseClicked(evt);
+            }
+        });
         spServices.setViewportView(tableServices);
 
         tpSelection.addTab("ESTADIAS", spServices);
@@ -323,6 +338,36 @@ public class ProductsScreen extends javax.swing.JPanel {
         this.currentPage++;
         this.populateTable();
     }//GEN-LAST:event_btnNextActionPerformed
+
+    private void tableProductsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableProductsMouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel table = (DefaultTableModel) tableProducts.getModel();
+        
+        int id = Integer.parseInt(table.getValueAt(tableProducts.getSelectedRow(), 0).toString());
+        
+        String queryProduto = "SELECT a FROM Produto WHERE a.id = " + id;
+        this.productSelected = EntityUtils.select(queryProduto, Produto.class).get(0);
+    }//GEN-LAST:event_tableProductsMouseClicked
+
+    private void tableStableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableStableMouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel table = (DefaultTableModel) tableServices.getModel();
+        
+        int id = Integer.parseInt(table.getValueAt(tableServices.getSelectedRow(), 0).toString());
+        
+        String queryServico = "SELECT a FROM Services WHERE a.id = " + id;
+        this.serviceSelected = EntityUtils.select(queryServico, Servico.class).get(0);
+    }//GEN-LAST:event_tableStableMouseClicked
+
+    private void tableServicesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableServicesMouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel table = (DefaultTableModel) tableStable.getModel();
+        
+        int id = Integer.parseInt(table.getValueAt(tableStable.getSelectedRow(), 0).toString());
+        
+        String queryStableType = "SELECT a FROM StablesType WHERE a.id = " + id;
+        this.stableTypeSelected = EntityUtils.select(queryStableType, TipoEstadia.class).get(0);
+    }//GEN-LAST:event_tableServicesMouseClicked
 
     private void updateBoxSearch(){
         boxSearch.addItem("");
