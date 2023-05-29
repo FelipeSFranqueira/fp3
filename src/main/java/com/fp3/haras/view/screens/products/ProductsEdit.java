@@ -25,6 +25,29 @@ public class ProductsEdit extends javax.swing.JFrame {
         pnlProductsEdit.setBackground(Colors.PRIMARYBG);
         pnlServicesEdit.setBackground(Colors.PRIMARYBG);
     }
+    
+    public void populateData(Produto produto) {
+        this.selectedProducts = produto;
+        
+        this.txtProductName.setText(produto.getNome());
+        this.txtProductStock.setText(produto.getNome());
+        this.txtSalePrice.setText(String.valueOf(produto.getPdv()));
+        this.txtPurchasePrice.setText(String.valueOf(produto.getPdc()));
+    }
+    
+    public void populateData(Servico servico) {
+        this.selectedService = servico;
+        
+        this.txtServiceType.setText(servico.getNome());
+        this.txtServicePrice.setText(String.valueOf(servico.getPreco()));
+    }
+    
+    public void populateData(TipoEstadia tipoEstadia) {
+        this.selectedStableType = tipoEstadia;
+        
+        this.txtStableType.setText(tipoEstadia.getTipo());
+        this.txtStablePrice.setText(String.valueOf(tipoEstadia.getPreco()));
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -479,17 +502,17 @@ public class ProductsEdit extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnDeleteStableActionPerformed
 
-    @Override
+    //@Override
     public void addObserver(GenericObserver o) {
         this.observers.add(o);
     }
 
-    @Override
+    //@Override
     public void removeObserver(GenericObserver o) {
         this.observers.remove(o);
     }
     
-    @Override
+    //@Override
     public void notifyObservers(Object o) {
         for (GenericObserver observer: this.observers) {
             observer.update(o);
