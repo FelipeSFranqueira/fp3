@@ -2,6 +2,7 @@ package com.fp3.haras.view.screens.animals;
 
 import com.fp3.haras.model.Animal;
 import com.fp3.haras.utils.Colors;
+import com.fp3.haras.utils.EntityUtils;
 import com.fp3.haras.utils.GenericObservable;
 import com.fp3.haras.utils.GenericObserver;
 import java.util.ArrayList;
@@ -42,6 +43,7 @@ public class AnimalsEdit extends javax.swing.JFrame implements GenericObservable
         } else {
             this.rbtnFemea.setSelected(true);
         }
+        boxProprietario.addItem(animal.getOwners().get(0).getNome());
         //TODO: Setar os combobox de suggestionp proprietario/condominio
     }
 
@@ -343,17 +345,46 @@ public class AnimalsEdit extends javax.swing.JFrame implements GenericObservable
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        //TODO: Implementar soft-delete
-        if (JOptionPane.showConfirmDialog(null, "Realmente deseja apagar os dados permanentemente?", "ATENÇÃO", JOptionPane.WARNING_MESSAGE) == 0) {
-            dispose();
+        if (JOptionPane.showConfirmDialog(null, "Realmente deseja apagar este cadastro?", "ATENÇÃO", JOptionPane.WARNING_MESSAGE) == 0) {
+            selectedAnimal.setName(txtNome.getText());
+            selectedAnimal.setCoat((String) boxPelagem.getSelectedItem());
+            if (rbtnMacho.isSelected()) {
+                selectedAnimal.setSex(rbtnMacho.getText());
+            } else if (rbtnFemea.isSelected()) {
+                selectedAnimal.setSex(rbtnFemea.getText());
+            }
+            selectedAnimal.setCategory((String) boxCategoria.getSelectedItem());
+            selectedAnimal.setOrigin(txtOrigem.getText());
+            selectedAnimal.setHasExamAie(boxAie.isSelected());
+            selectedAnimal.setHasExamMormo(boxMormo.isSelected());
+            selectedAnimal.setHasGta(boxGta.isSelected());
+            selectedAnimal.setIsDeleted(true);
+            
+            EntityUtils.update(selectedAnimal);
+            
             JOptionPane.showMessageDialog(null, "Os dados foram removidos!", null, JOptionPane.INFORMATION_MESSAGE, null);
+            dispose();
+            this.notifyObservers("");
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        //TODO: Implementar save da entidade no banco;
+        selectedAnimal.setName(txtNome.getText());
+        selectedAnimal.setCoat((String) boxPelagem.getSelectedItem());
+        if (rbtnMacho.isSelected()) {
+            selectedAnimal.setSex(rbtnMacho.getText());
+        } else if (rbtnFemea.isSelected()) {
+            selectedAnimal.setSex(rbtnFemea.getText());
+        }
+        selectedAnimal.setCategory((String) boxCategoria.getSelectedItem());
+        selectedAnimal.setOrigin(txtOrigem.getText());
+        selectedAnimal.setHasExamAie(boxAie.isSelected());
+        selectedAnimal.setHasExamMormo(boxMormo.isSelected());
+        selectedAnimal.setHasGta(boxGta.isSelected());
         
-        JOptionPane.showMessageDialog(null, "Registro #{CODE} atualizado!", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
+        EntityUtils.update(selectedAnimal);
+        
+        JOptionPane.showMessageDialog(null, "Animal atualizado!", "Cadastro Atualizado", JOptionPane.INFORMATION_MESSAGE, null);
         dispose();
         this.notifyObservers("");
     }//GEN-LAST:event_btnSaveActionPerformed
