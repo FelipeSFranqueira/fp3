@@ -1,11 +1,21 @@
 package com.fp3.haras.view.screens.stable;
 
+import com.fp3.haras.model.Estadia;
 import com.fp3.haras.utils.Colors;
+import com.fp3.haras.utils.EntityUtils;
+import com.fp3.haras.utils.GenericObservable;
+import com.fp3.haras.utils.GenericObserver;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-public class StableEdit extends javax.swing.JFrame {
+public class StableEdit extends javax.swing.JFrame implements GenericObservable {
 
+    private final List<GenericObserver> observers = new ArrayList<>();
+    
     public StableEdit() {
         initComponents();
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -21,11 +31,10 @@ public class StableEdit extends javax.swing.JFrame {
         panelBack = new javax.swing.JPanel();
         btnCancel = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
-        btnDelete = new javax.swing.JButton();
+        btnEnd = new javax.swing.JButton();
         panelForm = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableProds = new javax.swing.JTable();
-        txtOwner = new javax.swing.JTextField();
         txtTotalValue = new javax.swing.JFormattedTextField();
         txtIndividualValue = new javax.swing.JFormattedTextField();
         txtAmount = new javax.swing.JFormattedTextField();
@@ -33,12 +42,10 @@ public class StableEdit extends javax.swing.JFrame {
         btnApply = new javax.swing.JButton();
         spnLeave = new javax.swing.JSpinner();
         spnStable = new javax.swing.JSpinner();
-        spnProdUsed = new javax.swing.JSpinner();
         spnEnter = new javax.swing.JSpinner();
         boxAnimal = new javax.swing.JComboBox<>();
         boxOwner = new javax.swing.JComboBox<>();
         boxStable = new javax.swing.JComboBox<>();
-        boxProds = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -51,6 +58,8 @@ public class StableEdit extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        boxConsumo = new com.fp3.haras.components.ComboBoxSuggestion();
+        spnProdUsed = new javax.swing.JSpinner();
         lblTitle = new javax.swing.JLabel();
         lblCode = new javax.swing.JLabel();
 
@@ -75,10 +84,10 @@ public class StableEdit extends javax.swing.JFrame {
             }
         });
 
-        btnDelete.setText("EXCLUIR");
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+        btnEnd.setText("FINALIZAR");
+        btnEnd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
+                btnEndActionPerformed(evt);
             }
         });
 
@@ -105,18 +114,6 @@ public class StableEdit extends javax.swing.JFrame {
         tableProds.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tableProds);
 
-        txtOwner.setText("Buscar...");
-        txtOwner.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtOwnerFocusLost(evt);
-            }
-        });
-        txtOwner.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                txtOwnerMouseReleased(evt);
-            }
-        });
-
         txtTotalValue.setEditable(false);
         txtTotalValue.setText("TOTAL");
 
@@ -140,8 +137,6 @@ public class StableEdit extends javax.swing.JFrame {
 
         spnStable.setModel(new javax.swing.SpinnerNumberModel(1, null, 20, 1));
 
-        spnProdUsed.setEnabled(false);
-
         spnEnter.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), null, null, java.util.Calendar.DAY_OF_YEAR));
         spnEnter.setEnabled(false);
 
@@ -152,9 +147,6 @@ public class StableEdit extends javax.swing.JFrame {
         boxOwner.setEnabled(false);
 
         boxStable.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C", "D", "E", "F" }));
-
-        boxProds.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---" }));
-        boxProds.setEnabled(false);
 
         jLabel3.setText("ENTRADA");
         jLabel3.setEnabled(false);
@@ -189,6 +181,8 @@ public class StableEdit extends javax.swing.JFrame {
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
+        spnProdUsed.setEnabled(false);
+
         javax.swing.GroupLayout panelFormLayout = new javax.swing.GroupLayout(panelForm);
         panelForm.setLayout(panelFormLayout);
         panelFormLayout.setHorizontalGroup(
@@ -222,19 +216,16 @@ public class StableEdit extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelFormLayout.createSequentialGroup()
                         .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(panelFormLayout.createSequentialGroup()
-                                    .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
-                                        .addComponent(boxProds, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(spnProdUsed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(txtOwner)
-                                .addComponent(jLabel12))
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12)
                             .addComponent(txtIndividualValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtIndividualValue1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel15))
-                        .addGap(95, 95, 95)
+                            .addComponent(jLabel15)
+                            .addGroup(panelFormLayout.createSequentialGroup()
+                                .addComponent(boxConsumo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(spnProdUsed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(87, 87, 87)
                         .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnApply, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(panelFormLayout.createSequentialGroup()
@@ -285,20 +276,21 @@ public class StableEdit extends javax.swing.JFrame {
                             .addGroup(panelFormLayout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtOwner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(boxProds, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(spnProdUsed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(13, 13, 13)
+                                .addComponent(boxConsumo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(37, 37, 37)
                                 .addComponent(jLabel15)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtIndividualValue1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(panelFormLayout.createSequentialGroup()
                                 .addComponent(jLabel13)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27)
+                                .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(panelFormLayout.createSequentialGroup()
+                                        .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(27, 27, 27))
+                                    .addGroup(panelFormLayout.createSequentialGroup()
+                                        .addComponent(spnProdUsed)
+                                        .addGap(17, 17, 17)))
                                 .addComponent(jLabel10)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtTotalValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -322,20 +314,18 @@ public class StableEdit extends javax.swing.JFrame {
         panelBackLayout.setHorizontalGroup(
             panelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBackLayout.createSequentialGroup()
-                .addGroup(panelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(40, 40, 40)
+                .addGroup(panelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelBackLayout.createSequentialGroup()
-                        .addGap(464, 464, 464)
-                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
                         .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
+                        .addComponent(btnEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBackLayout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addGroup(panelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblTitle)
-                            .addComponent(lblCode)
-                            .addComponent(panelForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(panelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lblTitle)
+                        .addComponent(lblCode)
+                        .addComponent(panelForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(40, 40, 40))
         );
         panelBackLayout.setVerticalGroup(
@@ -351,7 +341,7 @@ public class StableEdit extends javax.swing.JFrame {
                 .addGroup(panelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30))
         );
 
@@ -380,44 +370,80 @@ public class StableEdit extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    public void initData() {
+        lblCode.setText("#"+String.valueOf(StableScreen.selectedId));
+        Estadia e = Estadia.getEstadia(StableScreen.selectedId);
+        String boxCocheira = String.valueOf(e.getCocheira().charAt(0));
+        int spnCocheira = Integer.parseInt(e.getCocheira().substring(1));
+        spnEnter.setValue(e.getEntrada());
+        spnLeave.setValue(e.getSaida());
+        boxStable.setSelectedItem(boxCocheira);
+        spnStable.setValue(spnCocheira);
+    }
+    
+    private String getCocheira() {
+        return String.valueOf(boxStable.getSelectedItem()) + spnStable.getValue();
+    }
+    
+    private Timestamp getSaida() {
+        Date date = (Date) spnLeave.getValue();  
+        Timestamp tp = new Timestamp(date.getTime());
+        return tp;
+    }
+    
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
-
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        if (JOptionPane.showConfirmDialog(null, "Realmente deseja apagar os dados permanentemente?", "ATENÇÃO", JOptionPane.WARNING_MESSAGE) == 0) {
-            dispose();
-            JOptionPane.showMessageDialog(null, "Os dados foram removidos!", null, JOptionPane.INFORMATION_MESSAGE, null);
-        }
-    }//GEN-LAST:event_btnDeleteActionPerformed
-
+    
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        JOptionPane.showMessageDialog(null, "Registro #{CODE} atualizado!", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
+        Estadia e = Estadia.getEstadia(StableScreen.selectedId);
+        e.setCocheira(getCocheira());
+        e.setSaida(getSaida());
+        e.setCocheira(getCocheira());
+        EntityUtils.update(e);
+        JOptionPane.showMessageDialog(null, "Registro #"+StableScreen.selectedId+" atualizado!", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
         dispose();
+        this.notifyObservers("");
     }//GEN-LAST:event_btnSaveActionPerformed
-
-    private void txtOwnerMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtOwnerMouseReleased
-        if (txtOwner.getText().equals("Buscar..."))
-        txtOwner.setText(null);
-    }//GEN-LAST:event_txtOwnerMouseReleased
-
-    private void txtOwnerFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtOwnerFocusLost
-        if (txtOwner.getText().equals(""))
-        txtOwner.setText("Buscar...");
-    }//GEN-LAST:event_txtOwnerFocusLost
 
     private void btnApplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApplyActionPerformed
         JOptionPane.showMessageDialog(null, "Consumo atualizado com sucesso!", null, JOptionPane.INFORMATION_MESSAGE, null);
     }//GEN-LAST:event_btnApplyActionPerformed
 
+    private void btnEndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEndActionPerformed
+        Estadia e = Estadia.getEstadia(StableScreen.selectedId);
+        e.setIsCancelled(true);
+        EntityUtils.update(e);
+        JOptionPane.showMessageDialog(null, "Registro #"+StableScreen.selectedId+" atualizado!", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
+        dispose();
+        this.notifyObservers("");
+    }//GEN-LAST:event_btnEndActionPerformed
+
+    @Override
+    public void addObserver(GenericObserver o) {
+        this.observers.add(o);
+    }
+
+    @Override
+    public void removeObserver(GenericObserver o) {
+        this.observers.remove(o);
+    }
+
+    @Override
+    public void notifyObservers(Object o) {
+        for (GenericObserver observer: this.observers) {
+            observer.update(o);
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> boxAnimal;
+    private com.fp3.haras.components.ComboBoxSuggestion boxConsumo;
     private javax.swing.JComboBox<String> boxOwner;
-    private javax.swing.JComboBox<String> boxProds;
     private javax.swing.JComboBox<String> boxStable;
     private javax.swing.JButton btnApply;
     private javax.swing.JButton btnCancel;
-    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnEnd;
     private javax.swing.JButton btnSave;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -444,7 +470,6 @@ public class StableEdit extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField txtAmount;
     private javax.swing.JFormattedTextField txtIndividualValue;
     private javax.swing.JFormattedTextField txtIndividualValue1;
-    private javax.swing.JTextField txtOwner;
     private javax.swing.JFormattedTextField txtTotalValue;
     // End of variables declaration//GEN-END:variables
 }
