@@ -372,7 +372,11 @@ public class ProductsCreate extends javax.swing.JFrame {
         
         EntityUtils.insert(p);
         
-        JOptionPane.showMessageDialog(null, "Código de registro: #{CODE}", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
+        JOptionPane.showMessageDialog(null, "Código de registro: " + p.getId(), "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
+        txtProductName.setText("");
+        txtProductStock.setText("");
+        txtPurchasePrice.setText("");
+        txtSalePrice.setText("");
         dispose();
     }//GEN-LAST:event_btnSaveProductActionPerformed
 
@@ -385,7 +389,9 @@ public class ProductsCreate extends javax.swing.JFrame {
         
         EntityUtils.insert(s);
         
-        JOptionPane.showMessageDialog(null, "Código de registro: #{CODE}", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
+        JOptionPane.showMessageDialog(null, "Código de registro: " + s.getId(), "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
+        txtServiceType.setText("");
+        txtServicePrice.setText("");
         dispose();
     }//GEN-LAST:event_btnSaveServiceActionPerformed
 
@@ -398,7 +404,9 @@ public class ProductsCreate extends javax.swing.JFrame {
         
         EntityUtils.insert(te);
         
-        JOptionPane.showMessageDialog(null, "Código de registro: #{CODE}", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
+        JOptionPane.showMessageDialog(null, "Código de registro: " + te.getId(), "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
+        txtStableType.setText("");
+        txtStablePrice.setText("");
         dispose();
     }//GEN-LAST:event_btnSaveStableActionPerformed
 
