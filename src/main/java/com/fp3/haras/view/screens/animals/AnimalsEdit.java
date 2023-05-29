@@ -31,6 +31,8 @@ public class AnimalsEdit extends javax.swing.JFrame implements GenericObservable
     public void populateData(Animal animal) {
         this.selectedAnimal = animal;
         
+        this.boxProprietario.removeAllItems();
+        
         this.txtNome.setText(animal.getName());
         this.boxPelagem.setSelectedItem(animal.getCoat());
         this.boxCategoria.setSelectedItem(animal.getCategory());
@@ -43,7 +45,7 @@ public class AnimalsEdit extends javax.swing.JFrame implements GenericObservable
         } else {
             this.rbtnFemea.setSelected(true);
         }
-        boxProprietario.addItem(animal.getOwners().get(0).getNome());
+        this.boxProprietario.addItem(animal.getOwners().get(0).getNome());
         //TODO: Setar os combobox de suggestionp proprietario/condominio
     }
 
