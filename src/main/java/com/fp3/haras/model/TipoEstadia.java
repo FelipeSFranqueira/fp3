@@ -15,6 +15,7 @@ public class TipoEstadia {
     private long id;
     private String tipo;
     private double preco;
+    private boolean isDeleted = false;
 
     public TipoEstadia() {
     }
@@ -46,5 +47,13 @@ public class TipoEstadia {
 
     public void setPreco(double preco) {
         this.preco = preco;
+    }
+
+    public boolean isIsDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(boolean isDeleted) {
+        this.isDeleted = isDeleted;
     }
 }

@@ -17,6 +17,7 @@ public class Produto {
     private int estoque;
     private double pdc;
     private double pdv;
+    private boolean isDeleted = false;
 
     public Produto() {
     }
@@ -66,5 +67,13 @@ public class Produto {
 
     public void setPdv(double pdv) {
         this.pdv = pdv;
+    }
+    
+    public boolean isIsDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(boolean isDeleted) {
+        this.isDeleted = isDeleted;
     }
 }

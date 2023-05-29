@@ -15,6 +15,7 @@ public class Servico {
     private long id;
     private String nome;
     private double preco;
+    private boolean isDeleted = false;
 
     public Servico() {
     }
@@ -46,5 +47,13 @@ public class Servico {
 
     public void setPreco(double preco) {
         this.preco = preco;
+    }
+    
+    public boolean isIsDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(boolean isDeleted) {
+        this.isDeleted = isDeleted;
     }
 }

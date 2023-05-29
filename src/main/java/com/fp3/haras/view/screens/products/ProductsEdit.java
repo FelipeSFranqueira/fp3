@@ -1,9 +1,21 @@
 package com.fp3.haras.view.screens.products;
 
+import com.fp3.haras.model.Produto;
+import com.fp3.haras.model.Servico;
+import com.fp3.haras.model.TipoEstadia;
 import com.fp3.haras.utils.Colors;
+import com.fp3.haras.utils.EntityUtils;
+import com.fp3.haras.utils.GenericObserver;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 public class ProductsEdit extends javax.swing.JFrame {
+    
+    private Produto selectedProducts;
+    private Servico selectedService;
+    private TipoEstadia selectedStableType;
+    private List<GenericObserver> observers = new ArrayList<>();
 
     public ProductsEdit() {
         initComponents();
@@ -377,11 +389,28 @@ public class ProductsEdit extends javax.swing.JFrame {
 
     private void btnDeleteServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteServiceActionPerformed
         // TODO add your handling code here:
+        if (JOptionPane.showConfirmDialog(null, "Realmente deseja apagar este cadastro?", "ATENÇÃO", JOptionPane.WARNING_MESSAGE) == 0) {
+            selectedService.setNome(txtServiceType.getText());
+            selectedService.setPreco(Integer.parseInt(txtServicePrice.getText()));
+            selectedService.setIsDeleted(true);
+            
+            EntityUtils.update(selectedService);
+            
+            JOptionPane.showMessageDialog(null, "Os dados foram removidos!", null, JOptionPane.INFORMATION_MESSAGE, null);
+            dispose();
+            this.notifyObservers("");
+            }
     }//GEN-LAST:event_btnDeleteServiceActionPerformed
 
     private void btnSaveServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveServiceActionPerformed
-        JOptionPane.showMessageDialog(null, "Código de registro: #{CODE}", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
+        selectedService.setNome(txtServiceType.getText());
+        selectedService.setPreco(Integer.parseInt(txtServicePrice.getText()));
+        
+        EntityUtils.update(selectedService);
+        
+        JOptionPane.showMessageDialog(null, "Serviço atualizado!", "Cadastro Atualizado", JOptionPane.INFORMATION_MESSAGE, null);
         dispose();
+        this.notifyObservers("");
     }//GEN-LAST:event_btnSaveServiceActionPerformed
 
     private void btnCancelServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelServiceActionPerformed
@@ -389,15 +418,32 @@ public class ProductsEdit extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelServiceActionPerformed
 
     private void btnDeleteProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteProductActionPerformed
-        if (JOptionPane.showConfirmDialog(null, "Realmente deseja apagar os dados permanentemente?", "ATENÇÃO", JOptionPane.WARNING_MESSAGE) == 0) {
-            dispose();
+        if (JOptionPane.showConfirmDialog(null, "Realmente deseja apagar este cadastro?", "ATENÇÃO", JOptionPane.WARNING_MESSAGE) == 0) {
+            selectedProducts.setNome(txtProductName.getText());
+            selectedProducts.setEstoque(Integer.parseInt(txtProductStock.getText()));
+            selectedProducts.setPdc(Integer.parseInt(txtPurchasePrice.getText()));
+            selectedProducts.setPdv(Integer.parseInt(txtSalePrice.getText()));
+            selectedProducts.setIsDeleted(true);
+            
+            EntityUtils.update(selectedService);
+            
             JOptionPane.showMessageDialog(null, "Os dados foram removidos!", null, JOptionPane.INFORMATION_MESSAGE, null);
+            dispose();
+            this.notifyObservers("");
         }
     }//GEN-LAST:event_btnDeleteProductActionPerformed
 
     private void btnSaveProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveProductActionPerformed
-        JOptionPane.showMessageDialog(null, "Código de registro: #{CODE}", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
+        selectedProducts.setNome(txtProductName.getText());
+        selectedProducts.setEstoque(Integer.parseInt(txtProductStock.getText()));
+        selectedProducts.setPdc(Integer.parseInt(txtPurchasePrice.getText()));
+        selectedProducts.setPdv(Integer.parseInt(txtSalePrice.getText()));
+        
+        EntityUtils.update(selectedProducts);
+        
+        JOptionPane.showMessageDialog(null, "Produto atualizado!", "Cadastro Atualizado", JOptionPane.INFORMATION_MESSAGE, null);
         dispose();
+        this.notifyObservers("");
     }//GEN-LAST:event_btnSaveProductActionPerformed
 
     private void btnCancelProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelProductActionPerformed
@@ -409,17 +455,46 @@ public class ProductsEdit extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelStableActionPerformed
 
     private void btnSaveStableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveStableActionPerformed
-        JOptionPane.showMessageDialog(null, "Código de registro: #{CODE}", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
+        selectedStableType.setTipo(txtStablePrice.getText());
+        selectedStableType.setPreco(Integer.parseInt(txtStablePrice.getText()));
+        
+        EntityUtils.update(selectedStableType);
+        
+        JOptionPane.showMessageDialog(null, "Tipo de Estadia atualizado!", "Cadastro Atualizado", JOptionPane.INFORMATION_MESSAGE, null);
         dispose();
+        this.notifyObservers("");
     }//GEN-LAST:event_btnSaveStableActionPerformed
 
     private void btnDeleteStableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteStableActionPerformed
-        if (JOptionPane.showConfirmDialog(null, "Realmente deseja apagar os dados permanentemente?", "ATENÇÃO", JOptionPane.WARNING_MESSAGE) == 0) {
-            dispose();
+        if (JOptionPane.showConfirmDialog(null, "Realmente deseja apagar este cadastro?", "ATENÇÃO", JOptionPane.WARNING_MESSAGE) == 0) {
+            selectedStableType.setTipo(txtStablePrice.getText());
+            selectedStableType.setPreco(Integer.parseInt(txtStablePrice.getText()));
+            selectedStableType.setIsDeleted(true);
+            
+            EntityUtils.update(selectedStableType);
+            
             JOptionPane.showMessageDialog(null, "Os dados foram removidos!", null, JOptionPane.INFORMATION_MESSAGE, null);
+            dispose();
+            this.notifyObservers("");
         }
     }//GEN-LAST:event_btnDeleteStableActionPerformed
 
+    @Override
+    public void addObserver(GenericObserver o) {
+        this.observers.add(o);
+    }
+
+    @Override
+    public void removeObserver(GenericObserver o) {
+        this.observers.remove(o);
+    }
+    
+    @Override
+    public void notifyObservers(Object o) {
+        for (GenericObserver observer: this.observers) {
+            observer.update(o);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelProduct;
