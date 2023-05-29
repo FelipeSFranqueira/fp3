@@ -1,13 +1,13 @@
 package com.fp3.haras.enums;
 
-public enum Sexo {
+public enum Sex {
     
     MACHO("Macho"),
     FEMEA("Femea");
     
     private String descricao;
 
-    private Sexo(String descricao) {
+    private Sex(String descricao) {
         this.descricao = descricao;
     }
 

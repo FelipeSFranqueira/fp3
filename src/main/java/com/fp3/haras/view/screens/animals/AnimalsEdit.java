@@ -1,10 +1,19 @@
 package com.fp3.haras.view.screens.animals;
 
+import com.fp3.haras.model.Animal;
 import com.fp3.haras.utils.Colors;
+import com.fp3.haras.utils.EntityUtils;
+import com.fp3.haras.utils.GenericObservable;
+import com.fp3.haras.utils.GenericObserver;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-public class AnimalsEdit extends javax.swing.JFrame {
+public class AnimalsEdit extends javax.swing.JFrame implements GenericObservable {
+    
+    private Animal selectedAnimal;
+    private List<GenericObserver> observers = new ArrayList<>();
 
     public AnimalsEdit() {
         initComponents();
@@ -17,7 +26,27 @@ public class AnimalsEdit extends javax.swing.JFrame {
         boxProprietario.setEnabled(false);
         jLabel9.setEnabled(false);
         boxCondominio.setEnabled(false);
+    }
+    
+    public void populateData(Animal animal) {
+        this.selectedAnimal = animal;
         
+        this.boxProprietario.removeAllItems();
+        
+        this.txtNome.setText(animal.getName());
+        this.boxPelagem.setSelectedItem(animal.getCoat());
+        this.boxCategoria.setSelectedItem(animal.getCategory());
+        this.txtOrigem.setText(animal.getOrigin());
+        this.boxAie.setSelected(animal.getHasExameAie());
+        this.boxGta.setSelected(animal.getHasGta());
+        this.boxMormo.setSelected(animal.getHasExameMormo());
+        if (animal.getSex().equals("Macho")) {
+            this.rbtnMacho.setSelected(true);
+        } else {
+            this.rbtnFemea.setSelected(true);
+        }
+        this.boxProprietario.addItem(animal.getOwners().get(0).getNome());
+        //TODO: Setar os combobox de suggestionp proprietario/condominio
     }
 
     @SuppressWarnings("unchecked")
@@ -71,7 +100,7 @@ public class AnimalsEdit extends javax.swing.JFrame {
         panelForm.setMinimumSize(new java.awt.Dimension(570, 290));
         panelForm.setPreferredSize(new java.awt.Dimension(570, 290));
 
-        boxPelagem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nenhuma" }));
+        boxPelagem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nenhuma", "Branca", "Preta", "Alazã", "Castanha", "Baia", "Pêlo de Rato", "Tordilha", "Rosilha", "Lobuna", "Ruão", "Pampa", "Leopardo", "Mantado", "Nevado" }));
 
         jLabel2.setText("CATEGORIA");
 
@@ -96,7 +125,7 @@ public class AnimalsEdit extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel16.setText("MORMO:");
 
-        boxCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nenhuma" }));
+        boxCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nenhuma", "Appaloosa", "Campolina", "Bretão", "Lusitano", "Mangalarga", "Nordestino", "Pampa", "Quarto de Milha", "Akhal-Teke" }));
 
         buttonGroup1.add(rbtnMacho);
         rbtnMacho.setText("Macho");
@@ -318,17 +347,67 @@ public class AnimalsEdit extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        if (JOptionPane.showConfirmDialog(null, "Realmente deseja apagar os dados permanentemente?", "ATENÇÃO", JOptionPane.WARNING_MESSAGE) == 0) {
-            dispose();
+        if (JOptionPane.showConfirmDialog(null, "Realmente deseja apagar este cadastro?", "ATENÇÃO", JOptionPane.WARNING_MESSAGE) == 0) {
+            selectedAnimal.setName(txtNome.getText());
+            selectedAnimal.setCoat((String) boxPelagem.getSelectedItem());
+            if (rbtnMacho.isSelected()) {
+                selectedAnimal.setSex(rbtnMacho.getText());
+            } else if (rbtnFemea.isSelected()) {
+                selectedAnimal.setSex(rbtnFemea.getText());
+            }
+            selectedAnimal.setCategory((String) boxCategoria.getSelectedItem());
+            selectedAnimal.setOrigin(txtOrigem.getText());
+            selectedAnimal.setHasExamAie(boxAie.isSelected());
+            selectedAnimal.setHasExamMormo(boxMormo.isSelected());
+            selectedAnimal.setHasGta(boxGta.isSelected());
+            selectedAnimal.setIsDeleted(true);
+            
+            EntityUtils.update(selectedAnimal);
+            
             JOptionPane.showMessageDialog(null, "Os dados foram removidos!", null, JOptionPane.INFORMATION_MESSAGE, null);
+            dispose();
+            this.notifyObservers("");
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        JOptionPane.showMessageDialog(null, "Registro #{CODE} atualizado!", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
+        selectedAnimal.setName(txtNome.getText());
+        selectedAnimal.setCoat((String) boxPelagem.getSelectedItem());
+        if (rbtnMacho.isSelected()) {
+            selectedAnimal.setSex(rbtnMacho.getText());
+        } else if (rbtnFemea.isSelected()) {
+            selectedAnimal.setSex(rbtnFemea.getText());
+        }
+        selectedAnimal.setCategory((String) boxCategoria.getSelectedItem());
+        selectedAnimal.setOrigin(txtOrigem.getText());
+        selectedAnimal.setHasExamAie(boxAie.isSelected());
+        selectedAnimal.setHasExamMormo(boxMormo.isSelected());
+        selectedAnimal.setHasGta(boxGta.isSelected());
+        
+        EntityUtils.update(selectedAnimal);
+        
+        JOptionPane.showMessageDialog(null, "Animal atualizado!", "Cadastro Atualizado", JOptionPane.INFORMATION_MESSAGE, null);
         dispose();
+        this.notifyObservers("");
     }//GEN-LAST:event_btnSaveActionPerformed
+    
+    @Override
+    public void addObserver(GenericObserver o) {
+        this.observers.add(o);
+    }
 
+    @Override
+    public void removeObserver(GenericObserver o) {
+        this.observers.remove(o);
+    }
+
+    @Override
+    public void notifyObservers(Object o) {
+        for (GenericObserver observer: this.observers) {
+            observer.update(o);
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox boxAie;
     private javax.swing.JComboBox<String> boxCategoria;
