@@ -5,6 +5,7 @@ import com.fp3.haras.model.Servico;
 import com.fp3.haras.model.TipoEstadia;
 import com.fp3.haras.utils.Colors;
 import com.fp3.haras.utils.EntityUtils;
+import com.fp3.haras.utils.GenericObserver;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -14,7 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class ProductsScreen extends javax.swing.JPanel {
+public class ProductsScreen extends javax.swing.JPanel implements GenericObserver{
     private ProductsCreate CreateModal;
     private ProductsEdit   EditModal;
     private Produto       productSelected;
@@ -459,7 +460,7 @@ public class ProductsScreen extends javax.swing.JPanel {
         }
     }
     
-    //@Override
+    @Override
     public void update(Object o) {
         this.boxSearch.removeAllItems();
         this.updateBoxSearch();

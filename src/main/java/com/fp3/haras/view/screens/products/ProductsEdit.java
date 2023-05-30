@@ -5,12 +5,13 @@ import com.fp3.haras.model.Servico;
 import com.fp3.haras.model.TipoEstadia;
 import com.fp3.haras.utils.Colors;
 import com.fp3.haras.utils.EntityUtils;
+import com.fp3.haras.utils.GenericObservable;
 import com.fp3.haras.utils.GenericObserver;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-public class ProductsEdit extends javax.swing.JFrame {
+public class ProductsEdit extends javax.swing.JFrame implements GenericObservable {
     
     private Produto selectedProducts;
     private Servico selectedService;
@@ -502,17 +503,17 @@ public class ProductsEdit extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnDeleteStableActionPerformed
 
-    //@Override
+    @Override
     public void addObserver(GenericObserver o) {
         this.observers.add(o);
     }
 
-    //@Override
+    @Override
     public void removeObserver(GenericObserver o) {
         this.observers.remove(o);
     }
     
-    //@Override
+    @Override
     public void notifyObservers(Object o) {
         for (GenericObserver observer: this.observers) {
             observer.update(o);
