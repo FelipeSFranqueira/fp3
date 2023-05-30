@@ -6,10 +6,16 @@ import com.fp3.haras.model.TipoEstadia;
 import javax.swing.JOptionPane;
 import com.fp3.haras.utils.Colors;
 import com.fp3.haras.utils.EntityUtils;
+import com.fp3.haras.utils.GenericObservable;
+import com.fp3.haras.utils.GenericObserver;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 
-public class ProductsCreate extends javax.swing.JFrame {
+public class ProductsCreate extends javax.swing.JFrame implements GenericObservable {
 
+    private List<GenericObserver> observers = new ArrayList<>();
+    
     public ProductsCreate() {
         initComponents();
         lblTitle.putClientProperty("FlatLaf.styleClass", "h00");
@@ -370,9 +376,11 @@ public class ProductsCreate extends javax.swing.JFrame {
                 Integer.parseInt(txtPurchasePrice.getText()), 
                 Integer.parseInt(txtSalePrice.getText()));
         
+        String querySelect = "SELECT c FROM Products c WHERE c.nome = '" + txtProductName.getText() + "'";
         EntityUtils.insert(p);
         
         JOptionPane.showMessageDialog(null, "Código de registro: " + p.getId(), "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
+        this.notifyObservers("");
         txtProductName.setText("");
         txtProductStock.setText("");
         txtPurchasePrice.setText("");
@@ -387,9 +395,11 @@ public class ProductsCreate extends javax.swing.JFrame {
     private void btnSaveServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveServiceActionPerformed
         Servico s = new Servico(txtServiceType.getText(), Integer.parseInt(txtServicePrice.getText()));
         
+        String querySelect = "SELECT c FROM Services c WHERE c.nome = '" + txtServiceType.getText() + "'";
         EntityUtils.insert(s);
         
         JOptionPane.showMessageDialog(null, "Código de registro: " + s.getId(), "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
+        this.notifyObservers("");
         txtServiceType.setText("");
         txtServicePrice.setText("");
         dispose();
@@ -402,14 +412,32 @@ public class ProductsCreate extends javax.swing.JFrame {
     private void btnSaveStableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveStableActionPerformed
         TipoEstadia te = new TipoEstadia(txtStableType.getText(), Integer.parseInt(txtStablePrice.getText()));
         
+        String querySelect = "SELECT c FROM StablesType c WHERE c.tipo = '" + txtStableType.getText() + "'";
         EntityUtils.insert(te);
         
         JOptionPane.showMessageDialog(null, "Código de registro: " + te.getId(), "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
+        this.notifyObservers("");
         txtStableType.setText("");
         txtStablePrice.setText("");
         dispose();
     }//GEN-LAST:event_btnSaveStableActionPerformed
 
+    @Override
+    public void addObserver(GenericObserver o) {
+        this.observers.add(o);
+    }
+
+    @Override
+    public void removeObserver(GenericObserver o) {
+        this.observers.remove(o);
+    }
+
+    @Override
+    public void notifyObservers(Object o) {
+        for (GenericObserver observer: this.observers) {
+            observer.update(o);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelProduct;
