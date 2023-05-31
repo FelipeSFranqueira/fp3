@@ -35,6 +35,18 @@ public class ProductsScreen extends javax.swing.JPanel implements GenericObserve
         this.setBackground(Colors.PRIMARYBG); 
         lblTitle.putClientProperty("FlatLaf.styleClass", "h00");    
     }
+
+    ProductsScreen(ProductsCreate creationModal, ProductsEdit editionModal) {
+        initComponents();
+        this.CreateModal = creationModal;
+        this.EditModal = editionModal;
+        this.setBackground(Colors.PRIMARYBG);
+        lblTitle.putClientProperty("FlatLaf.styleClass", "h00");
+        
+        this.populateTable();
+        
+        this.updateBoxSearch();
+    }
     
     private String getSelectedProductID() {
         if (tableProducts.getSelectedRow() != -1) {
@@ -291,40 +303,57 @@ public class ProductsScreen extends javax.swing.JPanel implements GenericObserve
         if (tpSelection.getTitleAt(tpSelection.getSelectedIndex()).equals("PRODUTOS")) {
             DefaultTableModel tableP = (DefaultTableModel) tableProducts.getModel();
             tableP.setRowCount(0);
-            String pQuerySearch = "SELECT a FROM Products WHERE a.nome = '" + (String) boxSearch.getSelectedItem() + "'";
-            List<Produto> produto = EntityUtils.select(pQuerySearch, Produto.class);
-            for (Produto a : produto) {
-                tableP.addRow(new Object[]{
-                    a.getId(),
-                    a.getNome(),
-                    a.getEstoque(),
-                    a.getPdc(),
-                    a.getPdv()
-                });
+            
+            if (boxSearch.getSelectedItem() == null) {
+               this.populateTable();
+            } else {
+                String pQuerySearch = "SELECT a FROM Products WHERE a.nome = '" + (String) boxSearch.getSelectedItem() + "'";
+                List<Produto> produto = EntityUtils.select(pQuerySearch, Produto.class);
+                for (Produto a : produto) {
+                    tableP.addRow(new Object[]{
+                        a.getId(),
+                        a.getNome(),
+                        a.getEstoque(),
+                        a.getPdc(),
+                        a.getPdv()
+                    });
+                }
             }
+            
         } else if (tpSelection.getTitleAt(tpSelection.getSelectedIndex()).equals("SERVIÇOS")) {
             DefaultTableModel tableS = (DefaultTableModel) tableServices.getModel();
             tableS.setRowCount(0);
-            String sQuerySearch = "SELECT a FROM Services WHERE a.nome = '" + (String) boxSearch.getSelectedItem() + "'";
-            List<Servico> servico = EntityUtils.select(sQuerySearch, Servico.class);
-            for (Servico a: servico) {
-                tableS.addRow(new Object[]{
-                    a.getId(),
-                    a.getNome(),
-                    a.getPreco()
-                });
+            
+            if (boxSearch.getSelectedItem() == null) {
+               this.populateTable();
+            } else {
+                String sQuerySearch = "SELECT a FROM Services WHERE a.nome = '" + (String) boxSearch.getSelectedItem() + "'";
+                List<Servico> servico = EntityUtils.select(sQuerySearch, Servico.class);
+                for (Servico a : servico) {
+                    tableS.addRow(new Object[]{
+                        a.getId(),
+                        a.getNome(),
+                        a.getPreco()
+                    });
+                }
             }
+            
         } else if (tpSelection.getTitleAt(tpSelection.getSelectedIndex()).equals("ESTADIAS")) {
             DefaultTableModel tableE = (DefaultTableModel) tableStable.getModel();
             tableE.setRowCount(0);
-            String eQuerySearch = "SELECT a FROM StablesType WHERE a.tipo = '" + (String) boxSearch.getSelectedItem() + "'";
-            List<TipoEstadia> tipoEstadia = EntityUtils.select(eQuerySearch, TipoEstadia.class);
-            for (TipoEstadia a: tipoEstadia) {
-                tableE.addRow(new Object[]{
-                    a.getId(),
-                    a.getTipo(),
-                    a.getPreco()
-                });
+            
+            if (boxSearch.getSelectedItem() == null) {
+               this.populateTable();
+            } else {
+                String eQuerySearch = "SELECT a FROM StablesType WHERE a.tipo = '" + (String) boxSearch.getSelectedItem() + "'";
+                List<TipoEstadia> tipoEstadia = EntityUtils.select(eQuerySearch, TipoEstadia.class);
+                for (TipoEstadia a : tipoEstadia) {
+                    tableE.addRow(new Object[]{
+                        a.getId(),
+                        a.getTipo(),
+                        a.getPreco()
+                    });
+                }
             }
         }
         

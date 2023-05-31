@@ -376,7 +376,6 @@ public class ProductsCreate extends javax.swing.JFrame implements GenericObserva
                 Integer.parseInt(txtPurchasePrice.getText()), 
                 Integer.parseInt(txtSalePrice.getText()));
         
-        String querySelect = "SELECT c FROM Products c WHERE c.nome = '" + txtProductName.getText() + "'";
         EntityUtils.insert(p);
         
         JOptionPane.showMessageDialog(null, "Código de registro: " + p.getId(), "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
@@ -395,7 +394,6 @@ public class ProductsCreate extends javax.swing.JFrame implements GenericObserva
     private void btnSaveServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveServiceActionPerformed
         Servico s = new Servico(txtServiceType.getText(), Integer.parseInt(txtServicePrice.getText()));
         
-        String querySelect = "SELECT c FROM Services c WHERE c.nome = '" + txtServiceType.getText() + "'";
         EntityUtils.insert(s);
         
         JOptionPane.showMessageDialog(null, "Código de registro: " + s.getId(), "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
@@ -412,7 +410,6 @@ public class ProductsCreate extends javax.swing.JFrame implements GenericObserva
     private void btnSaveStableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveStableActionPerformed
         TipoEstadia te = new TipoEstadia(txtStableType.getText(), Integer.parseInt(txtStablePrice.getText()));
         
-        String querySelect = "SELECT c FROM StablesType c WHERE c.tipo = '" + txtStableType.getText() + "'";
         EntityUtils.insert(te);
         
         JOptionPane.showMessageDialog(null, "Código de registro: " + te.getId(), "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
