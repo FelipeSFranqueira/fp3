@@ -6,6 +6,7 @@ import com.fp3.haras.model.Estadia;
 import com.fp3.haras.utils.Colors;
 import com.fp3.haras.utils.EntityUtils;
 import com.fp3.haras.utils.GenericObserver;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -21,7 +22,6 @@ public class StableScreen extends javax.swing.JPanel implements GenericObserver 
     private final StableEdit editionModal;
     
     public static long selectedId;
-    private long stay;
     DefaultTableCellRenderer center = new DefaultTableCellRenderer();
     
     public StableScreen(StableCreate creationModal, StableEdit editionModal) {
@@ -35,6 +35,18 @@ public class StableScreen extends javax.swing.JPanel implements GenericObserver 
         this.updateSuggestionBox();
     }
     
+    private Date setOnlyDay(Date date) {
+        Calendar calendario = Calendar.getInstance();
+
+        calendario.setTime(date);
+        calendario.set(Calendar.HOUR_OF_DAY, 0);
+        calendario.set(Calendar.MINUTE, 0);
+        calendario.set(Calendar.SECOND, 0);
+        calendario.set(Calendar.MILLISECOND, 0);
+
+        return calendario.getTime();
+    }
+    
     private void updateTables() {
         DefaultTableModel progressModel = (DefaultTableModel) tableProgress.getModel();
         DefaultTableModel futureModel = (DefaultTableModel) tableFuture.getModel();
@@ -42,26 +54,24 @@ public class StableScreen extends javax.swing.JPanel implements GenericObserver 
         List<Estadia> estadias = EntityUtils.select("SELECT c FROM Cocheiras c", Estadia.class);
         
         Date now = new Date();
-        Date n = new Date(now.getTime());
+        Date n = setOnlyDay(new Date(now.getTime()));
+        Date entrada, saida;
         
         progressModel.setRowCount(0);
         futureModel.setRowCount(0);
         endModel.setRowCount(0);
         
         for (Estadia e : estadias) {
-            if (!e.getIsCancelled() && e.getSaida().after(n) && (e.getEntrada().before(n) || e.getEntrada().equals(n))) {
+            entrada = setOnlyDay(e.getEntrada());
+            saida = setOnlyDay(e.getSaida());
+            
+            if (!e.getIsCancelled() && saida.after(n) && (entrada.before(n) || entrada.equals(n))) {
                 updateTableModel(e.getId(), progressModel);
-            }
-        }
-        
-        for (Estadia e : estadias) {
-            if (e.getEntrada().after(n) && !e.getIsCancelled() && e.getEntrada().after(n)) {
+            
+            } else if (!e.getIsCancelled() && entrada.after(n) && entrada.after(n)) {
                     updateTableModel(e.getId(), futureModel);
-            }
-        }
-
-        for (Estadia e : estadias) {
-            if (!e.getIsCancelled() && e.getEntrada().before(n) && e.getSaida().before(n)) {
+            
+            } else if (!e.getIsCancelled() && entrada.before(n) && saida.before(n)) {
                 updateTableModel(e.getId(), endModel);
             }
         }
@@ -272,11 +282,19 @@ public class StableScreen extends javax.swing.JPanel implements GenericObserver 
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
+        this.creationModal.clearFrameModel();
         this.creationModal.updateSuggestionBox();
         this.creationModal.setVisible(true);
-        creationModal.toFront();
+        this.creationModal.toFront();
     }//GEN-LAST:event_btnCreateActionPerformed
 
+    private void initEdit(Object tableSelectedCode) {
+        selectedId = Integer.parseInt(String.valueOf(tableSelectedCode));
+        this.editionModal.initData();
+        this.editionModal.setVisible(true);
+        this.editionModal.toFront();
+    }
+    
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         if (tpaneInfo.getTitleAt(tpaneInfo.getSelectedIndex()).equals("ATIVAS") 
                 && getSelectedProgressCode() != null && getSelectedProgressValue() != null) {
@@ -298,33 +316,29 @@ public class StableScreen extends javax.swing.JPanel implements GenericObserver 
             }
     }//GEN-LAST:event_btnEditActionPerformed
 
-    private void initEdit(Object tableSelectedCode) {
-        selectedId = Integer.parseInt(String.valueOf(tableSelectedCode));
-        editionModal.initData();
-        this.editionModal.setVisible(true);
-        editionModal.toFront();
-    }
-    
     private DefaultTableModel updateTableModel(long id, DefaultTableModel models) {
-        stay = TimeUnit.MILLISECONDS.toDays(Estadia.getEstadia(id).getSaida().getTime() - Estadia.getEstadia(id).getEntrada().getTime());
+        long time = Estadia.getEstadia(id).getSaida().getTime() - Estadia.getEstadia(id).getEntrada().getTime();
+        long stayDays = TimeUnit.MILLISECONDS.toDays(time);
+        long stayHours = TimeUnit.MILLISECONDS.toHours(time);
+        String remainTime;
+        
+        if (stayDays == 0)
+            remainTime = stayHours + "h";
+        else
+            remainTime = stayDays + "d";
+        
         updateSuggestionBox();
-        
-        String animalName = String.valueOf(Estadia.getEstadia(id).getAnimal().getName());
-        String querySearch = "SELECT a FROM Animal a JOIN FETCH a.owners o WHERE a.name = '" + animalName + "'";
-        List<Animal> animal = EntityUtils.select(querySearch, Animal.class);
-        String owner = "";
-        
-        for (Animal a : animal) {
-            for (Cliente o : a.getOwners()) {
-                        owner = o.getNome();
-            }
-        }
+        long animalId = Estadia.getEstadia(id).getAnimal().getId();
+        String animalName = Estadia.getEstadia(id).getAnimal().getName();
+        String querySearch = "SELECT a FROM Animal a JOIN FETCH a.owners o WHERE a.id = '" + animalId + "'";
+        Animal animal = EntityUtils.select(querySearch, Animal.class).get(0);
+        Cliente owner = animal.getOwners().get(0);
         
         models.addRow(new Object[]{
             String.valueOf(Estadia.getEstadia(id).getId()),
-            owner,
+            owner.getNome(),
             animalName,
-            String.valueOf(stay + "d"),
+            remainTime,
             String.valueOf(Estadia.getEstadia(id).getCocheira()),
             "---"
         });

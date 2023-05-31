@@ -8,10 +8,12 @@ import com.fp3.haras.utils.GenericObservable;
 import com.fp3.haras.utils.GenericObserver;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.SpinnerDateModel;
 
 public class StableCreate extends javax.swing.JFrame implements GenericObservable {
 
@@ -24,6 +26,13 @@ public class StableCreate extends javax.swing.JFrame implements GenericObservabl
         panelForm.setBackground(Colors.PRIMARYBG);
         lblTitle.putClientProperty("FlatLaf.styleClass", "h00");
         updateSuggestionBox();
+    }
+    
+    public void clearFrameModel() {
+        spnEnter.setModel(new SpinnerDateModel(new Date(), null, null, Calendar.DAY_OF_YEAR));
+        spnLeave.setModel(new SpinnerDateModel(new Date(), null, null, Calendar.DAY_OF_YEAR));
+        boxStable.setSelectedItem("A");
+        spnStable.setValue(1);
     }
 
     public final void updateSuggestionBox() {
