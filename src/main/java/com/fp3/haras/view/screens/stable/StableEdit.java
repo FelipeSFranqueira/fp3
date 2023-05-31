@@ -37,15 +37,18 @@ public class StableEdit extends javax.swing.JFrame implements GenericObservable 
         tableProds = new javax.swing.JTable();
         txtTotalValue = new javax.swing.JFormattedTextField();
         txtIndividualValue = new javax.swing.JFormattedTextField();
-        txtAmount = new javax.swing.JFormattedTextField();
         txtIndividualValue1 = new javax.swing.JFormattedTextField();
         btnApply = new javax.swing.JButton();
         spnLeave = new javax.swing.JSpinner();
         spnStable = new javax.swing.JSpinner();
         spnEnter = new javax.swing.JSpinner();
+        spnProdUsed = new javax.swing.JSpinner();
         boxAnimal = new javax.swing.JComboBox<>();
         boxOwner = new javax.swing.JComboBox<>();
         boxStable = new javax.swing.JComboBox<>();
+        boxConsumo = new com.fp3.haras.components.ComboBoxSuggestion();
+        boxTipo = new com.fp3.haras.components.ComboBoxSuggestion();
+        jSeparator1 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -57,9 +60,9 @@ public class StableEdit extends javax.swing.JFrame implements GenericObservable 
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        boxConsumo = new com.fp3.haras.components.ComboBoxSuggestion();
-        spnProdUsed = new javax.swing.JSpinner();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         lblTitle = new javax.swing.JLabel();
         lblCode = new javax.swing.JLabel();
 
@@ -115,16 +118,10 @@ public class StableEdit extends javax.swing.JFrame implements GenericObservable 
         jScrollPane1.setViewportView(tableProds);
 
         txtTotalValue.setEditable(false);
-        txtTotalValue.setText("TOTAL");
 
         txtIndividualValue.setEditable(false);
-        txtIndividualValue.setText("TOTAL");
-
-        txtAmount.setEditable(false);
-        txtAmount.setText("QTD");
 
         txtIndividualValue1.setEditable(false);
-        txtIndividualValue1.setText("TOTAL");
 
         btnApply.setText("APLICAR");
         btnApply.addActionListener(new java.awt.event.ActionListener() {
@@ -140,6 +137,8 @@ public class StableEdit extends javax.swing.JFrame implements GenericObservable 
         spnEnter.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), null, null, java.util.Calendar.DAY_OF_YEAR));
         spnEnter.setEnabled(false);
 
+        spnProdUsed.setEnabled(false);
+
         boxAnimal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Animal" }));
         boxAnimal.setEnabled(false);
 
@@ -147,6 +146,8 @@ public class StableEdit extends javax.swing.JFrame implements GenericObservable 
         boxOwner.setEnabled(false);
 
         boxStable.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C", "D", "E", "F" }));
+
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         jLabel3.setText("ENTRADA");
         jLabel3.setEnabled(false);
@@ -160,7 +161,7 @@ public class StableEdit extends javax.swing.JFrame implements GenericObservable 
         jLabel6.setText("COCHEIRA");
 
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel10.setText("VALOR TOTAL EM CONSUMO");
+        jLabel10.setText("VALOR DA ESTADIA");
 
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel9.setText("EDIÇÃO DE CONSUMO");
@@ -172,16 +173,18 @@ public class StableEdit extends javax.swing.JFrame implements GenericObservable 
         jLabel12.setText("VALOR EM QUANTIDADE");
 
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel13.setText("PRODUTOS CONSUMIDOS");
+        jLabel13.setText("TIPO DE ESTADIA");
 
         jLabel14.setText("SAÍDA");
 
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel15.setText("VALOR POR UNIDADE");
 
-        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jLabel2.setText("R$");
 
-        spnProdUsed.setEnabled(false);
+        jLabel7.setText("R$");
+
+        jLabel8.setText("R$");
 
         javax.swing.GroupLayout panelFormLayout = new javax.swing.GroupLayout(panelForm);
         panelForm.setLayout(panelFormLayout);
@@ -218,22 +221,31 @@ public class StableEdit extends javax.swing.JFrame implements GenericObservable 
                         .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel12)
-                            .addComponent(txtIndividualValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtIndividualValue1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel15)
                             .addGroup(panelFormLayout.createSequentialGroup()
                                 .addComponent(boxConsumo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(spnProdUsed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(spnProdUsed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelFormLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtIndividualValue1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelFormLayout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtIndividualValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(87, 87, 87)
                         .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnApply, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(panelFormLayout.createSequentialGroup()
                                 .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtTotalValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(boxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(panelFormLayout.createSequentialGroup()
+                                        .addComponent(jLabel8)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtTotalValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(28, 28, 28))
         );
@@ -274,32 +286,35 @@ public class StableEdit extends javax.swing.JFrame implements GenericObservable 
                         .addGap(25, 25, 25)
                         .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelFormLayout.createSequentialGroup()
+                                .addComponent(jLabel13)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(spnProdUsed, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(boxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtTotalValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel8)))
+                            .addGroup(panelFormLayout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(boxConsumo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(37, 37, 37)
+                                .addGap(18, 18, 18)
                                 .addComponent(jLabel15)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtIndividualValue1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelFormLayout.createSequentialGroup()
-                                .addComponent(jLabel13)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(panelFormLayout.createSequentialGroup()
-                                        .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(27, 27, 27))
-                                    .addGroup(panelFormLayout.createSequentialGroup()
-                                        .addComponent(spnProdUsed)
-                                        .addGap(17, 17, 17)))
-                                .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtTotalValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtIndividualValue1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2))))
+                        .addGap(25, 25, 25)
                         .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(panelFormLayout.createSequentialGroup()
                                 .addComponent(jLabel12)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtIndividualValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtIndividualValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7)))
                             .addComponent(btnApply, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
@@ -441,6 +456,7 @@ public class StableEdit extends javax.swing.JFrame implements GenericObservable 
     private com.fp3.haras.components.ComboBoxSuggestion boxConsumo;
     private javax.swing.JComboBox<String> boxOwner;
     private javax.swing.JComboBox<String> boxStable;
+    private com.fp3.haras.components.ComboBoxSuggestion boxTipo;
     private javax.swing.JButton btnApply;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnEnd;
@@ -451,10 +467,13 @@ public class StableEdit extends javax.swing.JFrame implements GenericObservable 
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
@@ -467,7 +486,6 @@ public class StableEdit extends javax.swing.JFrame implements GenericObservable 
     private javax.swing.JSpinner spnProdUsed;
     private javax.swing.JSpinner spnStable;
     private javax.swing.JTable tableProds;
-    private javax.swing.JFormattedTextField txtAmount;
     private javax.swing.JFormattedTextField txtIndividualValue;
     private javax.swing.JFormattedTextField txtIndividualValue1;
     private javax.swing.JFormattedTextField txtTotalValue;
