@@ -5,16 +5,15 @@ import java.awt.CardLayout;
 
 import com.fp3.haras.utils.Screens;
 import com.fp3.haras.view.screens.animals.AnimalsContainer;
-import com.fp3.haras.view.screens.animals.AnimalsScreen;
 import com.fp3.haras.view.screens.home.HomeScreen;
 import com.fp3.haras.view.screens.client.ClientScreen;
 import com.fp3.haras.view.screens.products.ProductsScreen;
-import com.fp3.haras.view.screens.stable.StableScreen;
+import com.fp3.haras.view.screens.stable.StableContainer;
 
 public class FeatureWrapper extends javax.swing.JPanel implements GenericObserver<Screens> {
     private CardLayout cardLayout;
     private HomeScreen homePanel;
-    private StableScreen stablePanel;
+    private StableContainer stablePanel;
     private ClientScreen customersPanel;
     private AnimalsContainer animalsPanel;
     private ProductsScreen productsPanel;
@@ -29,7 +28,7 @@ public class FeatureWrapper extends javax.swing.JPanel implements GenericObserve
         
         /* Declare here the screens */
         this.homePanel = new HomeScreen();
-        this.stablePanel = new StableScreen();
+        this.stablePanel = new StableContainer();
         this.customersPanel = new ClientScreen();
         this.animalsPanel = new AnimalsContainer();
         this.productsPanel = new ProductsScreen();
