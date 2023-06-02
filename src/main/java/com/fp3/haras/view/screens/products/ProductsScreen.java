@@ -277,25 +277,18 @@ public class ProductsScreen extends javax.swing.JPanel implements GenericObserve
                 && getSelectedProductCode()!= null && getSelectedProductValue()!= null) {
             
                 initEdit(getSelectedProductCode(), 1);
-                
-               // this.EditModal.populateData(productSelected);
-                //new ProductsEdit().setVisible(true);
+
                 
             }else if (selectedTab.equals("SERVIÇOS")
                     && getSelectedServiceCode()!= null && getSelectedServiceValue()!= null) {
                 
                 initEdit(getSelectedServiceCode(), 2);
                 
-                //this.EditModal.populateData(serviceSelected);
-                //new ProductsEdit().setVisible(true);
-                
             }else if (selectedTab.equals("ESTADIAS")
                     && getSelectedHostingTypeCode()!= null && getSelectedHostingTypeValue()!= null) {
                 
                 initEdit(getSelectedHostingTypeCode(), 3);
-                
-                //this.EditModal.populateData(stableTypeSelected);
-                //new ProductsEdit().setVisible(true);
+
                 
             } else {
                 JOptionPane.showMessageDialog(null, "Nada foi selecionado.", null, JOptionPane.ERROR_MESSAGE, null);
@@ -422,52 +415,6 @@ public class ProductsScreen extends javax.swing.JPanel implements GenericObserve
     }
     
     private void populateTable() {
-        
-        /*String selectedTab = tpSelection.getTitleAt(tpSelection.getSelectedIndex());
-        
-        if (selectedTab.equals("PRODUTOS")) {
-            DefaultTableModel table = (DefaultTableModel) tableProducts.getModel();
-            table.setRowCount(0);
-            fetchTableResults();
-            for (Produto a : this.ProductsTableResults) {
-                table.addRow(new Object[]{
-                    a.getId(),
-                    a.getNome(),
-                    a.getEstoque(),
-                    a.getPdc(),
-                    a.getPdv()
-                });
-            }
-            
-            
-        } else if (selectedTab.equals("SERVIÇOS")) {
-            DefaultTableModel table = (DefaultTableModel) tableServices.getModel();
-            table.setRowCount(0);
-            fetchTableResults();
-            for (Servico a : this.ServicesTableResults) {
-                table.addRow(new Object[]{
-                    a.getId(),
-                    a.getNome(),
-                    a.getPreco()
-                });
-            }
-            
-            
-        } else if (selectedTab.equals("ESTADIAS")) {
-            DefaultTableModel table = (DefaultTableModel) tableStable.getModel();
-            table.setRowCount(0);
-            fetchTableResults();
-            for (TipoEstadia a : this.StableTypeTableResults) {
-                table.addRow(new Object[]{
-                    a.getId(),
-                    a.getTipo(),
-                    a.getPreco()
-                });
-            }
-            
-            
-        }*/
-        
         DefaultTableModel pModel = (DefaultTableModel) tableProducts.getModel();
         DefaultTableModel sModel = (DefaultTableModel) tableServices.getModel();
         DefaultTableModel eModel = (DefaultTableModel) tableStable.getModel();
@@ -559,29 +506,6 @@ public class ProductsScreen extends javax.swing.JPanel implements GenericObserve
                     
         return models;
     }
-    
-    /*private void fetchTableResults() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("haras");
-        EntityManager em = emf.createEntityManager();
-        
-        
-        String selectedTab = tpSelection.getTitleAt(tpSelection.getSelectedIndex());
-        
-        if (selectedTab.equals("PRODUTOS")) {
-            TypedQuery<Produto> productsQuery = em.createQuery("SELECT a FROM Produto a WHERE a.isDeleted = FALSE", Produto.class);
-            this.tableProducts = (JTable) productsQuery.getResultList();
-
-        } else if (selectedTab.equals("SERVIÇOS")) {
-            TypedQuery<Servico> servicoQuery = em.createQuery("SELECT a FROM Servico a WHERE a.isDeleted = FALSE", Servico.class);
-            this.tableServices = (JTable) servicoQuery.getResultList();
-
-        } else if (selectedTab.equals("ESTADIAS")) {
-            TypedQuery<TipoEstadia> stableTypeQuery = em.createQuery("SELECT a FROM TipoEstadia a WHERE a.isDeleted = FALSE", TipoEstadia.class);
-            this.tableStable = (JTable) stableTypeQuery.getResultList();
-  
-        }
-    }*/
-    
     @Override
     public void update(Object o) {
         this.updateBoxSearch();
