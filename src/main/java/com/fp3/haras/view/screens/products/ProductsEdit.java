@@ -31,7 +31,7 @@ public class ProductsEdit extends javax.swing.JFrame implements GenericObservabl
         this.selectedProducts = produto;
         
         this.txtProductName.setText(produto.getNome());
-        this.txtProductStock.setText(produto.getNome());
+        this.txtProductStock.setText(String.valueOf(produto.getEstoque()));
         this.txtSalePrice.setText(String.valueOf(produto.getPdv()));
         this.txtPurchasePrice.setText(String.valueOf(produto.getPdc()));
     }
@@ -411,16 +411,35 @@ public class ProductsEdit extends javax.swing.JFrame implements GenericObservabl
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    public void initData(int y) {
+        switch (y){
+                case 1:
+                    Produto p = Produto.getProduto(ProductsScreen.selectedId);
+                    populateData(p);
+                    break;
+
+                case 2:
+                    Servico s = Servico.getServico(ProductsScreen.selectedId);
+                    populateData(s);
+                    break;
+                    
+                case 3:
+                    TipoEstadia e = TipoEstadia.getTipoEstadia(ProductsScreen.selectedId);
+                    populateData(e);
+                    break;
+                default:
+        System.out.println("!");
+        break;
+        }
+    }
+    
     private void btnDeleteServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteServiceActionPerformed
         // TODO add your handling code here:
         if (JOptionPane.showConfirmDialog(null, "Realmente deseja apagar este cadastro?", "ATENÇÃO", JOptionPane.WARNING_MESSAGE) == 0) {
-            selectedService.setNome(txtServiceType.getText());
-            selectedService.setPreco(Integer.parseInt(txtServicePrice.getText()));
-            selectedService.setIsDeleted(true);
-            
-            EntityUtils.update(selectedService);
-            
-            JOptionPane.showMessageDialog(null, "Os dados foram removidos!", null, JOptionPane.INFORMATION_MESSAGE, null);
+            Servico s = Servico.getServico(ProductsScreen.selectedId);
+            s.setIsDeleted(true);
+            EntityUtils.update(s);
+            JOptionPane.showMessageDialog(null, "Registro #" + ProductsScreen.selectedId + " atualizado!", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
             dispose();
             this.notifyObservers("");
             }
@@ -443,18 +462,13 @@ public class ProductsEdit extends javax.swing.JFrame implements GenericObservabl
 
     private void btnDeleteProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteProductActionPerformed
         if (JOptionPane.showConfirmDialog(null, "Realmente deseja apagar este cadastro?", "ATENÇÃO", JOptionPane.WARNING_MESSAGE) == 0) {
-            selectedProducts.setNome(txtProductName.getText());
-            selectedProducts.setEstoque(Integer.parseInt(txtProductStock.getText()));
-            selectedProducts.setPdc(Integer.parseInt(txtPurchasePrice.getText()));
-            selectedProducts.setPdv(Integer.parseInt(txtSalePrice.getText()));
-            selectedProducts.setIsDeleted(true);
-            
-            EntityUtils.update(selectedService);
-            
-            JOptionPane.showMessageDialog(null, "Os dados foram removidos!", null, JOptionPane.INFORMATION_MESSAGE, null);
+            Produto p = Produto.getProduto(ProductsScreen.selectedId);
+            p.setIsDeleted(true);
+            EntityUtils.update(p);
+            JOptionPane.showMessageDialog(null, "Registro #" + ProductsScreen.selectedId + " atualizado!", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
             dispose();
             this.notifyObservers("");
-        }
+            }
     }//GEN-LAST:event_btnDeleteProductActionPerformed
 
     private void btnSaveProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveProductActionPerformed
@@ -491,16 +505,13 @@ public class ProductsEdit extends javax.swing.JFrame implements GenericObservabl
 
     private void btnDeleteStableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteStableActionPerformed
         if (JOptionPane.showConfirmDialog(null, "Realmente deseja apagar este cadastro?", "ATENÇÃO", JOptionPane.WARNING_MESSAGE) == 0) {
-            selectedStableType.setTipo(txtStablePrice.getText());
-            selectedStableType.setPreco(Integer.parseInt(txtStablePrice.getText()));
-            selectedStableType.setIsDeleted(true);
-            
-            EntityUtils.update(selectedStableType);
-            
-            JOptionPane.showMessageDialog(null, "Os dados foram removidos!", null, JOptionPane.INFORMATION_MESSAGE, null);
+            TipoEstadia e = TipoEstadia.getTipoEstadia(ProductsScreen.selectedId);
+            e.setIsDeleted(true);
+            EntityUtils.update(e);
+            JOptionPane.showMessageDialog(null, "Registro #" + ProductsScreen.selectedId + " atualizado!", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
             dispose();
             this.notifyObservers("");
-        }
+            }
     }//GEN-LAST:event_btnDeleteStableActionPerformed
 
     @Override

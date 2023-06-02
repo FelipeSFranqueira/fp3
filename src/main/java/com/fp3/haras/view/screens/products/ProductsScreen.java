@@ -17,23 +17,19 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 public class ProductsScreen extends javax.swing.JPanel implements GenericObserver{
-    private ProductsCreate CreateModal;
-    private ProductsEdit   EditModal;
+    private final ProductsCreate CreateModal;
+    private final ProductsEdit   EditModal;
     private Produto       productSelected;
     private Servico       serviceSelected;
     private TipoEstadia   stableTypeSelected;
     private List<Produto> ProductsTableResults;
     private List<Servico> ServicesTableResults;
     private List<TipoEstadia> StableTypeTableResults;
-    DefaultTableCellRenderer center = new DefaultTableCellRenderer();
     
-    public ProductsScreen() {
-        initComponents();
-        this.setBackground(Colors.PRIMARYBG); 
-        lblTitle.putClientProperty("FlatLaf.styleClass", "h00");    
-    }
+    public static long selectedId;
+    DefaultTableCellRenderer center = new DefaultTableCellRenderer();
 
-    ProductsScreen(ProductsCreate creationModal, ProductsEdit editionModal) {
+    public ProductsScreen(ProductsCreate creationModal, ProductsEdit editionModal){
         initComponents();
         this.CreateModal = creationModal;
         this.EditModal = editionModal;
@@ -264,29 +260,42 @@ public class ProductsScreen extends javax.swing.JPanel implements GenericObserve
     
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
-        this.CreateModal = new ProductsCreate();
-        CreateModal.setVisible(true);
+        this.CreateModal.setVisible(true);
     }//GEN-LAST:event_btnCreateActionPerformed
 
+    
+    private void initEdit(Object tableSelectedCode, int y) {
+        selectedId = Integer.parseInt(String.valueOf(tableSelectedCode));
+        this.EditModal.initData(y);
+        this.EditModal.setVisible(true);
+        this.EditModal.toFront();
+    }
+    
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         String selectedTab = tpSelection.getTitleAt(tpSelection.getSelectedIndex());
         if (selectedTab.equals("PRODUTOS") 
-                    && getSelectedProductCode()!= null && getSelectedProductValue()!= null) {
+                && getSelectedProductCode()!= null && getSelectedProductValue()!= null) {
+            
+                initEdit(getSelectedProductCode(), 1);
                 
-                this.EditModal.populateData(productSelected);
-                new ProductsEdit().setVisible(true);
+               // this.EditModal.populateData(productSelected);
+                //new ProductsEdit().setVisible(true);
                 
             }else if (selectedTab.equals("SERVIÇOS")
                     && getSelectedServiceCode()!= null && getSelectedServiceValue()!= null) {
                 
-                this.EditModal.populateData(serviceSelected);
-                new ProductsEdit().setVisible(true);
+                initEdit(getSelectedServiceCode(), 2);
+                
+                //this.EditModal.populateData(serviceSelected);
+                //new ProductsEdit().setVisible(true);
                 
             }else if (selectedTab.equals("ESTADIAS")
                     && getSelectedHostingTypeCode()!= null && getSelectedHostingTypeValue()!= null) {
                 
-                this.EditModal.populateData(stableTypeSelected);
-                new ProductsEdit().setVisible(true);
+                initEdit(getSelectedHostingTypeCode(), 3);
+                
+                //this.EditModal.populateData(stableTypeSelected);
+                //new ProductsEdit().setVisible(true);
                 
             } else {
                 JOptionPane.showMessageDialog(null, "Nada foi selecionado.", null, JOptionPane.ERROR_MESSAGE, null);

@@ -9,7 +9,7 @@ public class ProductsContainer extends JPanel{
     private ProductsCreate creationModal;
     private ProductsEdit editionModal;
     
-    public ProductsContainer(){
+    public ProductsContainer() {
         initComponents();
     }
     
