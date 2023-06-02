@@ -21,13 +21,13 @@ public class Haras {
         em.persist(prod);
         em.getTransaction().commit();
         
-//        Cliente c1 = new Cliente();
-//        Cliente c2 = new Cliente();
-//        
-//        c1.setNome("Teste1");
-//        c2.setNome("Teste2");
-//        
-//        EntityUtils.insert(c1);
-//        EntityUtils.insert(c2);
+        Cliente c1 = new Cliente();
+        Cliente c2 = new Cliente();
+        
+        c1.setNome("Teste1");
+        c2.setNome("Teste2");
+        
+        EntityUtils.insert(c1);
+        EntityUtils.insert(c2);
     }
 }
