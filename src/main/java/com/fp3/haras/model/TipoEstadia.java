@@ -1,12 +1,13 @@
 package com.fp3.haras.model;
 
+import com.fp3.haras.utils.EntityUtils;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
+@Entity(name="TipoEstadia")
 @Table(name="StablesType")
 public class TipoEstadia {
 
@@ -23,6 +24,11 @@ public class TipoEstadia {
     public TipoEstadia(String tipo, double preco) {
         this.tipo = tipo;
         this.preco = preco;
+    }
+    
+    public static TipoEstadia getTipoEstadia(long id) {
+        TipoEstadia e = EntityUtils.select("SELECT c FROM TipoEstadia c WHERE Id = " + id, TipoEstadia.class).get(0);
+        return e;
     }
 
     public long getId() {

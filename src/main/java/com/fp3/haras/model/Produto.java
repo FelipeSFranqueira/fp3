@@ -1,12 +1,13 @@
 package com.fp3.haras.model;
 
+import com.fp3.haras.utils.EntityUtils;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
+@Entity(name="Produto")
 @Table(name="Products")
 public class Produto {
 
@@ -27,6 +28,11 @@ public class Produto {
         this.estoque = estoque;
         this.pdc = pdc;
         this.pdv = pdv;
+    }
+    
+    public static Produto getProduto(long id) {
+        Produto p = EntityUtils.select("SELECT c FROM Produto c WHERE Id = " + id, Produto.class).get(0);
+        return p;
     }
 
     public long getId() {

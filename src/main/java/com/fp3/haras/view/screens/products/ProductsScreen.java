@@ -13,6 +13,7 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 public class ProductsScreen extends javax.swing.JPanel implements GenericObserver{
@@ -21,14 +22,10 @@ public class ProductsScreen extends javax.swing.JPanel implements GenericObserve
     private Produto       productSelected;
     private Servico       serviceSelected;
     private TipoEstadia   stableTypeSelected;
-    private List<Produto> fetchedProducts;
     private List<Produto> ProductsTableResults;
-    private List<Servico> fetchedServices;
     private List<Servico> ServicesTableResults;
-    private List<TipoEstadia> fetchedStableType;
     private List<TipoEstadia> StableTypeTableResults;
-    private int currentPage = 1;
-    private final int maxResults = 16;
+    DefaultTableCellRenderer center = new DefaultTableCellRenderer();
     
     public ProductsScreen() {
         initComponents();
@@ -101,8 +98,6 @@ public class ProductsScreen extends javax.swing.JPanel implements GenericObserve
         lblSearch = new javax.swing.JLabel();
         lblTitle = new javax.swing.JLabel();
         lblSubtitle = new javax.swing.JLabel();
-        btnBack = new javax.swing.JButton();
-        btnNext = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(244, 244, 244));
         setPreferredSize(new java.awt.Dimension(900, 585));
@@ -225,20 +220,6 @@ public class ProductsScreen extends javax.swing.JPanel implements GenericObserve
 
         lblSubtitle.setText("DISPONIBILIDADE DE RECURSOS");
 
-        btnBack.setText("< Voltar");
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
-
-        btnNext.setText("Avançar >");
-        btnNext.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNextActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -246,26 +227,19 @@ public class ProductsScreen extends javax.swing.JPanel implements GenericObserve
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(50, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblSubtitle)
-                            .addComponent(lblTitle)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(boxSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(lblSearch)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(tpSelection, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(50, 50, 50))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnBack)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnNext)
-                        .addGap(41, 41, 41))))
+                    .addComponent(lblSubtitle)
+                    .addComponent(lblTitle)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(boxSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lblSearch)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(tpSelection, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(50, 50, 50))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -283,11 +257,7 @@ public class ProductsScreen extends javax.swing.JPanel implements GenericObserve
                     .addComponent(boxSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(tpSelection, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBack)
-                    .addComponent(btnNext))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -333,7 +303,7 @@ public class ProductsScreen extends javax.swing.JPanel implements GenericObserve
             if (boxSearch.getSelectedItem() == null) {
                this.populateTable();
             } else {
-                String pQuerySearch = "SELECT a FROM Products WHERE a.nome = '" + (String) boxSearch.getSelectedItem() + "'";
+                String pQuerySearch = "SELECT a FROM Produto a WHERE a.nome = '" + (String) boxSearch.getSelectedItem() + "'";
                 List<Produto> produto = EntityUtils.select(pQuerySearch, Produto.class);
                 for (Produto a : produto) {
                     tableP.addRow(new Object[]{
@@ -353,7 +323,7 @@ public class ProductsScreen extends javax.swing.JPanel implements GenericObserve
             if (boxSearch.getSelectedItem() == null) {
                this.populateTable();
             } else {
-                String sQuerySearch = "SELECT a FROM Services WHERE a.nome = '" + (String) boxSearch.getSelectedItem() + "'";
+                String sQuerySearch = "SELECT a FROM Servico a WHERE a.nome = '" + (String) boxSearch.getSelectedItem() + "'";
                 List<Servico> servico = EntityUtils.select(sQuerySearch, Servico.class);
                 for (Servico a : servico) {
                     tableS.addRow(new Object[]{
@@ -371,7 +341,7 @@ public class ProductsScreen extends javax.swing.JPanel implements GenericObserve
             if (boxSearch.getSelectedItem() == null) {
                this.populateTable();
             } else {
-                String eQuerySearch = "SELECT a FROM StablesType WHERE a.tipo = '" + (String) boxSearch.getSelectedItem() + "'";
+                String eQuerySearch = "SELECT a FROM TipoEstadia a WHERE a.tipo = '" + (String) boxSearch.getSelectedItem() + "'";
                 List<TipoEstadia> tipoEstadia = EntityUtils.select(eQuerySearch, TipoEstadia.class);
                 for (TipoEstadia a : tipoEstadia) {
                     tableE.addRow(new Object[]{
@@ -384,16 +354,6 @@ public class ProductsScreen extends javax.swing.JPanel implements GenericObserve
         }
         
     }//GEN-LAST:event_lblSearchMouseClicked
-
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        this.currentPage--;
-        this.populateTable();
-    }//GEN-LAST:event_btnBackActionPerformed
-
-    private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
-        this.currentPage++;
-        this.populateTable();
-    }//GEN-LAST:event_btnNextActionPerformed
 
     private void tableProductsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableProductsMouseClicked
         // TODO add your handling code here:
@@ -411,7 +371,7 @@ public class ProductsScreen extends javax.swing.JPanel implements GenericObserve
         
         int id = Integer.parseInt(table.getValueAt(tableServices.getSelectedRow(), 0).toString());
         
-        String queryServico = "SELECT a FROM Services WHERE a.id = " + id;
+        String queryServico = "SELECT a FROM Servico WHERE a.id = " + id;
         this.serviceSelected = EntityUtils.select(queryServico, Servico.class).get(0);
     }//GEN-LAST:event_tableStableMouseClicked
 
@@ -421,44 +381,45 @@ public class ProductsScreen extends javax.swing.JPanel implements GenericObserve
         
         int id = Integer.parseInt(table.getValueAt(tableStable.getSelectedRow(), 0).toString());
         
-        String queryStableType = "SELECT a FROM StablesType WHERE a.id = " + id;
+        String queryStableType = "SELECT a FROM TipoEstadia WHERE a.id = " + id;
         this.stableTypeSelected = EntityUtils.select(queryStableType, TipoEstadia.class).get(0);
     }//GEN-LAST:event_tableServicesMouseClicked
 
     private void updateBoxSearch(){
+        this.boxSearch.removeAllItems();
         boxSearch.addItem("");
         
         String selectedTab = tpSelection.getTitleAt(tpSelection.getSelectedIndex());
         
         if (selectedTab.equals("PRODUTOS")) {
-            String pQuerySearch = "SELECT a FROM Products WHERE a.nome WHERE a.isDeleted = FALSE";
-            fetchedProducts = EntityUtils.select(pQuerySearch, Produto.class);
-            for (Produto produto: fetchedProducts) {
-                boxSearch.addItem(produto.getNome());
+            String pQuerySearch = "SELECT a FROM Produto a WHERE a.isDeleted = false";
+            List<Produto> produto = EntityUtils.select(pQuerySearch, Produto.class);
+            for (Produto p: produto) {
+                boxSearch.addItem(p.getNome());
             }
         } else if (selectedTab.equals("SERVIÇOS")) {
-            String sQuerySearch = "SELECT a FROM Services WHERE a.nome WHERE a.isDeleted = FALSE";
-            fetchedServices = EntityUtils.select(sQuerySearch, Servico.class);
-            for (Servico servico: fetchedServices) {
-                boxSearch.addItem(servico.getNome());
+            String sQuerySearch = "SELECT a FROM Servico a WHERE a.isDeleted = false";
+            List<Servico> servico = EntityUtils.select(sQuerySearch, Servico.class);
+            for (Servico s: servico) {
+                boxSearch.addItem(s.getNome());
             }
         } else if (selectedTab.equals("ESTADIAS")) {
-            String eQuerySearch = "SELECT a FROM StablesType WHERE a.tipo WHERE a.isDeleted = FALSE";
-            fetchedStableType = EntityUtils.select(eQuerySearch, TipoEstadia.class);
-            for (TipoEstadia tipoEstadia: fetchedStableType) {
-                boxSearch.addItem(tipoEstadia.getTipo());
+            String eQuerySearch = "SELECT a FROM TipoEstadia a WHERE a.isDeleted = false";
+            List<TipoEstadia> tipoEstadia = EntityUtils.select(eQuerySearch, TipoEstadia.class);
+            for (TipoEstadia e: tipoEstadia) {
+                boxSearch.addItem(e.getTipo());
             }
         }
     }
     
     private void populateTable() {
         
-        String selectedTab = tpSelection.getTitleAt(tpSelection.getSelectedIndex());
+        /*String selectedTab = tpSelection.getTitleAt(tpSelection.getSelectedIndex());
         
         if (selectedTab.equals("PRODUTOS")) {
             DefaultTableModel table = (DefaultTableModel) tableProducts.getModel();
             table.setRowCount(0);
-            fetchTableResults(this.currentPage, this.maxResults);
+            fetchTableResults();
             for (Produto a : this.ProductsTableResults) {
                 table.addRow(new Object[]{
                     a.getId(),
@@ -473,7 +434,7 @@ public class ProductsScreen extends javax.swing.JPanel implements GenericObserve
         } else if (selectedTab.equals("SERVIÇOS")) {
             DefaultTableModel table = (DefaultTableModel) tableServices.getModel();
             table.setRowCount(0);
-            fetchTableResults(this.currentPage, this.maxResults);
+            fetchTableResults();
             for (Servico a : this.ServicesTableResults) {
                 table.addRow(new Object[]{
                     a.getId(),
@@ -486,7 +447,7 @@ public class ProductsScreen extends javax.swing.JPanel implements GenericObserve
         } else if (selectedTab.equals("ESTADIAS")) {
             DefaultTableModel table = (DefaultTableModel) tableStable.getModel();
             table.setRowCount(0);
-            fetchTableResults(this.currentPage, this.maxResults);
+            fetchTableResults();
             for (TipoEstadia a : this.StableTypeTableResults) {
                 table.addRow(new Object[]{
                     a.getId(),
@@ -496,45 +457,132 @@ public class ProductsScreen extends javax.swing.JPanel implements GenericObserve
             }
             
             
+        }*/
+        
+        DefaultTableModel pModel = (DefaultTableModel) tableProducts.getModel();
+        DefaultTableModel sModel = (DefaultTableModel) tableServices.getModel();
+        DefaultTableModel eModel = (DefaultTableModel) tableStable.getModel();
+        List<Produto> produtos = EntityUtils.select("SELECT c FROM Produto c", Produto.class);
+        List<Servico> servicos = EntityUtils.select("SELECT c FROM Servico c", Servico.class);
+        List<TipoEstadia> tiposEstadia = EntityUtils.select("SELECT c FROM TipoEstadia c", TipoEstadia.class);
+        
+        pModel.setRowCount(0);
+        sModel.setRowCount(0);
+        eModel.setRowCount(0);
+        
+        for (Produto p : produtos) {
+            
+            if (!p.isIsDeleted()) {
+                updateProductTableModel(p.getId(), pModel);     
+            } 
+        }
+        
+        for (Servico s : servicos) {
+            
+            if (!s.isIsDeleted()) {
+                updateServiceTableModel(s.getId(), sModel);     
+            } 
+        }
+        
+        for (TipoEstadia e : tiposEstadia) {
+            
+            if (!e.isIsDeleted()) {
+                updateStableTypeTableModel(e.getId(), eModel);     
+            } 
         }
     }
     
-    private void fetchTableResults(int page, int maxResults) {
+    private DefaultTableModel updateProductTableModel(long id, DefaultTableModel models) {
+        
+        updateBoxSearch();
+        
+        Produto p = new Produto();
+        long produtoId = p.getProduto(id).getId();
+        String produtoNome = p.getProduto(id).getNome();
+        
+        String PquerySearch = "SELECT a FROM Produto a WHERE a.id = '" + produtoId + "'";
+        
+        models.addRow(new Object[]{
+            String.valueOf(p.getProduto(id).getId()),
+            produtoNome,
+            String.valueOf(p.getProduto(id).getEstoque()),
+            String.valueOf(p.getProduto(id).getPdc()),
+            String.valueOf(p.getProduto(id).getPdv())
+        });
+                    
+        return models;
+    }
+    
+    private DefaultTableModel updateServiceTableModel(long id, DefaultTableModel models) {
+        
+        updateBoxSearch();
+        
+        Servico s = new Servico();
+        long servicoId = s.getServico(id).getId();
+        String servocoNome = s.getServico(id).getNome();
+        
+        String SquerySearch = "SELECT a FROM Servico a WHERE a.id = '" + servicoId + "'";
+        
+        models.addRow(new Object[]{
+            String.valueOf(s.getServico(id).getId()),
+            servocoNome,
+            String.valueOf(s.getServico(id).getPreco())
+        });
+                    
+        return models;
+    }
+    
+    private DefaultTableModel updateStableTypeTableModel(long id, DefaultTableModel models) {
+        
+        updateBoxSearch();
+        
+        TipoEstadia e = new TipoEstadia();
+        long tipoEstadiaId = e.getTipoEstadia(id).getId();
+        String tipoEstadiaNome = e.getTipoEstadia(id).getTipo();
+        
+        String EquerySearch = "SELECT a FROM Produto a WHERE a.id = '" + tipoEstadiaId + "'";
+        
+        models.addRow(new Object[]{
+            String.valueOf(e.getTipoEstadia(id).getId()),
+            tipoEstadiaNome,
+            String.valueOf(e.getTipoEstadia(id).getPreco())
+        });
+                    
+        return models;
+    }
+    
+    /*private void fetchTableResults() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("haras");
         EntityManager em = emf.createEntityManager();
         
-        int firstResult = page == 1 ? 0 : ((page - 1) * maxResults);
         
         String selectedTab = tpSelection.getTitleAt(tpSelection.getSelectedIndex());
         
         if (selectedTab.equals("PRODUTOS")) {
-            TypedQuery<Produto> productsQuery = em.createQuery("SELECT a FROM Products WHERE a.nome WHERE a.isDeleted = FALSE", Produto.class);
-            this.tableProducts = (JTable) productsQuery.setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+            TypedQuery<Produto> productsQuery = em.createQuery("SELECT a FROM Produto a WHERE a.isDeleted = FALSE", Produto.class);
+            this.tableProducts = (JTable) productsQuery.getResultList();
 
         } else if (selectedTab.equals("SERVIÇOS")) {
-            TypedQuery<Servico> servicoQuery = em.createQuery("SELECT a FROM Services WHERE a.nome WHERE a.isDeleted = FALSE", Servico.class);
-            this.tableServices = (JTable) servicoQuery.setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+            TypedQuery<Servico> servicoQuery = em.createQuery("SELECT a FROM Servico a WHERE a.isDeleted = FALSE", Servico.class);
+            this.tableServices = (JTable) servicoQuery.getResultList();
 
         } else if (selectedTab.equals("ESTADIAS")) {
-            TypedQuery<TipoEstadia> stableTypeQuery = em.createQuery("SSELECT a FROM StablesType WHERE a.tipo WHERE a.isDeleted = FALSE", TipoEstadia.class);
-            this.tableStable = (JTable) stableTypeQuery.setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+            TypedQuery<TipoEstadia> stableTypeQuery = em.createQuery("SELECT a FROM TipoEstadia a WHERE a.isDeleted = FALSE", TipoEstadia.class);
+            this.tableStable = (JTable) stableTypeQuery.getResultList();
   
         }
-    }
+    }*/
     
     @Override
     public void update(Object o) {
-        this.boxSearch.removeAllItems();
         this.updateBoxSearch();
         this.populateTable();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.fp3.haras.components.ComboBoxSuggestion boxSearch;
-    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCreate;
     private javax.swing.JButton btnEdit;
-    private javax.swing.JButton btnNext;
     private javax.swing.JLabel lblSearch;
     private javax.swing.JLabel lblSubtitle;
     private javax.swing.JLabel lblTitle;
