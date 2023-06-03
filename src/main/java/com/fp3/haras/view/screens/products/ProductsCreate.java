@@ -371,10 +371,12 @@ public class ProductsCreate extends javax.swing.JFrame implements GenericObserva
     }//GEN-LAST:event_btnCancelProductActionPerformed
 
     private void btnSaveProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveProductActionPerformed
-        Produto p = new Produto(txtProductName.getText(), 
-                Integer.parseInt(txtProductStock.getText()), 
-                Integer.parseInt(txtPurchasePrice.getText()), 
-                Integer.parseInt(txtSalePrice.getText()));
+        String name = txtProductName.getText();
+        int stock = Integer.parseInt(txtProductStock.getText());
+        double purchasePrice = Double.parseDouble(txtPurchasePrice.getText());
+        double salePrice = Double.parseDouble(txtSalePrice.getText());
+        
+        Produto p = new Produto(name,stock,purchasePrice,salePrice);
         
         EntityUtils.insert(p);
         
@@ -392,7 +394,8 @@ public class ProductsCreate extends javax.swing.JFrame implements GenericObserva
     }//GEN-LAST:event_btnCancelServiceActionPerformed
 
     private void btnSaveServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveServiceActionPerformed
-        Servico s = new Servico(txtServiceType.getText(), Double.parseDouble(txtServicePrice.getText()));
+        Servico s = new Servico(txtServiceType.getText(), 
+                Double.parseDouble(txtServicePrice.getText()));
         
         EntityUtils.insert(s);
         
@@ -408,12 +411,13 @@ public class ProductsCreate extends javax.swing.JFrame implements GenericObserva
     }//GEN-LAST:event_btnCancelStableActionPerformed
 
     private void btnSaveStableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveStableActionPerformed
-        TipoEstadia te = new TipoEstadia(txtStableType.getText(), Double.parseDouble(txtStablePrice.getText()));
+        TipoEstadia e = new TipoEstadia(txtStableType.getText(), 
+                Double.parseDouble(txtStablePrice.getText()));
         
-        EntityUtils.insert(te);
+        EntityUtils.insert(e);
         
         this.notifyObservers("");
-        JOptionPane.showMessageDialog(null, "Código de registro: " + te.getId(), "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
+        JOptionPane.showMessageDialog(null, "Código de registro: " + e.getId(), "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
         txtStableType.setText("");
         txtStablePrice.setText("");
         dispose();

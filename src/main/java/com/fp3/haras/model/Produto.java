@@ -15,7 +15,7 @@ public class Produto {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
     private String name;
-    private int stock;
+    private int stock = 0;
     private double pdc;
     private double pdv;
     private boolean isDeleted = false;
