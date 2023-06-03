@@ -1,8 +1,8 @@
 package com.fp3.haras.view.screens.products;
 
-import com.fp3.haras.model.Product;
-import com.fp3.haras.model.Service;
-import com.fp3.haras.model.StableType;
+import com.fp3.haras.model.Produto;
+import com.fp3.haras.model.Servico;
+import com.fp3.haras.model.TipoEstadia;
 import javax.swing.JOptionPane;
 import com.fp3.haras.utils.Colors;
 import com.fp3.haras.utils.EntityUtils;
@@ -317,7 +317,7 @@ public class ProductsCreate extends javax.swing.JFrame implements GenericObserva
                 .addContainerGap())
         );
 
-        tpProducts.addTab("Hospedagens", pnlStableTypeCreate);
+        tpProducts.addTab("Tipos de Estadias", pnlStableTypeCreate);
 
         javax.swing.GroupLayout pnlFormLayout = new javax.swing.GroupLayout(pnlForm);
         pnlForm.setLayout(pnlFormLayout);
@@ -371,7 +371,7 @@ public class ProductsCreate extends javax.swing.JFrame implements GenericObserva
     }//GEN-LAST:event_btnCancelProductActionPerformed
 
     private void btnSaveProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveProductActionPerformed
-        Product p = new Product(txtProductName.getText(), 
+        Produto p = new Produto(txtProductName.getText(), 
                 Integer.parseInt(txtProductStock.getText()), 
                 Integer.parseInt(txtPurchasePrice.getText()), 
                 Integer.parseInt(txtSalePrice.getText()));
@@ -392,7 +392,7 @@ public class ProductsCreate extends javax.swing.JFrame implements GenericObserva
     }//GEN-LAST:event_btnCancelServiceActionPerformed
 
     private void btnSaveServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveServiceActionPerformed
-        Service s = new Service(txtServiceType.getText(), Integer.parseInt(txtServicePrice.getText()));
+        Servico s = new Servico(txtServiceType.getText(), Double.parseDouble(txtServicePrice.getText()));
         
         EntityUtils.insert(s);
         
@@ -408,7 +408,7 @@ public class ProductsCreate extends javax.swing.JFrame implements GenericObserva
     }//GEN-LAST:event_btnCancelStableActionPerformed
 
     private void btnSaveStableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveStableActionPerformed
-        StableType te = new StableType(txtStableType.getText(), Integer.parseInt(txtStablePrice.getText()));
+        TipoEstadia te = new TipoEstadia(txtStableType.getText(), Double.parseDouble(txtStablePrice.getText()));
         
         EntityUtils.insert(te);
         

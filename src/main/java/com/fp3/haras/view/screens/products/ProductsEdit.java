@@ -1,8 +1,8 @@
 package com.fp3.haras.view.screens.products;
 
-import com.fp3.haras.model.Product;
-import com.fp3.haras.model.Service;
-import com.fp3.haras.model.StableType;
+import com.fp3.haras.model.Produto;
+import com.fp3.haras.model.Servico;
+import com.fp3.haras.model.TipoEstadia;
 import com.fp3.haras.utils.Colors;
 import com.fp3.haras.utils.EntityUtils;
 import com.fp3.haras.utils.GenericObservable;
@@ -13,12 +13,12 @@ import javax.swing.JOptionPane;
 
 public class ProductsEdit extends javax.swing.JFrame implements GenericObservable {
     
-    private Product selectedProducts;
-    private Service selectedService;
-    private StableType selectedStableType;
+    private Produto selectedProducts;
+    private Servico selectedService;
+    private TipoEstadia selectedStableType;
     private List<GenericObserver> observers = new ArrayList<>();
 
-    public ProductsEdit() {
+    public ProductsEdit() { 
         initComponents();
         lblTitle.putClientProperty("FlatLaf.styleClass", "h00");
         pnlBack.setBackground(Colors.WHITEBG);
@@ -27,7 +27,7 @@ public class ProductsEdit extends javax.swing.JFrame implements GenericObservabl
         pnlServicesEdit.setBackground(Colors.PRIMARYBG);
     }
     
-    public void populateData(Product produto) {
+    public void populateData(Produto produto) {
         this.selectedProducts = produto;
         
         this.txtProductName.setText(produto.getName());
@@ -36,14 +36,14 @@ public class ProductsEdit extends javax.swing.JFrame implements GenericObservabl
         this.txtPurchasePrice.setText(String.valueOf(produto.getPdc()));
     }
     
-    public void populateData(Service servico) {
+    public void populateData(Servico servico) {
         this.selectedService = servico;
         
         this.txtServiceType.setText(servico.getName());
         this.txtServicePrice.setText(String.valueOf(servico.getPrice()));
     }
     
-    public void populateData(StableType tipoEstadia) {
+    public void populateData(TipoEstadia tipoEstadia) {
         this.selectedStableType = tipoEstadia;
         
         this.txtStableType.setText(tipoEstadia.getType());
@@ -373,7 +373,7 @@ public class ProductsEdit extends javax.swing.JFrame implements GenericObservabl
                 .addGap(28, 28, 28))
         );
 
-        tpProduct.addTab("Hospedagens", pnlStableTypeEdit);
+        tpProduct.addTab("Tipos de Estadias", pnlStableTypeEdit);
 
         javax.swing.GroupLayout pnlBackLayout = new javax.swing.GroupLayout(pnlBack);
         pnlBack.setLayout(pnlBackLayout);
@@ -414,17 +414,20 @@ public class ProductsEdit extends javax.swing.JFrame implements GenericObservabl
     public void initData(int y) {
         switch (y){
                 case 1:
-                    Product p = Product.getProduto(ProductsScreen.selectedId);
+                    tpProduct.setSelectedIndex(0);
+                    Produto p = Produto.getProduto(ProductsScreen.selectedId);
                     populateData(p);
                     break;
 
                 case 2:
-                    Service s = Service.getServico(ProductsScreen.selectedId);
+                    tpProduct.setSelectedIndex(1);
+                    Servico s = Servico.getServico(ProductsScreen.selectedId);
                     populateData(s);
                     break;
                     
                 case 3:
-                    StableType e = StableType.getTipoEstadia(ProductsScreen.selectedId);
+                    tpProduct.setSelectedIndex(2);
+                    TipoEstadia e = TipoEstadia.getTipoEstadia(ProductsScreen.selectedId);
                     populateData(e);
                     break;
                 default:
@@ -436,7 +439,7 @@ public class ProductsEdit extends javax.swing.JFrame implements GenericObservabl
     private void btnDeleteServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteServiceActionPerformed
         // TODO add your handling code here:
         if (JOptionPane.showConfirmDialog(null, "Realmente deseja apagar este cadastro?", "ATENÇÃO", JOptionPane.WARNING_MESSAGE) == 0) {
-            Service s = Service.getServico(ProductsScreen.selectedId);
+            Servico s = Servico.getServico(ProductsScreen.selectedId);
             s.setIsDeleted(true);
             EntityUtils.update(s);
             JOptionPane.showMessageDialog(null, "Registro #" + ProductsScreen.selectedId + " atualizado!", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
@@ -446,9 +449,9 @@ public class ProductsEdit extends javax.swing.JFrame implements GenericObservabl
     }//GEN-LAST:event_btnDeleteServiceActionPerformed
 
     private void btnSaveServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveServiceActionPerformed
-        Service s = Service.getServico(ProductsScreen.selectedId);
+        Servico s = Servico.getServico(ProductsScreen.selectedId);
         s.setName(txtServiceType.getText());
-        s.setPrice(Double.parseDouble(txtSalePrice.getText()));
+        s.setPrice(Double.parseDouble(txtServicePrice.getText()));
         EntityUtils.update(s);
         JOptionPane.showMessageDialog(null, "Registro #"+ProductsScreen.selectedId+" atualizado!", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
         dispose();
@@ -461,7 +464,7 @@ public class ProductsEdit extends javax.swing.JFrame implements GenericObservabl
 
     private void btnDeleteProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteProductActionPerformed
         if (JOptionPane.showConfirmDialog(null, "Realmente deseja apagar este cadastro?", "ATENÇÃO", JOptionPane.WARNING_MESSAGE) == 0) {
-            Product p = Product.getProduto(ProductsScreen.selectedId);
+            Produto p = Produto.getProduto(ProductsScreen.selectedId);
             p.setIsDeleted(true);
             EntityUtils.update(p);
             JOptionPane.showMessageDialog(null, "Registro #" + ProductsScreen.selectedId + " atualizado!", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
@@ -471,7 +474,7 @@ public class ProductsEdit extends javax.swing.JFrame implements GenericObservabl
     }//GEN-LAST:event_btnDeleteProductActionPerformed
 
     private void btnSaveProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveProductActionPerformed
-        Product p = Product.getProduto(ProductsScreen.selectedId);
+        Produto p = Produto.getProduto(ProductsScreen.selectedId);
         p.setName(txtProductName.getText());
         p.setStock(Integer.parseInt(txtProductStock.getText()));
         p.setPdc(Double.parseDouble(txtPurchasePrice.getText()));
@@ -491,7 +494,7 @@ public class ProductsEdit extends javax.swing.JFrame implements GenericObservabl
     }//GEN-LAST:event_btnCancelStableActionPerformed
 
     private void btnSaveStableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveStableActionPerformed
-        StableType e = StableType.getTipoEstadia(ProductsScreen.selectedId);
+        TipoEstadia e = TipoEstadia.getTipoEstadia(ProductsScreen.selectedId);
         e.setType(txtStableType.getText());
         e.setPrice(Double.parseDouble(txtStablePrice.getText()));
         EntityUtils.update(e);
@@ -502,7 +505,7 @@ public class ProductsEdit extends javax.swing.JFrame implements GenericObservabl
 
     private void btnDeleteStableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteStableActionPerformed
         if (JOptionPane.showConfirmDialog(null, "Realmente deseja apagar este cadastro?", "ATENÇÃO", JOptionPane.WARNING_MESSAGE) == 0) {
-            StableType e = StableType.getTipoEstadia(ProductsScreen.selectedId);
+            TipoEstadia e = TipoEstadia.getTipoEstadia(ProductsScreen.selectedId);
             e.setIsDeleted(true);
             EntityUtils.update(e);
             JOptionPane.showMessageDialog(null, "Registro #" + ProductsScreen.selectedId + " atualizado!", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);

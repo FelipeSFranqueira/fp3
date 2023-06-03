@@ -1,7 +1,7 @@
 package com.fp3.haras.view.screens.stable;
 
 import com.fp3.haras.model.Animal;
-import com.fp3.haras.model.Stable;
+import com.fp3.haras.model.Estadia;
 import com.fp3.haras.utils.Colors;
 import com.fp3.haras.utils.EntityUtils;
 import com.fp3.haras.utils.GenericObservable;
@@ -393,7 +393,7 @@ public class StableCreate extends javax.swing.JFrame implements GenericObservabl
         if (getEntrada().before(getSaida())) {
             String querySelect = "SELECT c FROM Animal c WHERE c.name = '" + (String) boxAnimal.getSelectedItem() + "'";
             Animal a = EntityUtils.select(querySelect, Animal.class).get(0);
-            Stable e = new Stable(a, getEntrada(), getSaida(), getCocheira(), false);
+            Estadia e = new Estadia(a, getEntrada(), getSaida(), getCocheira(), false);
             EntityUtils.insert(e);
             this.notifyObservers("");
             JOptionPane.showMessageDialog(null, "Código de registro: #"+e.getId(), "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);

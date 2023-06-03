@@ -8,27 +8,31 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Services")
-public class Service {
+@Table(name="Products")
+public class Produto {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
     private String name;
-    private double price;
+    private int stock;
+    private double pdc;
+    private double pdv;
     private boolean isDeleted = false;
 
-    public Service() {
+    public Produto() {
     }
 
-    public Service(String nome, double preco) {
+    public Produto(String nome, int estoque, double pdc, double pdv) {
         this.name = nome;
-        this.price = preco;
+        this.stock = estoque;
+        this.pdc = pdc;
+        this.pdv = pdv;
     }
     
-    public static Service getServico(long id) {
-        Service s = EntityUtils.select("SELECT c FROM Servico c WHERE id = " + id, Service.class).get(0);
-        return s;
+    public static Produto getProduto(long id) {
+        Produto p = EntityUtils.select("SELECT c FROM Produto c WHERE id = " + id, Produto.class).get(0);
+        return p;
     }
 
     public long getId() {
@@ -47,12 +51,28 @@ public class Service {
         this.name = name;
     }
 
-    public double getPrice() {
-        return price;
+    public int getStock() {
+        return stock;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+    
+    public double getPdc() {
+        return pdc;
+    }
+
+    public void setPdc(double pdc) {
+        this.pdc = pdc;
+    }
+
+    public double getPdv() {
+        return pdv;
+    }
+
+    public void setPdv(double pdv) {
+        this.pdv = pdv;
     }
     
     public boolean isIsDeleted() {

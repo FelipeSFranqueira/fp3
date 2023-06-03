@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="StablesType")
-public class StableType {
+public class TipoEstadia {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -18,16 +18,16 @@ public class StableType {
     private double price;
     private boolean isDeleted = false;
 
-    public StableType() {
+    public TipoEstadia() {
     }
 
-    public StableType(String tipo, double preco) {
+    public TipoEstadia(String tipo, double preco) {
         this.type = tipo;
         this.price = preco;
     }
     
-    public static StableType getTipoEstadia(long id) {
-        StableType e = EntityUtils.select("SELECT c FROM TipoEstadia c WHERE id = " + id, StableType.class).get(0);
+    public static TipoEstadia getTipoEstadia(long id) {
+        TipoEstadia e = EntityUtils.select("SELECT c FROM TipoEstadia c WHERE id = " + id, TipoEstadia.class).get(0);
         return e;
     }
 

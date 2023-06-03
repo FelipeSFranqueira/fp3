@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 @Entity(name="Cocheiras")
 @Table(name="Stable")
-public class Stable implements Serializable {
+public class Estadia implements Serializable {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -37,10 +37,10 @@ public class Stable implements Serializable {
     //private List<Servico> servico;
     private boolean isCancelled;
 
-    public Stable() {
+    public Estadia() {
     }
     
-    public Stable(Animal animal,/*TIPO, PRODUTOS, SERVICO*/
+    public Estadia(Animal animal,/*TIPO, PRODUTOS, SERVICO*/
     Timestamp entrada, Timestamp saida, String cocheira, boolean isCancelled) {
         this.animal = animal;
         this.entrada = entrada;
@@ -53,7 +53,7 @@ public class Stable implements Serializable {
         Date now = new Date();
         Date n = new Date(now.getTime());
         Object result = null;
-        Stable e = getEstadia(id);
+        Estadia e = getEstadia(id);
         
         if (String.valueOf(e.getId()) != null) {
             if (e.getEntrada().before(n) && e.getSaida().before(n)) {
@@ -73,8 +73,8 @@ public class Stable implements Serializable {
         return result;
     }
     
-    public static Stable getEstadia(long id) {
-        Stable e = EntityUtils.select("SELECT c FROM Cocheiras c WHERE Id = " + id, Stable.class).get(0);
+    public static Estadia getEstadia(long id) {
+        Estadia e = EntityUtils.select("SELECT c FROM Cocheiras c WHERE Id = " + id, Estadia.class).get(0);
         return e;
     }
     

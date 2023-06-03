@@ -23,7 +23,7 @@ public class Animal {
         joinColumns = @JoinColumn(name = "animal_id"),
         inverseJoinColumns = @JoinColumn(name = "owner_id")
     )
-    private List<Client> owners = new ArrayList<>();
+    private List<Cliente> owners = new ArrayList<>();
     
     private String name;
     private String coat;
@@ -57,11 +57,11 @@ public class Animal {
         this.id = id;
     }
 
-    public List<Client> getOwners() {
+    public List<Cliente> getOwners() {
         return owners;
     }
 
-    public void setOwners(List<Client> owners) {
+    public void setOwners(List<Cliente> owners) {
         this.owners = owners;
     }
 
