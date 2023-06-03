@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity(name="Servico")
+@Entity
 @Table(name="Services")
 public class Servico {
 
@@ -27,7 +27,7 @@ public class Servico {
     }
     
     public static Servico getServico(long id) {
-        Servico s = EntityUtils.select("SELECT c FROM Servico c WHERE Id = " + id, Servico.class).get(0);
+        Servico s = EntityUtils.select("SELECT c FROM Servico c WHERE id = " + id, Servico.class).get(0);
         return s;
     }
 

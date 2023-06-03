@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity(name="Produto")
+@Entity
 @Table(name="Products")
 public class Produto {
 
@@ -31,7 +31,7 @@ public class Produto {
     }
     
     public static Produto getProduto(long id) {
-        Produto p = EntityUtils.select("SELECT c FROM Produto c WHERE Id = " + id, Produto.class).get(0);
+        Produto p = EntityUtils.select("SELECT c FROM Produto c WHERE id = " + id, Produto.class).get(0);
         return p;
     }
 

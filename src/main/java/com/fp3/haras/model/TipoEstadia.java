@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity(name="TipoEstadia")
+@Entity
 @Table(name="StablesType")
 public class TipoEstadia {
 
@@ -27,7 +27,7 @@ public class TipoEstadia {
     }
     
     public static TipoEstadia getTipoEstadia(long id) {
-        TipoEstadia e = EntityUtils.select("SELECT c FROM TipoEstadia c WHERE Id = " + id, TipoEstadia.class).get(0);
+        TipoEstadia e = EntityUtils.select("SELECT c FROM TipoEstadia c WHERE id = " + id, TipoEstadia.class).get(0);
         return e;
     }
 
