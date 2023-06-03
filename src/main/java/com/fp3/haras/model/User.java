@@ -1,16 +1,16 @@
 package com.fp3.haras.model;
 
-public class Usuario {
+public class User {
 
     private long id;
     private String nome;
     private String nomeUsuario;
     private String senha;
 
-    public Usuario() {
+    public User() {
     }
 
-    public Usuario(long id, String nome, String nomeUsuario, String senha) {
+    public User(long id, String nome, String nomeUsuario, String senha) {
         this.id = id;
         this.nome = nome;
         this.nomeUsuario = nomeUsuario;

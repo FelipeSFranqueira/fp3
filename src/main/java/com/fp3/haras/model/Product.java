@@ -9,29 +9,29 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="Products")
-public class Produto {
+public class Product {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
-    private String nome;
-    private int estoque;
+    private String name;
+    private int stock;
     private double pdc;
     private double pdv;
     private boolean isDeleted = false;
 
-    public Produto() {
+    public Product() {
     }
 
-    public Produto(String nome, int estoque, double pdc, double pdv) {
-        this.nome = nome;
-        this.estoque = estoque;
+    public Product(String nome, int estoque, double pdc, double pdv) {
+        this.name = nome;
+        this.stock = estoque;
         this.pdc = pdc;
         this.pdv = pdv;
     }
     
-    public static Produto getProduto(long id) {
-        Produto p = EntityUtils.select("SELECT c FROM Produto c WHERE id = " + id, Produto.class).get(0);
+    public static Product getProduto(long id) {
+        Product p = EntityUtils.select("SELECT c FROM Produto c WHERE id = " + id, Product.class).get(0);
         return p;
     }
 
@@ -43,20 +43,20 @@ public class Produto {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getEstoque() {
-        return estoque;
+    public int getStock() {
+        return stock;
     }
 
-    public void setEstoque(int estoque) {
-        this.estoque = estoque;
+    public void setStock(int stock) {
+        this.stock = stock;
     }
     
     public double getPdc() {

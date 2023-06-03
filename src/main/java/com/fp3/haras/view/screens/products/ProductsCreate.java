@@ -1,8 +1,8 @@
 package com.fp3.haras.view.screens.products;
 
-import com.fp3.haras.model.Produto;
-import com.fp3.haras.model.Servico;
-import com.fp3.haras.model.TipoEstadia;
+import com.fp3.haras.model.Product;
+import com.fp3.haras.model.Service;
+import com.fp3.haras.model.StableType;
 import javax.swing.JOptionPane;
 import com.fp3.haras.utils.Colors;
 import com.fp3.haras.utils.EntityUtils;
@@ -371,15 +371,15 @@ public class ProductsCreate extends javax.swing.JFrame implements GenericObserva
     }//GEN-LAST:event_btnCancelProductActionPerformed
 
     private void btnSaveProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveProductActionPerformed
-        Produto p = new Produto(txtProductName.getText(), 
+        Product p = new Product(txtProductName.getText(), 
                 Integer.parseInt(txtProductStock.getText()), 
                 Integer.parseInt(txtPurchasePrice.getText()), 
                 Integer.parseInt(txtSalePrice.getText()));
         
         EntityUtils.insert(p);
         
-        JOptionPane.showMessageDialog(null, "Código de registro: " + p.getId(), "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
         this.notifyObservers("");
+        JOptionPane.showMessageDialog(null, "Código de registro: " + p.getId(), "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
         txtProductName.setText("");
         txtProductStock.setText("");
         txtPurchasePrice.setText("");
@@ -392,12 +392,12 @@ public class ProductsCreate extends javax.swing.JFrame implements GenericObserva
     }//GEN-LAST:event_btnCancelServiceActionPerformed
 
     private void btnSaveServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveServiceActionPerformed
-        Servico s = new Servico(txtServiceType.getText(), Integer.parseInt(txtServicePrice.getText()));
+        Service s = new Service(txtServiceType.getText(), Integer.parseInt(txtServicePrice.getText()));
         
         EntityUtils.insert(s);
         
-        JOptionPane.showMessageDialog(null, "Código de registro: " + s.getId(), "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
         this.notifyObservers("");
+        JOptionPane.showMessageDialog(null, "Código de registro: " + s.getId(), "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
         txtServiceType.setText("");
         txtServicePrice.setText("");
         dispose();
@@ -408,12 +408,12 @@ public class ProductsCreate extends javax.swing.JFrame implements GenericObserva
     }//GEN-LAST:event_btnCancelStableActionPerformed
 
     private void btnSaveStableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveStableActionPerformed
-        TipoEstadia te = new TipoEstadia(txtStableType.getText(), Integer.parseInt(txtStablePrice.getText()));
+        StableType te = new StableType(txtStableType.getText(), Integer.parseInt(txtStablePrice.getText()));
         
         EntityUtils.insert(te);
         
-        JOptionPane.showMessageDialog(null, "Código de registro: " + te.getId(), "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
         this.notifyObservers("");
+        JOptionPane.showMessageDialog(null, "Código de registro: " + te.getId(), "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
         txtStableType.setText("");
         txtStablePrice.setText("");
         dispose();

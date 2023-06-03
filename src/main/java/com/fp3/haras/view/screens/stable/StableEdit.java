@@ -1,6 +1,6 @@
 package com.fp3.haras.view.screens.stable;
 
-import com.fp3.haras.model.Estadia;
+import com.fp3.haras.model.Stable;
 import com.fp3.haras.utils.Colors;
 import com.fp3.haras.utils.EntityUtils;
 import com.fp3.haras.utils.GenericObservable;
@@ -387,7 +387,7 @@ public class StableEdit extends javax.swing.JFrame implements GenericObservable 
 
     public void initData() {
         lblCode.setText("#"+String.valueOf(StableScreen.selectedId));
-        Estadia e = Estadia.getEstadia(StableScreen.selectedId);
+        Stable e = Stable.getEstadia(StableScreen.selectedId);
         String boxCocheira = String.valueOf(e.getCocheira().charAt(0));
         int spnCocheira = Integer.parseInt(e.getCocheira().substring(1));
         spnEnter.setValue(e.getEntrada());
@@ -411,7 +411,7 @@ public class StableEdit extends javax.swing.JFrame implements GenericObservable 
     }//GEN-LAST:event_btnCancelActionPerformed
     
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        Estadia e = Estadia.getEstadia(StableScreen.selectedId);
+        Stable e = Stable.getEstadia(StableScreen.selectedId);
         e.setCocheira(getCocheira());
         e.setSaida(getSaida());
         e.setCocheira(getCocheira());
@@ -426,7 +426,7 @@ public class StableEdit extends javax.swing.JFrame implements GenericObservable 
     }//GEN-LAST:event_btnApplyActionPerformed
 
     private void btnEndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEndActionPerformed
-        Estadia e = Estadia.getEstadia(StableScreen.selectedId);
+        Stable e = Stable.getEstadia(StableScreen.selectedId);
         e.setIsCancelled(true);
         EntityUtils.update(e);
         JOptionPane.showMessageDialog(null, "Registro #"+StableScreen.selectedId+" atualizado!", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);

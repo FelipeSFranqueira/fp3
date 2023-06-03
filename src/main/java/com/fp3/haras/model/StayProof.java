@@ -2,13 +2,13 @@ package com.fp3.haras.model;
 
 import java.sql.Timestamp;
 
-public class ComprovanteEstadia {
+public class StayProof {
 
     private long id;
     private Timestamp dataRecebimentoAnimal;
     private Timestamp dataEntregaAnimal;
     private Animal animal;
-    private Cliente cliente;
+    private Client cliente;
 
     public long getId() {
         return id;
@@ -42,11 +42,11 @@ public class ComprovanteEstadia {
         this.animal = animal;
     }
 
-    public Cliente getCliente() {
+    public Client getCliente() {
         return cliente;
     }
 
-    public void setCliente(Cliente cliente) {
+    public void setCliente(Client cliente) {
         this.cliente = cliente;
     }
 }

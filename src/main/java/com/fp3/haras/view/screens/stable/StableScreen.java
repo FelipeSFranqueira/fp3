@@ -1,8 +1,8 @@
 package com.fp3.haras.view.screens.stable;
 
 import com.fp3.haras.model.Animal;
-import com.fp3.haras.model.Cliente;
-import com.fp3.haras.model.Estadia;
+import com.fp3.haras.model.Client;
+import com.fp3.haras.model.Stable;
 import com.fp3.haras.utils.Colors;
 import com.fp3.haras.utils.EntityUtils;
 import com.fp3.haras.utils.GenericObserver;
@@ -51,7 +51,7 @@ public class StableScreen extends javax.swing.JPanel implements GenericObserver 
         DefaultTableModel progressModel = (DefaultTableModel) tableProgress.getModel();
         DefaultTableModel futureModel = (DefaultTableModel) tableFuture.getModel();
         DefaultTableModel endModel = (DefaultTableModel) tableFinished.getModel();
-        List<Estadia> estadias = EntityUtils.select("SELECT c FROM Cocheiras c", Estadia.class);
+        List<Stable> estadias = EntityUtils.select("SELECT c FROM Cocheiras c", Stable.class);
         
         Date now = new Date();
         Date n = setOnlyDay(new Date(now.getTime()));
@@ -61,7 +61,7 @@ public class StableScreen extends javax.swing.JPanel implements GenericObserver 
         futureModel.setRowCount(0);
         endModel.setRowCount(0);
         
-        for (Estadia e : estadias) {
+        for (Stable e : estadias) {
             entrada = setOnlyDay(e.getEntrada());
             saida = setOnlyDay(e.getSaida());
             
@@ -317,7 +317,7 @@ public class StableScreen extends javax.swing.JPanel implements GenericObserver 
     }//GEN-LAST:event_btnEditActionPerformed
 
     private DefaultTableModel updateTableModel(long id, DefaultTableModel models) {
-        long time = Estadia.getEstadia(id).getSaida().getTime() - Estadia.getEstadia(id).getEntrada().getTime();
+        long time = Stable.getEstadia(id).getSaida().getTime() - Stable.getEstadia(id).getEntrada().getTime();
         long stayDays = TimeUnit.MILLISECONDS.toDays(time);
         long stayHours = TimeUnit.MILLISECONDS.toHours(time);
         String remainTime;
@@ -328,18 +328,18 @@ public class StableScreen extends javax.swing.JPanel implements GenericObserver 
             remainTime = stayDays + "d";
         
         updateSuggestionBox();
-        long animalId = Estadia.getEstadia(id).getAnimal().getId();
-        String animalName = Estadia.getEstadia(id).getAnimal().getName();
+        long animalId = Stable.getEstadia(id).getAnimal().getId();
+        String animalName = Stable.getEstadia(id).getAnimal().getName();
         String querySearch = "SELECT a FROM Animal a JOIN FETCH a.owners o WHERE a.id = '" + animalId + "'";
         Animal animal = EntityUtils.select(querySearch, Animal.class).get(0);
-        Cliente owner = animal.getOwners().get(0);
+        Client owner = animal.getOwners().get(0);
         
         models.addRow(new Object[]{
-            String.valueOf(Estadia.getEstadia(id).getId()),
+            String.valueOf(Stable.getEstadia(id).getId()),
             owner.getNome(),
             animalName,
             remainTime,
-            String.valueOf(Estadia.getEstadia(id).getCocheira()),
+            String.valueOf(Stable.getEstadia(id).getCocheira()),
             "---"
         });
                     
@@ -350,8 +350,8 @@ public class StableScreen extends javax.swing.JPanel implements GenericObserver 
         boxSearch.removeAllItems();
         boxSearch.addItem("");
         String query = "SELECT c FROM Cocheiras c";
-        List<Estadia> estadia = EntityUtils.select(query, Estadia.class);
-        for (Estadia item : estadia) {
+        List<Stable> estadia = EntityUtils.select(query, Stable.class);
+        for (Stable item : estadia) {
             boxSearch.addItem(item.getId());
         }
     }
@@ -362,27 +362,27 @@ public class StableScreen extends javax.swing.JPanel implements GenericObserver 
         
         if (boxSearch.getSelectedItem() != null && String.valueOf(boxSearch.getSelectedItem()).matches("[0-9]+")) {
             id = Long.parseLong(String.valueOf(boxSearch.getSelectedItem()));
-            if (Estadia.getEstadia(id) != null) {
+            if (Stable.getEstadia(id) != null) {
                 switch(selectedTab) {
                     case "ATIVAS":
-                        if(Estadia.getState(id).equals("ATIVA")) {
+                        if(Stable.getState(id).equals("ATIVA")) {
                             insertSearchData(id, tableProgress);
                         } else {
-                            JOptionPane.showMessageDialog(null, "Status da estadia: " + Estadia.getState(id), null, JOptionPane.WARNING_MESSAGE, null);
+                            JOptionPane.showMessageDialog(null, "Status da estadia: " + Stable.getState(id), null, JOptionPane.WARNING_MESSAGE, null);
                         }
                         break;
                     case "FINALIZADAS":
-                        if(Estadia.getState(id).equals("FINALIZADA")) {
+                        if(Stable.getState(id).equals("FINALIZADA")) {
                             insertSearchData(id, tableFinished);
                         } else {
-                            JOptionPane.showMessageDialog(null, "Status da estadia: " + Estadia.getState(id), null, JOptionPane.WARNING_MESSAGE, null);
+                            JOptionPane.showMessageDialog(null, "Status da estadia: " + Stable.getState(id), null, JOptionPane.WARNING_MESSAGE, null);
                         }
                         break;
                     case "FUTURAS":
-                        if(Estadia.getState(id).equals("FUTURA")) {
+                        if(Stable.getState(id).equals("FUTURA")) {
                             insertSearchData(id, tableFuture);
                         } else {
-                            JOptionPane.showMessageDialog(null, "Status da estadia: " + Estadia.getState(id), null, JOptionPane.WARNING_MESSAGE, null);
+                            JOptionPane.showMessageDialog(null, "Status da estadia: " + Stable.getState(id), null, JOptionPane.WARNING_MESSAGE, null);
                         }
                         break;
                     default:

@@ -9,25 +9,25 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="StablesType")
-public class TipoEstadia {
+public class StableType {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
-    private String tipo;
-    private double preco;
+    private String type;
+    private double price;
     private boolean isDeleted = false;
 
-    public TipoEstadia() {
+    public StableType() {
     }
 
-    public TipoEstadia(String tipo, double preco) {
-        this.tipo = tipo;
-        this.preco = preco;
+    public StableType(String tipo, double preco) {
+        this.type = tipo;
+        this.price = preco;
     }
     
-    public static TipoEstadia getTipoEstadia(long id) {
-        TipoEstadia e = EntityUtils.select("SELECT c FROM TipoEstadia c WHERE id = " + id, TipoEstadia.class).get(0);
+    public static StableType getTipoEstadia(long id) {
+        StableType e = EntityUtils.select("SELECT c FROM TipoEstadia c WHERE id = " + id, StableType.class).get(0);
         return e;
     }
 
@@ -39,20 +39,20 @@ public class TipoEstadia {
         this.id = id;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getType() {
+        return type;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public double getPreco() {
-        return preco;
+    public double getPrice() {
+        return price;
     }
 
-    public void setPreco(double preco) {
-        this.preco = preco;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public boolean isIsDeleted() {

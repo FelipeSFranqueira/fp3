@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Cliente {
+public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +24,7 @@ public class Cliente {
     private List<Animal> animais;
     private boolean isDeleted;
 
-    public Cliente() {
+    public Client() {
     }
 
     public long getId() {

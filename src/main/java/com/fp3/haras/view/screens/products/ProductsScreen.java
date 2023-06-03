@@ -1,8 +1,8 @@
 package com.fp3.haras.view.screens.products;
 
-import com.fp3.haras.model.Produto;
-import com.fp3.haras.model.Servico;
-import com.fp3.haras.model.TipoEstadia;
+import com.fp3.haras.model.Product;
+import com.fp3.haras.model.Service;
+import com.fp3.haras.model.StableType;
 import com.fp3.haras.utils.Colors;
 import com.fp3.haras.utils.EntityUtils;
 import com.fp3.haras.utils.GenericObserver;
@@ -19,12 +19,12 @@ import javax.swing.table.DefaultTableModel;
 public class ProductsScreen extends javax.swing.JPanel implements GenericObserver{
     private final ProductsCreate CreateModal;
     private final ProductsEdit   EditModal;
-    private Produto       productSelected;
-    private Servico       serviceSelected;
-    private TipoEstadia   stableTypeSelected;
-    private List<Produto> ProductsTableResults;
-    private List<Servico> ServicesTableResults;
-    private List<TipoEstadia> StableTypeTableResults;
+    private Product       productSelected;
+    private Service       serviceSelected;
+    private StableType   stableTypeSelected;
+    private List<Product> ProductsTableResults;
+    private List<Service> ServicesTableResults;
+    private List<StableType> StableTypeTableResults;
     
     public static long selectedId;
     DefaultTableCellRenderer center = new DefaultTableCellRenderer();
@@ -305,13 +305,13 @@ public class ProductsScreen extends javax.swing.JPanel implements GenericObserve
             if (boxSearch.getSelectedItem() == null) {
                this.populateTable();
             } else {
-                String pQuerySearch = "SELECT a FROM Produto a WHERE a.nome = '" + (String) boxSearch.getSelectedItem() + "'";
-                List<Produto> produto = EntityUtils.select(pQuerySearch, Produto.class);
-                for (Produto a : produto) {
+                String pQuerySearch = "SELECT a FROM Produto a WHERE a.name = '" + (String) boxSearch.getSelectedItem() + "'";
+                List<Product> produto = EntityUtils.select(pQuerySearch, Product.class);
+                for (Product a : produto) {
                     tableP.addRow(new Object[]{
                         a.getId(),
-                        a.getNome(),
-                        a.getEstoque(),
+                        a.getName(),
+                        a.getStock(),
                         a.getPdc(),
                         a.getPdv()
                     });
@@ -325,13 +325,13 @@ public class ProductsScreen extends javax.swing.JPanel implements GenericObserve
             if (boxSearch.getSelectedItem() == null) {
                this.populateTable();
             } else {
-                String sQuerySearch = "SELECT a FROM Servico a WHERE a.nome = '" + (String) boxSearch.getSelectedItem() + "'";
-                List<Servico> servico = EntityUtils.select(sQuerySearch, Servico.class);
-                for (Servico a : servico) {
+                String sQuerySearch = "SELECT a FROM Servico a WHERE a.name = '" + (String) boxSearch.getSelectedItem() + "'";
+                List<Service> servico = EntityUtils.select(sQuerySearch, Service.class);
+                for (Service a : servico) {
                     tableS.addRow(new Object[]{
                         a.getId(),
-                        a.getNome(),
-                        a.getPreco()
+                        a.getName(),
+                        a.getPrice()
                     });
                 }
             }
@@ -343,13 +343,13 @@ public class ProductsScreen extends javax.swing.JPanel implements GenericObserve
             if (boxSearch.getSelectedItem() == null) {
                this.populateTable();
             } else {
-                String eQuerySearch = "SELECT a FROM TipoEstadia a WHERE a.tipo = '" + (String) boxSearch.getSelectedItem() + "'";
-                List<TipoEstadia> tipoEstadia = EntityUtils.select(eQuerySearch, TipoEstadia.class);
-                for (TipoEstadia a : tipoEstadia) {
+                String eQuerySearch = "SELECT a FROM TipoEstadia a WHERE a.type = '" + (String) boxSearch.getSelectedItem() + "'";
+                List<StableType> tipoEstadia = EntityUtils.select(eQuerySearch, StableType.class);
+                for (StableType a : tipoEstadia) {
                     tableE.addRow(new Object[]{
                         a.getId(),
-                        a.getTipo(),
-                        a.getPreco()
+                        a.getType(),
+                        a.getPrice()
                     });
                 }
             }
@@ -364,7 +364,7 @@ public class ProductsScreen extends javax.swing.JPanel implements GenericObserve
         int id = Integer.parseInt(table.getValueAt(tableProducts.getSelectedRow(), 0).toString());
         
         String queryProduto = "SELECT a FROM Produto WHERE a.id = " + id;
-        this.productSelected = EntityUtils.select(queryProduto, Produto.class).get(0);
+        this.productSelected = EntityUtils.select(queryProduto, Product.class).get(0);
     }//GEN-LAST:event_tableProductsMouseClicked
 
     private void tableStableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableStableMouseClicked
@@ -374,7 +374,7 @@ public class ProductsScreen extends javax.swing.JPanel implements GenericObserve
         int id = Integer.parseInt(table.getValueAt(tableServices.getSelectedRow(), 0).toString());
         
         String queryServico = "SELECT a FROM Servico WHERE a.id = " + id;
-        this.serviceSelected = EntityUtils.select(queryServico, Servico.class).get(0);
+        this.serviceSelected = EntityUtils.select(queryServico, Service.class).get(0);
     }//GEN-LAST:event_tableStableMouseClicked
 
     private void tableServicesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableServicesMouseClicked
@@ -384,7 +384,7 @@ public class ProductsScreen extends javax.swing.JPanel implements GenericObserve
         int id = Integer.parseInt(table.getValueAt(tableStable.getSelectedRow(), 0).toString());
         
         String queryStableType = "SELECT a FROM TipoEstadia WHERE a.id = " + id;
-        this.stableTypeSelected = EntityUtils.select(queryStableType, TipoEstadia.class).get(0);
+        this.stableTypeSelected = EntityUtils.select(queryStableType, StableType.class).get(0);
     }//GEN-LAST:event_tableServicesMouseClicked
 
     private void updateBoxSearch(){
@@ -395,21 +395,21 @@ public class ProductsScreen extends javax.swing.JPanel implements GenericObserve
         
         if (selectedTab.equals("PRODUTOS")) {
             String pQuerySearch = "SELECT a FROM Produto a WHERE a.isDeleted = false";
-            List<Produto> produto = EntityUtils.select(pQuerySearch, Produto.class);
-            for (Produto p: produto) {
-                boxSearch.addItem(p.getNome());
+            List<Product> produto = EntityUtils.select(pQuerySearch, Product.class);
+            for (Product p: produto) {
+                boxSearch.addItem(p.getName());
             }
         } else if (selectedTab.equals("SERVIÇOS")) {
             String sQuerySearch = "SELECT a FROM Servico a WHERE a.isDeleted = false";
-            List<Servico> servico = EntityUtils.select(sQuerySearch, Servico.class);
-            for (Servico s: servico) {
-                boxSearch.addItem(s.getNome());
+            List<Service> servico = EntityUtils.select(sQuerySearch, Service.class);
+            for (Service s: servico) {
+                boxSearch.addItem(s.getName());
             }
         } else if (selectedTab.equals("ESTADIAS")) {
             String eQuerySearch = "SELECT a FROM TipoEstadia a WHERE a.isDeleted = false";
-            List<TipoEstadia> tipoEstadia = EntityUtils.select(eQuerySearch, TipoEstadia.class);
-            for (TipoEstadia e: tipoEstadia) {
-                boxSearch.addItem(e.getTipo());
+            List<StableType> tipoEstadia = EntityUtils.select(eQuerySearch, StableType.class);
+            for (StableType e: tipoEstadia) {
+                boxSearch.addItem(e.getType());
             }
         }
     }
@@ -418,29 +418,29 @@ public class ProductsScreen extends javax.swing.JPanel implements GenericObserve
         DefaultTableModel pModel = (DefaultTableModel) tableProducts.getModel();
         DefaultTableModel sModel = (DefaultTableModel) tableServices.getModel();
         DefaultTableModel eModel = (DefaultTableModel) tableStable.getModel();
-        List<Produto> produtos = EntityUtils.select("SELECT c FROM Produto c", Produto.class);
-        List<Servico> servicos = EntityUtils.select("SELECT c FROM Servico c", Servico.class);
-        List<TipoEstadia> tiposEstadia = EntityUtils.select("SELECT c FROM TipoEstadia c", TipoEstadia.class);
+        List<Product> produtos = EntityUtils.select("SELECT c FROM Produto c", Product.class);
+        List<Service> servicos = EntityUtils.select("SELECT c FROM Servico c", Service.class);
+        List<StableType> tiposEstadia = EntityUtils.select("SELECT c FROM TipoEstadia c", StableType.class);
         
         pModel.setRowCount(0);
         sModel.setRowCount(0);
         eModel.setRowCount(0);
         
-        for (Produto p : produtos) {
+        for (Product p : produtos) {
             
             if (!p.isIsDeleted()) {
                 updateProductTableModel(p.getId(), pModel);     
             } 
         }
         
-        for (Servico s : servicos) {
+        for (Service s : servicos) {
             
             if (!s.isIsDeleted()) {
                 updateServiceTableModel(s.getId(), sModel);     
             } 
         }
         
-        for (TipoEstadia e : tiposEstadia) {
+        for (StableType e : tiposEstadia) {
             
             if (!e.isIsDeleted()) {
                 updateStableTypeTableModel(e.getId(), eModel);     
@@ -452,16 +452,16 @@ public class ProductsScreen extends javax.swing.JPanel implements GenericObserve
         
         updateBoxSearch();
         
-        Produto p = new Produto();
+        Product p = new Product();
         long produtoId = p.getProduto(id).getId();
-        String produtoNome = p.getProduto(id).getNome();
+        String produtoNome = p.getProduto(id).getName();
         
         String PquerySearch = "SELECT a FROM Produto a WHERE a.id = '" + produtoId + "'";
         
         models.addRow(new Object[]{
             String.valueOf(p.getProduto(id).getId()),
             produtoNome,
-            String.valueOf(p.getProduto(id).getEstoque()),
+            String.valueOf(p.getProduto(id).getStock()),
             String.valueOf(p.getProduto(id).getPdc()),
             String.valueOf(p.getProduto(id).getPdv())
         });
@@ -473,16 +473,16 @@ public class ProductsScreen extends javax.swing.JPanel implements GenericObserve
         
         updateBoxSearch();
         
-        Servico s = new Servico();
+        Service s = new Service();
         long servicoId = s.getServico(id).getId();
-        String servocoNome = s.getServico(id).getNome();
+        String servocoNome = s.getServico(id).getName();
         
         String SquerySearch = "SELECT a FROM Servico a WHERE a.id = '" + servicoId + "'";
         
         models.addRow(new Object[]{
             String.valueOf(s.getServico(id).getId()),
             servocoNome,
-            String.valueOf(s.getServico(id).getPreco())
+            String.valueOf(s.getServico(id).getPrice())
         });
                     
         return models;
@@ -492,16 +492,16 @@ public class ProductsScreen extends javax.swing.JPanel implements GenericObserve
         
         updateBoxSearch();
         
-        TipoEstadia e = new TipoEstadia();
+        StableType e = new StableType();
         long tipoEstadiaId = e.getTipoEstadia(id).getId();
-        String tipoEstadiaNome = e.getTipoEstadia(id).getTipo();
+        String tipoEstadiaNome = e.getTipoEstadia(id).getType();
         
         String EquerySearch = "SELECT a FROM Produto a WHERE a.id = '" + tipoEstadiaId + "'";
         
         models.addRow(new Object[]{
             String.valueOf(e.getTipoEstadia(id).getId()),
             tipoEstadiaNome,
-            String.valueOf(e.getTipoEstadia(id).getPreco())
+            String.valueOf(e.getTipoEstadia(id).getPrice())
         });
                     
         return models;

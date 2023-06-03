@@ -1,7 +1,7 @@
 package com.fp3.haras.view.screens.animals;
 
 import com.fp3.haras.model.Animal;
-import com.fp3.haras.model.Cliente;
+import com.fp3.haras.model.Client;
 import com.fp3.haras.utils.Colors;
 import com.fp3.haras.utils.EntityUtils;
 import com.fp3.haras.utils.GenericObserver;
@@ -205,7 +205,7 @@ public class AnimalsScreen extends javax.swing.JPanel implements GenericObserver
             List<Animal> animal = EntityUtils.select(querySearch, Animal.class);
             String owner = "";
             for (Animal a : animal) {
-                for (Cliente o : a.getOwners()) {
+                for (Client o : a.getOwners()) {
                     owner = o.getNome();
                 }
                 table.addRow(new Object[]{
@@ -257,7 +257,7 @@ public class AnimalsScreen extends javax.swing.JPanel implements GenericObserver
         fetchTableResults(this.currentPage, this.maxResults);
         String owner = "";
         for (Animal a : this.tableResults) {
-            for (Cliente o : a.getOwners()) {
+            for (Client o : a.getOwners()) {
                 owner = o.getNome();
             }
             table.addRow(new Object[]{

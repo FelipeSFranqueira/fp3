@@ -9,25 +9,25 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="Services")
-public class Servico {
+public class Service {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
-    private String nome;
-    private double preco;
+    private String name;
+    private double price;
     private boolean isDeleted = false;
 
-    public Servico() {
+    public Service() {
     }
 
-    public Servico(String nome, double preco) {
-        this.nome = nome;
-        this.preco = preco;
+    public Service(String nome, double preco) {
+        this.name = nome;
+        this.price = preco;
     }
     
-    public static Servico getServico(long id) {
-        Servico s = EntityUtils.select("SELECT c FROM Servico c WHERE id = " + id, Servico.class).get(0);
+    public static Service getServico(long id) {
+        Service s = EntityUtils.select("SELECT c FROM Servico c WHERE id = " + id, Service.class).get(0);
         return s;
     }
 
@@ -39,20 +39,20 @@ public class Servico {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public double getPreco() {
-        return preco;
+    public double getPrice() {
+        return price;
     }
 
-    public void setPreco(double preco) {
-        this.preco = preco;
+    public void setPrice(double price) {
+        this.price = price;
     }
     
     public boolean isIsDeleted() {

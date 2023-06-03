@@ -1,7 +1,7 @@
 package com.fp3.haras.view.screens.animals;
 
 import com.fp3.haras.model.Animal;
-import com.fp3.haras.model.Cliente;
+import com.fp3.haras.model.Client;
 import com.fp3.haras.utils.Colors;
 import com.fp3.haras.utils.EntityUtils;
 import com.fp3.haras.utils.GenericObservable;
@@ -23,8 +23,8 @@ public class AnimalsCreate extends javax.swing.JFrame implements GenericObservab
         lblTitle.putClientProperty("FlatLaf.styleClass", "h00");
         
         String queryClients = "SELECT c FROM Cliente c";
-        List<Cliente> owners = EntityUtils.select(queryClients, Cliente.class);
-        for (Cliente item : owners) {
+        List<Client> owners = EntityUtils.select(queryClients, Client.class);
+        for (Client item : owners) {
             boxProprietario.addItem(item.getNome());
         }
     }
@@ -343,7 +343,7 @@ public class AnimalsCreate extends javax.swing.JFrame implements GenericObservab
         
         Animal a1 = new Animal(name, coat, sex, category, origin, hasAie, hasMormo, hasGta);
         String querySelect = "SELECT c FROM Cliente c WHERE c.nome = '" + (String) boxProprietario.getSelectedItem() + "'";
-        Cliente owner = EntityUtils.select(querySelect, Cliente.class).get(0);
+        Client owner = EntityUtils.select(querySelect, Client.class).get(0);
         
         a1.getOwners().add(owner);
         
