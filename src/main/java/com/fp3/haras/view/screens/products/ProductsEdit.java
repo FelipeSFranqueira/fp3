@@ -446,12 +446,11 @@ public class ProductsEdit extends javax.swing.JFrame implements GenericObservabl
     }//GEN-LAST:event_btnDeleteServiceActionPerformed
 
     private void btnSaveServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveServiceActionPerformed
-        selectedService.setNome(txtServiceType.getText());
-        selectedService.setPreco(Integer.parseInt(txtServicePrice.getText()));
-        
-        EntityUtils.update(selectedService);
-        
-        JOptionPane.showMessageDialog(null, "Serviço atualizado!", "Cadastro Atualizado", JOptionPane.INFORMATION_MESSAGE, null);
+        Servico s = Servico.getServico(ProductsScreen.selectedId);
+        s.setNome(txtServiceType.getText());
+        s.setPreco(Double.parseDouble(txtSalePrice.getText()));
+        EntityUtils.update(s);
+        JOptionPane.showMessageDialog(null, "Registro #"+ProductsScreen.selectedId+" atualizado!", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
         dispose();
         this.notifyObservers("");
     }//GEN-LAST:event_btnSaveServiceActionPerformed
@@ -472,14 +471,13 @@ public class ProductsEdit extends javax.swing.JFrame implements GenericObservabl
     }//GEN-LAST:event_btnDeleteProductActionPerformed
 
     private void btnSaveProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveProductActionPerformed
-        selectedProducts.setNome(txtProductName.getText());
-        selectedProducts.setEstoque(Integer.parseInt(txtProductStock.getText()));
-        selectedProducts.setPdc(Integer.parseInt(txtPurchasePrice.getText()));
-        selectedProducts.setPdv(Integer.parseInt(txtSalePrice.getText()));
-        
-        EntityUtils.update(selectedProducts);
-        
-        JOptionPane.showMessageDialog(null, "Produto atualizado!", "Cadastro Atualizado", JOptionPane.INFORMATION_MESSAGE, null);
+        Produto p = Produto.getProduto(ProductsScreen.selectedId);
+        p.setNome(txtProductName.getText());
+        p.setEstoque(Integer.parseInt(txtProductStock.getText()));
+        p.setPdc(Double.parseDouble(txtPurchasePrice.getText()));
+        p.setPdv(Double.parseDouble(txtSalePrice.getText()));
+        EntityUtils.update(p);
+        JOptionPane.showMessageDialog(null, "Registro #"+ProductsScreen.selectedId+" atualizado!", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
         dispose();
         this.notifyObservers("");
     }//GEN-LAST:event_btnSaveProductActionPerformed
@@ -493,12 +491,11 @@ public class ProductsEdit extends javax.swing.JFrame implements GenericObservabl
     }//GEN-LAST:event_btnCancelStableActionPerformed
 
     private void btnSaveStableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveStableActionPerformed
-        selectedStableType.setTipo(txtStablePrice.getText());
-        selectedStableType.setPreco(Integer.parseInt(txtStablePrice.getText()));
-        
-        EntityUtils.update(selectedStableType);
-        
-        JOptionPane.showMessageDialog(null, "Tipo de Estadia atualizado!", "Cadastro Atualizado", JOptionPane.INFORMATION_MESSAGE, null);
+        TipoEstadia e = TipoEstadia.getTipoEstadia(ProductsScreen.selectedId);
+        e.setTipo(txtStableType.getText());
+        e.setPreco(Double.parseDouble(txtStablePrice.getText()));
+        EntityUtils.update(e);
+        JOptionPane.showMessageDialog(null, "Registro #"+ProductsScreen.selectedId+" atualizado!", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
         dispose();
         this.notifyObservers("");
     }//GEN-LAST:event_btnSaveStableActionPerformed
