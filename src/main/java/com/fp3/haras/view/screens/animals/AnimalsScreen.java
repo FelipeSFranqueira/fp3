@@ -326,6 +326,8 @@ public class AnimalsScreen extends javax.swing.JPanel implements GenericObserver
                     "relatorio_animais_completo", 
                     "Relatório Completo de Animais", 
                     fullTable);
+            
+           this.populateTable();
         }
     }//GEN-LAST:event_btnGenerateReportActionPerformed
     
@@ -379,15 +381,15 @@ public class AnimalsScreen extends javax.swing.JPanel implements GenericObserver
                 "SELECT a FROM Animal a JOIN FETCH a.owners o WHERE a.isDeleted = FALSE order by a.id asc", 
                 Animal.class);
         
-        DefaultTableModel table = (DefaultTableModel) jtable.getModel();
-        table.setRowCount(0);
+        DefaultTableModel model = (DefaultTableModel) jtable.getModel();
+        model.setRowCount(0);
        
         String owner = "";
         for (Animal a : allAnimals) {
             for (Cliente o : a.getOwners()) {
                 owner = o.getNome();
             }
-            table.addRow(new Object[]{
+            model.addRow(new Object[]{
                 a.getId(),
                 a.getName(),
                 a.getCoat(),
