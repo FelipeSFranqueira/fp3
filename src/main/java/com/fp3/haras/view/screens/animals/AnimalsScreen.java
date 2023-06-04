@@ -5,12 +5,14 @@ import com.fp3.haras.model.Cliente;
 import com.fp3.haras.utils.Colors;
 import com.fp3.haras.utils.EntityUtils;
 import com.fp3.haras.utils.GenericObserver;
+import com.fp3.haras.utils.ReportGenerator;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class AnimalsScreen extends javax.swing.JPanel implements GenericObserver {
@@ -26,8 +28,14 @@ public class AnimalsScreen extends javax.swing.JPanel implements GenericObserver
         initComponents();
         this.creationModal = creationModal;
         this.editionModal = editionModal;
+        
         this.setBackground(Colors.PRIMARYBG);
+        pnlReports.setBackground(Colors.SECONDARYBG);
         lblTitle.putClientProperty("FlatLaf.styleClass", "h00");
+        lblReports.putClientProperty("FlatLaf.styleClass", "h4");
+        radioGroupReports.add(radioSelectedPage);
+        radioGroupReports.add(radioAllItems);
+        radioSelectedPage.setSelected(true);
         
         this.populateTable();
         
@@ -50,6 +58,7 @@ public class AnimalsScreen extends javax.swing.JPanel implements GenericObserver
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        radioGroupReports = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableProgress = new javax.swing.JTable();
         btnCreate = new javax.swing.JButton();
@@ -60,6 +69,11 @@ public class AnimalsScreen extends javax.swing.JPanel implements GenericObserver
         boxSearch = new com.fp3.haras.components.ComboBoxSuggestion();
         btnNext = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        pnlReports = new javax.swing.JPanel();
+        lblReports = new javax.swing.JLabel();
+        btnGenerateReport = new javax.swing.JButton();
+        radioSelectedPage = new javax.swing.JRadioButton();
+        radioAllItems = new javax.swing.JRadioButton();
 
         setBackground(new java.awt.Color(244, 244, 244));
         setPreferredSize(new java.awt.Dimension(900, 585));
@@ -131,45 +145,102 @@ public class AnimalsScreen extends javax.swing.JPanel implements GenericObserver
             }
         });
 
+        lblReports.setText("Relatórios");
+
+        btnGenerateReport.setText("Gerar Relatório");
+        btnGenerateReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerateReportActionPerformed(evt);
+            }
+        });
+
+        radioSelectedPage.setText("Página selecionada");
+
+        radioAllItems.setText("Todos os itens");
+
+        javax.swing.GroupLayout pnlReportsLayout = new javax.swing.GroupLayout(pnlReports);
+        pnlReports.setLayout(pnlReportsLayout);
+        pnlReportsLayout.setHorizontalGroup(
+            pnlReportsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlReportsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlReportsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlReportsLayout.createSequentialGroup()
+                        .addGroup(pnlReportsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlReportsLayout.createSequentialGroup()
+                                .addComponent(lblReports)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(btnGenerateReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())
+                    .addGroup(pnlReportsLayout.createSequentialGroup()
+                        .addGroup(pnlReportsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(radioAllItems)
+                            .addComponent(radioSelectedPage))
+                        .addGap(0, 0, Short.MAX_VALUE))))
+        );
+        pnlReportsLayout.setVerticalGroup(
+            pnlReportsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlReportsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblReports)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(radioSelectedPage)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(radioAllItems)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnGenerateReport)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnBack)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnNext))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(boxSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblSearch))
+                            .addComponent(lblTitle)
+                            .addComponent(lblSubtitle))
+                        .addGap(239, 239, 239)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(pnlReports, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lblTitle)
-                        .addComponent(lblSubtitle)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(boxSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(btnBack)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(lblSearch)
-                            .addGap(239, 239, 239)
-                            .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(50, Short.MAX_VALUE))
+                            .addComponent(btnNext))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(lblTitle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblSubtitle)
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(boxSearch, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnCreate)
-                        .addComponent(btnEdit))
-                    .addComponent(lblSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(lblTitle)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblSubtitle)
+                        .addGap(36, 36, 36)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(boxSearch, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(pnlReports, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnCreate)
+                            .addComponent(btnEdit))))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -240,6 +311,23 @@ public class AnimalsScreen extends javax.swing.JPanel implements GenericObserver
         this.currentPage--;
         this.populateTable();
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnGenerateReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateReportActionPerformed
+        ReportGenerator reportGenerator = new ReportGenerator();
+        if (radioSelectedPage.isSelected()) {
+            reportGenerator.generateReport(this, 
+                    "relatorio_animais_parcial", 
+                    "Relatório Parcial de Animais", 
+                    tableProgress);
+        } else {
+            JTable fullTable = generateFullTable();
+            
+            reportGenerator.generateReport(this, 
+                    "relatorio_animais_completo", 
+                    "Relatório Completo de Animais", 
+                    fullTable);
+        }
+    }//GEN-LAST:event_btnGenerateReportActionPerformed
     
     private void updateBoxSearch(){
         boxSearch.addItem("");
@@ -283,6 +371,37 @@ public class AnimalsScreen extends javax.swing.JPanel implements GenericObserver
         this.tableResults = animalsQuery.setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
+    private JTable generateFullTable() {
+        JTable jtable = new JTable();
+        jtable.setModel(tableProgress.getModel());
+        
+        List<Animal> allAnimals = EntityUtils.select(
+                "SELECT a FROM Animal a JOIN FETCH a.owners o WHERE a.isDeleted = FALSE order by a.id asc", 
+                Animal.class);
+        
+        DefaultTableModel table = (DefaultTableModel) jtable.getModel();
+        table.setRowCount(0);
+       
+        String owner = "";
+        for (Animal a : allAnimals) {
+            for (Cliente o : a.getOwners()) {
+                owner = o.getNome();
+            }
+            table.addRow(new Object[]{
+                a.getId(),
+                a.getName(),
+                a.getCoat(),
+                a.getCategory(),
+                a.getHasExameAie(),
+                a.getHasExameMormo(),
+                a.getHasGta(),
+                owner
+            });
+        }
+        
+        return jtable;
+    }
+    
     @Override
     public void update(Object o) {
         this.boxSearch.removeAllItems();
@@ -295,11 +414,17 @@ public class AnimalsScreen extends javax.swing.JPanel implements GenericObserver
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCreate;
     private javax.swing.JButton btnEdit;
+    private javax.swing.JButton btnGenerateReport;
     private javax.swing.JButton btnNext;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblReports;
     private javax.swing.JLabel lblSearch;
     private javax.swing.JLabel lblSubtitle;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JPanel pnlReports;
+    private javax.swing.JRadioButton radioAllItems;
+    private javax.swing.ButtonGroup radioGroupReports;
+    private javax.swing.JRadioButton radioSelectedPage;
     private javax.swing.JTable tableProgress;
     // End of variables declaration//GEN-END:variables
 }

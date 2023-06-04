@@ -13,21 +13,21 @@ public class Haras {
         new LoginScreen().setVisible(true);
         
         // Mock data for testing JPA
-        Produto prod = new Produto("Test 2", 1, 1f, 1f);
-        
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("haras");
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        em.persist(prod);
-        em.getTransaction().commit();
-        
-        Cliente c1 = new Cliente();
-        Cliente c2 = new Cliente();
-        
-        c1.setNome("Teste1");
-        c2.setNome("Teste2");
-        
-        EntityUtils.insert(c1);
-        EntityUtils.insert(c2);
+//        Produto prod = new Produto("Test 2", 1, 1f, 1f);
+//        
+//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("haras");
+//        EntityManager em = emf.createEntityManager();
+//        em.getTransaction().begin();
+//        em.persist(prod);
+//        em.getTransaction().commit();
+//        
+//        Cliente c1 = new Cliente();
+//        Cliente c2 = new Cliente();
+//        
+//        c1.setNome("Teste1");
+//        c2.setNome("Teste2");
+//        
+//        EntityUtils.insert(c1);
+//        EntityUtils.insert(c2);
     }
 }
