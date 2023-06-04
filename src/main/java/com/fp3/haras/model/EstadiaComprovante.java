@@ -2,7 +2,7 @@ package com.fp3.haras.model;
 
 import java.sql.Timestamp;
 
-public class ComprovanteEstadia {
+public class EstadiaComprovante {
 
     private long id;
     private Timestamp dataRecebimentoAnimal;

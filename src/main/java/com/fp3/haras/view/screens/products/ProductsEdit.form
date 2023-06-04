@@ -406,8 +406,8 @@
             <Container class="javax.swing.JPanel" name="pnlStableTypeEdit">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Hospedagens">
-                    <Property name="tabTitle" type="java.lang.String" value="Hospedagens"/>
+                  <JTabbedPaneConstraints tabName="Tipos de Estadias">
+                    <Property name="tabTitle" type="java.lang.String" value="Tipos de Estadias"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
