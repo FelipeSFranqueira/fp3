@@ -1,17 +1,53 @@
 package com.fp3.haras.view.screens.products;
 
+import com.fp3.haras.model.Produto;
+import com.fp3.haras.model.Servico;
+import com.fp3.haras.model.TipoEstadia;
 import com.fp3.haras.utils.Colors;
+import com.fp3.haras.utils.EntityUtils;
+import com.fp3.haras.utils.GenericObservable;
+import com.fp3.haras.utils.GenericObserver;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
-public class ProductsEdit extends javax.swing.JFrame {
+public class ProductsEdit extends javax.swing.JFrame implements GenericObservable {
+    
+    private Produto selectedProducts;
+    private Servico selectedService;
+    private TipoEstadia selectedStableType;
+    private List<GenericObserver> observers = new ArrayList<>();
 
-    public ProductsEdit() {
+    public ProductsEdit() { 
         initComponents();
         lblTitle.putClientProperty("FlatLaf.styleClass", "h00");
         pnlBack.setBackground(Colors.WHITEBG);
         pnlStableTypeEdit.setBackground(Colors.PRIMARYBG);
         pnlProductsEdit.setBackground(Colors.PRIMARYBG);
         pnlServicesEdit.setBackground(Colors.PRIMARYBG);
+    }
+    
+    public void populateData(Produto produto) {
+        this.selectedProducts = produto;
+        
+        this.txtProductName.setText(produto.getName());
+        this.txtProductStock.setText(String.valueOf(produto.getStock()));
+        this.txtSalePrice.setText(String.valueOf(produto.getPdv()));
+        this.txtPurchasePrice.setText(String.valueOf(produto.getPdc()));
+    }
+    
+    public void populateData(Servico servico) {
+        this.selectedService = servico;
+        
+        this.txtServiceType.setText(servico.getName());
+        this.txtServicePrice.setText(String.valueOf(servico.getPrice()));
+    }
+    
+    public void populateData(TipoEstadia tipoEstadia) {
+        this.selectedStableType = tipoEstadia;
+        
+        this.txtStableType.setText(tipoEstadia.getType());
+        this.txtStablePrice.setText(String.valueOf(tipoEstadia.getPrice()));
     }
 
     @SuppressWarnings("unchecked")
@@ -337,7 +373,7 @@ public class ProductsEdit extends javax.swing.JFrame {
                 .addGap(28, 28, 28))
         );
 
-        tpProduct.addTab("Hospedagens", pnlStableTypeEdit);
+        tpProduct.addTab("Tipos de Estadias", pnlStableTypeEdit);
 
         javax.swing.GroupLayout pnlBackLayout = new javax.swing.GroupLayout(pnlBack);
         pnlBack.setLayout(pnlBackLayout);
@@ -375,13 +411,51 @@ public class ProductsEdit extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    public void initData(int y) {
+        switch (y){
+                case 1:
+                    tpProduct.setSelectedIndex(0);
+                    Produto p = Produto.getProduto(ProductsScreen.selectedId);
+                    populateData(p);
+                    break;
+
+                case 2:
+                    tpProduct.setSelectedIndex(1);
+                    Servico s = Servico.getServico(ProductsScreen.selectedId);
+                    populateData(s);
+                    break;
+                    
+                case 3:
+                    tpProduct.setSelectedIndex(2);
+                    TipoEstadia e = TipoEstadia.getTipoEstadia(ProductsScreen.selectedId);
+                    populateData(e);
+                    break;
+                default:
+        System.out.println("!");
+        break;
+        }
+    }
+    
     private void btnDeleteServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteServiceActionPerformed
         // TODO add your handling code here:
+        if (JOptionPane.showConfirmDialog(null, "Realmente deseja apagar este cadastro?", "ATENÇÃO", JOptionPane.WARNING_MESSAGE) == 0) {
+            Servico s = Servico.getServico(ProductsScreen.selectedId);
+            s.setIsDeleted(true);
+            EntityUtils.update(s);
+            JOptionPane.showMessageDialog(null, "Registro #" + ProductsScreen.selectedId + " atualizado!", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
+            dispose();
+            this.notifyObservers("");
+            }
     }//GEN-LAST:event_btnDeleteServiceActionPerformed
 
     private void btnSaveServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveServiceActionPerformed
-        JOptionPane.showMessageDialog(null, "Código de registro: #{CODE}", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
+        Servico s = Servico.getServico(ProductsScreen.selectedId);
+        s.setName(txtServiceType.getText());
+        s.setPrice(Double.parseDouble(txtServicePrice.getText()));
+        EntityUtils.update(s);
+        JOptionPane.showMessageDialog(null, "Registro #"+ProductsScreen.selectedId+" atualizado!", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
         dispose();
+        this.notifyObservers("");
     }//GEN-LAST:event_btnSaveServiceActionPerformed
 
     private void btnCancelServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelServiceActionPerformed
@@ -389,15 +463,26 @@ public class ProductsEdit extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelServiceActionPerformed
 
     private void btnDeleteProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteProductActionPerformed
-        if (JOptionPane.showConfirmDialog(null, "Realmente deseja apagar os dados permanentemente?", "ATENÇÃO", JOptionPane.WARNING_MESSAGE) == 0) {
+        if (JOptionPane.showConfirmDialog(null, "Realmente deseja apagar este cadastro?", "ATENÇÃO", JOptionPane.WARNING_MESSAGE) == 0) {
+            Produto p = Produto.getProduto(ProductsScreen.selectedId);
+            p.setIsDeleted(true);
+            EntityUtils.update(p);
+            JOptionPane.showMessageDialog(null, "Registro #" + ProductsScreen.selectedId + " atualizado!", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
             dispose();
-            JOptionPane.showMessageDialog(null, "Os dados foram removidos!", null, JOptionPane.INFORMATION_MESSAGE, null);
-        }
+            this.notifyObservers("");
+            }
     }//GEN-LAST:event_btnDeleteProductActionPerformed
 
     private void btnSaveProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveProductActionPerformed
-        JOptionPane.showMessageDialog(null, "Código de registro: #{CODE}", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
+        Produto p = Produto.getProduto(ProductsScreen.selectedId);
+        p.setName(txtProductName.getText());
+        p.setStock(Integer.parseInt(txtProductStock.getText()));
+        p.setPdc(Double.parseDouble(txtPurchasePrice.getText()));
+        p.setPdv(Double.parseDouble(txtSalePrice.getText()));
+        EntityUtils.update(p);
+        JOptionPane.showMessageDialog(null, "Registro #"+ProductsScreen.selectedId+" atualizado!", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
         dispose();
+        this.notifyObservers("");
     }//GEN-LAST:event_btnSaveProductActionPerformed
 
     private void btnCancelProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelProductActionPerformed
@@ -409,17 +494,42 @@ public class ProductsEdit extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelStableActionPerformed
 
     private void btnSaveStableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveStableActionPerformed
-        JOptionPane.showMessageDialog(null, "Código de registro: #{CODE}", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
+        TipoEstadia e = TipoEstadia.getTipoEstadia(ProductsScreen.selectedId);
+        e.setType(txtStableType.getText());
+        e.setPrice(Double.parseDouble(txtStablePrice.getText()));
+        EntityUtils.update(e);
+        JOptionPane.showMessageDialog(null, "Registro #"+ProductsScreen.selectedId+" atualizado!", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
         dispose();
+        this.notifyObservers("");
     }//GEN-LAST:event_btnSaveStableActionPerformed
 
     private void btnDeleteStableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteStableActionPerformed
-        if (JOptionPane.showConfirmDialog(null, "Realmente deseja apagar os dados permanentemente?", "ATENÇÃO", JOptionPane.WARNING_MESSAGE) == 0) {
+        if (JOptionPane.showConfirmDialog(null, "Realmente deseja apagar este cadastro?", "ATENÇÃO", JOptionPane.WARNING_MESSAGE) == 0) {
+            TipoEstadia e = TipoEstadia.getTipoEstadia(ProductsScreen.selectedId);
+            e.setIsDeleted(true);
+            EntityUtils.update(e);
+            JOptionPane.showMessageDialog(null, "Registro #" + ProductsScreen.selectedId + " atualizado!", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
             dispose();
-            JOptionPane.showMessageDialog(null, "Os dados foram removidos!", null, JOptionPane.INFORMATION_MESSAGE, null);
-        }
+            this.notifyObservers("");
+            }
     }//GEN-LAST:event_btnDeleteStableActionPerformed
 
+    @Override
+    public void addObserver(GenericObserver o) {
+        this.observers.add(o);
+    }
+
+    @Override
+    public void removeObserver(GenericObserver o) {
+        this.observers.remove(o);
+    }
+    
+    @Override
+    public void notifyObservers(Object o) {
+        for (GenericObserver observer: this.observers) {
+            observer.update(o);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelProduct;

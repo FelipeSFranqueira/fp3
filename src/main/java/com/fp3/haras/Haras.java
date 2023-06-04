@@ -13,12 +13,12 @@ public class Haras {
         new LoginScreen().setVisible(true);
         
         // Mock data for testing JPA
-        Produto prod = new Produto("Test 2", 1, 1f, 1f);
+        //Product prod = new Produto("Test 2", 1, 1f, 1f);
         
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("haras");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        em.persist(prod);
+        //em.persist(prod);
         em.getTransaction().commit();
         
         Cliente c1 = new Cliente();

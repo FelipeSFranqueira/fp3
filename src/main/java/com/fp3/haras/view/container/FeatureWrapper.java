@@ -7,6 +7,7 @@ import com.fp3.haras.utils.Screens;
 import com.fp3.haras.view.screens.animals.AnimalsContainer;
 import com.fp3.haras.view.screens.home.HomeScreen;
 import com.fp3.haras.view.screens.client.ClientScreen;
+import com.fp3.haras.view.screens.products.ProductsContainer;
 import com.fp3.haras.view.screens.products.ProductsScreen;
 import com.fp3.haras.view.screens.stable.StableContainer;
 
@@ -16,7 +17,7 @@ public class FeatureWrapper extends javax.swing.JPanel implements GenericObserve
     private StableContainer stablePanel;
     private ClientScreen customersPanel;
     private AnimalsContainer animalsPanel;
-    private ProductsScreen productsPanel;
+    private ProductsContainer productsPanel;
     
     public FeatureWrapper() {
         initComponents();
@@ -31,7 +32,7 @@ public class FeatureWrapper extends javax.swing.JPanel implements GenericObserve
         this.stablePanel = new StableContainer();
         this.customersPanel = new ClientScreen();
         this.animalsPanel = new AnimalsContainer();
-        this.productsPanel = new ProductsScreen();
+        this.productsPanel = new ProductsContainer();
                 
         /* Add here the external classes to the layout */
         this.add(homePanel, Screens.HOME.toString());
