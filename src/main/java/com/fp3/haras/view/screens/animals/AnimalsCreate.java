@@ -47,7 +47,6 @@ public class AnimalsCreate extends javax.swing.JFrame implements GenericObservab
         boxMormo = new javax.swing.JCheckBox();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -64,7 +63,6 @@ public class AnimalsCreate extends javax.swing.JFrame implements GenericObservab
         rbtnMacho = new javax.swing.JRadioButton();
         boxCategoria = new javax.swing.JComboBox<>();
         boxProprietario = new com.fp3.haras.components.ComboBoxSuggestion();
-        boxCondominio = new com.fp3.haras.components.ComboBoxSuggestion();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAutoRequestFocus(false);
@@ -99,8 +97,6 @@ public class AnimalsCreate extends javax.swing.JFrame implements GenericObservab
         jLabel2.setText("CATEGORIA");
 
         jLabel3.setText("NOME");
-
-        jLabel9.setText("CONDOMÍNIO");
 
         jLabel10.setText("PROPRIETÁRIO");
 
@@ -194,13 +190,9 @@ public class AnimalsCreate extends javax.swing.JFrame implements GenericObservab
                                     .addGap(18, 18, 18)
                                     .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(panelFormLayout.createSequentialGroup()
-                                    .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(boxProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(37, 37, 37)
-                                    .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(boxCondominio, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(boxProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
         panelFormLayout.setVerticalGroup(
@@ -257,15 +249,11 @@ public class AnimalsCreate extends javax.swing.JFrame implements GenericObservab
                     .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(23, 23, 23)
+                .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boxProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boxCondominio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(29, Short.MAX_VALUE))
+                    .addComponent(jLabel10))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panelBackLayout = new javax.swing.GroupLayout(panelBack);
@@ -383,7 +371,6 @@ public class AnimalsCreate extends javax.swing.JFrame implements GenericObservab
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox boxAie;
     private javax.swing.JComboBox<String> boxCategoria;
-    private com.fp3.haras.components.ComboBoxSuggestion boxCondominio;
     private javax.swing.JCheckBox boxGta;
     private javax.swing.JCheckBox boxMormo;
     private javax.swing.JComboBox<String> boxPelagem;
@@ -400,7 +387,6 @@ public class AnimalsCreate extends javax.swing.JFrame implements GenericObservab
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;

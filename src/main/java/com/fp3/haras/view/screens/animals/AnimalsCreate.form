@@ -197,16 +197,10 @@
                                           <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
                                           <Component id="jSeparator6" min="-2" pref="152" max="-2" attributes="0"/>
                                       </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel10" min="-2" pref="146" max="-2" attributes="0"/>
-                                              <Component id="boxProprietario" min="-2" pref="210" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel9" min="-2" pref="86" max="-2" attributes="0"/>
-                                              <Component id="boxCondominio" min="-2" pref="210" max="-2" attributes="0"/>
-                                          </Group>
+                                      <Group type="102" attributes="0">
+                                          <Component id="jLabel10" min="-2" pref="115" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="boxProprietario" min="-2" pref="210" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -285,17 +279,12 @@
                           <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
                           <Component id="jSeparator6" min="-2" pref="10" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="boxProprietario" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="boxProprietario" min="-2" max="-2" attributes="0"/>
-                          <Component id="boxCondominio" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="29" max="32767" attributes="0"/>
+                      <EmptySpace pref="38" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -345,11 +334,6 @@
             <Component class="javax.swing.JLabel" name="jLabel3">
               <Properties>
                 <Property name="text" type="java.lang.String" value="NOME"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel9">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="CONDOM&#xcd;NIO"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel10">
@@ -448,8 +432,6 @@
               </AuxValues>
             </Component>
             <Component class="com.fp3.haras.components.ComboBoxSuggestion" name="boxProprietario">
-            </Component>
-            <Component class="com.fp3.haras.components.ComboBoxSuggestion" name="boxCondominio">
             </Component>
           </SubComponents>
         </Container>
