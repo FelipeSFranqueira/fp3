@@ -83,7 +83,7 @@ public class AnimalsScreen extends javax.swing.JPanel implements GenericObserver
 
             },
             new String [] {
-                "ID", "NOME", "PELAGEM", "CATEGORIA", "EXAME AIE", "EXAME MORMO", "GTA", "PROPRIETÁRIO"
+                "ID", "NOME", "PELAGEM", "CATEGORIA", "AIE", "MORMO", "GTA", "PROPRIETÁRIO"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -284,9 +284,9 @@ public class AnimalsScreen extends javax.swing.JPanel implements GenericObserver
                     a.getName(),
                     a.getCoat(),
                     a.getCategory(),
-                    a.getHasExameAie(),
-                    a.getHasExameMormo(),
-                    a.getHasGta(),
+                    a.getHasExameAie() ? "Sim" : "Não",
+                    a.getHasExameMormo() ? "Sim" : "Não",
+                    a.getHasGta() ? "Sim" : "Não",
                     owner
                 });
             }
@@ -355,9 +355,9 @@ public class AnimalsScreen extends javax.swing.JPanel implements GenericObserver
                 a.getName(),
                 a.getCoat(),
                 a.getCategory(),
-                a.getHasExameAie(),
-                a.getHasExameMormo(),
-                a.getHasGta(),
+                a.getHasExameAie() ? "Sim" : "Não",
+                a.getHasExameMormo() ? "Sim" : "Não",
+                a.getHasGta() ? "Sim" : "Não",
                 owner
             });
         }
@@ -394,9 +394,9 @@ public class AnimalsScreen extends javax.swing.JPanel implements GenericObserver
                 a.getName(),
                 a.getCoat(),
                 a.getCategory(),
-                a.getHasExameAie(),
-                a.getHasExameMormo(),
-                a.getHasGta(),
+                a.getHasExameAie() ? "Sim" : "Não",
+                a.getHasExameMormo() ? "Sim" : "Não",
+                a.getHasGta() ? "Sim" : "Não",
                 owner
             });
         }
