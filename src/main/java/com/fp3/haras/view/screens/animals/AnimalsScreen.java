@@ -95,6 +95,7 @@ public class AnimalsScreen extends javax.swing.JPanel implements GenericObserver
             }
         });
         tableProgress.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        tableProgress.setShowGrid(true);
         tableProgress.getTableHeader().setResizingAllowed(false);
         tableProgress.getTableHeader().setReorderingAllowed(false);
         tableProgress.addMouseListener(new java.awt.event.MouseAdapter() {
