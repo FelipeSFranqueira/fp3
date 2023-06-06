@@ -1,5 +1,6 @@
 package com.fp3.haras.model;
 
+import com.fp3.haras.utils.EntityUtils;
 import java.util.List;
 import javax.annotation.processing.Generated;
 import javax.persistence.Entity;
@@ -22,11 +23,22 @@ public class Cliente {
     
     @ManyToMany(mappedBy = "owners")
     private List<Animal> animais;
-    private boolean isDeleted;
+    private boolean isDeleted = false;
 
     public Cliente() {
     }
-
+    
+    public Cliente(String nome,String telefone,String email,String documento,String endereco) {
+        this.nome = nome;
+        this.nome = telefone;
+        this.nome = email;
+        this.nome = documento;
+        this.nome = endereco;
+    }
+        public static Cliente getCliente(long id) {
+        Cliente c = EntityUtils.select("SELECT c FROM Cliente c WHERE id = " + id, Cliente.class).get(0);
+        return c;
+    }
     public long getId() {
         return id;
     }
@@ -89,5 +101,9 @@ public class Cliente {
     
     public void setIsDeleted(boolean isDeleted) {
         this.isDeleted = isDeleted;
+    }
+
+    public boolean isIsDeleted() {
+      return isDeleted;  
     }
 }

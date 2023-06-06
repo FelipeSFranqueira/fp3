@@ -1,11 +1,19 @@
 package com.fp3.haras.view.screens.client;
 
+import com.fp3.haras.model.Cliente;
 import com.fp3.haras.utils.Colors;
+import com.fp3.haras.utils.EntityUtils;
+import com.fp3.haras.utils.GenericObservable;
+import com.fp3.haras.utils.GenericObserver;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-public class ClientCreate extends javax.swing.JFrame {
-
+public class ClientCreate extends javax.swing.JFrame implements GenericObservable {
+    
+    private List<GenericObserver> observers = new ArrayList<>();
+     
     public ClientCreate() {
         initComponents();
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -196,8 +204,27 @@ public class ClientCreate extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        JOptionPane.showMessageDialog(null, "Registro #{CODE} atualizado!", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
-        dispose();
+        /*Cliente c = new Cliente(, , txtEmail.getText(),txtDocumento.getText(), txtEndereco.getText());
+        
+        String nome = txtNome.getText();
+        String nome = txtTelefone.getText();
+        String nome = txtNome.getText();
+        String nome = txtNome.getText();
+        String nome = txtNome.getText();
+        String nome = txtNome.getText();
+        
+        
+        Produto p = new Produto(name,stock,purchasePrice,salePrice);
+        
+        EntityUtils.insert(p);
+        
+        this.notifyObservers("");
+        JOptionPane.showMessageDialog(null, "Código de registro: " + p.getId(), "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
+        txtProductName.setText("");
+        txtProductStock.setText("");
+        txtPurchasePrice.setText("");
+        txtSalePrice.setText("");
+        dispose();*/
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void txtTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefoneActionPerformed
@@ -215,6 +242,23 @@ public class ClientCreate extends javax.swing.JFrame {
     private void txtDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDocumentoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDocumentoActionPerformed
+ 
+    @Override
+    public void addObserver(GenericObserver o) {
+        this.observers.add(o);
+    }
+
+    @Override
+    public void removeObserver(GenericObserver o) {
+        this.observers.remove(o);
+    }
+
+    @Override
+    public void notifyObservers(Object o) {
+        for (GenericObserver observer: this.observers) {
+            observer.update(o);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;

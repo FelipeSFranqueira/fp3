@@ -1,14 +1,31 @@
 package com.fp3.haras.view.screens.client;
 
+import com.fp3.haras.model.Cliente;
 import com.fp3.haras.utils.Colors;
+import com.fp3.haras.utils.EntityUtils;
+import com.fp3.haras.utils.GenericObserver;
+import com.mysql.cj.xdevapi.Client;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
-public class ClientScreen extends javax.swing.JPanel {
+public class ClientScreen extends javax.swing.JPanel implements GenericObserver{
+    
+        private final ClientCreate CreateModal;
+        //private final ClientEdit   EditModal;
+        private Client       productSelected;
+        
+        
+    public static long selectedId;
+    DefaultTableCellRenderer center = new DefaultTableCellRenderer();
 
-    public ClientScreen() {
+    public ClientScreen(ClientCreate creationModal) {
         initComponents();
         this.setBackground(Colors.PRIMARYBG);
+        this.CreateModal = creationModal;
         lblTitle.putClientProperty("FlatLaf.styleClass", "h00");
+        this.populateTable();
     }
     
     private String getSelectedProgressCode() {
@@ -145,9 +162,9 @@ public class ClientScreen extends javax.swing.JPanel {
     }//GEN-LAST:event_txtSearchFocusLost
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
-        new ClientCreate().setVisible(true);
+        this.CreateModal.setVisible(true);
     }//GEN-LAST:event_btnCreateActionPerformed
-
+    
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         if (tableProgress.getSelectedColumnCount()!= 0
             && getSelectedProgressCode() != null && getSelectedProgressValue() != null) {
@@ -158,7 +175,58 @@ public class ClientScreen extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "Nada foi selecionado.", null, JOptionPane.ERROR_MESSAGE, null);
             }
     }//GEN-LAST:event_btnEditActionPerformed
-
+    private String getSelectedClientTypeCode() {
+        if (tableProgress.getSelectedRow() != -1) {
+            return String.valueOf(tableProgress.getModel().getValueAt(tableProgress.getSelectedRow(), 0));
+        } else {
+            return null;
+        }
+    }
+    
+    private Object getSelectedProductValue() {
+        return tableProgress.getModel().getValueAt(tableProgress.getSelectedRow(), tableProgress.getSelectedColumn());
+    }
+    private void populateTable() {
+        DefaultTableModel cModel = (DefaultTableModel) tableProgress.getModel();
+        List<Cliente> clientes = EntityUtils.select("SELECT c FROM Cliente c", Cliente.class);
+       
+        cModel.setRowCount(0);
+        
+        for (Cliente c : clientes) {
+            
+            if (!c.isIsDeleted()) {
+                updateProductTableModel(c.getId(), cModel);     
+            } 
+        }
+    }
+    
+    private DefaultTableModel updateProductTableModel(long id, DefaultTableModel models) {
+        
+        //updateBoxSearch();
+        
+        Cliente c = new Cliente();
+        long clienteId = c.getCliente(id).getId();
+        String clienteNome = c.getCliente(id).getNome();
+        
+        String PquerySearch = "SELECT a FROM Cliente a WHERE a.Id = '" + clienteId + "'";
+        
+        models.addRow(new Object[]{
+            String.valueOf(c.getCliente(id).getId()),
+            clienteNome,
+            String.valueOf(c.getCliente(id).getTelefone()),
+            String.valueOf(c.getCliente(id).getEmail()),
+            String.valueOf(c.getCliente(id).getDocumento()),
+            String.valueOf(c.getCliente(id).getEndereco())
+        });
+                    
+        return models;
+    }
+    
+    @Override
+    public void update(Object o) {
+        //this.updateBoxSearch();
+        this.populateTable();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreate;
