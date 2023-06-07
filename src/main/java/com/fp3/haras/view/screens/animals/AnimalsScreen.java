@@ -83,7 +83,7 @@ public class AnimalsScreen extends javax.swing.JPanel implements GenericObserver
 
             },
             new String [] {
-                "ID", "NOME", "PELAGEM", "CATEGORIA", "EXAME AIE", "EXAME MORMO", "GTA", "PROPRIETÁRIO"
+                "ID", "NOME", "PELAGEM", "CATEGORIA", "AIE", "MORMO", "GTA", "PROPRIETÁRIO"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -94,6 +94,8 @@ public class AnimalsScreen extends javax.swing.JPanel implements GenericObserver
                 return canEdit [columnIndex];
             }
         });
+        tableProgress.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        tableProgress.setShowGrid(true);
         tableProgress.getTableHeader().setResizingAllowed(false);
         tableProgress.getTableHeader().setReorderingAllowed(false);
         tableProgress.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -102,6 +104,15 @@ public class AnimalsScreen extends javax.swing.JPanel implements GenericObserver
             }
         });
         jScrollPane1.setViewportView(tableProgress);
+        if (tableProgress.getColumnModel().getColumnCount() > 0) {
+            tableProgress.getColumnModel().getColumn(0).setPreferredWidth(41);
+            tableProgress.getColumnModel().getColumn(1).setPreferredWidth(160);
+            tableProgress.getColumnModel().getColumn(2).setPreferredWidth(110);
+            tableProgress.getColumnModel().getColumn(3).setPreferredWidth(116);
+            tableProgress.getColumnModel().getColumn(4).setPreferredWidth(65);
+            tableProgress.getColumnModel().getColumn(6).setPreferredWidth(65);
+            tableProgress.getColumnModel().getColumn(7).setPreferredWidth(166);
+        }
 
         btnCreate.setText("CRIAR");
         btnCreate.addActionListener(new java.awt.event.ActionListener() {
@@ -284,9 +295,9 @@ public class AnimalsScreen extends javax.swing.JPanel implements GenericObserver
                     a.getName(),
                     a.getCoat(),
                     a.getCategory(),
-                    a.getHasExameAie(),
-                    a.getHasExameMormo(),
-                    a.getHasGta(),
+                    a.getHasExameAie() ? "Sim" : "Não",
+                    a.getHasExameMormo() ? "Sim" : "Não",
+                    a.getHasGta() ? "Sim" : "Não",
                     owner
                 });
             }
@@ -355,9 +366,9 @@ public class AnimalsScreen extends javax.swing.JPanel implements GenericObserver
                 a.getName(),
                 a.getCoat(),
                 a.getCategory(),
-                a.getHasExameAie(),
-                a.getHasExameMormo(),
-                a.getHasGta(),
+                a.getHasExameAie() ? "Sim" : "Não",
+                a.getHasExameMormo() ? "Sim" : "Não",
+                a.getHasGta() ? "Sim" : "Não",
                 owner
             });
         }
@@ -394,9 +405,9 @@ public class AnimalsScreen extends javax.swing.JPanel implements GenericObserver
                 a.getName(),
                 a.getCoat(),
                 a.getCategory(),
-                a.getHasExameAie(),
-                a.getHasExameMormo(),
-                a.getHasGta(),
+                a.getHasExameAie() ? "Sim" : "Não",
+                a.getHasExameMormo() ? "Sim" : "Não",
+                a.getHasGta() ? "Sim" : "Não",
                 owner
             });
         }
