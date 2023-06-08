@@ -1,11 +1,19 @@
 package com.fp3.haras.view.screens.client;
 
+import com.fp3.haras.model.Client;
 import com.fp3.haras.utils.Colors;
+import com.fp3.haras.utils.EntityUtils;
+import com.fp3.haras.utils.GenericObservable;
+import com.fp3.haras.utils.GenericObserver;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-public class ClientEdit extends javax.swing.JFrame {
-
+public class ClientEdit extends javax.swing.JFrame implements GenericObservable {
+    private List<GenericObserver> observers = new ArrayList<>();    
+    private Client client;
+    
     public ClientEdit() {
         initComponents();
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -66,8 +74,6 @@ public class ClientEdit extends javax.swing.JFrame {
             }
         });
 
-        txtNome.setEnabled(false);
-
         txtTelefone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTelefoneActionPerformed(evt);
@@ -95,7 +101,6 @@ public class ClientEdit extends javax.swing.JFrame {
         jLabel2.setText("EMAIL");
 
         jLabel3.setText("NOME");
-        jLabel3.setEnabled(false);
 
         jLabel8.setText("TELEFONE");
 
@@ -212,13 +217,27 @@ public class ClientEdit extends javax.swing.JFrame {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         if (JOptionPane.showConfirmDialog(null, "Realmente deseja apagar os dados permanentemente?", "ATENÇÃO", JOptionPane.WARNING_MESSAGE) == 0) {
-            dispose();
+            this.client.setIsDeleted(true);
+            
+            EntityUtils.update(this.client);
+            
             JOptionPane.showMessageDialog(null, "Os dados foram removidos!", null, JOptionPane.INFORMATION_MESSAGE, null);
+            this.notifyObservers(null);
+            dispose();
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        JOptionPane.showMessageDialog(null, "Registro #{CODE} atualizado!", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
+        client.setName(txtNome.getText());
+        client.setAddress(txtEndereco.getText());
+        client.setEmail(txtEmail.getText());
+        client.setPhoneNumber(txtTelefone.getText());
+        client.setDocument(txtDocumento.getText());
+        
+        EntityUtils.update(client);
+        
+        JOptionPane.showMessageDialog(null, "Registro atualizado!", "Atualização concluída", JOptionPane.INFORMATION_MESSAGE, null);
+        this.notifyObservers(null);
         dispose();
     }//GEN-LAST:event_btnSaveActionPerformed
 
@@ -238,6 +257,33 @@ public class ClientEdit extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDocumentoActionPerformed
 
+    public void populateData(Client client) {
+        this.client = client;
+        
+        this.txtNome.setText(client.getName());
+        this.txtDocumento.setText(client.getDocument());
+        this.txtEmail.setText(client.getEmail());
+        this.txtEndereco.setText(client.getAddress());
+        this.txtTelefone.setText(client.getPhoneNumber());
+    }
+    
+    @Override
+    public void addObserver(GenericObserver o) {
+        this.observers.add(o);
+    }
+
+    @Override
+    public void removeObserver(GenericObserver o) {
+        this.observers.remove(o);
+    }
+
+    @Override
+    public void notifyObservers(Object o) {
+        for (GenericObserver observer: observers) {
+            observer.update(o);
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnDelete;

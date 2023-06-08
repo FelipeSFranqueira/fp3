@@ -1,7 +1,7 @@
 package com.fp3.haras.view.screens.stable;
 
 import com.fp3.haras.model.Animal;
-import com.fp3.haras.model.Cliente;
+import com.fp3.haras.model.Client;
 import com.fp3.haras.model.Estadia;
 import com.fp3.haras.utils.Colors;
 import com.fp3.haras.utils.EntityUtils;
@@ -332,11 +332,11 @@ public class StableScreen extends javax.swing.JPanel implements GenericObserver 
         String animalName = Estadia.getEstadia(id).getAnimal().getName();
         String querySearch = "SELECT a FROM Animal a JOIN FETCH a.owners o WHERE a.id = '" + animalId + "'";
         Animal animal = EntityUtils.select(querySearch, Animal.class).get(0);
-        Cliente owner = animal.getOwners().get(0);
+        Client owner = animal.getOwners().get(0);
         
         models.addRow(new Object[]{
             String.valueOf(Estadia.getEstadia(id).getId()),
-            owner.getNome(),
+            owner.getName(),
             animalName,
             remainTime,
             String.valueOf(Estadia.getEstadia(id).getCocheira()),

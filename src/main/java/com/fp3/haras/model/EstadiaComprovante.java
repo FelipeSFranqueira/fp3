@@ -8,7 +8,7 @@ public class EstadiaComprovante {
     private Timestamp dataRecebimentoAnimal;
     private Timestamp dataEntregaAnimal;
     private Animal animal;
-    private Cliente cliente;
+    private Client cliente;
 
     public long getId() {
         return id;
@@ -42,11 +42,11 @@ public class EstadiaComprovante {
         this.animal = animal;
     }
 
-    public Cliente getCliente() {
+    public Client getCliente() {
         return cliente;
     }
 
-    public void setCliente(Cliente cliente) {
+    public void setCliente(Client cliente) {
         this.cliente = cliente;
     }
 }
