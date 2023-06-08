@@ -66,6 +66,12 @@ public class ClientCreate extends javax.swing.JFrame implements GenericObservabl
             }
         });
 
+        txtNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNomeActionPerformed(evt);
+            }
+        });
+
         txtTelefone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTelefoneActionPerformed(evt);
@@ -128,9 +134,9 @@ public class ClientCreate extends javax.swing.JFrame implements GenericObservabl
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFormLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addGap(23, 23, 23)
                 .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel8))
@@ -204,27 +210,29 @@ public class ClientCreate extends javax.swing.JFrame implements GenericObservabl
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        /*Cliente c = new Cliente(, , txtEmail.getText(),txtDocumento.getText(), txtEndereco.getText());
+ 
         
         String nome = txtNome.getText();
-        String nome = txtTelefone.getText();
-        String nome = txtNome.getText();
-        String nome = txtNome.getText();
-        String nome = txtNome.getText();
-        String nome = txtNome.getText();
+        String telefone = txtTelefone.getText();
+        String email = txtEmail.getText();
+        String documento = txtDocumento.getText();
+        String endereco = txtEndereco.getText();
+
         
         
-        Produto p = new Produto(name,stock,purchasePrice,salePrice);
+        Cliente c = new Cliente(nome, telefone, email, documento, endereco);
         
-        EntityUtils.insert(p);
+        
+        EntityUtils.insert(c);
         
         this.notifyObservers("");
-        JOptionPane.showMessageDialog(null, "Código de registro: " + p.getId(), "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
-        txtProductName.setText("");
-        txtProductStock.setText("");
-        txtPurchasePrice.setText("");
-        txtSalePrice.setText("");
-        dispose();*/
+        JOptionPane.showMessageDialog(null, "Código de registro: " + c.getId(), "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
+        txtNome.setText("");
+        txtTelefone.setText("");
+        txtEmail.setText("");
+        txtDocumento.setText("");
+        txtEndereco.setText("");
+        dispose();
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void txtTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefoneActionPerformed
@@ -242,6 +250,10 @@ public class ClientCreate extends javax.swing.JFrame implements GenericObservabl
     private void txtDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDocumentoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDocumentoActionPerformed
+
+    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNomeActionPerformed
  
     @Override
     public void addObserver(GenericObserver o) {

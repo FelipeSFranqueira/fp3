@@ -61,11 +61,11 @@ public class ClientScreen extends javax.swing.JPanel implements GenericObserver{
 
             },
             new String [] {
-                "NOME", "TELEFONE", "EMAIL", "DOCUMENTO", "ENDEREÇO"
+                "ID", "NOME", "TELEFONE", "EMAIL", "DOCUMENTO", "ENDEREÇO"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -104,7 +104,7 @@ public class ClientScreen extends javax.swing.JPanel implements GenericObserver{
 
         lblSearch.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search.png"))); // NOI18N
-        lblSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblTitle.setText("CLIENTES");
@@ -212,7 +212,7 @@ public class ClientScreen extends javax.swing.JPanel implements GenericObserver{
         
         models.addRow(new Object[]{
             String.valueOf(c.getCliente(id).getId()),
-            clienteNome,
+            String.valueOf(c.getCliente(id).getNome()),
             String.valueOf(c.getCliente(id).getTelefone()),
             String.valueOf(c.getCliente(id).getEmail()),
             String.valueOf(c.getCliente(id).getDocumento()),
