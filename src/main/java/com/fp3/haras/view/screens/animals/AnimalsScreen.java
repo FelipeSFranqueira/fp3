@@ -1,7 +1,7 @@
 package com.fp3.haras.view.screens.animals;
 
 import com.fp3.haras.model.Animal;
-import com.fp3.haras.model.Cliente;
+import com.fp3.haras.model.Client;
 import com.fp3.haras.utils.Colors;
 import com.fp3.haras.utils.EntityUtils;
 import com.fp3.haras.utils.GenericObserver;
@@ -209,7 +209,7 @@ public class AnimalsScreen extends javax.swing.JPanel implements GenericObserver
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -287,8 +287,8 @@ public class AnimalsScreen extends javax.swing.JPanel implements GenericObserver
             List<Animal> animal = EntityUtils.select(querySearch, Animal.class);
             String owner = "";
             for (Animal a : animal) {
-                for (Cliente o : a.getOwners()) {
-                    owner = o.getNome();
+                for (Client o : a.getOwners()) {
+                    owner = o.getName();
                 }
                 table.addRow(new Object[]{
                     a.getId(),
@@ -358,8 +358,8 @@ public class AnimalsScreen extends javax.swing.JPanel implements GenericObserver
         fetchTableResults(this.currentPage, this.maxResults);
         String owner = "";
         for (Animal a : this.tableResults) {
-            for (Cliente o : a.getOwners()) {
-                owner = o.getNome();
+            for (Client o : a.getOwners()) {
+                owner = o.getName();
             }
             table.addRow(new Object[]{
                 a.getId(),
@@ -397,8 +397,8 @@ public class AnimalsScreen extends javax.swing.JPanel implements GenericObserver
        
         String owner = "";
         for (Animal a : allAnimals) {
-            for (Cliente o : a.getOwners()) {
-                owner = o.getNome();
+            for (Client o : a.getOwners()) {
+                owner = o.getName();
             }
             model.addRow(new Object[]{
                 a.getId(),

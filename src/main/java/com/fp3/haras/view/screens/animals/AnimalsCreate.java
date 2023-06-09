@@ -1,7 +1,7 @@
 package com.fp3.haras.view.screens.animals;
 
 import com.fp3.haras.model.Animal;
-import com.fp3.haras.model.Cliente;
+import com.fp3.haras.model.Client;
 import com.fp3.haras.utils.Colors;
 import com.fp3.haras.utils.EntityUtils;
 import com.fp3.haras.utils.GenericObservable;
@@ -22,10 +22,10 @@ public class AnimalsCreate extends javax.swing.JFrame implements GenericObservab
         panelForm.setBackground(Colors.PRIMARYBG);
         lblTitle.putClientProperty("FlatLaf.styleClass", "h00");
         
-        String queryClients = "SELECT c FROM Cliente c";
-        List<Cliente> owners = EntityUtils.select(queryClients, Cliente.class);
-        for (Cliente item : owners) {
-            boxProprietario.addItem(item.getNome());
+        String queryClients = "SELECT c FROM Client c";
+        List<Client> owners = EntityUtils.select(queryClients, Client.class);
+        for (Client item : owners) {
+            boxProprietario.addItem(item.getName());
         }
     }
 
@@ -253,7 +253,7 @@ public class AnimalsCreate extends javax.swing.JFrame implements GenericObservab
                 .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boxProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panelBackLayout = new javax.swing.GroupLayout(panelBack);
@@ -330,8 +330,8 @@ public class AnimalsCreate extends javax.swing.JFrame implements GenericObservab
         }
         
         Animal a1 = new Animal(name, coat, sex, category, origin, hasAie, hasMormo, hasGta);
-        String querySelect = "SELECT c FROM Cliente c WHERE c.nome = '" + (String) boxProprietario.getSelectedItem() + "'";
-        Cliente owner = EntityUtils.select(querySelect, Cliente.class).get(0);
+        String querySelect = "SELECT c FROM Client c WHERE c.name = '" + (String) boxProprietario.getSelectedItem() + "'";
+        Client owner = EntityUtils.select(querySelect, Client.class).get(0);
         
         a1.getOwners().add(owner);
         
