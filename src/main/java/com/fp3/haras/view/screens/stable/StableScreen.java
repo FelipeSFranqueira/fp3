@@ -24,6 +24,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class StableScreen extends javax.swing.JPanel implements GenericObserver {
 
+    private final DefaultTableCellRenderer center = new DefaultTableCellRenderer();
     private final StableCreate creationModal;
     private final StableEdit editionModal;
     private final int maxResults = 15;
@@ -33,9 +34,7 @@ public class StableScreen extends javax.swing.JPanel implements GenericObserver 
     private List<Estadia> tableProgressResults;
     private List<Estadia> tableFutureResults;
     private List<Estadia> tableEndResults;
-    
     public static long selectedId;
-    DefaultTableCellRenderer center = new DefaultTableCellRenderer();
     
     public StableScreen(StableCreate creationModal, StableEdit editionModal) {
         initComponents();
