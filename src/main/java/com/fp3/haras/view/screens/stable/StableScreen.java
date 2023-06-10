@@ -546,7 +546,7 @@ public class StableScreen extends javax.swing.JPanel implements GenericObserver 
             switch (tpaneInfo.getSelectedIndex()) {
                 case 0:
                     reportGenerator.generateReport(this,
-                    "relatorio_estadia_completo",
+                    "relatorio_estadia_parcial",
                     "Relatório Parcial de Estadias em Progresso",
                     tableProgress);
 
@@ -555,7 +555,7 @@ public class StableScreen extends javax.swing.JPanel implements GenericObserver 
 
                 case 1:
                     reportGenerator.generateReport(this,
-                    "relatorio_estadia_completo",
+                    "relatorio_estadia_parcial",
                     "Relatório Parcial de Estadias Futuras",
                     tableFuture);
 
@@ -564,7 +564,7 @@ public class StableScreen extends javax.swing.JPanel implements GenericObserver 
 
                 case 2:
                     reportGenerator.generateReport(this,
-                    "relatorio_estadia_completo",
+                    "relatorio_estadia_parcial",
                     "Relatório Parcial de Estadias Finalizadas",
                     tableFinished);
 
