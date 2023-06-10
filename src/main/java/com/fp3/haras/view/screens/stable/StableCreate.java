@@ -180,7 +180,7 @@ public class StableCreate extends javax.swing.JFrame implements GenericObservabl
             }
         }
         
-        if (exists == false) {
+        if (!exists) {
             prodModel.addRow(new Object[]{
             s.getName(),
             spnProdUsed.getValue(),

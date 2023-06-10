@@ -123,7 +123,7 @@ public class StableEdit extends javax.swing.JFrame implements GenericObservable 
                 }
             }
         
-        if (exists == false) {
+        if (!exists) {
             prodModel.addRow(new Object[]{
             p.getName(),
             spnProdUsed.getValue(),
@@ -157,7 +157,7 @@ public class StableEdit extends javax.swing.JFrame implements GenericObservable 
             }
         }
         
-        if (exists == false) {
+        if (!exists) {
             prodModel.addRow(new Object[]{
             s.getName(),
             spnProdUsed.getValue(),
