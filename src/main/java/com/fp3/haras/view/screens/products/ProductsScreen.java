@@ -365,7 +365,7 @@ public class ProductsScreen extends javax.swing.JPanel implements GenericObserve
         
         int id = Integer.parseInt(table.getValueAt(tableProducts.getSelectedRow(), 0).toString());
         
-        String queryProduto = "SELECT a FROM Produto a WHERE a.Id = '" + id + "'";
+        String queryProduto = "SELECT a FROM Produto a WHERE a.id = '" + id + "'";
         this.productSelected = EntityUtils.select(queryProduto, Produto.class).get(0);
     }//GEN-LAST:event_tableProductsMouseClicked
 
@@ -375,7 +375,7 @@ public class ProductsScreen extends javax.swing.JPanel implements GenericObserve
         
         int id = Integer.parseInt(table.getValueAt(tableServices.getSelectedRow(), 0).toString());
         
-        String queryServico = "SELECT a FROM Servico a WHERE a.Id = '" + id + "'";
+        String queryServico = "SELECT a FROM Servico a WHERE a.id = '" + id + "'";
         this.serviceSelected = EntityUtils.select(queryServico, Servico.class).get(0);
     }//GEN-LAST:event_tableServicesMouseClicked
 
@@ -385,7 +385,7 @@ public class ProductsScreen extends javax.swing.JPanel implements GenericObserve
         
         int id = Integer.parseInt(table.getValueAt(tableStable.getSelectedRow(), 0).toString());
         
-        String queryStableType = "SELECT a FROM TipoEstadia a WHERE a.Id = '" + id + "'";
+        String queryStableType = "SELECT a FROM TipoEstadia a WHERE a.id = '" + id + "'";
         this.stableTypeSelected = EntityUtils.select(queryStableType, TipoEstadia.class).get(0);
     }//GEN-LAST:event_tableStableMouseClicked
 
