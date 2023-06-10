@@ -30,11 +30,10 @@ public class StableEdit extends javax.swing.JFrame implements GenericObservable 
     private final List consumoGeral = new ArrayList<>();
     private final List<TipoEstadia> tipoEstadias = new ArrayList<>();
     private final List<Consumo> novoConsumo = new ArrayList<>();
+    private final DefaultTableCellRenderer center = new DefaultTableCellRenderer();
     private Estadia novaEstadia;
-    
-    DefaultTableModel prodModel;
+    private DefaultTableModel prodModel;
     private TipoEstadia getTipoEstadia;
-    DefaultTableCellRenderer center = new DefaultTableCellRenderer();
     
     public StableEdit() {
         initComponents();
