@@ -150,7 +150,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="txtIndividualValue1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtFullValue" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -158,10 +158,10 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="spnProdUsed" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Component id="jLabel13" alignment="0" min="-2" pref="143" max="-2" attributes="0"/>
-                                          <Component id="jLabel10" min="-2" pref="172" max="-2" attributes="0"/>
-                                          <Component id="boxTipo" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel10" pref="172" max="32767" attributes="0"/>
+                                          <Component id="boxTipo" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
@@ -245,7 +245,7 @@
                                               <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="3" attributes="0">
-                                                  <Component id="txtIndividualValue1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="txtFullValue" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
@@ -333,7 +333,7 @@
                 <Property name="editable" type="boolean" value="false"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JFormattedTextField" name="txtIndividualValue1">
+            <Component class="javax.swing.JFormattedTextField" name="txtFullValue">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
               </Properties>
@@ -369,8 +369,14 @@
             </Component>
             <Component class="javax.swing.JSpinner" name="spnProdUsed">
               <Properties>
+                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                  <SpinnerModel initial="1" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                </Property>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="spnProdUsedStateChanged"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JComboBox" name="boxStable">
               <Properties>
@@ -392,8 +398,14 @@
             <Component class="com.fp3.haras.components.ComboBoxSuggestion" name="boxAnimal">
             </Component>
             <Component class="com.fp3.haras.components.ComboBoxSuggestion" name="boxConsumo">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boxConsumoActionPerformed"/>
+              </Events>
             </Component>
             <Component class="com.fp3.haras.components.ComboBoxSuggestion" name="boxTipo">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boxTipoActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JSeparator" name="jSeparator1">
               <Properties>

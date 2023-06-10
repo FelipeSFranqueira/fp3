@@ -1,7 +1,11 @@
 package com.fp3.haras.view.screens.stable;
 
 import com.fp3.haras.model.Animal;
+import com.fp3.haras.model.Consumo;
 import com.fp3.haras.model.Estadia;
+import com.fp3.haras.model.Produto;
+import com.fp3.haras.model.Servico;
+import com.fp3.haras.model.TipoEstadia;
 import com.fp3.haras.utils.Colors;
 import com.fp3.haras.utils.EntityUtils;
 import com.fp3.haras.utils.GenericObservable;
@@ -12,12 +16,24 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.SpinnerDateModel;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 public class StableCreate extends javax.swing.JFrame implements GenericObservable {
 
     private final List<GenericObserver> observers = new ArrayList<>();
+    private final List consumoGeral = new ArrayList<>();
+    private final List<TipoEstadia> tipoEstadias = new ArrayList<>();
+    private final List<Consumo> novoConsumo = new ArrayList<>();
+    private final DefaultTableCellRenderer center = new DefaultTableCellRenderer();
+    private final String unicType = "Tipo Único";
+    private Estadia novaEstadia;
+    private DefaultTableModel prodModel;
+    private TipoEstadia getTipoEstadia;
     
     public StableCreate() {
         initComponents();
@@ -25,22 +41,13 @@ public class StableCreate extends javax.swing.JFrame implements GenericObservabl
         panelBack.setBackground(Colors.WHITEBG);
         panelForm.setBackground(Colors.PRIMARYBG);
         lblTitle.putClientProperty("FlatLaf.styleClass", "h00");
+        center.setHorizontalAlignment(JLabel.CENTER);
         updateSuggestionBox();
     }
     
-    public void clearFrameModel() {
-        spnEnter.setModel(new SpinnerDateModel(new Date(), null, null, Calendar.DAY_OF_YEAR));
-        spnLeave.setModel(new SpinnerDateModel(new Date(), null, null, Calendar.DAY_OF_YEAR));
-        boxStable.setSelectedItem("A");
-        spnStable.setValue(1);
-    }
-
-    public final void updateSuggestionBox() {
-        boxAnimal.removeAllItems();
-        String queryAnimal = "SELECT c FROM Animal c";
-        List<Animal> animal = EntityUtils.select(queryAnimal, Animal.class);
-        for (Animal item : animal) {
-        boxAnimal.addItem(item.getName());
+    private void allignTableCenterd(JTable t) {
+        for (int i = 0; i < t.getColumnCount(); i++) {
+            t.getColumnModel().getColumn(i).setCellRenderer(center);
         }
     }
     
@@ -60,6 +67,145 @@ public class StableCreate extends javax.swing.JFrame implements GenericObservabl
         return String.valueOf(boxStable.getSelectedItem()) + spnStable.getValue();
     }
     
+    public void clearFrame() {
+        spnEnter.setModel(new SpinnerDateModel(new Date(), null, null, Calendar.DAY_OF_YEAR));
+        spnLeave.setModel(new SpinnerDateModel(new Date(), null, null, Calendar.DAY_OF_YEAR));
+        DefaultTableModel tm = (DefaultTableModel) tableProds.getModel();
+        novaEstadia = new Estadia();
+        txtFullValue.setText("");
+        txtIndividualValue.setText("");
+        boxStable.setSelectedItem("A");
+        txtTotalValue.setText("");
+        tableProds.setModel(tm);
+        spnStable.setValue(1);
+        novoConsumo.clear();
+        getTipoEstadia = null;
+        tm.setRowCount(0);
+    }
+
+    public final void updateSuggestionBox() {
+        boxAnimal.removeAllItems();
+        String queryAnimal = "SELECT c FROM Animal c WHERE c.isDeleted = false";
+        List<Animal> animal = EntityUtils.select(queryAnimal, Animal.class);
+        for (Animal item : animal) {
+            boxAnimal.addItem(item.getName());
+        }
+        
+        boxConsumo.removeAllItems();
+        boxConsumo.addItem("");
+        consumoGeral.clear();
+        consumoGeral.add("");
+        
+        String queryConsumo = "SELECT c FROM Produto c WHERE c.isDeleted = false";
+        List<Produto> produto = EntityUtils.select(queryConsumo, Produto.class);
+        for (Produto item : produto) {
+            boxConsumo.addItem(item.getName());
+            consumoGeral.add(item);
+        }
+        
+        String queryServicos = "SELECT c FROM Servico c WHERE c.isDeleted = false";
+        List<Servico> servico = EntityUtils.select(queryServicos, Servico.class);
+        for (Servico item : servico) {
+            boxConsumo.addItem(item.getName());
+            consumoGeral.add(item);
+        }
+        
+        boxTipo.removeAllItems();
+        String queryTipo = "SELECT c FROM TipoEstadia c WHERE c.isDeleted = false";
+        List<TipoEstadia> tipo = EntityUtils.select(queryTipo, TipoEstadia.class);
+        for (TipoEstadia item : tipo) {
+            boxTipo.addItem(item.getType());
+            tipoEstadias.add(item);
+        }
+        
+        if (!tipoEstadias.isEmpty() && boxTipo.getSelectedIndex() != -1) {
+            TipoEstadia e = tipoEstadias.get(boxTipo.getSelectedIndex());
+            txtTotalValue.setText(String.valueOf(e.getPrice()));
+        }
+    }
+    
+    private void updateProduto(Produto p) {
+        prodModel = (DefaultTableModel) tableProds.getModel();
+        
+        boolean exists = false;
+        
+        for (int i = 0; i < prodModel.getRowCount(); i++) {
+            if ((int)spnProdUsed.getValue() == 0) {
+                if (prodModel.getValueAt(i, 0).equals(p.getName()) 
+                && !prodModel.getValueAt(i, 1).equals(unicType)) {
+                    prodModel.removeRow(i);
+                    exists = true;
+                    break;
+                }
+            } else if (prodModel.getValueAt(i, 0).equals(p.getName()) 
+                && !prodModel.getValueAt(i, 1).equals(unicType)) {
+                    prodModel.setValueAt(spnProdUsed.getValue(), i, 1);
+                    prodModel.setValueAt(txtFullValue.getText(), i, 2);
+                    exists = true;
+                    break;
+                }
+            }
+        
+        if (!exists) {
+            prodModel.addRow(new Object[]{
+            p.getName(),
+            spnProdUsed.getValue(),
+            p.getPdv() * (int)spnProdUsed.getValue(),
+            });
+        }
+
+        tableProds.setModel(prodModel);
+        allignTableCenterd(tableProds);
+    }
+    
+    private void updateServico(Servico s) {
+        prodModel = (DefaultTableModel) tableProds.getModel();
+        
+        boolean exists = false;
+        
+        for (int i = 0; i < prodModel.getRowCount(); i++) {
+            if ((int)spnProdUsed.getValue() == 0) {
+                if (prodModel.getValueAt(i, 0).equals(s.getName()) 
+                && !prodModel.getValueAt(i, 1).equals("Tipo Único")) {
+                    prodModel.removeRow(i);
+                    exists = true;
+                    break;
+                }
+            } else if (prodModel.getValueAt(i, 0).equals(s.getName()) 
+                && !prodModel.getValueAt(i, 1).equals("Tipo Único")) {
+                    prodModel.setValueAt(spnProdUsed.getValue(), i, 1);
+                    prodModel.setValueAt(txtFullValue.getText(), i, 2);
+                    exists = true;
+                    break;
+            }
+        }
+        
+        if (exists == false) {
+            prodModel.addRow(new Object[]{
+            s.getName(),
+            spnProdUsed.getValue(),
+            s.getPrice() * (int)spnProdUsed.getValue(),
+            });
+        }
+        
+        tableProds.setModel(prodModel);
+        allignTableCenterd(tableProds);
+    }
+    
+    private void updateTipoEstadia() {
+    prodModel = (DefaultTableModel) tableProds.getModel();
+        
+        if (prodModel.getRowCount() <= 0)
+            prodModel.addRow(new Object[]{null,null,null});
+    
+        prodModel.setValueAt(getTipoEstadia.getType(), 0, 0);
+        prodModel.setValueAt("Tipo Único", 0, 1);
+        prodModel.setValueAt(getTipoEstadia.getPrice(), 0, 2);
+        
+        tableProds.setModel(prodModel);
+        allignTableCenterd(tableProds);
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -72,7 +218,7 @@ public class StableCreate extends javax.swing.JFrame implements GenericObservabl
         tableProds = new javax.swing.JTable();
         txtTotalValue = new javax.swing.JFormattedTextField();
         txtIndividualValue = new javax.swing.JFormattedTextField();
-        txtIndividualValue1 = new javax.swing.JFormattedTextField();
+        txtFullValue = new javax.swing.JFormattedTextField();
         btnApply = new javax.swing.JButton();
         spnEnter = new javax.swing.JSpinner();
         spnLeave = new javax.swing.JSpinner();
@@ -143,7 +289,7 @@ public class StableCreate extends javax.swing.JFrame implements GenericObservabl
 
         txtIndividualValue.setEditable(false);
 
-        txtIndividualValue1.setEditable(false);
+        txtFullValue.setEditable(false);
 
         btnApply.setText("APLICAR");
         btnApply.addActionListener(new java.awt.event.ActionListener() {
@@ -158,9 +304,27 @@ public class StableCreate extends javax.swing.JFrame implements GenericObservabl
 
         spnStable.setModel(new javax.swing.SpinnerNumberModel(1, null, 20, 1));
 
+        spnProdUsed.setModel(new javax.swing.SpinnerNumberModel(1, 0, null, 1));
         spnProdUsed.setEnabled(false);
+        spnProdUsed.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                spnProdUsedStateChanged(evt);
+            }
+        });
 
         boxStable.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C", "D", "E", "F" }));
+
+        boxConsumo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxConsumoActionPerformed(evt);
+            }
+        });
+
+        boxTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxTipoActionPerformed(evt);
+            }
+        });
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -228,16 +392,16 @@ public class StableCreate extends javax.swing.JFrame implements GenericObservabl
                             .addGroup(panelFormLayout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtIndividualValue1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtFullValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelFormLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(spnProdUsed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(87, 87, 87)
-                                .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(boxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                                    .addComponent(boxTipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(panelFormLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -303,7 +467,7 @@ public class StableCreate extends javax.swing.JFrame implements GenericObservabl
                                         .addComponent(jLabel15)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(txtIndividualValue1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtFullValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel1)))))))
                     .addGroup(panelFormLayout.createSequentialGroup()
                         .addGap(41, 41, 41)
@@ -390,23 +554,156 @@ public class StableCreate extends javax.swing.JFrame implements GenericObservabl
     }//GEN-LAST:event_btnCancelActionPerformed
     
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        if (getEntrada().before(getSaida())) {
-            String querySelect = "SELECT c FROM Animal c WHERE c.name = '" + (String) boxAnimal.getSelectedItem() + "'";
-            Animal a = EntityUtils.select(querySelect, Animal.class).get(0);
-            Estadia e = new Estadia(a, getEntrada(), getSaida(), getCocheira(), false);
-            EntityUtils.insert(e);
-            this.notifyObservers("");
-            JOptionPane.showMessageDialog(null, "Código de registro: #"+e.getId(), "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
-            dispose();
+        if (StableScreen.setOnlyDay(getEntrada()).before(StableScreen.setOnlyDay(getSaida()))) {
+            if (getTipoEstadia != null) {
+                String querySelect = "SELECT c FROM Animal c WHERE c.name = '" + (String) boxAnimal.getSelectedItem() + "'";
+                Animal a = EntityUtils.select(querySelect, Animal.class).get(0);
+                
+                novaEstadia.setAnimal(a);
+                novaEstadia.setEntrada(getEntrada());
+                novaEstadia.setSaida(getSaida());
+                novaEstadia.setCocheira(getCocheira());
+                novaEstadia.setTipoEstadia(getTipoEstadia);
+                novaEstadia.setIsCancelled(false);
+                EntityUtils.insert(novaEstadia);
+                
+                for (int i = 0; i < novoConsumo.size(); i++) {
+                    Consumo c = novoConsumo.get(i);
+                    
+                    if (c.getProduto() != null) {
+                        Produto p = c.getProduto();
+                        p.setStock(c.getProduto().getStock() - c.getQtd());
+                        EntityUtils.update(p);
+                    }
+                    
+                    EntityUtils.insert(c);
+                }
+                
+                this.notifyObservers("");
+                JOptionPane.showMessageDialog(null, "Código de registro: #"+novaEstadia.getId(), "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Selecione o tipo da estadia", null, JOptionPane.WARNING_MESSAGE, null);
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "Entrada precisa ser maior que a saída", null, JOptionPane.WARNING_MESSAGE, null);
+            JOptionPane.showMessageDialog(null, "Dia de saída não pode ser igual ou anterior a entrada", null, JOptionPane.WARNING_MESSAGE, null);
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnApplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApplyActionPerformed
-        this.notifyObservers("");
-        JOptionPane.showMessageDialog(null, "Consumo atualizado com sucesso!", null, JOptionPane.INFORMATION_MESSAGE, null);
+        if (boxTipo.getSelectedItem() != null) {  
+            this.notifyObservers("");
+            TipoEstadia stableType = tipoEstadias.get(boxTipo.getSelectedIndex());
+            getTipoEstadia = stableType;
+            boolean alreadyExists = false;
+            int existsIndex = -1;
+            updateTipoEstadia();
+            
+            if (boxConsumo.getSelectedItem() != "" && boxConsumo.getSelectedIndex() > 0) {
+                if (consumoGeral.get(boxConsumo.getSelectedIndex()).getClass() == Produto.class) {
+                    Produto prod = (Produto) consumoGeral.get(boxConsumo.getSelectedIndex());
+                    
+                    if (prod.getStock() >= (int)spnProdUsed.getValue()) {
+                        
+                        for (int i = 0; i < novoConsumo.size(); i++) {
+                            Consumo c = novoConsumo.get(i);
+                            if (c.getProduto()!= null && c.getProduto().equals(prod)) {
+                                alreadyExists = true;
+                                existsIndex = i;
+                                break;
+                            }
+                        }
+
+                        if (!alreadyExists && (int)spnProdUsed.getValue() > 0) {
+                            novoConsumo.add(new Consumo(novaEstadia, prod, (int)spnProdUsed.getValue()));
+                            updateProduto(prod);
+
+                        } else if (alreadyExists && (int)spnProdUsed.getValue() != 0) {
+                            novoConsumo.get(existsIndex).setQtd((int)spnProdUsed.getValue());
+                            updateProduto(prod);
+
+                        } else if (alreadyExists && (int)spnProdUsed.getValue() == 0) {
+                            novoConsumo.remove(existsIndex);
+                            updateProduto(prod);
+
+                        } else if (!alreadyExists && (int)spnProdUsed.getValue() == 0) {
+                            JOptionPane.showMessageDialog(null, "Use '0' apenas para apagar itens ativos", null, JOptionPane.WARNING_MESSAGE);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Estoque Insuficiente", null, JOptionPane.WARNING_MESSAGE);
+                        }
+                } else {
+                    Servico prod = (Servico) consumoGeral.get(boxConsumo.getSelectedIndex());
+                    
+                    for (int i = 0; i < novoConsumo.size(); i++) {
+                        Consumo c = novoConsumo.get(i);
+                        if (c.getServico() != null && c.getServico().equals(prod)) {
+                            alreadyExists = true;
+                            existsIndex = i;
+                            break;
+                        }
+                    }
+                    
+                    if (!alreadyExists && (int)spnProdUsed.getValue() > 0) {
+                        novoConsumo.add(new Consumo(novaEstadia, prod, (int)spnProdUsed.getValue()));
+                        updateServico(prod);
+                    
+                    } else if (alreadyExists && (int)spnProdUsed.getValue() != 0){
+                        novoConsumo.get(existsIndex).setQtd((int)spnProdUsed.getValue());
+                        updateServico(prod);
+                    
+                    } else if (alreadyExists && (int)spnProdUsed.getValue() == 0) {
+                        novoConsumo.remove(existsIndex);
+                        updateServico(prod);
+                    
+                    } else if (!alreadyExists && (int)spnProdUsed.getValue() == 0) {
+                        JOptionPane.showMessageDialog(null, "Use '0' apenas para apagar itens ativos", null, JOptionPane.WARNING_MESSAGE);
+                    }
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione o tipo da estadia!", null, JOptionPane.ERROR_MESSAGE, null);
+        }
     }//GEN-LAST:event_btnApplyActionPerformed
+
+    private void boxConsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxConsumoActionPerformed
+        if (boxConsumo.getSelectedItem() != "" && boxConsumo.getSelectedIndex() > 0) {
+            spnProdUsed.setEnabled(true);
+            double total;
+            if (consumoGeral.get(boxConsumo.getSelectedIndex()).getClass() == Produto.class) {
+                Produto prod = (Produto) consumoGeral.get(boxConsumo.getSelectedIndex());
+                txtIndividualValue.setText(String.valueOf(prod.getPdv()));
+                total = prod.getPdv()*(int)spnProdUsed.getValue();
+                txtFullValue.setText(String.valueOf(total));
+                spnProdUsed.setValue(1);
+            } else if (consumoGeral.get(boxConsumo.getSelectedIndex()).getClass() == Servico.class){
+                Servico prod = (Servico) consumoGeral.get(boxConsumo.getSelectedIndex());
+                txtIndividualValue.setText(String.valueOf(prod.getPrice()));
+                total = prod.getPrice()*(int)spnProdUsed.getValue();
+                txtFullValue.setText(String.valueOf(total));
+                spnProdUsed.setValue(1);
+            } else {
+                JOptionPane.showMessageDialog(null, "ERRO AO DEFINIR TIPO DE CONSUMO", null, JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            spnProdUsed.setEnabled(false);
+            spnProdUsed.setValue(1);
+            txtIndividualValue.setText("");
+            txtFullValue.setText("");
+        }
+    }//GEN-LAST:event_boxConsumoActionPerformed
+
+    private void boxTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxTipoActionPerformed
+        if (!tipoEstadias.isEmpty() && boxTipo.getSelectedIndex() != -1) {
+            TipoEstadia estadia = tipoEstadias.get(boxTipo.getSelectedIndex());
+            txtTotalValue.setText(String.valueOf(estadia.getPrice()));
+        }
+    }//GEN-LAST:event_boxTipoActionPerformed
+
+    private void spnProdUsedStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spnProdUsedStateChanged
+        if (!txtIndividualValue.getText().equals("") && spnProdUsed.getValue() != null)
+            txtFullValue.setText(String.valueOf(Double.parseDouble(txtIndividualValue.getText())*(int)spnProdUsed.getValue()));
+    }//GEN-LAST:event_spnProdUsedStateChanged
 
     @Override
     public void addObserver(GenericObserver o) {
@@ -456,8 +753,8 @@ public class StableCreate extends javax.swing.JFrame implements GenericObservabl
     private javax.swing.JSpinner spnProdUsed;
     private javax.swing.JSpinner spnStable;
     private javax.swing.JTable tableProds;
+    private javax.swing.JFormattedTextField txtFullValue;
     private javax.swing.JFormattedTextField txtIndividualValue;
-    private javax.swing.JFormattedTextField txtIndividualValue1;
     private javax.swing.JFormattedTextField txtTotalValue;
     // End of variables declaration//GEN-END:variables
 }
