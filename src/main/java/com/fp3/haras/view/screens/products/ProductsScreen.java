@@ -365,7 +365,7 @@ public class ProductsScreen extends javax.swing.JPanel implements GenericObserve
         
         int id = Integer.parseInt(table.getValueAt(tableProducts.getSelectedRow(), 0).toString());
         
-        String queryProduto = "SELECT a FROM Produto a WHERE a.Id = '" + id + "'";
+        String queryProduto = "SELECT a FROM Produto a WHERE a.id = '" + id + "'";
         this.productSelected = EntityUtils.select(queryProduto, Produto.class).get(0);
     }//GEN-LAST:event_tableProductsMouseClicked
 
