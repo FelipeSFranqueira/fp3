@@ -755,7 +755,7 @@ public class StableEdit extends javax.swing.JFrame implements GenericObservable 
         Estadia e = Estadia.getEstadia(StableScreen.selectedId);
         e.setIsCancelled(true);
         EntityUtils.update(e);
-        JOptionPane.showMessageDialog(null, "Registro #"+StableScreen.selectedId+" atualizado!", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
+        JOptionPane.showMessageDialog(null, "Registro #"+StableScreen.selectedId+" atualizado!", "Cadastro Finalizado", JOptionPane.INFORMATION_MESSAGE, null);
         dispose();
         this.notifyObservers("");
     }//GEN-LAST:event_btnEndActionPerformed
@@ -770,7 +770,7 @@ public class StableEdit extends javax.swing.JFrame implements GenericObservable 
                 total = prod.getPdv()*(int)spnProdUsed.getValue();
                 txtFullValue.setText(String.valueOf(total));
                 spnProdUsed.setValue(1);
-            } else if (consumoGeral.get(boxConsumo.getSelectedIndex()).getClass() == Servico.class){
+            } else if (consumoGeral.get(boxConsumo.getSelectedIndex()).getClass() == Servico.class) {
                 Servico prod = (Servico) consumoGeral.get(boxConsumo.getSelectedIndex());
                 txtIndividualValue.setText(String.valueOf(prod.getPrice()));
                 total = prod.getPrice()*(int)spnProdUsed.getValue();
