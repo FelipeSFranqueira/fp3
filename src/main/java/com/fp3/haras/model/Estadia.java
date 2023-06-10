@@ -4,12 +4,14 @@ import com.fp3.haras.utils.EntityUtils;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -29,26 +31,48 @@ public class Estadia implements Serializable {
     )
     private Animal animal;
     
+    @OneToOne
+    @JoinTable(
+        name = "StableXTipoEstadia",
+        joinColumns = @JoinColumn(name = "stable_id"),
+        inverseJoinColumns = @JoinColumn(name = "TipoEstadia_id")
+    )
+    private TipoEstadia tipoEstadia;
+    
+    @ManyToMany
+    @JoinTable(
+        name = "consumo",
+        joinColumns = @JoinColumn(name = "stable_id"),
+        inverseJoinColumns = @JoinColumn(name = "produto_id")
+    )
+    private List<Produto> produtos;
+    
+    @ManyToMany
+    @JoinTable(
+        name = "consumo",
+        joinColumns = @JoinColumn(name = "stable_id"),
+        inverseJoinColumns = @JoinColumn(name = "servico_id")
+    )
+    private List<Servico> servico;
+    
+    private boolean isCancelled;
     private Timestamp entrada;
     private Timestamp saida;
-    //private TipoEstadia tipoEstadia;
     private String cocheira;
-    //private List<Produto> produtos;
-    //private List<Servico> servico;
-    private boolean isCancelled;
 
     public Estadia() {
     }
     
-    public Estadia(Animal animal,/*TIPO, PRODUTOS, SERVICO*/
-    Timestamp entrada, Timestamp saida, String cocheira, boolean isCancelled) {
+    public Estadia(Animal animal, Timestamp entrada, 
+    Timestamp saida, String cocheira, TipoEstadia tipoEstadia, boolean isCancelled) {
         this.animal = animal;
         this.entrada = entrada;
         this.saida = saida;
         this.isCancelled = isCancelled;
         this.cocheira = cocheira;
+        this.tipoEstadia = tipoEstadia;
     }
-
+    
     public static Object getState(long id) {
         Date now = new Date();
         Date n = new Date(now.getTime());
@@ -76,6 +100,30 @@ public class Estadia implements Serializable {
     public static Estadia getEstadia(long id) {
         Estadia e = EntityUtils.select("SELECT c FROM Cocheiras c WHERE Id = " + id, Estadia.class).get(0);
         return e;
+    }
+    
+    public double getConsumoTotal() {
+        double total = 0;
+        double sum = 0;
+        TipoEstadia e = EntityUtils.select("SELECT c FROM TipoEstadia c WHERE id = " + getTipoEstadia().getId(), TipoEstadia.class).get(0);
+        String query = "SELECT c FROM Consumo c WHERE stable_id = " + id;
+        List<Consumo> consumo = EntityUtils.select(query, Consumo.class);
+        
+        for (Consumo c : consumo) {
+            if (c.getProduto() != null || c.getServico() != null) {
+                double price;
+                if (c.getProduto() != null)
+                    price = c.getProduto().getPdv();
+                else
+                    price = c.getServico().getPrice();
+                sum += (price * c.getQtd());  
+            } else {
+                break;
+            }
+        }
+        total += (sum + e.getPrice());
+        
+        return total;
     }
     
     public long getId() {
@@ -110,13 +158,13 @@ public class Estadia implements Serializable {
         this.saida = saida;
     }
 
-    /*public TipoEstadia getTipoEstadia() {
+    public TipoEstadia getTipoEstadia() {
         return tipoEstadia;
     }
 
     public void setTipoEstadia(TipoEstadia tipoEstadia) {
         this.tipoEstadia = tipoEstadia;
-    }*/
+    }
 
     public String getCocheira() {
         return cocheira;
@@ -126,7 +174,7 @@ public class Estadia implements Serializable {
         this.cocheira = cocheira;
     }
 
-    /*public List<Produto> getProdutos() {
+    public List<Produto> getProdutos() {
         return produtos;
     }
 
@@ -140,7 +188,7 @@ public class Estadia implements Serializable {
 
     public void setServico(List<Servico> servico) {
         this.servico = servico;
-    }*/
+    }
     
     public boolean getIsCancelled() {
         return isCancelled;
