@@ -8,6 +8,7 @@ import com.fp3.haras.utils.GenericObserver;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class ClientCreate extends javax.swing.JFrame implements GenericObservable {
     private List<GenericObserver> observers = new ArrayList<>();
@@ -61,18 +62,6 @@ public class ClientCreate extends javax.swing.JFrame implements GenericObservabl
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSaveActionPerformed(evt);
-            }
-        });
-
-        txtEmail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEmailActionPerformed(evt);
-            }
-        });
-
-        txtEndereco.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEnderecoActionPerformed(evt);
             }
         });
 
@@ -174,7 +163,7 @@ public class ClientCreate extends javax.swing.JFrame implements GenericObservabl
                 .addGroup(panelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -198,6 +187,12 @@ public class ClientCreate extends javax.swing.JFrame implements GenericObservabl
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        txtNome.setText("");
+        txtPhoneNumber.setText("");
+        txtDocument.setText("");
+        txtEmail.setText("");
+        txtEndereco.setText("");
+        
         dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
 
@@ -211,17 +206,18 @@ public class ClientCreate extends javax.swing.JFrame implements GenericObservabl
         
         EntityUtils.insert(client);
         
+        JOptionPane.showMessageDialog(null, "Cliente criado", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
+        
         this.notifyObservers(null);
+        
+        txtNome.setText("");
+        txtPhoneNumber.setText("");
+        txtDocument.setText("");
+        txtEmail.setText("");
+        txtEndereco.setText("");
+        
         dispose();
     }//GEN-LAST:event_btnSaveActionPerformed
-
-    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEmailActionPerformed
-
-    private void txtEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEnderecoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEnderecoActionPerformed
 
     @Override
     public void addObserver(GenericObserver o) {

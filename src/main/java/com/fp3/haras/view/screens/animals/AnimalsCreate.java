@@ -22,11 +22,7 @@ public class AnimalsCreate extends javax.swing.JFrame implements GenericObservab
         panelForm.setBackground(Colors.PRIMARYBG);
         lblTitle.putClientProperty("FlatLaf.styleClass", "h00");
         
-        String queryClients = "SELECT c FROM Client c";
-        List<Client> owners = EntityUtils.select(queryClients, Client.class);
-        for (Client item : owners) {
-            boxProprietario.addItem(item.getName());
-        }
+        this.populateComboBox();
     }
 
     @SuppressWarnings("unchecked")
@@ -253,7 +249,7 @@ public class AnimalsCreate extends javax.swing.JFrame implements GenericObservab
                 .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boxProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panelBackLayout = new javax.swing.GroupLayout(panelBack);
@@ -302,6 +298,14 @@ public class AnimalsCreate extends javax.swing.JFrame implements GenericObservab
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        txtNome.setText("");
+        boxPelagem.setSelectedIndex(0);
+        btnGroupSex.clearSelection();
+        txtOrigem.setText("");
+        boxCategoria.setSelectedIndex(0);
+        boxAie.setSelected(false);
+        boxMormo.setSelected(false);
+        boxGta.setSelected(false);
         dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
 
@@ -339,6 +343,7 @@ public class AnimalsCreate extends javax.swing.JFrame implements GenericObservab
         
         JOptionPane.showMessageDialog(null, "Animal criado", "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
         this.notifyObservers("");
+        
         txtNome.setText("");
         boxPelagem.setSelectedIndex(0);
         btnGroupSex.clearSelection();
@@ -347,8 +352,17 @@ public class AnimalsCreate extends javax.swing.JFrame implements GenericObservab
         boxAie.setSelected(false);
         boxMormo.setSelected(false);
         boxGta.setSelected(false);
+        
         dispose();
     }//GEN-LAST:event_btnSaveActionPerformed
+    
+    private void populateComboBox(){
+        String queryClients = "SELECT c FROM Client c";
+        List<Client> owners = EntityUtils.select(queryClients, Client.class);
+        for (Client item : owners) {
+            boxProprietario.addItem(item.getName());
+        }
+    }
     
     @Override
     public void addObserver(GenericObserver o) {
