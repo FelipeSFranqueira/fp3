@@ -4,6 +4,7 @@ import com.fp3.haras.utils.GenericObserver;
 import java.awt.CardLayout;
 
 import com.fp3.haras.utils.Screens;
+import com.fp3.haras.view.screens.ResetPassword;
 import com.fp3.haras.view.screens.animals.AnimalsContainer;
 import com.fp3.haras.view.screens.home.HomeScreen;
 import com.fp3.haras.view.screens.client.ClientContainer;
@@ -17,6 +18,7 @@ public class FeatureWrapper extends javax.swing.JPanel implements GenericObserve
     private ClientContainer customersPanel;
     private AnimalsContainer animalsPanel;
     private ProductsContainer productsPanel;
+    private ResetPassword resetPasswordPanel;
     
     public FeatureWrapper() {
         initComponents();
@@ -32,6 +34,7 @@ public class FeatureWrapper extends javax.swing.JPanel implements GenericObserve
         this.customersPanel = new ClientContainer();
         this.animalsPanel = new AnimalsContainer();
         this.productsPanel = new ProductsContainer();
+        this.resetPasswordPanel = new ResetPassword();
                 
         /* Add here the external classes to the layout */
         this.add(homePanel, Screens.HOME.toString());
@@ -39,6 +42,7 @@ public class FeatureWrapper extends javax.swing.JPanel implements GenericObserve
         this.add(customersPanel, Screens.CUSTOMERS.toString());
         this.add(animalsPanel, Screens.ANIMALS.toString());
         this.add(productsPanel, Screens.PRODUCTS.toString());
+        this.add(resetPasswordPanel, Screens.RESETPASSWORD.toString());
         
         this.toggleScreen(Screens.HOME);
     }
@@ -64,6 +68,9 @@ public class FeatureWrapper extends javax.swing.JPanel implements GenericObserve
                 break;
             case PRODUCTS:
                 toggleScreen(Screens.PRODUCTS);
+                break;
+            case RESETPASSWORD:
+                toggleScreen(Screens.RESETPASSWORD);
                 break;
             default:
                 break;
