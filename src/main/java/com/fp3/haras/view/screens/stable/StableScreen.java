@@ -128,7 +128,7 @@ public class StableScreen extends javax.swing.JPanel implements GenericObserver 
         
         int firstResult = page == 1 ? 0 : ((page - 1) * maxResults);
         
-        String query = "SELECT p FROM Cocheiras p WHERE p.isCancelled = false AND p.entrada < :n AND p.saida < :n";
+        String query = "SELECT p FROM Cocheiras p WHERE p.isCancelled = true OR (p.entrada < :n AND p.saida < :n)";
         TypedQuery<Estadia> stableQuery = em.createQuery(query, Estadia.class);
         stableQuery.setParameter("n", n);
         
@@ -713,7 +713,7 @@ public class StableScreen extends javax.swing.JPanel implements GenericObserver 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("haras");
         EntityManager em = emf.createEntityManager();
         
-        String query = "SELECT p FROM Cocheiras p WHERE p.isCancelled = false AND p.entrada < :n AND p.saida < :n";
+        String query = "SELECT p FROM Cocheiras p WHERE p.isCancelled = true OR (p.entrada < :n AND p.saida < :n)";
         Query stableQuery = em.createQuery(query, Estadia.class);
         stableQuery.setParameter("n", n);
         List<Estadia> std = stableQuery.getResultList();
