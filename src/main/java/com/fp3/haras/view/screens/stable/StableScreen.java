@@ -35,6 +35,7 @@ public class StableScreen extends javax.swing.JPanel implements GenericObserver 
     private List<Estadia> tableFutureResults;
     private List<Estadia> tableEndResults;
     public static long selectedId;
+    public static int selectedTableIndex = 0;
     
     public StableScreen(StableCreate creationModal, StableEdit editionModal) {
         initComponents();
@@ -62,6 +63,9 @@ public class StableScreen extends javax.swing.JPanel implements GenericObserver 
     }
     
     private void updateTables() {
+        tpaneInfo.setSelectedIndex(selectedTableIndex);
+        selectedTableIndex = 0;
+        
         DefaultTableModel progressModel = (DefaultTableModel) tableProgress.getModel();
         DefaultTableModel futureModel = (DefaultTableModel) tableFuture.getModel();
         DefaultTableModel endModel = (DefaultTableModel) tableFinished.getModel();

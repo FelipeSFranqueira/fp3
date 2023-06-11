@@ -579,6 +579,21 @@ public class StableCreate extends javax.swing.JFrame implements GenericObservabl
                     EntityUtils.insert(c);
                 }
                 
+                Date now = new Date();
+                Date n = StableScreen.setOnlyDay(new Date(now.getTime()));
+                Date entrada = StableScreen.setOnlyDay(novaEstadia.getEntrada());
+                Date saida = StableScreen.setOnlyDay(novaEstadia.getSaida());
+
+                if (!novaEstadia.getIsCancelled()&& saida.after(n) && (entrada.before(n) || entrada.equals(n))) {
+                    StableScreen.selectedTableIndex = 0;
+
+                } else if (!novaEstadia.getIsCancelled() && entrada.after(n) && entrada.after(n)) {
+                    StableScreen.selectedTableIndex = 1;
+
+                } else if (novaEstadia.getIsCancelled() || (entrada.before(n) && saida.before(n))) {
+                    StableScreen.selectedTableIndex = 2;
+                }
+                
                 this.notifyObservers("");
                 JOptionPane.showMessageDialog(null, "Código de registro: #"+novaEstadia.getId(), "Cadastro Realizado", JOptionPane.INFORMATION_MESSAGE, null);
                 dispose();

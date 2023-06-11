@@ -757,6 +757,7 @@ public class StableEdit extends javax.swing.JFrame implements GenericObservable 
         EntityUtils.update(e);
         JOptionPane.showMessageDialog(null, "Registro #"+StableScreen.selectedId+" atualizado!", "Cadastro Finalizado", JOptionPane.INFORMATION_MESSAGE, null);
         dispose();
+        StableScreen.selectedTableIndex = 2;
         this.notifyObservers("");
     }//GEN-LAST:event_btnEndActionPerformed
 
