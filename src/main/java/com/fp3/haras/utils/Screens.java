@@ -6,5 +6,6 @@ public enum Screens {
     ANIMALS,
     PRODUCTS,
     STABLE,
+    RESETPASSWORD,
     LOGOUT,
 }

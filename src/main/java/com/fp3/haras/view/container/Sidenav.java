@@ -39,7 +39,8 @@ public class Sidenav extends javax.swing.JPanel implements GenericObservable{
             pnlStableNavigator, 
             pnlCustomersNavigator, 
             pnlAnimalsNavigator,
-            pnlProductsNavigator, 
+            pnlProductsNavigator,
+            pnlResetPasswordNavigator,
             pnlLogoutNavigator,
         };
         pnlHomeNavigator.setName(Screens.HOME.toString());
@@ -47,6 +48,7 @@ public class Sidenav extends javax.swing.JPanel implements GenericObservable{
         pnlCustomersNavigator.setName(Screens.CUSTOMERS.toString());
         pnlProductsNavigator.setName(Screens.PRODUCTS.toString());
         pnlAnimalsNavigator.setName(Screens.ANIMALS.toString());
+        pnlResetPasswordNavigator.setName(Screens.RESETPASSWORD.toString());
         pnlLogoutNavigator.setName(Screens.LOGOUT.toString());
         for(JPanel navigator: navPanels) {
             navigator.setCursor(new Cursor(Cursor.HAND_CURSOR) {
@@ -115,6 +117,10 @@ public class Sidenav extends javax.swing.JPanel implements GenericObservable{
         navSelectedProducts = new javax.swing.JPanel();
         navIconProducts = new javax.swing.JLabel();
         navTextProducts = new javax.swing.JLabel();
+        pnlResetPasswordNavigator = new javax.swing.JPanel();
+        navSelectedResetPassword = new javax.swing.JPanel();
+        navIconResetPassword = new javax.swing.JLabel();
+        navTextResetPassword = new javax.swing.JLabel();
         pnlLogoutNavigator = new javax.swing.JPanel();
         navSelectedLogout = new javax.swing.JPanel();
         navIconLogout = new javax.swing.JLabel();
@@ -219,6 +225,23 @@ public class Sidenav extends javax.swing.JPanel implements GenericObservable{
 
         add(pnlProductsNavigator);
 
+        pnlResetPasswordNavigator.setBackground(new java.awt.Color(234, 234, 234));
+        pnlResetPasswordNavigator.setPreferredSize(new java.awt.Dimension(250, 32));
+        pnlResetPasswordNavigator.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 16, 5));
+
+        navSelectedResetPassword.setBackground(new java.awt.Color(0, 120, 212));
+        navSelectedResetPassword.setPreferredSize(new java.awt.Dimension(3, 16));
+        pnlResetPasswordNavigator.add(navSelectedResetPassword);
+
+        navIconResetPassword.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/key.png"))); // NOI18N
+        pnlResetPasswordNavigator.add(navIconResetPassword);
+
+        navTextResetPassword.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        navTextResetPassword.setText("Alterar senha");
+        pnlResetPasswordNavigator.add(navTextResetPassword);
+
+        add(pnlResetPasswordNavigator);
+
         pnlLogoutNavigator.setBackground(new java.awt.Color(234, 234, 234));
         pnlLogoutNavigator.setPreferredSize(new java.awt.Dimension(250, 32));
         pnlLogoutNavigator.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 16, 5));
@@ -261,6 +284,7 @@ public class Sidenav extends javax.swing.JPanel implements GenericObservable{
             navSelectedAnimals,
             navSelectedProducts,
             navSelectedLogout,
+            navSelectedResetPassword,
             navSelectedStable,
         };
         
@@ -277,7 +301,9 @@ public class Sidenav extends javax.swing.JPanel implements GenericObservable{
             nextSelected = navSelectedProducts;
         } else if (parentSelector == this.pnlStableNavigator) {
             nextSelected = navSelectedStable;
-        } else if (parentSelector == this.pnlLogoutNavigator) {
+        } else if (parentSelector == this.pnlResetPasswordNavigator) {
+            nextSelected = navSelectedResetPassword;
+        }else if (parentSelector == this.pnlLogoutNavigator) {
             nextSelected = navSelectedLogout;
         }
         
@@ -299,18 +325,21 @@ public class Sidenav extends javax.swing.JPanel implements GenericObservable{
     private javax.swing.JLabel navIconHome;
     private javax.swing.JLabel navIconLogout;
     private javax.swing.JLabel navIconProducts;
+    private javax.swing.JLabel navIconResetPassword;
     private javax.swing.JLabel navIconStable;
     private javax.swing.JPanel navSelectedAnimals;
     private javax.swing.JPanel navSelectedCustomers;
     private javax.swing.JPanel navSelectedHome;
     private javax.swing.JPanel navSelectedLogout;
     private javax.swing.JPanel navSelectedProducts;
+    private javax.swing.JPanel navSelectedResetPassword;
     private javax.swing.JPanel navSelectedStable;
     private javax.swing.JLabel navTextAnimals;
     private javax.swing.JLabel navTextCustomers;
     private javax.swing.JLabel navTextHome;
     private javax.swing.JLabel navTextLogout;
     private javax.swing.JLabel navTextProducts;
+    private javax.swing.JLabel navTextResetPassword;
     private javax.swing.JLabel navTextStable;
     private javax.swing.JPanel pnlAnimalsNavigator;
     private javax.swing.JPanel pnlCustomersNavigator;
@@ -318,6 +347,7 @@ public class Sidenav extends javax.swing.JPanel implements GenericObservable{
     private javax.swing.JPanel pnlLogo;
     private javax.swing.JPanel pnlLogoutNavigator;
     private javax.swing.JPanel pnlProductsNavigator;
+    private javax.swing.JPanel pnlResetPasswordNavigator;
     private javax.swing.JPanel pnlStableNavigator;
     // End of variables declaration//GEN-END:variables
 

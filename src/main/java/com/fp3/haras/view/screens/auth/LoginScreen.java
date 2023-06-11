@@ -1,15 +1,19 @@
 package com.fp3.haras.view.screens.auth;
 
 import com.formdev.flatlaf.FlatLightLaf;
+import com.fp3.haras.model.User;
 import com.fp3.haras.utils.Colors;
+import com.fp3.haras.utils.EntityUtils;
 import com.fp3.haras.view.container.Root;
 import java.awt.Color;
+import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 public class LoginScreen extends javax.swing.JFrame {
+    private User user;
 
     static {
         try {
@@ -21,6 +25,16 @@ public class LoginScreen extends javax.swing.JFrame {
     }
     
     public LoginScreen() {
+        try {
+            User user = EntityUtils.select("SELECT u FROM User u WHERE u.id = 1", User.class).get(0);
+            this.user = user;
+        } catch (Exception e) {
+            if (user == null) {
+                this.user = new User("admin", "admin");
+                EntityUtils.insert(this.user);
+            }
+        }
+        
         initComponents();
         this.setIconImage(new ImageIcon(getClass().getResource("/images/taskbar.png")).getImage());
         lblTitle.putClientProperty("FlatLaf.styleClass", "h00");
@@ -83,7 +97,15 @@ public class LoginScreen extends javax.swing.JFrame {
         btnEnter.setBackground(java.awt.Color.gray);
         btnEnter.setForeground(new java.awt.Color(255, 255, 255));
         btnEnter.setText("ENTRAR");
-        btnEnter.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEnter.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnEnter.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                btnEnterFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                btnEnterFocusLost(evt);
+            }
+        });
         btnEnter.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnEnterMouseEntered(evt);
@@ -239,11 +261,11 @@ public class LoginScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUserFocusLost
 
     private void btnEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterActionPerformed
-        if (!txtUser.getText().equals("Administrador") && !getPassword().equals("Senha")) {
+        if (!user.getSenha().equals(getPassword()) || !user.getNome().equals(txtUser.getText())) {
+            JOptionPane.showMessageDialog(this, "As credenciais inseridas estão incorretas.", null, JOptionPane.ERROR_MESSAGE);
+        } else {
             dispose();
             new Root().setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(null, "Preencha todos os campos corretamente!", null, JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnEnterActionPerformed
 
@@ -251,6 +273,14 @@ public class LoginScreen extends javax.swing.JFrame {
         btnEnter.setBackground(Color.GRAY);
     }//GEN-LAST:event_btnEnterMouseExited
 
+    private void btnEnterFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_btnEnterFocusGained
+        btnEnter.setBackground(Colors.ACCENTBLUE);
+    }//GEN-LAST:event_btnEnterFocusGained
+
+    private void btnEnterFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_btnEnterFocusLost
+        btnEnter.setBackground(Color.GRAY);
+    }//GEN-LAST:event_btnEnterFocusLost
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEnter;
     private javax.swing.JLabel jLabel1;

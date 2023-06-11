@@ -1,19 +1,32 @@
 package com.fp3.haras.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="users")
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String nome;
-    private String nomeUsuario;
     private String senha;
 
     public User() {
     }
 
-    public User(long id, String nome, String nomeUsuario, String senha) {
+    public User(long id, String nome, String senha) {
         this.id = id;
         this.nome = nome;
-        this.nomeUsuario = nomeUsuario;
+        this.senha = senha;
+    }
+    
+    public User(String nome, String senha) {
+        this.nome = nome;
         this.senha = senha;
     }
 
@@ -33,24 +46,11 @@ public class User {
         this.nome = nome;
     }
 
-    public String getNomeUsuario() {
-        return nomeUsuario;
-    }
-
-    public void setNomeUsuario(String nomeUsuario) {
-        this.nomeUsuario = nomeUsuario;
-    }
-
     public String getSenha() {
         return senha;
     }
 
     public void setSenha(String senha) {
         this.senha = senha;
-    }
-    
-    @Override
-    public String toString() {
-        return "Usuario{" + "id=" + id + ", nome=" + nome + ", nomeUsuario=" + nomeUsuario + ", senha=" + senha + '}';
     }
 }
