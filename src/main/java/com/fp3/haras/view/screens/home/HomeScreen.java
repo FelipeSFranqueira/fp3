@@ -2,8 +2,12 @@ package com.fp3.haras.view.screens.home;
 
 import com.fp3.haras.model.Animal;
 import com.fp3.haras.model.Client;
+import com.fp3.haras.model.Estadia;
 import com.fp3.haras.utils.Colors;
 import com.fp3.haras.utils.EntityUtils;
+import java.sql.Timestamp;
+import java.time.Instant;
+import java.time.LocalDate;
 import java.util.List;
 
 public class HomeScreen extends javax.swing.JPanel {
@@ -31,6 +35,8 @@ public class HomeScreen extends javax.swing.JPanel {
         
         this.activityAnimals();
         this.activityClient();
+        this.getAnimalsToArrive();
+        this.getAnimalsToLeave();
     }
 
     @SuppressWarnings("unchecked")
@@ -267,13 +273,15 @@ public class HomeScreen extends javax.swing.JPanel {
                 .addComponent(pnlHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(pnlContent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(297, 297, 297))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAnimalsToGo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnimalsToGo2ActionPerformed
         this.activityClient();
         this.activityAnimals();
+        this.getAnimalsToArrive();
+        this.getAnimalsToLeave();
     }//GEN-LAST:event_btnAnimalsToGo2ActionPerformed
 
     private void activityAnimals() {
@@ -304,6 +312,38 @@ public class HomeScreen extends javax.swing.JPanel {
         double percentage = 100.00 * activity / total;
         
         lblActivityClientsAmount.setText(String.format("%.2f %%", percentage));
+    }
+    
+    private void getAnimalsToArrive() {
+        String query = "SELECT e FROM Cocheiras e WHERE e.isCancelled = FALSE";
+        List<Estadia> estadias = EntityUtils.select(query, Estadia.class);
+        
+        int animalsToArrive = 0;
+        LocalDate now = LocalDate.now();
+        
+        for (Estadia e: estadias) {
+            if (e.getEntrada().toLocalDateTime().toLocalDate().toString().equals(now.toString())) {
+                animalsToArrive++;                
+            }
+        }
+        
+        this.lblAnimalsToArriveAmount.setText("" + animalsToArrive);
+    }
+    
+    private void getAnimalsToLeave() {
+        String query = "SELECT e FROM Cocheiras e WHERE e.isCancelled = FALSE";
+        List<Estadia> estadias = EntityUtils.select(query, Estadia.class);
+        
+        int animalsToLeave = 0;
+        LocalDate now = LocalDate.now();
+        
+        for (Estadia e: estadias) {
+            if (e.getSaida().toLocalDateTime().toLocalDate().toString().equals(now.toString())) {
+                animalsToLeave++;
+            }
+        }
+        
+        this.lblAnimalsToGoAmount.setText("" + animalsToLeave);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
