@@ -211,12 +211,12 @@
     <Component class="javax.swing.JLabel" name="lblTitle">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="2"/>
-        <Property name="text" type="java.lang.String" value="ANIMAIS"/>
+        <Property name="text" type="java.lang.String" value="Animais"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblSubtitle">
       <Properties>
-        <Property name="text" type="java.lang.String" value="PRINCIPAIS CARACTER&#xcd;STICAS"/>
+        <Property name="text" type="java.lang.String" value="Gerencie os animais cadastrados no seu Haras"/>
       </Properties>
     </Component>
     <Component class="com.fp3.haras.components.ComboBoxSuggestion" name="boxSearch">

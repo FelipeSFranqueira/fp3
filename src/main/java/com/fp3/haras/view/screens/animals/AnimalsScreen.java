@@ -138,9 +138,9 @@ public class AnimalsScreen extends javax.swing.JPanel implements GenericObserver
         });
 
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblTitle.setText("ANIMAIS");
+        lblTitle.setText("Animais");
 
-        lblSubtitle.setText("PRINCIPAIS CARACTERÍSTICAS");
+        lblSubtitle.setText("Gerencie os animais cadastrados no seu Haras");
 
         btnNext.setText("Avançar >");
         btnNext.addActionListener(new java.awt.event.ActionListener() {

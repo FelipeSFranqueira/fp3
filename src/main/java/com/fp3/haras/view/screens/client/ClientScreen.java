@@ -133,9 +133,9 @@ public class ClientScreen extends javax.swing.JPanel implements GenericObserver 
         });
 
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblTitle.setText("CLIENTES");
+        lblTitle.setText("Clientes");
 
-        lblSubtitle.setText("INFORMAÇÕES PESSOAIS");
+        lblSubtitle.setText("Gerencie os seus clientes");
 
         btnBack.setText("< Voltar");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
