@@ -94,22 +94,26 @@ public class HomeScreen extends javax.swing.JPanel {
         pnlAnimalsBalance.setOpaque(false);
 
         pnlAnimalsToArrive.setBorder(javax.swing.BorderFactory.createEmptyBorder(16, 16, 16, 16));
-        pnlAnimalsToArrive.setLayout(new java.awt.GridBagLayout());
 
         lblAnimalsToArriveTitle.setText("Animais a chegar hoje");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        pnlAnimalsToArrive.add(lblAnimalsToArriveTitle, gridBagConstraints);
 
         lblAnimalsToArriveAmount.setForeground(new java.awt.Color(40, 167, 69));
         lblAnimalsToArriveAmount.setText("+7");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        pnlAnimalsToArrive.add(lblAnimalsToArriveAmount, gridBagConstraints);
+
+        javax.swing.GroupLayout pnlAnimalsToArriveLayout = new javax.swing.GroupLayout(pnlAnimalsToArrive);
+        pnlAnimalsToArrive.setLayout(pnlAnimalsToArriveLayout);
+        pnlAnimalsToArriveLayout.setHorizontalGroup(
+            pnlAnimalsToArriveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblAnimalsToArriveTitle)
+            .addComponent(lblAnimalsToArriveAmount)
+        );
+        pnlAnimalsToArriveLayout.setVerticalGroup(
+            pnlAnimalsToArriveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAnimalsToArriveLayout.createSequentialGroup()
+                .addComponent(lblAnimalsToArriveTitle)
+                .addGap(0, 0, 0)
+                .addComponent(lblAnimalsToArriveAmount))
+        );
 
         pnlAnimalsBalanceSeparator.setFocusable(false);
         pnlAnimalsBalanceSeparator.setOpaque(false);
@@ -127,22 +131,29 @@ public class HomeScreen extends javax.swing.JPanel {
         );
 
         pnlAnimalsToGo.setBorder(javax.swing.BorderFactory.createEmptyBorder(16, 16, 16, 16));
-        pnlAnimalsToGo.setLayout(new java.awt.GridBagLayout());
 
         lblAnimalsToGoTitle.setText("Animais a sair hoje");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        pnlAnimalsToGo.add(lblAnimalsToGoTitle, gridBagConstraints);
 
         lblAnimalsToGoAmount.setForeground(new java.awt.Color(255, 193, 7));
         lblAnimalsToGoAmount.setText("-4");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        pnlAnimalsToGo.add(lblAnimalsToGoAmount, gridBagConstraints);
+
+        javax.swing.GroupLayout pnlAnimalsToGoLayout = new javax.swing.GroupLayout(pnlAnimalsToGo);
+        pnlAnimalsToGo.setLayout(pnlAnimalsToGoLayout);
+        pnlAnimalsToGoLayout.setHorizontalGroup(
+            pnlAnimalsToGoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAnimalsToGoLayout.createSequentialGroup()
+                .addGroup(pnlAnimalsToGoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblAnimalsToGoTitle)
+                    .addComponent(lblAnimalsToGoAmount))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pnlAnimalsToGoLayout.setVerticalGroup(
+            pnlAnimalsToGoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAnimalsToGoLayout.createSequentialGroup()
+                .addComponent(lblAnimalsToGoTitle)
+                .addGap(0, 0, 0)
+                .addComponent(lblAnimalsToGoAmount))
+        );
 
         pnlActivityClients.setBorder(javax.swing.BorderFactory.createEmptyBorder(16, 16, 16, 16));
         pnlActivityClients.setLayout(new java.awt.GridBagLayout());
@@ -209,20 +220,22 @@ public class HomeScreen extends javax.swing.JPanel {
             pnlAnimalsBalanceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlAnimalsBalanceLayout.createSequentialGroup()
                 .addGroup(pnlAnimalsBalanceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAnimalsToGo2)
                     .addGroup(pnlAnimalsBalanceLayout.createSequentialGroup()
-                        .addComponent(pnlAnimalsToArrive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(pnlAnimalsBalanceSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(pnlAnimalsToGo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlAnimalsBalanceLayout.createSequentialGroup()
-                        .addComponent(pnlActivityClients, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(pnlSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(pnlActivityAnimals, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnAnimalsToGo2))
-                .addGap(334, 334, 334))
+                        .addGroup(pnlAnimalsBalanceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(pnlAnimalsBalanceLayout.createSequentialGroup()
+                                .addComponent(pnlAnimalsToArrive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(pnlAnimalsToGo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(pnlAnimalsBalanceLayout.createSequentialGroup()
+                                .addComponent(pnlActivityClients, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, 0)
+                                .addComponent(pnlSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, 0)
+                                .addComponent(pnlActivityAnimals, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(2, 2, 2)
+                        .addComponent(pnlAnimalsBalanceSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(370, 370, 370))
         );
         pnlAnimalsBalanceLayout.setVerticalGroup(
             pnlAnimalsBalanceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
