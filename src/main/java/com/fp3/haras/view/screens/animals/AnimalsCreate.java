@@ -249,7 +249,7 @@ public class AnimalsCreate extends javax.swing.JFrame implements GenericObservab
                 .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boxProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panelBackLayout = new javax.swing.GroupLayout(panelBack);
@@ -359,9 +359,16 @@ public class AnimalsCreate extends javax.swing.JFrame implements GenericObservab
     private void populateComboBox(){
         String queryClients = "SELECT c FROM Client c";
         List<Client> owners = EntityUtils.select(queryClients, Client.class);
+        
+        this.boxProprietario.removeAllItems();
+        
         for (Client item : owners) {
             boxProprietario.addItem(item.getName());
         }
+    }
+    
+    public void populateData() {
+        this.populateComboBox();
     }
     
     @Override

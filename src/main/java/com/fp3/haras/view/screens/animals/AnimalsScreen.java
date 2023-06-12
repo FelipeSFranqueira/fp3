@@ -263,6 +263,7 @@ public class AnimalsScreen extends javax.swing.JPanel implements GenericObserver
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
+        this.creationModal.populateData();
         this.creationModal.setVisible(true);
     }//GEN-LAST:event_btnCreateActionPerformed
 
