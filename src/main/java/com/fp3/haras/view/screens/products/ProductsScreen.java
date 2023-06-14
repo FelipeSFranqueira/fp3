@@ -6,6 +6,7 @@ import com.fp3.haras.model.TipoEstadia;
 import com.fp3.haras.utils.Colors;
 import com.fp3.haras.utils.EntityUtils;
 import com.fp3.haras.utils.GenericObserver;
+import com.fp3.haras.utils.ReportGenerator;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -36,7 +37,12 @@ public class ProductsScreen extends javax.swing.JPanel implements GenericObserve
         this.CreateModal = creationModal;
         this.EditModal = editionModal;
         this.setBackground(Colors.PRIMARYBG);
+        pnlReports.setBackground(Colors.SECONDARYBG);
         lblTitle.putClientProperty("FlatLaf.styleClass", "h00");
+        lblReports.putClientProperty("FlatLaf.styleClass", "h4");
+        radioGroupReports.add(radioSelectedPage);
+        radioGroupReports.add(radioAllItems);
+        radioSelectedPage.setSelected(true);
         
         this.populateTable();
         
@@ -83,6 +89,7 @@ public class ProductsScreen extends javax.swing.JPanel implements GenericObserve
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        radioGroupReports = new javax.swing.ButtonGroup();
         boxSearch = new com.fp3.haras.components.ComboBoxSuggestion();
         tpSelection = new javax.swing.JTabbedPane();
         spProducts = new javax.swing.JScrollPane();
@@ -96,6 +103,11 @@ public class ProductsScreen extends javax.swing.JPanel implements GenericObserve
         lblSearch = new javax.swing.JLabel();
         lblTitle = new javax.swing.JLabel();
         lblSubtitle = new javax.swing.JLabel();
+        pnlReports = new javax.swing.JPanel();
+        lblReports = new javax.swing.JLabel();
+        btnGenerateReport = new javax.swing.JButton();
+        radioSelectedPage = new javax.swing.JRadioButton();
+        radioAllItems = new javax.swing.JRadioButton();
 
         setBackground(new java.awt.Color(244, 244, 244));
         setPreferredSize(new java.awt.Dimension(900, 585));
@@ -218,41 +230,99 @@ public class ProductsScreen extends javax.swing.JPanel implements GenericObserve
 
         lblSubtitle.setText("Gerencie os produtos, serviços e tipos de estadias pertencentes ao seu Haras");
 
+        lblReports.setText("Relatórios");
+
+        btnGenerateReport.setText("Gerar Relatório");
+        btnGenerateReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerateReportActionPerformed(evt);
+            }
+        });
+
+        radioGroupReports.add(radioSelectedPage);
+        radioSelectedPage.setText("Página selecionada");
+
+        radioGroupReports.add(radioAllItems);
+        radioAllItems.setText("Todos os itens");
+
+        javax.swing.GroupLayout pnlReportsLayout = new javax.swing.GroupLayout(pnlReports);
+        pnlReports.setLayout(pnlReportsLayout);
+        pnlReportsLayout.setHorizontalGroup(
+            pnlReportsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlReportsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlReportsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlReportsLayout.createSequentialGroup()
+                        .addGroup(pnlReportsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlReportsLayout.createSequentialGroup()
+                                .addComponent(lblReports)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(btnGenerateReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())
+                    .addGroup(pnlReportsLayout.createSequentialGroup()
+                        .addGroup(pnlReportsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(radioAllItems)
+                            .addComponent(radioSelectedPage))
+                        .addGap(0, 0, Short.MAX_VALUE))))
+        );
+        pnlReportsLayout.setVerticalGroup(
+            pnlReportsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlReportsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblReports)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(radioSelectedPage)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(radioAllItems)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnGenerateReport)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(50, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblSubtitle)
-                    .addComponent(lblTitle)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(boxSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(lblSearch)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(tpSelection, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(tpSelection, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(boxSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblSearch))
+                            .addComponent(lblSubtitle)
+                            .addComponent(lblTitle))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(pnlReports, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(50, 50, 50))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(lblTitle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblSubtitle)
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnCreate)
-                        .addComponent(btnEdit))
-                    .addComponent(boxSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(lblTitle)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblSubtitle)
+                        .addGap(36, 36, 36)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(boxSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(pnlReports, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnCreate)
+                            .addComponent(btnEdit))))
                 .addGap(18, 18, 18)
                 .addComponent(tpSelection, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(80, Short.MAX_VALUE))
@@ -389,6 +459,141 @@ public class ProductsScreen extends javax.swing.JPanel implements GenericObserve
         this.stableTypeSelected = EntityUtils.select(queryStableType, TipoEstadia.class).get(0);
     }//GEN-LAST:event_tableStableMouseClicked
 
+    private void btnGenerateReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateReportActionPerformed
+        ReportGenerator reportGenerator = new ReportGenerator();
+        String selectedTab = tpSelection.getTitleAt(tpSelection.getSelectedIndex());
+        
+        if (radioSelectedPage.isSelected()) {
+            switch (selectedTab) {
+                case "PRODUTOS":
+                    reportGenerator.generateReport(this,
+                            "relatorio_produtos_parcial",
+                            "Relatório Parcial de Produtos",
+                            tableProducts);
+                    break;
+                case "SERVIÇOS":
+                    reportGenerator.generateReport(this,
+                            "relatorio_servicos_parcial",
+                            "Relatório Parcial de Serviços",
+                            tableServices);
+                    break;
+                case "ESTADIAS":
+                    reportGenerator.generateReport(this,
+                            "relatorio_tipos_estadias_parcial",
+                            "Relatório Parcial de Tipos de Estadias",
+                            tableStable);
+                    break;
+                default:
+                    return;
+            }
+        } else {
+            switch (selectedTab) {
+                case "PRODUTOS":
+                    JTable pfullTable = generateFullTable(1);
+
+                    reportGenerator.generateReport(this,
+                            "relatorio_produtos_completo",
+                            "Relatório Completo de Produtos",
+                            pfullTable);
+
+                    this.populateTable();
+                    break;
+                case "SERVIÇOS":
+                    JTable sfullTable = generateFullTable(2);
+
+                    reportGenerator.generateReport(this,
+                            "relatorio_servicos_completo",
+                            "Relatório Completo de Serviços",
+                            sfullTable);
+
+                    this.populateTable();
+                    break;
+                case "ESTADIAS":
+                    JTable efullTable = generateFullTable(3);
+
+                    reportGenerator.generateReport(this,
+                            "relatorio_tipos_estadias_completo",
+                            "Relatório Completo de Tipos de Estadias",
+                            efullTable);
+
+                    this.populateTable();
+                    break;
+                default:
+                    return;
+            }
+        }
+    }//GEN-LAST:event_btnGenerateReportActionPerformed
+
+    private JTable generateFullTable(int i) {
+        JTable x = new JTable();
+        switch (i) {
+            case 1:
+                JTable pjtable = new JTable();
+                pjtable.setModel(tableProducts.getModel());
+
+                List<Produto> allProdutos = EntityUtils.select(
+                        "SELECT a FROM Produto a WHERE a.isDeleted = FALSE order by a.id asc",
+                        Produto.class);
+
+                DefaultTableModel pmodel = (DefaultTableModel) pjtable.getModel();
+                pmodel.setRowCount(0);
+
+                for (Produto a : allProdutos) {
+                    pmodel.addRow(new Object[]{
+                        a.getId(),
+                        a.getName(),
+                        a.getStock(),
+                        a.getPdc(),
+                        a.getPdv()
+                    });
+                    x = pjtable;
+                }
+                break;
+            case 2:
+                JTable sjtable = new JTable();
+                sjtable.setModel(tableServices.getModel());
+
+                List<Servico> allServicos = EntityUtils.select(
+                        "SELECT a FROM Servico a WHERE a.isDeleted = FALSE order by a.id asc",
+                        Servico.class);
+
+                DefaultTableModel smodel = (DefaultTableModel) sjtable.getModel();
+                smodel.setRowCount(0);
+
+                for (Servico a : allServicos) {
+                    smodel.addRow(new Object[]{
+                        a.getId(),
+                        a.getName(),
+                        a.getPrice()
+                    });
+                    x = sjtable;
+                }
+                break;
+            case 3:
+                JTable ejtable = new JTable();
+                ejtable.setModel(tableStable.getModel());
+
+                List<TipoEstadia> allTipoEstadias = EntityUtils.select(
+                        "SELECT a FROM TipoEstadia a WHERE a.isDeleted = FALSE order by a.id asc",
+                        TipoEstadia.class);
+
+                DefaultTableModel model = (DefaultTableModel) ejtable.getModel();
+                model.setRowCount(0);
+
+                for (TipoEstadia a : allTipoEstadias) {
+                    model.addRow(new Object[]{
+                        a.getId(),
+                        a.getType(),
+                        a.getPrice()
+                    });
+                    x = ejtable;
+                }
+                break;
+            default:
+        }
+        return x;
+    }
+    
     private void updateBoxSearch(){
         this.boxSearch.removeAllItems();
         boxSearch.addItem("");
@@ -518,9 +723,15 @@ public class ProductsScreen extends javax.swing.JPanel implements GenericObserve
     private com.fp3.haras.components.ComboBoxSuggestion boxSearch;
     private javax.swing.JButton btnCreate;
     private javax.swing.JButton btnEdit;
+    private javax.swing.JButton btnGenerateReport;
+    private javax.swing.JLabel lblReports;
     private javax.swing.JLabel lblSearch;
     private javax.swing.JLabel lblSubtitle;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JPanel pnlReports;
+    private javax.swing.JRadioButton radioAllItems;
+    private javax.swing.ButtonGroup radioGroupReports;
+    private javax.swing.JRadioButton radioSelectedPage;
     private javax.swing.JScrollPane spProducts;
     private javax.swing.JScrollPane spServices;
     private javax.swing.JScrollPane spStable;
