@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -299,8 +300,18 @@ public class StableCreate extends javax.swing.JFrame implements GenericObservabl
         });
 
         spnEnter.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), null, null, java.util.Calendar.DAY_OF_YEAR));
+        spnEnter.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                spnEnterPropertyChange(evt);
+            }
+        });
 
         spnLeave.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), null, null, java.util.Calendar.DAY_OF_YEAR));
+        spnLeave.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                spnLeaveStateChanged(evt);
+            }
+        });
 
         spnStable.setModel(new javax.swing.SpinnerNumberModel(1, null, 20, 1));
 
@@ -710,8 +721,10 @@ public class StableCreate extends javax.swing.JFrame implements GenericObservabl
 
     private void boxTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxTipoActionPerformed
         if (!tipoEstadias.isEmpty() && boxTipo.getSelectedIndex() != -1) {
-            TipoEstadia estadia = tipoEstadias.get(boxTipo.getSelectedIndex());
-            txtTotalValue.setText(String.valueOf(estadia.getPrice()));
+            TipoEstadia e = tipoEstadias.get(boxTipo.getSelectedIndex());
+            long time = getSaida().getTime() - getEntrada().getTime();
+            long stayDays = TimeUnit.MILLISECONDS.toDays(time);
+            txtTotalValue.setText(String.valueOf(e.getPrice() * stayDays));
         }
     }//GEN-LAST:event_boxTipoActionPerformed
 
@@ -719,6 +732,24 @@ public class StableCreate extends javax.swing.JFrame implements GenericObservabl
         if (!txtIndividualValue.getText().equals("") && spnProdUsed.getValue() != null)
             txtFullValue.setText(String.valueOf(Double.parseDouble(txtIndividualValue.getText())*(int)spnProdUsed.getValue()));
     }//GEN-LAST:event_spnProdUsedStateChanged
+
+    private void spnLeaveStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spnLeaveStateChanged
+        if (!tipoEstadias.isEmpty() && boxTipo.getSelectedIndex() != -1) {
+            TipoEstadia e = tipoEstadias.get(boxTipo.getSelectedIndex());
+            long time = getSaida().getTime() - getEntrada().getTime();
+            long stayDays = TimeUnit.MILLISECONDS.toDays(time);
+            txtTotalValue.setText(String.valueOf(e.getPrice() * stayDays));
+        }
+    }//GEN-LAST:event_spnLeaveStateChanged
+
+    private void spnEnterPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_spnEnterPropertyChange
+        if (!tipoEstadias.isEmpty() && boxTipo.getSelectedIndex() != -1) {
+            TipoEstadia e = tipoEstadias.get(boxTipo.getSelectedIndex());
+            long time = getSaida().getTime() - getEntrada().getTime();
+            long stayDays = TimeUnit.MILLISECONDS.toDays(time);
+            txtTotalValue.setText(String.valueOf(e.getPrice() * stayDays));
+        }
+    }//GEN-LAST:event_spnEnterPropertyChange
 
     @Override
     public void addObserver(GenericObserver o) {

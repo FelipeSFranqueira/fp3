@@ -50,7 +50,7 @@ public class Sidenav extends javax.swing.JPanel implements GenericObservable{
         pnlAnimalsNavigator.setName(Screens.ANIMALS.toString());
         pnlResetPasswordNavigator.setName(Screens.RESETPASSWORD.toString());
         pnlLogoutNavigator.setName(Screens.LOGOUT.toString());
-        for(JPanel navigator: navPanels) {
+        for(final JPanel navigator: navPanels) {
             navigator.setCursor(new Cursor(Cursor.HAND_CURSOR) {
             });
             navigator.addMouseListener(new MouseListener() {                

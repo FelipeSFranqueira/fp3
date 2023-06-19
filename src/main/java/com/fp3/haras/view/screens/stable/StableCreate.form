@@ -352,6 +352,9 @@
                   <SpinnerModel initial="now" stepSize="6" type="date"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="spnEnterPropertyChange"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JSpinner" name="spnLeave">
               <Properties>
@@ -359,6 +362,9 @@
                   <SpinnerModel initial="now" stepSize="6" type="date"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="spnLeaveStateChanged"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JSpinner" name="spnStable">
               <Properties>

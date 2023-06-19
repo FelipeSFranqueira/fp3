@@ -31,7 +31,7 @@ public class ComboSuggestionUI extends BasicComboBoxUI {
     @Override
     public void installUI(JComponent jc) {
         super.installUI(jc);
-        Border border = new Border();
+        final Border border = new Border();
         JTextField txt = (JTextField) comboBox.getEditor().getEditorComponent();
         txt.addFocusListener(new FocusAdapter() {
             @Override

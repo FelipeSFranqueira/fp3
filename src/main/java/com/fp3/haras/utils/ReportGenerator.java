@@ -94,16 +94,16 @@ public class ReportGenerator {
                 
                 canvas.setFontSize(18);
                 
-                URL urlToImage = this.getClass().getResource("/images/logo.png");
-                ImageData data = ImageDataFactory.create(urlToImage.getPath());
-                Image img = new Image(data);
-                
-                img.setWidth(90);
-                img.setBorder(new SolidBorder(Color.convertRgbToCmyk(new DeviceRgb(255, 255, 255)), 20, 0));
-                canvas.add(img);
-                canvas.showTextAligned(title, 
-                        pageSize.getWidth() / 2, 
-                        pageSize.getTop() - 60, 
+//                URL urlToImage = this.getClass().getResource("/images/logo.png");
+//                ImageData data = ImageDataFactory.create(urlToImage.getPath());
+//                Image img = new Image(data);
+//
+//                img.setWidth(90);
+//                img.setBorder(new SolidBorder(Color.convertRgbToCmyk(new DeviceRgb(255, 255, 255)), 20, 0));
+//                canvas.add(img);
+                canvas.showTextAligned(title,
+                        pageSize.getWidth() / 2,
+                        pageSize.getTop() - 60,
                         TextAlignment.CENTER);
                 canvas.setUnderline();
                 canvas.close();
