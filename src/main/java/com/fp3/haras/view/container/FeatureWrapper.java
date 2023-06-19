@@ -4,19 +4,21 @@ import com.fp3.haras.utils.GenericObserver;
 import java.awt.CardLayout;
 
 import com.fp3.haras.utils.Screens;
-import com.fp3.haras.view.screens.animals.AnimalsScreen;
+import com.fp3.haras.view.screens.ResetPassword;
+import com.fp3.haras.view.screens.animals.AnimalsContainer;
 import com.fp3.haras.view.screens.home.HomeScreen;
-import com.fp3.haras.view.screens.client.ClientScreen;
-import com.fp3.haras.view.screens.products.ProductsScreen;
-import com.fp3.haras.view.screens.stable.StableScreen;
+import com.fp3.haras.view.screens.client.ClientContainer;
+import com.fp3.haras.view.screens.products.ProductsContainer;
+import com.fp3.haras.view.screens.stable.StableContainer;
 
 public class FeatureWrapper extends javax.swing.JPanel implements GenericObserver<Screens> {
     private CardLayout cardLayout;
     private HomeScreen homePanel;
-    private StableScreen stablePanel;
-    private ClientScreen customersPanel;
-    private AnimalsScreen animalsPanel;
-    private ProductsScreen productsPanel;
+    private StableContainer stablePanel;
+    private ClientContainer customersPanel;
+    private AnimalsContainer animalsPanel;
+    private ProductsContainer productsPanel;
+    private ResetPassword resetPasswordPanel;
     
     public FeatureWrapper() {
         initComponents();
@@ -28,10 +30,11 @@ public class FeatureWrapper extends javax.swing.JPanel implements GenericObserve
         
         /* Declare here the screens */
         this.homePanel = new HomeScreen();
-        this.stablePanel = new StableScreen();
-        this.customersPanel = new ClientScreen();
-        this.animalsPanel = new AnimalsScreen();
-        this.productsPanel = new ProductsScreen();
+        this.stablePanel = new StableContainer();
+        this.customersPanel = new ClientContainer();
+        this.animalsPanel = new AnimalsContainer();
+        this.productsPanel = new ProductsContainer();
+        this.resetPasswordPanel = new ResetPassword();
                 
         /* Add here the external classes to the layout */
         this.add(homePanel, Screens.HOME.toString());
@@ -39,6 +42,7 @@ public class FeatureWrapper extends javax.swing.JPanel implements GenericObserve
         this.add(customersPanel, Screens.CUSTOMERS.toString());
         this.add(animalsPanel, Screens.ANIMALS.toString());
         this.add(productsPanel, Screens.PRODUCTS.toString());
+        this.add(resetPasswordPanel, Screens.RESETPASSWORD.toString());
         
         this.toggleScreen(Screens.HOME);
     }
@@ -64,6 +68,9 @@ public class FeatureWrapper extends javax.swing.JPanel implements GenericObserve
                 break;
             case PRODUCTS:
                 toggleScreen(Screens.PRODUCTS);
+                break;
+            case RESETPASSWORD:
+                toggleScreen(Screens.RESETPASSWORD);
                 break;
             default:
                 break;
